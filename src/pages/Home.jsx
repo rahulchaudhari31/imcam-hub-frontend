@@ -5,6 +5,7 @@ import demoVideo from '../assets/video/gettyimages-2183092187-640_adpp.mp4';
 import { fetchFaqItems, fetchContactInfo } from '../services/cmsService';
 import {
   ArrowRight,
+  Check,
   Play,
   Shield,
   Workflow,
@@ -19,6 +20,7 @@ import {
   Phone,
   MapPin,
   Clock,
+  X,
 } from 'lucide-react';
 import FAQAccordion from '../components/FAQAccordion';
 import usePageMeta from '../hooks/usePageMeta';
@@ -39,6 +41,41 @@ function AnimatedSection({ children, className = '', delay = 0 }) {
     </motion.div>
   );
 }
+
+const problemSolutions = [
+  {
+    problem: 'Hours lost every week to scattered emails, disconnected spreadsheets, and cases tracked across too many places',
+    solution: 'One connected platform for the entire case journey — enquiry, application, compliance, and completion',
+  },
+  {
+    problem: 'Deadlines get missed',
+    solution: 'Deadlines and key dates tracked automatically, with alerts before anything is at risk',
+  },
+  {
+    problem: 'Clients chase you for updates',
+    solution: 'Clients and sponsoring businesses check their own progress through dedicated portals',
+  },
+  {
+    problem: "Managers lose visibility into who's handling what",
+    solution: "Managers get full visibility over every caseworker's workload, without having to ask",
+  },
+  {
+    problem: 'Documents sent back and forth with no single version of the truth',
+    solution: 'Every document, case, and conversation lives in one place',
+  },
+  {
+    problem: 'Important details slip through the cracks between inboxes',
+    solution: 'Nothing gets lost between emails and spreadsheets again',
+  },
+  {
+    problem: 'Caseworkers spend more time hunting for information than progressing cases',
+    solution: "Caseworkers know exactly what's due and when, so time goes into the case, not the admin",
+  },
+  {
+    problem: "Managers only notice something's fallen behind once it's too late to fix quietly",
+    solution: 'Issues get flagged early, before they become a client-facing problem',
+  },
+];
 
 const trustedFeatures = [
   {
@@ -391,6 +428,50 @@ export default function Home() {
                 loading="eager"
               />
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================
+          PROBLEM VS SOLUTION
+          ========================================= */}
+      <section className="section-padding bg-sand">
+        <div className="container-app">
+          <AnimatedSection className="text-center mb-12">
+            <span className="inline-flex items-center px-4 py-1.5 bg-amber/10 text-amber text-xs font-semibold rounded-full mb-4">
+              Problem vs Solution
+            </span>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-navy mb-4">
+              The Problem vs. <span className="gradient-text">The Solution</span>
+            </h2>
+            <p className="text-text-secondary max-w-2xl mx-auto">
+              Here&apos;s what changes when your consultancy runs on ImCam Hub.
+            </p>
+          </AnimatedSection>
+
+          <div className="space-y-4 max-w-5xl mx-auto">
+            {problemSolutions.map((item, i) => (
+              <AnimatedSection key={i} delay={i * 0.06}>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  <div className="flex items-start gap-3 rounded-2xl border border-rose/10 bg-rose/[0.04] p-5 hover:shadow-[0_8px_30px_rgba(11,31,58,0.08)] transition-shadow">
+                    <div className="w-8 h-8 rounded-lg bg-rose/10 flex items-center justify-center shrink-0">
+                      <X size={16} className="text-rose" />
+                    </div>
+                    <p className="text-sm text-text-secondary leading-relaxed pt-1.5">
+                      {item.problem}
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-3 rounded-2xl border border-emerald/15 bg-emerald/[0.04] p-5 hover:shadow-[0_8px_30px_rgba(11,31,58,0.08)] transition-shadow">
+                    <div className="w-8 h-8 rounded-lg bg-emerald/10 flex items-center justify-center shrink-0">
+                      <Check size={16} className="text-emerald" />
+                    </div>
+                    <p className="text-sm text-text-secondary leading-relaxed pt-1.5">
+                      {item.solution}
+                    </p>
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
           </div>
         </div>
       </section>
