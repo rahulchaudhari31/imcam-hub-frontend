@@ -8,8 +8,9 @@ import {
 } from 'lucide-react';
 import usePageMeta from '../hooks/usePageMeta';
 import FeaturePageTemplate from '../components/FeaturePageTemplate';
-import bannerImg from '../assets/images/features/Candidate_banner_.jpeg';
-import introImg from '../assets/images/features/Candidate_dashboard.png';
+import bannerImg from '../assets/images/Client banner.png';
+import introImg from '../assets/images/Client dashboard .png';
+import caseworkerImg from '../assets/images/features/Caseworker_image.jpg';
 
 const features = [
   {
@@ -84,11 +85,23 @@ export default function FeatureCandidate() {
       introHeading="One Portal to Track Your Entire Visa Application"
       introText={[
         'The Client Portal gives individual applicants a clear, live view of their UK visa case — whether it\'s a Skilled Worker visa, ILR, or British Citizenship application — without needing to call or email for updates.',
-        'See your progress at a glance, upload documents securely, and message your caseworker directly — all in one place.',
+        'See exactly which stage your case is at, what\'s needed from you, and what your caseworker is handling next. Built as part of ImCam Hub\'s UK immigration case management software, it replaces uncertainty and status-check emails with straightforward, real-time visibility.',
       ]}
       introImageLabel="Client Portal Preview"
       bannerImage={bannerImg}
       introImage={introImg}
+      middleImage={caseworkerImg}
+      middleBadge="Client Portal"
+      middleHeading="Follow your application, step by step"
+      middleParagraphs={[
+        'Waiting to hear back about a UK visa application is stressful enough without chasing updates by phone or email. The Client Portal gives you a live view of your case — from first enquiry through to final decision.',
+        'Log in anytime to see where your application stands, what your caseworker is handling next, and what\'s needed from you — with everything tied to your Skilled Worker, ILR, or British Citizenship case.',
+      ]}
+      middlePoints={[
+        'See your current stage and percentage complete at a glance.',
+        'Track received versus outstanding documents with clear checklists.',
+        'Message your caseworker directly — no email chains or phone tag.',
+      ]}
       features={features}
       faqs={faqs}
     />

@@ -78,6 +78,17 @@ function KenBurnsBanner({ overlayText, overlaySubline, bannerColor, bannerImage,
   );
 }
 
+const defaultMiddleParagraphs = [
+  'Caseworkers juggle dozens of active matters at any given time, each with unique deadlines, document requirements, and client expectations. The margin for error is zero.',
+  'From the moment a matter lands in your queue to the final filing, everything is streamlined — intake, drafting, reminders, and client communication all live in one focused workspace.',
+];
+
+const defaultMiddlePoints = [
+  'Smart checklists auto-generate for every case type and filing stage.',
+  'Automated reminders at 30, 14, 7, and 1 day(s) before every deadline.',
+  'One-click drafting from approved, on-brand templates.',
+];
+
 export default function FeaturePageTemplate({
   title,
   roleName,
@@ -93,6 +104,10 @@ export default function FeaturePageTemplate({
   bannerImage,
   introImage,
   middleImage,
+  middleBadge = 'Caseworker Portal',
+  middleHeading = 'A day in the caseworker\'s seat',
+  middleParagraphs = defaultMiddleParagraphs,
+  middlePoints = defaultMiddlePoints,
   bannerOverlay = true,
 }) {
   const featureRows = [];
@@ -180,50 +195,28 @@ export default function FeaturePageTemplate({
               <AnimateOnScroll>
                 <div>
                   <span className="inline-flex items-center px-4 py-1.5 bg-blue-pale text-blue text-xs font-semibold rounded-full mb-5">
-                    Caseworker Portal
+                    {middleBadge}
                   </span>
                   <h2 className="text-3xl md:text-4xl font-heading font-bold text-navy mb-5">
-                    A day in the caseworker&apos;s seat
+                    {middleHeading}
                   </h2>
                   <div className="space-y-4">
-                    <p className="text-text-secondary leading-relaxed">
-                      Caseworkers juggle dozens of active matters at any given
-                      time, each with unique deadlines, document requirements,
-                      and client expectations. The margin for error is zero.
-                    </p>
-                    <p className="text-text-secondary leading-relaxed">
-                      From the moment a matter lands in your queue to the final
-                      filing, everything is streamlined — intake, drafting,
-                      reminders, and client communication all live in one
-                      focused workspace.
-                    </p>
+                    {middleParagraphs.map((paragraph, i) => (
+                      <p key={i} className="text-text-secondary leading-relaxed">
+                        {paragraph}
+                      </p>
+                    ))}
                     <ul className="space-y-3 pt-2">
-                      <li className="flex items-start gap-3">
-                        <span className="mt-0.5 w-5 h-5 rounded-full bg-blue-pale text-blue flex items-center justify-center shrink-0">
-                          <Check size={14} />
-                        </span>
-                        <span className="text-sm text-text-secondary leading-relaxed">
-                          Smart checklists auto-generate for every case type and
-                          filing stage.
-                        </span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <span className="mt-0.5 w-5 h-5 rounded-full bg-blue-pale text-blue flex items-center justify-center shrink-0">
-                          <Check size={14} />
-                        </span>
-                        <span className="text-sm text-text-secondary leading-relaxed">
-                          Automated reminders at 30, 14, 7, and 1 day(s) before
-                          every deadline.
-                        </span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <span className="mt-0.5 w-5 h-5 rounded-full bg-blue-pale text-blue flex items-center justify-center shrink-0">
-                          <Check size={14} />
-                        </span>
-                        <span className="text-sm text-text-secondary leading-relaxed">
-                          One-click drafting from approved, on-brand templates.
-                        </span>
-                      </li>
+                      {middlePoints.map((point, i) => (
+                        <li key={i} className="flex items-start gap-3">
+                          <span className="mt-0.5 w-5 h-5 rounded-full bg-blue-pale text-blue flex items-center justify-center shrink-0">
+                            <Check size={14} />
+                          </span>
+                          <span className="text-sm text-text-secondary leading-relaxed">
+                            {point}
+                          </span>
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 </div>

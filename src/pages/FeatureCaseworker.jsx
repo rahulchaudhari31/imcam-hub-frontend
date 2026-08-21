@@ -84,8 +84,8 @@ export default function FeatureCaseworker() {
       bannerColor="bg-navy"
       introHeading="Manage Every Assigned Case, Task, and Deadline in One Place"
       introText={[
-        'The Caseworker Portal is where day-to-day case management for UK immigration teams actually happens — giving caseworkers a clear, focused view of every case assigned to them, from Skilled Worker visa applications to Sponsor Licence, ILR, and British Citizenship work.',
-        'Know what\'s due, what\'s missing, and what\'s next — with AI flagging delays early enough to act before deadlines are at risk.',
+        'The Caseworker Portal is where day-to-day case management software for UK immigration teams actually happens — giving caseworkers a clear, focused view of every case assigned to them, from Skilled Worker visa applications to Sponsor Licence, ILR, and British Citizenship work.',
+        'Track assigned tasks and deadlines, manage documents and client communication, and move each case through its workflow without losing time to scattered emails or spreadsheets. Purpose-built for UK immigration consultancies, it gives caseworkers exactly what they need to focus on cases, not admin.',
       ]}
       introImageLabel="Caseworker Portal Preview"
       introReverse

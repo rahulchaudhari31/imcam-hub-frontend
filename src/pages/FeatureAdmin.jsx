@@ -84,7 +84,7 @@ export default function FeatureAdmin() {
       introHeading="Everything a Manager Needs, at a Glance"
       introText={[
         'The Admin Portal is the command centre of ImCam Hub\'s immigration practice management software, giving managers a single, consolidated view of every case, caseworker, and compliance obligation across Skilled Worker visa, Sponsor Licence, ILR, and British Citizenship work.',
-        'Track performance, support your team, and keep your consultancy audit-ready — without chasing spreadsheets or status updates.',
+        'Track total cases and revenue, monitor pending licence and CoS requests, and stay ahead of sponsor licence compliance software requirements — all from one dashboard. Purpose-built for UK immigration consultancies, it replaces scattered spreadsheets and status-check emails with real-time oversight managers can act on.',
       ]}
       introImageLabel="Admin Dashboard Preview"
       bannerImage={bannerImg}

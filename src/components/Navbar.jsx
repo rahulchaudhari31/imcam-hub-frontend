@@ -35,7 +35,7 @@ const featureItems = [
     textColor: 'text-blue',
   },
   {
-    name: 'Candidate Portal',
+    name: 'Client Portal',
     path: '/features/candidate',
     icon: UserCheck,
     description: 'Applicant self-service tracking',
@@ -44,7 +44,7 @@ const featureItems = [
     textColor: 'text-emerald',
   },
   {
-    name: 'Client Portal',
+    name: 'Sponsor Business',
     path: '/features/client',
     icon: Building2,
     description: 'Sponsor licence oversight & compliance',

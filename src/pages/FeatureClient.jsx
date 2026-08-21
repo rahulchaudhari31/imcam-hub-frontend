@@ -8,8 +8,8 @@ import {
 } from 'lucide-react';
 import usePageMeta from '../hooks/usePageMeta';
 import FeaturePageTemplate from '../components/FeaturePageTemplate';
-import bannerImg from '../assets/images/features/Client_banner.png';
-import introImg from '../assets/images/features/Client_dashboard_.png';
+import bannerImg from '../assets/images/Candidate banner .jpeg';
+import introImg from '../assets/images/Candidate dashboard.png';
 
 const features = [
   {
@@ -70,21 +70,21 @@ const faqs = [
 
 export default function FeatureClient() {
   usePageMeta(
-    'Business/Sponsor Portal — ImCam Hub',
+    'Sponsor Business — ImCam Hub',
     'UK sponsor licence management for businesses: track licence status, CoS allocation, sponsored workers, and compliance obligations in one live portal.'
   );
 
   return (
     <FeaturePageTemplate
-      title="Business/Sponsor Portal"
+      title="Sponsor Business"
       roleName="Sponsoring Business"
       bannerText="Built for Sponsoring Businesses"
       bannerSubline="UK Sponsor Licence software for growing businesses."
       bannerColor="bg-navy"
       introHeading="UK Sponsor Licence Management Software, Built for Businesses"
       introText={[
-        'The Business Portal gives sponsoring businesses a live, consolidated view of their sponsor licence, sponsored workers, and compliance obligations — without relying on spreadsheets or chasing updates from an immigration consultancy.',
-        'See licence status, CoS allocation, worker records, and upcoming deadlines at a glance, with AI flagging compliance risks before they become UKVI-facing problems.',
+        'The Business Portal gives sponsoring businesses a live, consolidated view of their sponsor licence, sponsored workers, and compliance obligations, without relying on spreadsheets or chasing updates from an immigration consultancy.',
+        'See your licence status, available CoS allocation, and upcoming renewal deadlines at a glance, alongside every sponsored worker\'s case progress. Built as part of ImCam Hub\'s UK immigration case management software, it keeps sponsor licence compliance straightforward, transparent, and audit-ready at every stage.',
       ]}
       introImageLabel="Business Portal Preview"
       introReverse

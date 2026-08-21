@@ -2,7 +2,6 @@ import { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import demoVideo from '../assets/video/gettyimages-2183092187-640_adpp.mp4';
-import caseworkerImg from '../assets/images/features/Caseworker_image.jpg';
 import { fetchFaqItems, fetchContactInfo } from '../services/cmsService';
 import {
   ArrowRight,
@@ -158,28 +157,11 @@ const coreModules = [
   },
 ];
 
-const whyFeatures = [
-  {
-    icon: BarChart3,
-    title: 'Full Manager Oversight',
-    description:
-      'Managers see every caseworker\'s workload, every case stage, and every deadline in real time — complete visibility over the practice without chasing status updates.',
-    color: 'bg-emerald/10 text-emerald',
-  },
-  {
-    icon: MessageSquare,
-    title: 'Portals for Clients & Sponsors',
-    description:
-      'Clients and sponsoring businesses follow their own cases through dedicated portals — tracking progress, uploading documents, and seeing licence and compliance status without calling your team.',
-    color: 'bg-cyan/10 text-cyan',
-  },
-  {
-    icon: Clock,
-    title: 'Built Around UK Compliance',
-    description:
-      'Sponsor licence renewals, CoS allocation, right-to-work checks, and audit-ready record-keeping are built into every workflow — so compliance is handled as the case moves, not reconstructed afterwards.',
-    color: 'bg-purple/10 text-purple',
-  },
+const whyParagraphs = [
+  'Built specifically for UK Skilled Worker visa, Sponsor Licence, ILR, and British Citizenship workflows — not a generic legal CRM stretched to fit immigration work. Every stage, checklist, and compliance step is pre-configured around how UK immigration consultancies actually work, so there\'s no lengthy setup or workarounds to make it fit.',
+  'Gives managers full oversight without micromanaging — a clear view of every caseworker\'s workload, every case\'s progress, and every upcoming deadline, all from one dashboard.',
+  'Gives clients and sponsoring businesses their own live view of progress through dedicated portals, cutting down status-check emails and giving them the transparency they expect from modern case management software.',
+  'Built for the realities of UK immigration compliance — sponsor licence renewals, CoS allocation, right-to-work checks, and audit-ready record-keeping are all part of the platform, not an afterthought. Whether you\'re a solo immigration adviser or a growing consultancy managing multiple caseworkers, ImCam Hub scales with you, without the complexity of a generic practice management tool built for a different kind of law.',
 ];
 
 const faqs = [
@@ -391,9 +373,7 @@ export default function Home() {
               <p className="text-lg text-text-secondary leading-relaxed mb-8 max-w-lg">
                 Manage <span className="text-accent-blue font-medium">Skilled Worker visas</span>,{' '}
                 <span className="text-accent-blue font-medium">Sponsor Licences</span>, ILR, and British Citizenship
-                cases — from first enquiry to final approval, in one connected platform. Built specifically for{' '}
-                <span className="text-accent-blue font-medium">UK immigration consultancies</span>, covering everything
-                from intake through application, compliance checks, and completion.
+                cases — from first enquiry to final approval, in one connected platform.
               </p>
             </motion.div>
 
@@ -542,59 +522,36 @@ export default function Home() {
       </section>
 
       {/* =========================================
-          WHY IMCAM HUB — With Image
+          WHY IMCAM HUB
           ========================================= */}
       <section className="section-padding bg-white relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-pale/20 via-transparent to-cyan-pale/20 pointer-events-none" />
         <div className="container-app relative z-10">
-          <AnimatedSection className="text-center mb-14">
+          <AnimatedSection className="text-center mb-12">
             <span className="inline-flex items-center px-4 py-1.5 bg-emerald-pale text-emerald text-xs font-semibold rounded-full mb-4">
               Why ImCam Hub
             </span>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-navy mb-4">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-navy">
               Built Around Your <span className="gradient-text-emerald">Practice</span>
             </h2>
-            <p className="text-text-secondary max-w-2xl mx-auto">
-              ImCam Hub was built specifically for{' '}
-              <span className="text-accent-emerald font-medium">UK Skilled Worker visa</span>, Sponsor Licence, ILR, and
-              British Citizenship workflows — not adapted from a generic CRM. And it scales with you, from a solo
-              adviser to a growing multi-caseworker consultancy.
-            </p>
           </AnimatedSection>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <AnimatedSection>
-              <div className="space-y-8">
-                {whyFeatures.map((feature, i) => (
-                  <div key={i} className="flex items-start gap-4">
-                    <div className={`w-12 h-12 ${feature.color} rounded-2xl flex items-center justify-center shrink-0`}>
-                      <feature.icon size={24} />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-heading font-semibold text-navy mb-2">
-                        {feature.title}
-                      </h3>
-                      <p className="text-sm text-text-secondary leading-relaxed">
-                        {feature.description}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.15}>
-              <div className="relative rounded-3xl overflow-hidden shadow-[0_20px_60px_rgba(11,31,58,0.12)]">
-                <img
-                  src={caseworkerImg}
-                  alt="Caseworker handling a case call and taking notes"
-                  className="w-full h-auto object-cover"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy/20 to-transparent" />
-              </div>
-            </AnimatedSection>
-          </div>
+          <AnimatedSection className="max-w-3xl mx-auto">
+            <div className="space-y-5">
+              {whyParagraphs.map((paragraph, i) => (
+                <p
+                  key={i}
+                  className={
+                    i === 0
+                      ? 'text-lg text-text-secondary leading-relaxed'
+                      : 'text-text-secondary leading-relaxed'
+                  }
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 

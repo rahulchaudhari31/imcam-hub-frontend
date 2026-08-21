@@ -6,8 +6,8 @@ import { fetchContactInfo, fetchSocialLinks } from '../services/cmsService';
 const productLinks = [
   { name: 'Admin Dashboard', path: '/features/admin' },
   { name: 'Caseworker Portal', path: '/features/caseworker' },
-  { name: 'Candidate Portal', path: '/features/candidate' },
-  { name: 'Client Portal', path: '/features/client' },
+  { name: 'Client Portal', path: '/features/candidate' },
+  { name: 'Sponsor Business', path: '/features/client' },
   { name: 'Integrations', path: '/resources' },
 ];
 
