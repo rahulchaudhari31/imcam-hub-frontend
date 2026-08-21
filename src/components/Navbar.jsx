@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Menu,
@@ -9,7 +9,10 @@ import {
   Users,
   UserCheck,
   Building2,
+  LogIn,
+  LogOut,
 } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 
 
 const featureItems = [
@@ -65,6 +68,17 @@ export default function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileAccordionOpen, setMobileAccordionOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+    setMobileOpen(false);
+  };
+
+  const isAuthenticated = !!user;
+  const isAdmin = user?.role === 'admin';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -195,6 +209,34 @@ export default function Navbar() {
 
             {/* Right: CTA + hamburger */}
             <div className="flex items-center gap-3">
+              {isAuthenticated ? (
+                <>
+                  {isAdmin && (
+                    <Link
+                      to="/admin"
+                      className="hidden lg:inline-flex items-center gap-2 text-text-secondary hover:text-navy px-4 py-2 rounded-full text-sm font-medium transition-all hover:bg-sand/60"
+                    >
+                      <LayoutDashboard size={16} />
+                      Admin
+                    </Link>
+                  )}
+                  <button
+                    onClick={handleLogout}
+                    className="hidden lg:inline-flex items-center gap-2 text-text-secondary hover:text-navy px-4 py-2 rounded-full text-sm font-medium transition-all hover:bg-sand/60"
+                  >
+                    <LogOut size={16} />
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <Link
+                  to="/login"
+                  className="hidden lg:inline-flex items-center gap-2 text-text-secondary hover:text-navy px-4 py-2 rounded-full text-sm font-medium transition-all hover:bg-sand/60"
+                >
+                  <LogIn size={16} />
+                  Login
+                </Link>
+              )}
               <Link
                 to="/book-demo"
                 className="hidden lg:inline-flex items-center gap-2 bg-amber hover:bg-amber-dark text-white px-7 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 shadow-[0_2px_8px_rgba(242,153,74,0.35)] hover:shadow-[0_4px_16px_rgba(242,153,74,0.4)] hover:scale-[1.03] active:scale-[0.98]"
@@ -353,7 +395,37 @@ export default function Navbar() {
                 </div>
 
                 {/* Drawer footer */}
-                <div className="px-5 py-5 border-t border-sand-dark shrink-0">
+                <div className="px-5 py-5 border-t border-sand-dark shrink-0 space-y-3">
+                  {isAuthenticated ? (
+                    <>
+                      {isAdmin && (
+                        <Link
+                          to="/admin"
+                          onClick={() => setMobileOpen(false)}
+                          className="flex items-center justify-center gap-2 w-full border-2 border-navy text-navy hover:bg-navy hover:text-white px-6 py-3 rounded-full text-sm font-semibold transition-all"
+                        >
+                          <LayoutDashboard size={16} />
+                          Admin
+                        </Link>
+                      )}
+                      <button
+                        onClick={handleLogout}
+                        className="flex items-center justify-center gap-2 w-full border-2 border-navy text-navy hover:bg-navy hover:text-white px-6 py-3 rounded-full text-sm font-semibold transition-all"
+                      >
+                        <LogOut size={16} />
+                        Logout
+                      </button>
+                    </>
+                  ) : (
+                    <Link
+                      to="/login"
+                      onClick={() => setMobileOpen(false)}
+                      className="flex items-center justify-center gap-2 w-full border-2 border-navy text-navy hover:bg-navy hover:text-white px-6 py-3 rounded-full text-sm font-semibold transition-all"
+                    >
+                      <LogIn size={16} />
+                      Login
+                    </Link>
+                  )}
                   <Link
                     to="/book-demo"
                     onClick={() => setMobileOpen(false)}

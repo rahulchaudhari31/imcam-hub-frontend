@@ -71,6 +71,8 @@ export default function BookDemo() {
 
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
+  const [submitError, setSubmitError] = useState('');
+  const [submitting, setSubmitting] = useState(false);
   const [form, setForm] = useState({
     company: '',
     fullName: '',
@@ -93,25 +95,72 @@ export default function BookDemo() {
 
   const validate = () => {
     const e = {};
-    if (!form.company.trim()) e.company = 'Company name is required.';
-    if (!form.fullName.trim()) e.fullName = 'Full name is required.';
+    if (!form.company.trim()) {
+      e.company = 'Company name is required.';
+    } else if (form.company.trim().length > 200) {
+      e.company = 'Company name must be 200 characters or fewer.';
+    }
+    if (!form.fullName.trim()) {
+      e.fullName = 'Full name is required.';
+    } else if (form.fullName.trim().length > 100) {
+      e.fullName = 'Full name must be 100 characters or fewer.';
+    }
     if (!form.email.trim()) {
       e.email = 'Work email is required.';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
       e.email = 'Please enter a valid email address.';
     }
+    if (!form.phone.trim()) {
+      e.phone = 'Phone number is required.';
+    } else if (!/^\+?[\d\s\-().]{7,30}$/.test(form.phone.trim())) {
+      e.phone = 'Please provide a valid phone number.';
+    }
     if (!form.firmSize) e.firmSize = 'Please select a firm size.';
+    if (!form.message.trim()) {
+      e.message = 'Message is required.';
+    } else if (form.message.trim().length > 2000) {
+      e.message = 'Message must be 2000 characters or fewer.';
+    }
     return e;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitError('');
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
-    setSubmitted(true);
+    setSubmitting(true);
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/demo-requests`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          company: form.company.trim(),
+          fullName: form.fullName.trim(),
+          email: form.email.trim(),
+          phone: form.phone.trim(),
+          firmSize: form.firmSize,
+          message: form.message.trim(),
+        }),
+      });
+      const data = await res.json().catch(() => null);
+      if (!res.ok) {
+        throw new Error(
+          data?.message || 'Something went wrong. Please try again.'
+        );
+      }
+      setSubmitted(true);
+    } catch (err) {
+      setSubmitError(
+        err.message ||
+        'Network error. Please check your connection and try again.'
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -257,14 +306,14 @@ export default function BookDemo() {
                         />
                       </FormField>
 
-                      <FormField label="Phone Number" name="phone" required={false}>
+                      <FormField label="Phone Number" name="phone" required error={errors.phone}>
                         <input
                           id="phone"
                           type="tel"
                           value={form.phone}
                           onChange={update('phone')}
                           placeholder="+1 (555) 000-0000"
-                          className={`${fieldBase} ${fieldIdle}`}
+                          className={`${fieldBase} ${errors.phone ? fieldError : fieldIdle}`}
                         />
                       </FormField>
                     </div>
@@ -290,22 +339,26 @@ export default function BookDemo() {
                       </select>
                     </FormField>
 
-                    <FormField label="Message / Notes" name="message" required={false}>
+                    <FormField label="Message / Notes" name="message" required error={errors.message}>
                       <textarea
                         id="message"
                         rows={4}
                         value={form.message}
                         onChange={update('message')}
                         placeholder="Tell us about your immigration management needs, current tools, or specific questions..."
-                        className={`${fieldBase} resize-none ${fieldIdle}`}
+                        className={`${fieldBase} resize-none ${errors.message ? fieldError : fieldIdle}`}
                       />
                     </FormField>
 
+                    {submitError && (
+                      <p className="text-red-500 text-sm font-medium text-center">{submitError}</p>
+                    )}
                     <button
                       type="submit"
-                      className="w-full flex items-center justify-center gap-2 btn-gradient-primary px-8 py-3.5 rounded-full text-sm font-semibold transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                      disabled={submitting}
+                      className="w-full flex items-center justify-center gap-2 btn-gradient-primary px-8 py-3.5 rounded-full text-sm font-semibold transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                     >
-                      <Send size={16} /> Book My Free Demo
+                      <Send size={16} /> {submitting ? 'Submitting…' : 'Book My Free Demo'}
                     </button>
                   </form>
                 </div>

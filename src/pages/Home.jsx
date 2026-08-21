@@ -1,8 +1,9 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import demoVideo from '../assets/video/gettyimages-2183092187-640_adpp.mp4';
 import caseworkerImg from '../assets/images/features/Caseworker_image.jpg';
+import { fetchFaqItems, fetchContactInfo } from '../services/cmsService';
 import {
   ArrowRight,
   Play,
@@ -345,6 +346,26 @@ export default function Home() {
 
   const heroRef = useRef(null);
   const heroInView = useInView(heroRef, { once: true });
+  const [cmsFaqs, setCmsFaqs] = useState(null);
+  const [cmsContact, setCmsContact] = useState(null);
+
+  useEffect(() => {
+    const loadCms = async () => {
+      const [faqs, contact] = await Promise.all([fetchFaqItems(), fetchContactInfo()]);
+      if (faqs && faqs.length > 0) {
+        setCmsFaqs(faqs.map((f) => ({ question: f.question, answer: f.answer })));
+      }
+      if (contact) {
+        setCmsContact(contact);
+      }
+    };
+    loadCms();
+  }, []);
+
+  const displayFaqs = cmsFaqs || faqs;
+  const contactEmail = cmsContact?.email || 'hello@incamhub.com';
+  const contactPhone = cmsContact?.phone || '1-800-555-1234';
+  const contactAddress = cmsContact?.address || '123 Bay Street, Suite 400\nToronto, ON M5J 2R2';
 
   return (
     <div>
@@ -591,7 +612,7 @@ export default function Home() {
             {/* Left: FAQ accordion */}
             <AnimatedSection>
               <div className="bg-white rounded-2xl border border-sand-dark p-6 md:p-8">
-                <FAQAccordion items={faqs} />
+                <FAQAccordion items={displayFaqs} />
               </div>
             </AnimatedSection>
 
@@ -608,26 +629,22 @@ export default function Home() {
                 </p>
                 <div className="space-y-4 mb-8 relative z-10">
                   <a
-                    href="mailto:hello@incamhub.com"
+                    href={`mailto:${contactEmail}`}
                     className="flex items-center gap-3 text-sm text-white/70 hover:text-white transition-colors"
                   >
                     <Mail size={20} className="text-white/40" />
-                    hello@incamhub.com
+                    {contactEmail}
                   </a>
                   <a
-                    href="tel:+18005551234"
+                    href={`tel:${contactPhone.replace(/[^+0-9]/g, '')}`}
                     className="flex items-center gap-3 text-sm text-white/70 hover:text-white transition-colors"
                   >
                     <Phone size={20} className="text-white/40" />
-                    1-800-555-1234
+                    {contactPhone}
                   </a>
                   <div className="flex items-start gap-3 text-sm text-white/70">
                     <MapPin size={20} className="text-white/40 shrink-0 mt-0.5" />
-                    <span>
-                      123 Bay Street, Suite 400
-                      <br />
-                      Toronto, ON M5J 2R2
-                    </span>
+                    <span style={{ whiteSpace: 'pre-line' }}>{contactAddress}</span>
                   </div>
                 </div>
                 <Link
