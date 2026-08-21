@@ -1,19 +1,22 @@
 import { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
 import demoVideo from '../assets/video/gettyimages-2183092187-640_adpp.mp4';
 import { fetchFaqItems, fetchContactInfo } from '../services/cmsService';
 import {
   ArrowRight,
   Check,
+  ChevronDown,
   Play,
   Shield,
+  ShieldCheck,
   Workflow,
   BarChart3,
   Users,
   UserCheck,
   Building2,
   FileCheck,
+  Globe,
   Mail,
   FileSearch,
   MessageSquare,
@@ -194,11 +197,35 @@ const coreModules = [
   },
 ];
 
-const whyParagraphs = [
-  'Built specifically for UK Skilled Worker visa, Sponsor Licence, ILR, and British Citizenship workflows — not a generic legal CRM stretched to fit immigration work. Every stage, checklist, and compliance step is pre-configured around how UK immigration consultancies actually work, so there\'s no lengthy setup or workarounds to make it fit.',
-  'Gives managers full oversight without micromanaging — a clear view of every caseworker\'s workload, every case\'s progress, and every upcoming deadline, all from one dashboard.',
-  'Gives clients and sponsoring businesses their own live view of progress through dedicated portals, cutting down status-check emails and giving them the transparency they expect from modern case management software.',
-  'Built for the realities of UK immigration compliance — sponsor licence renewals, CoS allocation, right-to-work checks, and audit-ready record-keeping are all part of the platform, not an afterthought. Whether you\'re a solo immigration adviser or a growing consultancy managing multiple caseworkers, ImCam Hub scales with you, without the complexity of a generic practice management tool built for a different kind of law.',
+const whyFeatures = [
+  {
+    icon: ShieldCheck,
+    title: 'Built for UK Immigration, Not Adapted to It',
+    description:
+      "Built specifically for UK Skilled Worker visa, Sponsor Licence, ILR, and British Citizenship workflows — not a generic legal CRM stretched to fit immigration work. Every stage, checklist, and compliance step is pre-configured around how UK immigration consultancies actually work, so there's no lengthy setup or workarounds to make it fit.",
+    color: 'bg-emerald/10 text-emerald',
+  },
+  {
+    icon: Users,
+    title: 'Full Oversight, Without Micromanaging',
+    description:
+      "Gives managers full oversight without micromanaging — a clear view of every caseworker's workload, every case's progress, and every upcoming deadline, all from one dashboard.",
+    color: 'bg-cyan/10 text-cyan',
+  },
+  {
+    icon: Globe,
+    title: 'Live Portals for Clients & Sponsors',
+    description:
+      'Gives clients and sponsoring businesses their own live view of progress through dedicated portals, cutting down status-check emails and giving them the transparency they expect from modern case management software.',
+    color: 'bg-purple/10 text-purple',
+  },
+  {
+    icon: FileCheck,
+    title: 'Built for the Realities of UK Compliance',
+    description:
+      "Built for the realities of UK immigration compliance — sponsor licence renewals, CoS allocation, right-to-work checks, and audit-ready record-keeping are all part of the platform, not an afterthought. Whether you're a solo immigration adviser or a growing consultancy managing multiple caseworkers, ImCam Hub scales with you, without the complexity of a generic practice management tool built for a different kind of law.",
+    color: 'bg-amber/10 text-amber',
+  },
 ];
 
 const faqs = [
@@ -364,6 +391,7 @@ export default function Home() {
   const heroInView = useInView(heroRef, { once: true });
   const [cmsFaqs, setCmsFaqs] = useState(null);
   const [cmsContact, setCmsContact] = useState(null);
+  const [whyActiveIndex, setWhyActiveIndex] = useState(0);
 
   useEffect(() => {
     const loadCms = async () => {
@@ -617,22 +645,64 @@ export default function Home() {
             </h2>
           </AnimatedSection>
 
-          <AnimatedSection className="max-w-3xl mx-auto">
-            <div className="space-y-5">
-              {whyParagraphs.map((paragraph, i) => (
-                <p
-                  key={i}
-                  className={
-                    i === 0
-                      ? 'text-lg text-text-secondary leading-relaxed'
-                      : 'text-text-secondary leading-relaxed'
-                  }
-                >
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          </AnimatedSection>
+          {/* Interactive feature accordion */}
+          <div className="space-y-4">
+            {whyFeatures.map((feature, i) => {
+              const isActive = whyActiveIndex === i;
+              return (
+                <AnimatedSection key={i} delay={i * 0.08}>
+                  <div
+                    className={`rounded-2xl border border-sand-dark bg-white transition-all duration-200 ${
+                      isActive
+                        ? `border-l-4 ${['border-emerald', 'border-cyan', 'border-purple', 'border-amber'][i]} shadow-[0_8px_30px_rgba(11,31,58,0.08)]`
+                        : 'hover:bg-sand/50'
+                    }`}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setWhyActiveIndex(isActive ? -1 : i)}
+                      aria-expanded={isActive}
+                      className="w-full flex items-center gap-4 p-5 md:p-6 text-left"
+                    >
+                      <div
+                        className={`w-11 h-11 rounded-xl ${feature.color} flex items-center justify-center shrink-0 transition-transform duration-200 ${
+                          isActive ? 'scale-105' : ''
+                        }`}
+                      >
+                        <feature.icon size={22} />
+                      </div>
+                      <h3 className="flex-1 text-base sm:text-lg font-heading font-semibold text-navy">
+                        {feature.title}
+                      </h3>
+                      <motion.div
+                        animate={{ rotate: isActive ? 180 : 0 }}
+                        transition={{ duration: 0.25 }}
+                        className="shrink-0"
+                      >
+                        <ChevronDown size={20} className={isActive ? 'text-navy' : 'text-text-muted'} />
+                      </motion.div>
+                    </button>
+
+                    <AnimatePresence initial={false}>
+                      {isActive && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3, ease: 'easeInOut' }}
+                          className="overflow-hidden"
+                        >
+                          <p className="px-5 pb-5 md:px-6 md:pb-6 text-sm sm:text-base text-text-secondary leading-relaxed">
+                            {feature.description}
+                          </p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </AnimatedSection>
+              );
+            })}
+          </div>
         </div>
       </section>
 
