@@ -14,39 +14,39 @@ import introImg from '../assets/images/features/Admin_dashboard.png';
 const features = [
   {
     icon: LayoutDashboard,
-    title: 'Firm-Wide Dashboard',
+    title: 'Consolidated Case Dashboard',
     description:
-      'A bird\'s-eye view of every open case, team workload, revenue pipeline, and compliance status — updated in real time across your entire firm.',
+      'Live metrics on total cases, in-progress work, delayed cases, and completions, giving managers instant visibility across the whole consultancy.',
   },
   {
     icon: Users,
-    title: 'User & Permission Management',
+    title: 'Caseworker & Team Management',
     description:
-      'Create roles, assign granular permissions, and control exactly what each team member can see and do — down to the case and document level.',
-  },
-  {
-    icon: CreditCard,
-    title: 'Billing Oversight',
-    description:
-      'Track billable hours, approve invoices, monitor outstanding balances, and generate revenue reports across matters and clients from one place.',
+      'Add and manage caseworkers and admin users, assign cases, and monitor individual workload without needing constant status updates.',
   },
   {
     icon: FileCheck,
-    title: 'Compliance Reporting',
+    title: 'Licence & CoS Request Tracking',
     description:
-      'Auto-generated compliance reports for IRCC, USCIS, and other jurisdictions — with audit-ready logs and one-click export for regulators.',
+      'Track pending licence reviews and CoS requests in real time, keeping Sponsor Licence obligations moving without manual chasing.',
   },
   {
     icon: ClipboardList,
-    title: 'Audit Trails',
+    title: 'Compliance Review Oversight',
     description:
-      'Every action, edit, and approval is timestamped and attributed. Full transparency for internal reviews and external regulatory audits.',
+      'Monitor pending compliance reviews and CCL fee approvals in one place, keeping your consultancy audit-ready at every stage.',
+  },
+  {
+    icon: CreditCard,
+    title: 'Revenue & Reporting Analytics',
+    description:
+      'Generate reports and track revenue alongside caseload data, giving managers a clear view of both operational and financial performance.',
   },
   {
     icon: Building2,
-    title: 'Multi-Office Visibility',
+    title: 'Sponsor & Visa Alerts',
     description:
-      'Manage cases across multiple office locations with consolidated reporting, shared caseloads, and location-level performance dashboards.',
+      'Get automatic sponsor and visa alerts on upcoming deadlines, so nothing tied to compliance or renewals is ever missed.',
   },
 ];
 
@@ -54,37 +54,37 @@ const faqs = [
   {
     question: 'Can I control what each staff member can access?',
     answer:
-      'Yes. ImCam Hub provides granular role-based access control (RBAC). You can define custom roles, restrict access by case type, office location, or client — and even limit document-level permissions for sensitive matters.',
+      'Yes. ImCam Hub provides granular role-based access control (RBAC). You can define custom roles, restrict access by case type, office location, or client — and even limit document-level permissions for sensitive cases.',
   },
   {
     question: 'What kind of compliance reports are available?',
     answer:
-      'The platform generates pre-built reports for IRCC, USCIS, and major immigration authorities. Reports include filing timelines, approval rates, pending cases, and full audit trails — exportable as PDF or CSV.',
+      'The platform generates audit-ready reports aligned to UKVI and Home Office sponsor licence duties — including case timelines, CoS allocation, pending compliance reviews, and full audit trails — exportable as PDF or CSV.',
   },
   {
     question: 'Does multi-office support include separate billing?',
     answer:
-      'Yes. Each office can have its own billing rules, rate cards, and trust accounts while still feeding into a consolidated firm-wide financial dashboard.',
+      'Yes. Each office can have its own billing rules and rate cards while still feeding into a consolidated consultancy-wide financial dashboard.',
   },
 ];
 
 export default function FeatureAdmin() {
   usePageMeta(
-    'Admin Dashboard — ImCam Hub',
-    'Complete oversight of immigration operations with real-time analytics, compliance monitoring, and team management from a single command center.'
+    'Admin Portal — ImCam Hub',
+    'The command centre for UK immigration consultancies: oversee cases, caseworkers, CoS requests, compliance reviews, and revenue across Skilled Worker, Sponsor Licence, ILR, and Citizenship work.'
   );
 
   return (
     <FeaturePageTemplate
       title="Admin Dashboard"
-      roleName="Admin / Firm Owner"
-      bannerText="Built for Firm Owners"
-      bannerSubline="Complete command over your immigration practice — cases, team, compliance, and revenue — all in one dashboard."
+      roleName="Admin / Practice Manager"
+      bannerText="Built for Managers"
+      bannerSubline="From caseloads to compliance, the Admin Portal keeps your entire consultancy visible, organised, and ahead of deadlines."
       bannerColor="bg-navy"
-      introHeading="Full visibility. Full control."
+      introHeading="Everything a Manager Needs, at a Glance"
       introText={[
-        'As a firm owner or administrator, you need to see everything at once — which cases are moving, which are stalled, where the bottlenecks are, and whether your team is on track.',
-        'The Admin Dashboard gives you a real-time command center for your entire immigration practice. Manage users, configure workflows, monitor billing, and generate compliance reports without touching a spreadsheet.',
+        'The Admin Portal is the command centre of ImCam Hub\'s immigration practice management software, giving managers a single, consolidated view of every case, caseworker, and compliance obligation across Skilled Worker visa, Sponsor Licence, ILR, and British Citizenship work.',
+        'Track performance, support your team, and keep your consultancy audit-ready — without chasing spreadsheets or status updates.',
       ]}
       introImageLabel="Admin Dashboard Preview"
       bannerImage={bannerImg}

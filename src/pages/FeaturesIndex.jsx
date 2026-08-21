@@ -9,7 +9,7 @@ const roles = [
     icon: LayoutDashboard,
     title: 'Admin Dashboard',
     path: '/features/admin',
-    description: 'Complete oversight of all immigration operations with powerful analytics and reporting.',
+    description: 'Complete oversight of every case, caseworker, and compliance obligation across your UK immigration consultancy.',
     color: 'bg-indigo/10 text-indigo',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop',
     gradient: 'from-indigo-pale/40 to-transparent',
@@ -18,25 +18,25 @@ const roles = [
     icon: Users,
     title: 'Caseworker Portal',
     path: '/features/caseworker',
-    description: 'Streamlined case management with automated workflows and document handling.',
+    description: 'Manage every assigned case, task, and deadline — from Skilled Worker to ILR and Citizenship work — in one place.',
     color: 'bg-emerald/10 text-emerald',
     image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&h=500&fit=crop',
     gradient: 'from-emerald-pale/40 to-transparent',
   },
   {
     icon: UserCheck,
-    title: 'Candidate Portal',
+    title: 'Client Portal',
     path: '/features/candidate',
-    description: 'Self-service portal for candidates to track their immigration journey in real-time.',
+    description: 'Self-service portal for individual applicants to track their Skilled Worker, ILR, or Citizenship case in real time.',
     color: 'bg-blue/10 text-blue',
     image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=500&fit=crop',
     gradient: 'from-blue-pale/40 to-transparent',
   },
   {
     icon: Building2,
-    title: 'Client Portal',
+    title: 'Business/Sponsor Portal',
     path: '/features/client',
-    description: 'High-level dashboards and reporting for organizational clients managing multiple cases.',
+    description: 'Live visibility into sponsor licence status, sponsored workers, and CoS allocation for growing UK businesses.',
     color: 'bg-purple/10 text-purple',
     image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=500&fit=crop',
     gradient: 'from-purple-pale/40 to-transparent',
@@ -46,7 +46,7 @@ const roles = [
 export default function FeaturesIndex() {
   usePageMeta(
     'Features — ImCam Hub',
-    'Explore the complete ImCam Hub feature set: admin dashboards, caseworker portals, candidate portals, and client portals — all powered by smart automation.'
+    'Explore the four connected portals of ImCam Hub for UK immigration consultancies: admin, caseworker, client, and business/sponsor — covering Skilled Worker, Sponsor Licence, ILR, and Citizenship work.'
   );
 
   return (
@@ -64,13 +64,13 @@ export default function FeaturesIndex() {
                 <span className="gradient-text">Every Stakeholder</span>
               </h1>
               <p className="text-lg text-text-secondary leading-relaxed mb-4 max-w-lg">
-                Discover how ImCam Hub tailors the immigration management
-                experience for each role in your organization.
+                Discover how ImCam Hub tailors UK immigration case
+                management for every role in your consultancy.
               </p>
               <p className="text-sm text-text-muted leading-relaxed max-w-lg">
-                From firm owners who need full visibility to candidates who
-                want real-time updates — every portal is purpose-built to
-                match how each user actually works.
+                From practice managers who need full oversight to individual
+                applicants who want real-time updates — every portal is
+                purpose-built to match how each user actually works.
               </p>
             </motion.div>
 

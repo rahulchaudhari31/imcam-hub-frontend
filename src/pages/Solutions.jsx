@@ -5,12 +5,8 @@ import usePageMeta from '../hooks/usePageMeta';
 import {
   ArrowRight,
   Database,
-  Calendar,
-  Globe,
   PieChart,
-  CalendarClock,
   MessageSquare,
-  FileText,
   LayoutDashboard,
   FolderOpen,
   Clock,
@@ -19,6 +15,7 @@ import {
   Link2,
   Bot,
   BarChart3,
+  Building2,
 } from 'lucide-react';
 
 function AnimateOnScroll({ children, className = '', delay = 0 }) {
@@ -78,56 +75,56 @@ const solutions = [
     icon: Database,
     title: 'Document Vault',
     description:
-      'Securely store, organise, and retrieve all case-related documents in one centralised repository with version control and access permissions.',
+      'Securely store, organise, and retrieve every case document in one centralised repository — a core part of ImCam Hub\'s UK immigration case management software.',
     color: 'bg-indigo/15 text-indigo-light',
   },
   {
-    icon: Calendar,
-    title: 'Deadline Tracker',
+    icon: LayoutDashboard,
+    title: 'Case Pipeline View',
     description:
-      'Automated calendar syncing with smart alerts for filing windows, interview dates, and renewal deadlines — never miss a critical date again.',
+      'A visual pipeline showing every case\'s stage across your caseload, giving immigration practice management software the visibility to spot bottlenecks instantly.',
     color: 'bg-blue/15 text-blue-light',
   },
   {
-    icon: Globe,
+    icon: MessageSquare,
     title: 'Client Portal',
     description:
-      'Give clients a self-service dashboard to upload documents, track case progress, and communicate with their caseworker — reducing back-and-forth.',
+      'Give individual clients an immigration client portal software experience to track application progress, upload documents, and message their caseworker — reducing back-and-forth.',
     color: 'bg-purple/15 text-purple-light',
+  },
+  {
+    icon: Building2,
+    title: 'Business/Sponsor Portal',
+    description:
+      'Sponsor licence management software built for businesses, giving live visibility into licence status, sponsored workers, and CoS allocation without manual chasing.',
+    color: 'bg-emerald/15 text-emerald-light',
   },
   {
     icon: PieChart,
     title: 'Reporting & Analytics',
     description:
-      'Real-time dashboards and custom reports on caseload health, team performance, revenue metrics, and compliance scores across your firm.',
-    color: 'bg-emerald/15 text-emerald-light',
-  },
-  {
-    icon: CalendarClock,
-    title: 'Appointment Scheduler',
-    description:
-      'Book client consultations, interviews, and internal meetings directly in the platform — with a shared calendar everyone can see.',
+      'Real-time dashboards on caseload, revenue, and team performance, turning your visa case tracking system into a source of actionable insight.',
     color: 'bg-cyan/15 text-cyan-light',
   },
   {
-    icon: MessageSquare,
-    title: 'Secure Messaging',
+    icon: Users,
+    title: 'Caseworker & Task Assignment',
     description:
-      'Send and receive case updates, requests, and documents through built-in messaging — keeping every conversation attached to the right matter.',
+      'Assign cases and tasks to caseworkers and monitor workload from one dashboard — immigration software built for how consultancy teams actually work.',
     color: 'bg-orange/15 text-orange-light',
   },
   {
-    icon: FileText,
-    title: 'Document Templates',
+    icon: ShieldAlert,
+    title: 'Role-Based Access & Security',
     description:
-      'Start from ready-made templates for applications, forms, and letters, then tailor each document to the matter at hand.',
+      'Every user sees only what\'s relevant to them, backed by the audit-ready, compliance-first security expected from immigration case management software.',
     color: 'bg-pink/15 text-pink-light',
   },
   {
-    icon: LayoutDashboard,
-    title: 'User Dashboard',
+    icon: Bot,
+    title: 'AI-Powered Case Intelligence',
     description:
-      'Personalized dashboards for every role — showing relevant cases, upcoming deadlines, pending tasks, and performance metrics at a glance.',
+      'AI auto-checks documents for missing or expired items, flags sponsor licence compliance risks, and predicts case delays before problems arise.',
     color: 'bg-indigo/15 text-indigo-light',
   },
 ];
@@ -135,25 +132,25 @@ const solutions = [
 const steps = [
   {
     number: '01',
-    title: 'Connect',
+    title: 'Register',
     description:
-      'Import your existing cases, client data, and templates. We handle migration so your team starts on day one with everything in place.',
+      'Register your consultancy, add your caseworkers, and set up your admin account. Managers get full oversight from day one, with role-based access configured automatically.',
     icon: Link2,
     color: 'bg-blue/10 text-blue',
   },
   {
     number: '02',
-    title: 'Automate',
+    title: 'Onboard Cases & Clients',
     description:
-      'Set up workflow rules, document templates, and compliance checks to match your firm\'s processes — then watch repetitive tasks disappear.',
-    icon: Bot,
+      'Add candidates or sponsoring businesses and start their case journey — Skilled Worker, Sponsor Licence, ILR, or Citizenship — with pre-built workflows ready to go, no manual setup required.',
+    icon: Users,
     color: 'bg-indigo/10 text-indigo',
   },
   {
     number: '03',
-    title: 'Track',
+    title: 'Manage & Track',
     description:
-      'Monitor every case, deadline, and team performance in real time. Dashboards and alerts keep your practice running smoothly.',
+      'Assign caseworkers, track every case through its stages, and let AI flag missing documents, compliance risks, and delays — while clients and businesses follow their own progress in real time.',
     icon: BarChart3,
     color: 'bg-emerald/10 text-emerald',
   },
@@ -174,7 +171,7 @@ const staggerItem = {
 export default function Solutions() {
   usePageMeta(
     'Solutions — ImCam Hub',
-    'Comprehensive solutions for immigration practices: document management, deadline tracking, client portals, and intelligent case routing.'
+    'Document vault, case pipelines, client and sponsor portals, reporting, and AI-powered case intelligence — built for UK immigration consultancies.'
   );
 
   return (
@@ -213,15 +210,16 @@ export default function Solutions() {
             </motion.div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-white mb-6 leading-[1.1]">
-              The Challenges Immigration{' '}
+              The Challenges UK Immigration{' '}
               <br className="hidden sm:block" />
-              Practices <span className="gradient-text-cyan">Face</span>
+              Consultancies <span className="gradient-text-cyan">Face</span>
             </h1>
 
             <p className="text-lg sm:text-xl text-white/60 max-w-3xl mx-auto mb-10 leading-relaxed">
               Complex regulations. Tight deadlines. High client expectations.
               Lean teams. Fragmented tools. ImCam Hub was built to solve{' '}
-              <span className="text-white font-medium">every one</span> of these challenges.
+              <span className="text-white font-medium">every one</span> of these
+              challenges for UK immigration consultancies.
             </p>
 
             {/* Stats row */}
@@ -262,7 +260,7 @@ export default function Solutions() {
               Sound Familiar?
             </h2>
             <p className="text-text-secondary max-w-2xl mx-auto">
-              These are the daily realities immigration teams face without
+              These are the daily realities UK immigration teams face without
               a unified system.
             </p>
           </AnimateOnScroll>
@@ -353,8 +351,8 @@ export default function Solutions() {
               How It <span className="gradient-text">Works</span>
             </h2>
             <p className="text-text-secondary max-w-2xl mx-auto">
-              Three steps from signup to a fully operational immigration
-              practice platform.
+              Three steps from sign-up to a fully connected immigration
+              practice.
             </p>
           </AnimateOnScroll>
 
@@ -430,8 +428,8 @@ export default function Solutions() {
               Ready to see ImCam Hub <span className="text-cyan-light">in action</span>?
             </h2>
             <p className="text-white/60 max-w-xl mx-auto mb-8">
-              Join immigration practices that have transformed their workflow
-              with ImCam Hub. Schedule a personalized demo today.
+              Join UK immigration consultancies that have transformed their
+              workflow with ImCam Hub. Schedule a personalized demo today.
             </p>
             <Link
               to="/book-demo"

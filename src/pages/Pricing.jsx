@@ -14,6 +14,7 @@ import {
   TrendingUp,
 } from 'lucide-react';
 import FAQAccordion from '../components/FAQAccordion';
+import pricingImg from '../assets/images/features/Pricing photo.png';
 
 const plans = [
   {
@@ -262,8 +263,8 @@ export default function Pricing() {
                 className="rounded-3xl overflow-hidden border-2 border-sand-dark shadow-[0_8px_30px_rgba(11,31,58,0.1)]"
               >
                 <img
-                  src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=500&fit=crop"
-                  alt="Financial dashboard showing pricing analytics"
+                  src={pricingImg}
+                  alt="ImCam Hub pricing plans"
                   className="w-full h-auto object-cover"
                   loading="lazy"
                 />

@@ -51,8 +51,8 @@ export default function Footer() {
   }, []);
 
   const email = contactInfo?.email || 'hello@incamhub.com';
-  const phone = contactInfo?.phone || '1-800-555-1234';
-  const address = contactInfo?.address || '123 Bay Street, Suite 400\nToronto, ON M5J 2R2\nCanada';
+  const phone = contactInfo?.phone || '+44 20 7946 0958';
+  const address = contactInfo?.address || '[UK office address]\n[City, Postcode]\nUnited Kingdom';
 
   const displaySocialLinks = socialLinksData
     ? socialLinksData.map((s) => ({

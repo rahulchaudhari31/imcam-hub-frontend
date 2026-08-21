@@ -1,10 +1,10 @@
 import {
   LayoutDashboard,
   ShieldCheck,
-  Upload,
-  Receipt,
   BarChart3,
   UserCheck,
+  Bell,
+  Sparkles,
 } from 'lucide-react';
 import usePageMeta from '../hooks/usePageMeta';
 import FeaturePageTemplate from '../components/FeaturePageTemplate';
@@ -14,79 +14,79 @@ import introImg from '../assets/images/features/Client_dashboard_.png';
 const features = [
   {
     icon: LayoutDashboard,
-    title: 'Multi-Candidate Dashboard',
+    title: 'Licence Status at a Glance',
     description:
-      'Monitor every sponsored employee\'s immigration status on a single dashboard. Filter by case type, stage, office, or urgency — see the full picture at a glance.',
-  },
-  {
-    icon: ShieldCheck,
-    title: 'Compliance Tracking',
-    description:
-      'Automated compliance monitoring across your entire workforce. Get alerts for expiring work permits, pending renewals, and upcoming regulatory deadlines before they become issues.',
-  },
-  {
-    icon: Upload,
-    title: 'Bulk Document Submission',
-    description:
-      'Upload documents for multiple candidates in a single batch. The system validates each file, routes them to the correct case, and notifies the assigned caseworker automatically.',
-  },
-  {
-    icon: Receipt,
-    title: 'Invoicing Overview',
-    description:
-      'View all invoices across your sponsored employees in one place. Track costs per case, per department, or per candidate — with full payment history and outstanding balance visibility.',
+      'See your sponsor licence status, licence number, and expiry date instantly, with no need to track renewal dates manually.',
   },
   {
     icon: BarChart3,
-    title: 'Reporting & Exports',
+    title: 'CoS Allocation Tracking',
     description:
-      'Generate workforce immigration reports for HR, finance, and leadership. Export to CSV or PDF with filters for case type, status, cost, and timeline.',
+      'Monitor available and used Certificate of Sponsorship allocation, so you always know your capacity for new sponsored workers.',
   },
   {
     icon: UserCheck,
-    title: 'Dedicated Account Manager View',
+    title: 'Sponsored Worker Records',
     description:
-      'Your assigned ImCam Hub account manager has a shared view into your portfolio — enabling proactive support, quarterly reviews, and strategic guidance on your immigration program.',
+      'View every sponsored worker\'s visa type, case reference, job title, and status in one organised, easy-to-navigate table.',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Compliance & Reporting Obligations',
+    description:
+      'Track compliance documents, reporting obligations, and right-to-work checks, keeping your business audit-ready at every stage.',
+  },
+  {
+    icon: Bell,
+    title: 'Automatic Compliance Alerts',
+    description:
+      'Get automatic reminders on licence expiry, pending reviews, and overdue cases, so nothing critical is ever missed.',
+  },
+  {
+    icon: Sparkles,
+    title: 'AI-Flagged Compliance Risks',
+    description:
+      'AI reviews your licence and worker data for compliance risks and flags them early, before they become UKVI-facing problems.',
   },
 ];
 
 const faqs = [
   {
-    question: 'Can we track immigration status for employees across different countries?',
+    question: 'Can we see the status of every sponsored worker in one place?',
     answer:
-      'Yes. The multi-candidate dashboard supports multi-jurisdiction tracking. Whether your employees are applying for Canadian work permits, US H-1B visas, or UK skilled worker visas, everything is visible in one unified view with jurisdiction-specific compliance alerts.',
+      'Yes. The Business Portal tracks your sponsor licence, Certificate of Sponsorship allocation, and every sponsored worker\'s visa type, case reference, and status in one unified view — with compliance alerts specific to UKVI reporting duties.',
   },
   {
-    question: 'How does bulk document submission work?',
+    question: 'How do document uploads work for our business?',
     answer:
-      'From the Client Portal, you can select multiple candidates and upload documents in batch. Each file is validated (format, size, expiry), automatically routed to the correct case file, and the assigned caseworker is notified. You\'ll see a real-time status for each uploaded document.',
+      'From the Business Portal, you can upload documents directly against worker records. Each file is validated (format, size, expiry), automatically routed to the correct case, and the assigned caseworker is notified. You\'ll see a real-time status for each uploaded document.',
   },
   {
-    question: 'Can different departments see different sets of candidates?',
+    question: 'Can different departments see different sets of workers?',
     answer:
-      'Yes. Role-based access can be configured to scope visibility by department, office location, or cost center. A marketing department lead, for example, would only see candidates sponsored by their department.',
+      'Yes. Role-based access can be configured to scope visibility by department, office location, or cost centre. A department lead, for example, would only see workers sponsored by their department.',
   },
 ];
 
 export default function FeatureClient() {
   usePageMeta(
-    'Client Portal — ImCam Hub',
-    'Enterprise-grade immigration oversight for sponsoring employers with compliance tracking, bulk operations, and multi-candidate dashboards.'
+    'Business/Sponsor Portal — ImCam Hub',
+    'UK sponsor licence management for businesses: track licence status, CoS allocation, sponsored workers, and compliance obligations in one live portal.'
   );
 
   return (
     <FeaturePageTemplate
-      title="Client Portal"
-      roleName="Client / Business"
-      bannerText="Built for Sponsoring Employers"
-      bannerSubline="Enterprise-grade visibility into your sponsored workforce — compliance tracking, bulk operations, and reporting across every active case."
+      title="Business/Sponsor Portal"
+      roleName="Sponsoring Business"
+      bannerText="Built for Sponsoring Businesses"
+      bannerSubline="UK Sponsor Licence software for growing businesses."
       bannerColor="bg-navy"
-      introHeading="Immigration oversight at enterprise scale."
+      introHeading="UK Sponsor Licence Management Software, Built for Businesses"
       introText={[
-        'Sponsoring employees for immigration status is a significant operational commitment. You need to track dozens or hundreds of cases simultaneously, ensure compliance across jurisdictions, and keep your finance and HR teams informed.',
-        'The Client Portal gives sponsoring employers a centralized command center for their entire immigration program. From multi-candidate dashboards to bulk document submission and compliance alerts, every tool is built for scale.',
+        'The Business Portal gives sponsoring businesses a live, consolidated view of their sponsor licence, sponsored workers, and compliance obligations — without relying on spreadsheets or chasing updates from an immigration consultancy.',
+        'See licence status, CoS allocation, worker records, and upcoming deadlines at a glance, with AI flagging compliance risks before they become UKVI-facing problems.',
       ]}
-      introImageLabel="Client Portal Preview"
+      introImageLabel="Business Portal Preview"
       introReverse
       bannerImage={bannerImg}
       introImage={introImg}

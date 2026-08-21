@@ -16,13 +16,10 @@ import {
   FileCheck,
   Mail,
   FileSearch,
-  Receipt,
   MessageSquare,
   Phone,
   MapPin,
   Clock,
-  Globe,
-  Lock,
 } from 'lucide-react';
 import FAQAccordion from '../components/FAQAccordion';
 import usePageMeta from '../hooks/usePageMeta';
@@ -48,76 +45,76 @@ const trustedFeatures = [
   {
     icon: Shield,
     title: 'Role-Based Access',
-    description: 'Granular permissions ensure every user sees only what they need.',
+    description: 'Every user sees only the cases and data relevant to their role.',
     color: 'bg-indigo/10 text-indigo',
-  },
-  {
-    icon: Workflow,
-    title: 'Automated Case Flows',
-    description: 'Intake, review, and approval pipelines run without manual handoffs.',
-    color: 'bg-emerald/10 text-emerald',
   },
   {
     icon: BarChart3,
     title: 'Real-Time Visibility',
-    description: 'Live dashboards track every case, deadline, and team performance.',
+    description: 'Live dashboards track every case, deadline, and caseworker\'s progress instantly.',
+    color: 'bg-emerald/10 text-emerald',
+  },
+  {
+    icon: Building2,
+    title: 'Four Connected Portals',
+    description: 'Admin, caseworker, client, and business, all sharing one live case.',
     color: 'bg-cyan/10 text-cyan',
   },
   {
-    icon: Lock,
-    title: 'Bank-Grade Security',
-    description: 'End-to-end encryption, SOC 2 compliance, and audit-ready logging.',
+    icon: FileSearch,
+    title: 'AI-Powered Case Intelligence',
+    description: 'Auto-checks documents, flags compliance risks, and predicts delays early.',
     color: 'bg-purple/10 text-purple',
   },
 ];
 
 const aiAgents = [
   {
-    icon: Users,
-    title: 'Client Intake Agent',
+    icon: Workflow,
+    title: 'Case & Workflow Management',
     description:
-      'Collects and pre-validates client information from intake forms, passports, and supporting documents — automatically structuring data for caseworker review.',
-    badges: ['AUTO ONBOARD', 'AML COMPLIANT'],
+      'Track every case through enquiry, application, compliance, and completion with pre-built workflows for each UK visa type.',
+    badges: ['FULL LIFECYCLE', 'PRE-BUILT WORKFLOWS'],
     color: 'bg-blue/10 text-blue',
   },
   {
     icon: FileCheck,
-    title: 'Document Verification Agent',
+    title: 'Document Vault',
     description:
-      'Scans uploaded documents for expiry dates, naming conventions, and format compliance. Flags anomalies before they reach the caseworker\'s desk.',
-    badges: ['REAL-TIME CHECK', 'OCR POWERED'],
+      'Store, organise, and retrieve every case document securely in one place, with checklists showing what\'s received and outstanding.',
+    badges: ['SECURE STORAGE', 'CHECKLIST TRACKING'],
     color: 'bg-indigo/10 text-indigo',
   },
   {
-    icon: Mail,
-    title: 'Email Reply Agent',
+    icon: Users,
+    title: 'Caseworker & Task Assignment',
     description:
-      'Drafts context-aware responses to client and government correspondence using case history, templates, and tone calibration — ready for one-click send.',
-    badges: ['AUTO DRAFTED', 'BRAND TONE'],
+      'Assign cases and tasks to caseworkers, then monitor workload and progress from a single manager dashboard.',
+    badges: ['TASK ASSIGNMENT', 'WORKLOAD VISIBILITY'],
     color: 'bg-purple/10 text-purple',
   },
   {
-    icon: FileSearch,
-    title: 'Clause & Document Analysis',
+    icon: Shield,
+    title: 'Compliance & Licence Tracking',
     description:
-      'Parses immigration forms, policy documents, and contracts to extract key clauses, deadlines, and obligations — highlighting risk areas automatically.',
-    badges: ['NLP ENGINE', 'RISK ALERT'],
+      'Manage licence requests, CoS allocation, and compliance reviews with automatic alerts before deadlines are at risk.',
+    badges: ['LICENCE TRACKING', 'AUTO ALERTS'],
     color: 'bg-emerald/10 text-emerald',
   },
   {
-    icon: Receipt,
-    title: 'Invoice & Communication Agent',
+    icon: UserCheck,
+    title: 'Client Self-Service Portal',
     description:
-      'Generates billing entries from logged time, attaches them to client records, and delivers polished invoices with full case-level cost breakdowns.',
-    badges: ['AUTO BILL', 'CLIENT READY'],
+      'Let individual clients track their application progress, upload documents, and message your team without needing to call or email.',
+    badges: ['CLIENT PORTAL', 'SELF-SERVICE'],
     color: 'bg-cyan/10 text-cyan',
   },
   {
-    icon: Shield,
-    title: 'Compliance Monitor Agent',
+    icon: Building2,
+    title: 'Business/Sponsor Portal',
     description:
-      'Continuously scans case files against current IRCC, USCIS, and local regulatory requirements — flagging expiring documents, missing filings, and policy changes before they become issues.',
-    badges: ['24/7 MONITOR', 'POLICY SYNC'],
+      'Give sponsoring businesses live visibility into licence status, sponsored workers, compliance obligations, and upcoming renewal deadlines.',
+    badges: ['SPONSOR PORTAL', 'LIVE COMPLIANCE'],
     color: 'bg-orange/10 text-orange',
   },
 ];
@@ -126,7 +123,7 @@ const coreModules = [
   {
     icon: Building2,
     title: 'Admin Dashboard',
-    description: 'Firm-wide dashboard, user management, billing oversight, compliance reporting, and audit trails.',
+    description: 'Complete oversight of every case, caseworker, and compliance obligation across your consultancy.',
     path: '/features/admin',
     color: 'bg-indigo/10',
     iconColor: 'text-indigo',
@@ -135,7 +132,7 @@ const coreModules = [
   {
     icon: Users,
     title: 'Caseworker Portal',
-    description: 'Matter management, document checklists, deadline tracking, automated drafting, and workload balancing.',
+    description: 'Every assigned case, task, and deadline in one place — from Skilled Worker to ILR and Citizenship work.',
     path: '/features/caseworker',
     color: 'bg-emerald/10',
     iconColor: 'text-emerald',
@@ -143,8 +140,8 @@ const coreModules = [
   },
   {
     icon: UserCheck,
-    title: 'Candidate Portal',
-    description: 'Secure portal, real-time status tracking, document upload, e-signatures, and direct messaging.',
+    title: 'Client Portal',
+    description: 'Self-service tracking, document upload, and direct messaging for individual applicants.',
     path: '/features/candidate',
     color: 'bg-blue/10',
     iconColor: 'text-blue',
@@ -152,8 +149,8 @@ const coreModules = [
   },
   {
     icon: MessageSquare,
-    title: 'Client Portal',
-    description: 'Multi-candidate dashboard, compliance tracking, bulk uploads, invoicing, and reporting exports.',
+    title: 'Business/Sponsor Portal',
+    description: 'Live visibility into sponsor licence status, sponsored workers, and CoS allocation.',
     path: '/features/client',
     color: 'bg-purple/10',
     iconColor: 'text-purple',
@@ -163,24 +160,24 @@ const coreModules = [
 
 const whyFeatures = [
   {
-    icon: MessageSquare,
-    title: 'Unified Client Communication',
+    icon: BarChart3,
+    title: 'Full Manager Oversight',
     description:
-      'Every message, document request, and status update lives in one thread per case. No more scattered email chains or lost context — clients and caseworkers stay aligned from day one.',
+      'Managers see every caseworker\'s workload, every case stage, and every deadline in real time — complete visibility over the practice without chasing status updates.',
     color: 'bg-emerald/10 text-emerald',
   },
   {
-    icon: Clock,
-    title: 'Access on the Go',
+    icon: MessageSquare,
+    title: 'Portals for Clients & Sponsors',
     description:
-      'Review cases, approve documents, and respond to clients from any device. ImCam Hub is built mobile-first so your team never misses a critical deadline, whether at the office or in court.',
+      'Clients and sponsoring businesses follow their own cases through dedicated portals — tracking progress, uploading documents, and seeing licence and compliance status without calling your team.',
     color: 'bg-cyan/10 text-cyan',
   },
   {
-    icon: Globe,
-    title: 'Enhanced Scheduling',
+    icon: Clock,
+    title: 'Built Around UK Compliance',
     description:
-      'Calendar integration syncs interviews, filing deadlines, and hearing dates across your entire caseload. Automated reminders keep every milestone on track without manual follow-ups.',
+      'Sponsor licence renewals, CoS allocation, right-to-work checks, and audit-ready record-keeping are built into every workflow — so compliance is handled as the case moves, not reconstructed afterwards.',
     color: 'bg-purple/10 text-purple',
   },
 ];
@@ -189,32 +186,32 @@ const faqs = [
   {
     question: 'What types of immigration cases does ImCam Hub support?',
     answer:
-      'ImCam Hub supports the full spectrum of immigration case types including work permits, permanent residency applications, family sponsorships, refugee claims, and corporate immigration programs. The platform is jurisdiction-aware and adapts its checklists and compliance rules based on the country and program type.',
+      'ImCam Hub is built specifically for UK immigration work — Skilled Worker visas, Sponsor Licence applications and renewals, ILR, and British Citizenship. Each case type comes with pre-built workflows, document checklists, and compliance rules aligned to UKVI requirements.',
   },
   {
     question: 'How does the document verification work?',
     answer:
-      'Our Document Verification Agent uses OCR and NLP to scan uploaded files in real time. It checks for expired documents, missing signatures, incorrect formats, and incomplete fields — flagging issues before a caseworker even opens the file. This reduces rejection rates and accelerates processing.',
+      'Our AI reviews uploaded documents in real time — checking for missing pages, expired dates, and incomplete fields — and flags issues before a caseworker even opens the file. This reduces rejection rates and keeps UK visa applications moving.',
   },
   {
-    question: 'Can candidates and clients track their own case progress?',
+    question: 'Can clients and sponsoring businesses track their own case progress?',
     answer:
-      'Yes. Both the Candidate Portal and Client Portal provide self-service dashboards where users can view real-time case status, upload requested documents, and communicate directly with their caseworker — all within a secure, branded environment.',
+      'Yes. Individual clients track their application through the Client Portal, while sponsoring businesses see licence status, sponsored workers, and CoS allocation in the Business Portal — both updated in real time, with direct messaging to their caseworker.',
   },
   {
     question: 'Is ImCam Hub compliant with data privacy regulations?',
     answer:
-      'ImCam Hub is built with compliance at its core. We are SOC 2 Type II certified, GDPR compliant, and follow PIPEDA standards for Canadian data. All data is encrypted at rest and in transit, with full audit logging and role-based access controls.',
+      'ImCam Hub is built with compliance at its core. We are fully GDPR compliant, with all data encrypted at rest and in transit, full audit logging, and role-based access controls — supporting the record-keeping standards expected for sponsor licence compliance and UKVI audits.',
   },
   {
     question: 'What integrations does ImCam Hub offer?',
     answer:
-      'ImCam Hub integrates with major HRIS platforms (BambooHR, Workday, Rippling), accounting software (QuickBooks, Xero), government e-filing portals, and popular communication tools like Slack and Microsoft Teams. Our API also allows custom integrations.',
+      'ImCam Hub connects with popular accounting tools (Xero, QuickBooks), email and calendar platforms, and communication tools like Microsoft Teams and Slack. Our API also allows custom integrations with your existing systems.',
   },
   {
     question: 'How long does implementation typically take?',
     answer:
-      'Most firms are fully onboarded within 2-4 weeks. This includes data migration from your existing systems, workflow configuration, team training, and a parallel-run period. Dedicated onboarding managers ensure a smooth transition with minimal disruption.',
+      'Most consultancies are fully onboarded within 2-4 weeks. This includes data migration from your existing systems, workflow configuration, team training, and a parallel-run period. Dedicated onboarding managers ensure a smooth transition with minimal disruption.',
   },
 ];
 
@@ -283,10 +280,10 @@ function VideoShowcase() {
             className="text-lg text-white/70 max-w-xl mb-10 leading-relaxed"
           >
             Watch how our <span className="text-cyan-light font-medium">smart</span> platform streamlines{' '}
-            <span className="text-cyan-light font-medium">immigration</span>{' '}
-            <span className="text-cyan-light font-medium">case management</span> — from client intake and{' '}
-            <span className="text-cyan-light font-medium">document</span> review through
-            compliance checks and final resolution.
+            <span className="text-cyan-light font-medium">UK visa</span>{' '}
+            <span className="text-cyan-light font-medium">case management</span> — from{' '}
+            <span className="text-cyan-light font-medium">Skilled Worker</span> applications and Sponsor Licence
+            compliance through ILR and British Citizenship, every step lives in one connected system.
           </motion.p>
 
           {/* Stats row */}
@@ -340,8 +337,8 @@ function VideoShowcase() {
 
 export default function Home() {
   usePageMeta(
-    'Immigration Case Management Platform',
-    'ImCam Hub is the case management system for immigration practices. Manage intake, documents, compliance, and invoicing in one platform.'
+    'UK Immigration Case Management Platform — ImCam Hub',
+    'ImCam Hub is the case management platform for UK immigration consultancies. Manage Skilled Worker visas, Sponsor Licences, ILR, and British Citizenship cases in one place.'
   );
 
   const heroRef = useRef(null);
@@ -364,8 +361,8 @@ export default function Home() {
 
   const displayFaqs = cmsFaqs || faqs;
   const contactEmail = cmsContact?.email || 'hello@incamhub.com';
-  const contactPhone = cmsContact?.phone || '1-800-555-1234';
-  const contactAddress = cmsContact?.address || '123 Bay Street, Suite 400\nToronto, ON M5J 2R2';
+  const contactPhone = cmsContact?.phone || '+44 20 7946 0958';
+  const contactAddress = cmsContact?.address || '[UK office address]\n[City, Postcode]';
 
   return (
     <div>
@@ -388,17 +385,15 @@ export default function Home() {
               transition={{ duration: 0.6, ease: 'easeOut' }}
             >
               <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-heading font-bold text-navy leading-[1.1] mb-6">
-                One Platform.
-                <br />
-                Every Case,{' '}
-                <span className="gradient-text">Handled.</span>
+                The Complete Case Management Platform for{' '}
+                <span className="gradient-text">UK Immigration Consultancies</span>
               </h1>
               <p className="text-lg text-text-secondary leading-relaxed mb-8 max-w-lg">
-                ImCam Hub is the <span className="text-accent-blue font-medium">smart</span>{' '}
-                <span className="text-accent-blue font-medium">case management</span> system built for{' '}
-                <span className="text-accent-blue font-medium">immigration</span> practices. From client intake through final
-                resolution — intake, <span className="text-accent-blue font-medium">document</span> review, compliance checks, and
-                invoicing — managed in one unified system.
+                Manage <span className="text-accent-blue font-medium">Skilled Worker visas</span>,{' '}
+                <span className="text-accent-blue font-medium">Sponsor Licences</span>, ILR, and British Citizenship
+                cases — from first enquiry to final approval, in one connected platform. Built specifically for{' '}
+                <span className="text-accent-blue font-medium">UK immigration consultancies</span>, covering everything
+                from intake through application, compliance checks, and completion.
               </p>
             </motion.div>
 
@@ -458,12 +453,12 @@ export default function Home() {
               Smart Automation
             </span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-navy mb-4">
-              One System. Every Case <span className="gradient-text">Handled.</span>
+              Smarter Case Management, <span className="gradient-text">Built with AI</span>
             </h2>
             <p className="text-text-secondary max-w-2xl mx-auto">
-              Five intelligent agents work behind the scenes to automate
-              repetitive tasks, enforce compliance, and keep your caseload
-              moving — so your team can focus on what matters.
+              Manage cases, compliance, and every portal your team and clients
+              need — with AI flagging risks and delays before they become
+              problems.
             </p>
           </AnimatedSection>
 
@@ -506,9 +501,17 @@ export default function Home() {
             <span className="inline-flex items-center px-4 py-1.5 bg-indigo-pale text-indigo text-xs font-semibold rounded-full mb-4">
               Core Modules
             </span>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-navy">
-              A Portal for Every <span className="gradient-text-indigo">Role</span>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-navy mb-4">
+              One AI-Powered Platform to Run your{' '}
+              <span className="gradient-text-indigo">Immigration Practice</span>
             </h2>
+            <p className="text-text-secondary max-w-2xl mx-auto">
+              From case intake to compliance tracking, ImCam Hub brings
+              together everything UK immigration consultancies use every day —
+              case management, document handling, caseworker assignment, and
+              AI-powered checks — so nothing has to live in a separate
+              spreadsheet or inbox again.
+            </p>
           </AnimatedSection>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -552,9 +555,10 @@ export default function Home() {
               Built Around Your <span className="gradient-text-emerald">Practice</span>
             </h2>
             <p className="text-text-secondary max-w-2xl mx-auto">
-              Every detail of ImCam Hub is designed around the real <span className="text-accent-emerald font-medium">workflow</span>s
-              of <span className="text-accent-emerald font-medium">immigration</span> professionals — not generic project management
-              logic.
+              ImCam Hub was built specifically for{' '}
+              <span className="text-accent-emerald font-medium">UK Skilled Worker visa</span>, Sponsor Licence, ILR, and
+              British Citizenship workflows — not adapted from a generic CRM. And it scales with you, from a solo
+              adviser to a growing multi-caseworker consultancy.
             </p>
           </AnimatedSection>
 
@@ -604,7 +608,7 @@ export default function Home() {
               FAQ
             </span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-navy">
-              Questions from <span className="gradient-text-purple">Firms Worldwide</span>
+              Questions from <span className="gradient-text-purple">UK Consultancies</span>
             </h2>
           </AnimatedSection>
 
@@ -676,8 +680,8 @@ export default function Home() {
               Ready to see ImCam Hub <span className="text-cyan-light">in action</span>?
             </h2>
             <p className="text-white/60 max-w-xl mx-auto mb-8">
-              Join immigration practices that have transformed their workflow
-              with ImCam Hub. Schedule a personalized demo today.
+              Join UK immigration consultancies that have transformed their
+              workflow with ImCam Hub. Schedule a personalized demo today.
             </p>
             <Link
               to="/book-demo"
