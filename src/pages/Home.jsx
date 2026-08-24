@@ -296,16 +296,15 @@ function VideoShowcase({ section, statsSection }) {
     v.play().catch(() => {});
   }, []);
 
-  const highlights = contentArray(statsSection, [
-    { icon: FileCheck, stat: '10,000+', label: 'Cases Managed', color: 'text-emerald' },
+const highlights = contentArray(statsSection, [
     { icon: Clock, stat: '60%', label: 'Faster Processing', color: 'text-cyan' },
     { icon: Users, stat: '98%', label: 'Client Satisfaction', color: 'text-purple' },
     { icon: Shield, stat: '100%', label: 'Compliance Rate', color: 'text-indigo' },
   ]).map((item, index) => ({
     ...item,
-    icon: [FileCheck, Clock, Users, Shield][index % 4],
+    icon: [Clock, Users, Shield][index % 3],
     stat: item.stat || item.value,
-    color: item.color || ['text-emerald', 'text-cyan', 'text-purple', 'text-indigo'][index % 4],
+    color: item.color || ['text-cyan', 'text-purple', 'text-indigo'][index % 3],
   }));
 
 return (
