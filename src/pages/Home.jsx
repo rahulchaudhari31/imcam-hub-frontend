@@ -293,7 +293,7 @@ function VideoShowcase({ section, statsSection }) {
   useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
-    v.play();
+    v.play().catch(() => {});
   }, []);
 
   const highlights = contentArray(statsSection, [
@@ -318,7 +318,6 @@ return (
         loop
         playsInline
         preload="auto"
-        poster="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&h=1080&fit=crop"
         className="absolute inset-0 w-full h-full object-cover"
       />
 
