@@ -1,5 +1,12 @@
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
+export function resolveCmsAsset(url) {
+  if (!url) return '';
+  if (/^(https?:)?\/\//i.test(url) || url.startsWith('data:')) return url;
+  if (url.startsWith('/uploads')) return `${API_URL}${url}`;
+  return url;
+}
+
 async function cmsFetch(url) {
   try {
     const res = await fetch(`${API_URL}${url}`);

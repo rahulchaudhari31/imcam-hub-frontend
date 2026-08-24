@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import usePageMeta from '../hooks/usePageMeta';
@@ -17,6 +17,7 @@ import {
   BarChart3,
   Building2,
 } from 'lucide-react';
+import { fetchServices } from '../services/cmsService';
 
 function AnimateOnScroll({ children, className = '', delay = 0 }) {
   const ref = useRef(null);
@@ -173,6 +174,25 @@ export default function Solutions() {
     'Solutions — ImCam Hub',
     'Document vault, case pipelines, client and sponsor portals, reporting, and AI-powered case intelligence — built for UK immigration consultancies.'
   );
+  const [cmsServices, setCmsServices] = useState(null);
+
+  useEffect(() => {
+    const loadServices = async () => {
+      const services = await fetchServices();
+      if (services && services.length > 0) {
+        setCmsServices(
+          services.map((service, index) => ({
+            ...solutions[index % solutions.length],
+            title: service.title,
+            description: service.description,
+          }))
+        );
+      }
+    };
+    loadServices();
+  }, []);
+
+  const displaySolutions = cmsServices || solutions;
 
   return (
     <div>
@@ -318,7 +338,7 @@ export default function Solutions() {
             viewport={{ once: true, margin: '-80px' }}
             className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5"
           >
-            {solutions.map((sol, i) => (
+            {displaySolutions.map((sol, i) => (
               <motion.div
                 key={i}
                 variants={staggerItem}

@@ -17,6 +17,8 @@ import {
 } from 'lucide-react';
 import usePageMeta from '../hooks/usePageMeta';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 function AnimateOnScroll({ children, className = '', delay = 0 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-40px' });
@@ -134,7 +136,7 @@ export default function BookDemo() {
     }
     setSubmitting(true);
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/demo-requests`, {
+      const res = await fetch(`${API_URL}/api/demo-requests`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

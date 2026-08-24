@@ -2,7 +2,12 @@ import { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import demoVideo from '../assets/video/gettyimages-2183092187-640_adpp.mp4';
-import { fetchFaqItems, fetchContactInfo } from '../services/cmsService';
+import {
+  fetchFaqItems,
+  fetchContactInfo,
+  fetchHomeSections,
+  resolveCmsAsset,
+} from '../services/cmsService';
 import {
   ArrowRight,
   Check,
@@ -228,6 +233,27 @@ const whyFeatures = [
   },
 ];
 
+const sectionMapFrom = (sections) =>
+  (sections || []).reduce((map, section) => {
+    if (section?.section_key && section.is_active !== false) {
+      map[section.section_key] = section;
+    }
+    return map;
+  }, {});
+
+const contentArray = (section, fallback) =>
+  Array.isArray(section?.content) && section.content.length > 0
+    ? section.content
+    : fallback;
+
+const withIconFallbacks = (items, fallbacks) =>
+  items.map((item, index) => ({
+    ...fallbacks[index % fallbacks.length],
+    ...item,
+    icon: fallbacks[index % fallbacks.length].icon,
+    color: item.color || fallbacks[index % fallbacks.length].color,
+  }));
+
 const faqs = [
   {
     question: 'What types of immigration cases does ImCam Hub support?',
@@ -261,7 +287,7 @@ const faqs = [
   },
 ];
 
-function VideoShowcase() {
+function VideoShowcase({ section, statsSection }) {
   const videoRef = useRef(null);
 
   useEffect(() => {
@@ -270,12 +296,17 @@ function VideoShowcase() {
     v.play();
   }, []);
 
-  const highlights = [
+  const highlights = contentArray(statsSection, [
     { icon: FileCheck, stat: '10,000+', label: 'Cases Managed', color: 'text-emerald' },
     { icon: Clock, stat: '60%', label: 'Faster Processing', color: 'text-cyan' },
     { icon: Users, stat: '98%', label: 'Client Satisfaction', color: 'text-purple' },
     { icon: Shield, stat: '100%', label: 'Compliance Rate', color: 'text-indigo' },
-  ];
+  ]).map((item, index) => ({
+    ...item,
+    icon: [FileCheck, Clock, Users, Shield][index % 4],
+    stat: item.stat || item.value,
+    color: item.color || ['text-emerald', 'text-cyan', 'text-purple', 'text-indigo'][index % 4],
+  }));
 
   return (
     <div className="relative min-h-[90vh] flex items-center overflow-hidden">
@@ -314,8 +345,11 @@ function VideoShowcase() {
             transition={{ delay: 0.1 }}
             className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-6 leading-tight"
           >
-            See ImCam Hub{' '}
-            <span className="text-cyan-light">in Action</span>
+            {section?.title || (
+              <>
+                See ImCam Hub <span className="text-cyan-light">in Action</span>
+              </>
+            )}
           </motion.h2>
 
           <motion.p
@@ -362,16 +396,16 @@ function VideoShowcase() {
             className="flex flex-col sm:flex-row gap-4"
           >
             <Link
-              to="/book-demo"
+              to={section?.button_link || '/book-demo'}
               className="inline-flex items-center justify-center gap-2 bg-amber hover:bg-amber-dark text-white px-8 py-3.5 rounded-full text-sm font-semibold transition-all duration-200 shadow-[0_2px_8px_rgba(242,153,74,0.35)] hover:shadow-[0_4px_16px_rgba(242,153,74,0.4)] hover:scale-[1.03] active:scale-[0.98]"
             >
-              Book a Free Demo <ArrowRight size={18} />
+              {section?.button_text || 'Book a Free Demo'} <ArrowRight size={18} />
             </Link>
             <Link
-              to="/features"
+              to={section?.secondaryButtonLink || '/features'}
               className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white hover:bg-white/10 px-8 py-3.5 rounded-full text-sm font-semibold transition-all duration-200 active:scale-[0.98]"
             >
-              Explore Features
+              {section?.secondaryButtonText || 'Explore Features'}
             </Link>
           </motion.div>
         </div>
@@ -391,11 +425,19 @@ export default function Home() {
   const heroInView = useInView(heroRef, { once: true });
   const [cmsFaqs, setCmsFaqs] = useState(null);
   const [cmsContact, setCmsContact] = useState(null);
+  const [cmsSections, setCmsSections] = useState({});
   const [whyActiveIndex, setWhyActiveIndex] = useState(0);
 
   useEffect(() => {
     const loadCms = async () => {
-      const [faqs, contact] = await Promise.all([fetchFaqItems(), fetchContactInfo()]);
+      const [sections, faqs, contact] = await Promise.all([
+        fetchHomeSections(),
+        fetchFaqItems(),
+        fetchContactInfo(),
+      ]);
+      if (sections && sections.length > 0) {
+        setCmsSections(sectionMapFrom(sections));
+      }
       if (faqs && faqs.length > 0) {
         setCmsFaqs(faqs.map((f) => ({ question: f.question, answer: f.answer })));
       }
@@ -410,13 +452,28 @@ export default function Home() {
   const contactEmail = cmsContact?.email || 'hello@incamhub.com';
   const contactPhone = cmsContact?.phone || '+44 20 7946 0958';
   const contactAddress = cmsContact?.address || '[UK office address]\n[City, Postcode]';
+  const heroSection = cmsSections.hero;
+  const videoSection = cmsSections.video_showcase;
+  const statsSection = cmsSections.stats;
+  const trustedSection = cmsSections.trusted_features;
+  const aiSection = cmsSections.ai_agents;
+  const modulesSection = cmsSections.core_modules;
+  const whySection = cmsSections.why_incimhub || cmsSections.why_imcam_hub;
+  const ctaSection = cmsSections.cta;
+  const displayTrustedFeatures = withIconFallbacks(
+    contentArray(trustedSection, trustedFeatures),
+    trustedFeatures
+  );
+  const displayAiAgents = withIconFallbacks(contentArray(aiSection, aiAgents), aiAgents);
+  const displayCoreModules = withIconFallbacks(contentArray(modulesSection, coreModules), coreModules);
+  const displayWhyFeatures = withIconFallbacks(contentArray(whySection, whyFeatures), whyFeatures);
 
   return (
     <div>
       {/* =========================================
           VIDEO SHOWCASE — Full Background
           ========================================= */}
-      <VideoShowcase />
+      <VideoShowcase section={videoSection} statsSection={statsSection} />
 
       {/* =========================================
           HERO SECTION — Light Background + Image
@@ -432,8 +489,12 @@ export default function Home() {
               transition={{ duration: 0.6, ease: 'easeOut' }}
             >
               <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-heading font-bold text-navy leading-[1.1] mb-6">
-                The Complete Case Management Platform for{' '}
-                <span className="gradient-text">UK Immigration Consultancies</span>
+                {heroSection?.title || (
+                  <>
+                    The Complete Case Management Platform for{' '}
+                    <span className="gradient-text">UK Immigration Consultancies</span>
+                  </>
+                )}
               </h1>
               <p className="text-lg text-text-secondary leading-relaxed mb-8 max-w-lg">
                 Manage <span className="text-accent-blue font-medium">Skilled Worker visas</span>,{' '}
@@ -450,7 +511,7 @@ export default function Home() {
               className="rounded-3xl overflow-hidden border-2 border-sand-dark shadow-[0_8px_30px_rgba(11,31,58,0.12)]"
             >
               <img
-                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop"
+                src={resolveCmsAsset(heroSection?.image_url) || 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop'}
                 alt="Immigration case management dashboard on a laptop screen"
                 className="w-full h-auto object-cover"
                 loading="eager"
@@ -510,7 +571,7 @@ export default function Home() {
       <section className="py-16 bg-white border-y border-sand-dark">
         <div className="container-app">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {trustedFeatures.map((feature, i) => (
+            {displayTrustedFeatures.map((feature, i) => (
               <AnimatedSection key={i} delay={i * 0.08}>
                 <div className="flex items-start gap-4 p-5 rounded-2xl bg-sand/50 hover:bg-sand transition-colors">
                   <div className={`w-11 h-11 rounded-xl ${feature.color} flex items-center justify-center shrink-0`}>
@@ -552,7 +613,7 @@ export default function Home() {
           </AnimatedSection>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {aiAgents.map((agent, i) => (
+            {displayAiAgents.map((agent, i) => (
               <AnimatedSection key={i} delay={i * 0.08}>
                 <div className="bg-white rounded-2xl border border-sand-dark/80 p-6 h-full hover:shadow-[0_8px_30px_rgba(11,31,58,0.08)] transition-all duration-300">
                   <div className={`w-12 h-12 rounded-2xl ${agent.color} flex items-center justify-center mb-4`}>
@@ -565,7 +626,7 @@ export default function Home() {
                     {agent.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    {agent.badges.map((badge) => (
+                    {(agent.badges || (agent.badge ? [agent.badge] : [])).map((badge) => (
                       <span
                         key={badge}
                         className="inline-flex items-center px-2.5 py-1 bg-sand text-navy text-[11px] font-bold tracking-wide rounded-md"
@@ -604,9 +665,9 @@ export default function Home() {
           </AnimatedSection>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {coreModules.map((mod, i) => (
+            {displayCoreModules.map((mod, i) => (
               <AnimatedSection key={i} delay={i * 0.08}>
-                <Link to={mod.path} className="block group h-full">
+                <Link to={mod.path || mod.link || '/features'} className="block group h-full">
                   <div className="bg-white rounded-2xl border border-sand-dark p-6 h-full flex flex-col hover:shadow-[0_8px_30px_rgba(11,31,58,0.08)] transition-all duration-300">
                     <div
                       className={`w-12 h-12 ${mod.color} rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
@@ -647,7 +708,7 @@ export default function Home() {
 
           {/* Interactive feature accordion */}
           <div className="space-y-4">
-            {whyFeatures.map((feature, i) => {
+            {displayWhyFeatures.map((feature, i) => {
               const isActive = whyActiveIndex === i;
               return (
                 <AnimatedSection key={i} delay={i * 0.08}>
@@ -785,17 +846,21 @@ export default function Home() {
         <div className="relative z-10 container-app text-center">
           <AnimatedSection>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
-              Ready to see ImCam Hub <span className="text-cyan-light">in action</span>?
+              {ctaSection?.title || (
+                <>
+                  Ready to see ImCam Hub <span className="text-cyan-light">in action</span>?
+                </>
+              )}
             </h2>
             <p className="text-white/60 max-w-xl mx-auto mb-8">
-              Join UK immigration consultancies that have transformed their
-              workflow with ImCam Hub. Schedule a personalized demo today.
+              {ctaSection?.description ||
+                'Join UK immigration consultancies that have transformed their workflow with ImCam Hub. Schedule a personalized demo today.'}
             </p>
             <Link
-              to="/book-demo"
+              to={ctaSection?.button_link || '/book-demo'}
               className="inline-flex items-center justify-center gap-2 btn-gradient-primary px-8 py-3.5 rounded-full text-sm font-semibold transition-all duration-200 active:scale-[0.98]"
             >
-              Book a Free Demo <ArrowRight size={18} />
+              {ctaSection?.button_text || 'Book a Free Demo'} <ArrowRight size={18} />
             </Link>
           </AnimatedSection>
         </div>
