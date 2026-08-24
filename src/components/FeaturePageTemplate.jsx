@@ -59,17 +59,17 @@ function KenBurnsBanner({ overlayText, overlaySubline, bannerColor, bannerImage,
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
         }} />
       </motion.div>
-      <div className="relative container-app py-24 md:py-32 lg:py-40">
+      <div className="relative container-app py-16 sm:py-20 lg:py-24 xl:py-32">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="max-w-2xl"
         >
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-white leading-[1.1] mb-4">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-white leading-[1.1] mb-4">
             {overlayText}
           </h1>
-          <p className="text-lg text-white/70 max-w-xl">
+          <p className="text-base sm:text-lg text-white/70 max-w-xl">
             {overlaySubline}
           </p>
         </motion.div>
@@ -130,7 +130,7 @@ export default function FeaturePageTemplate({
       <section className="section-padding bg-white">
         <div className="container-app">
           <div
-            className={`grid lg:grid-cols-2 gap-12 lg:gap-16 items-center ${
+            className={`grid lg:grid-cols-2 gap-8 lg:gap-12 items-center ${
               introReverse ? 'direction-rtl' : ''
             }`}
           >
@@ -139,7 +139,7 @@ export default function FeaturePageTemplate({
                 <span className="inline-flex items-center px-4 py-1.5 bg-blue-pale text-blue text-xs font-semibold rounded-full mb-5">
                   {roleName}
                 </span>
-                <h2 className="text-3xl md:text-4xl font-heading font-bold text-navy mb-5">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-navy mb-5">
                   {introHeading}
                 </h2>
                 <div className="space-y-4">
@@ -181,7 +181,7 @@ export default function FeaturePageTemplate({
       {middleImage && (
         <section className="section-padding bg-white">
           <div className="container-app">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               <AnimateOnScroll delay={0.15}>
                 <div className="rounded-3xl overflow-hidden shadow-[0_20px_60px_rgba(11,31,58,0.12)] aspect-[4/3]">
                   <img
@@ -197,7 +197,7 @@ export default function FeaturePageTemplate({
                   <span className="inline-flex items-center px-4 py-1.5 bg-blue-pale text-blue text-xs font-semibold rounded-full mb-5">
                     {middleBadge}
                   </span>
-                  <h2 className="text-3xl md:text-4xl font-heading font-bold text-navy mb-5">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-navy mb-5">
                     {middleHeading}
                   </h2>
                   <div className="space-y-4">
@@ -229,8 +229,8 @@ export default function FeaturePageTemplate({
       {/* 3. Feature Flow — Grid */}
       <section className="section-padding bg-sand">
         <div className="container-app">
-          <AnimateOnScroll className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-navy mb-4">
+          <AnimateOnScroll className="text-center mb-10">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-navy mb-4">
               Everything you need, nothing you don&apos;t
             </h2>
             <p className="text-text-secondary max-w-2xl mx-auto">
@@ -242,8 +242,8 @@ export default function FeaturePageTemplate({
           {featureRows.map((row, rowIndex) => (
             <div
               key={rowIndex}
-              className={`grid md:grid-cols-2 lg:grid-cols-3 gap-6 ${
-                rowIndex > 0 ? 'mt-6' : ''
+              className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 ${
+                rowIndex > 0 ? 'mt-5 sm:mt-6' : ''
               }`}
             >
               {row.map((feature, i) => {
@@ -253,12 +253,12 @@ export default function FeaturePageTemplate({
                     <motion.div
                       whileHover={{ y: -4 }}
                       transition={{ duration: 0.2 }}
-                      className="bg-white rounded-2xl border border-sand-dark p-6 h-full hover:shadow-[0_8px_30px_rgba(11,31,58,0.08)] transition-shadow"
+                      className="bg-white rounded-2xl border border-sand-dark p-5 sm:p-6 h-full hover:shadow-[0_8px_30px_rgba(11,31,58,0.08)] transition-shadow"
                     >
-                      <div className={`w-12 h-12 rounded-2xl ${colorClass} flex items-center justify-center mb-4`}>
-                        <feature.icon size={24} />
+                      <div className={`w-11 h-11 sm:w-12 sm:h-12 rounded-2xl ${colorClass} flex items-center justify-center mb-4`}>
+                        <feature.icon size={22} sm:size={24} />
                       </div>
-                      <h3 className="text-base font-heading font-semibold text-navy mb-2">
+                      <h3 className="text-sm sm:text-base font-heading font-semibold text-navy mb-2">
                         {feature.title}
                       </h3>
                       <p className="text-sm text-text-secondary leading-relaxed">
@@ -277,14 +277,14 @@ export default function FeaturePageTemplate({
       {faqs && faqs.length > 0 && (
         <section className="section-padding bg-white">
           <div className="container-app max-w-3xl">
-            <AnimateOnScroll className="text-center mb-10">
-              <h2 className="text-3xl md:text-4xl font-heading font-bold text-navy">
+            <AnimateOnScroll className="text-center mb-8">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-navy">
                 Frequently Asked <span className="gradient-text-purple">Questions</span>
               </h2>
             </AnimateOnScroll>
 
             <AnimateOnScroll>
-              <div className="bg-sand rounded-2xl p-6 md:p-8">
+              <div className="bg-sand rounded-2xl p-5 md:p-8">
                 <FAQAccordion items={faqs} />
               </div>
             </AnimateOnScroll>
@@ -293,11 +293,11 @@ export default function FeaturePageTemplate({
       )}
 
       {/* 5. Bottom CTA */}
-      <section className="py-20 bg-navy relative overflow-hidden">
+      <section className="py-16 sm:py-20 bg-navy relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-navy via-indigo/20 to-purple/10 pointer-events-none" />
         <div className="container-app text-center relative z-10">
           <AnimateOnScroll>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-white mb-4">
               See this <span className="text-cyan-light">in action</span>
             </h2>
             <p className="text-white/60 max-w-xl mx-auto mb-8">
@@ -306,9 +306,9 @@ export default function FeaturePageTemplate({
             </p>
             <Link
               to="/book-demo"
-              className="inline-flex items-center justify-center gap-2 btn-gradient-primary px-8 py-3.5 rounded-full text-sm font-semibold transition-all duration-200 active:scale-[0.98]"
+              className="inline-flex items-center justify-center gap-2 btn-gradient-primary px-6 sm:px-8 py-3 rounded-full text-sm font-semibold transition-all duration-200 active:scale-[0.98]"
             >
-              Book a Free Demo <ArrowRight size={18} />
+              Book a Free Demo <ArrowRight size={16} sm:size={18} />
             </Link>
           </AnimateOnScroll>
         </div>

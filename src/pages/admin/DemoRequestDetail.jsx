@@ -4,7 +4,7 @@ import { ArrowLeft, AlertCircle } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import Badge from '../../components/Badge';
 
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 const STATUS_BADGE = {
   new: 'blue',
@@ -74,7 +74,7 @@ export default function DemoRequestDetail() {
 
   return (
     <div>
-      <div className="mb-6">
+      <div className="mb-5">
         <Link
           to="/admin/demo-requests"
           className="inline-flex items-center gap-1.5 text-sm font-medium text-text-secondary hover:text-navy transition-colors mb-3"
@@ -82,13 +82,13 @@ export default function DemoRequestDetail() {
           <ArrowLeft size={16} />
           Back to Demo Requests
         </Link>
-        <h1 className="text-2xl font-heading font-bold text-navy">Demo Request</h1>
+        <h1 className="text-xl sm:text-2xl font-heading font-bold text-navy">Demo Request</h1>
       </div>
 
       {loading && <DetailSkeleton />}
 
       {error && !loading && (
-        <div className="bg-white rounded-2xl border border-sand-dark px-5 py-10 text-center">
+        <div className="bg-white rounded-2xl border border-sand-dark px-5 py-8 text-center">
           <AlertCircle size={32} className="mx-auto text-rose mb-3" />
           <p className="text-sm text-text-secondary mb-4">{error}</p>
           <Link
@@ -101,10 +101,10 @@ export default function DemoRequestDetail() {
       )}
 
       {!loading && !error && request && (
-        <div className="space-y-6">
-          <div className="bg-white rounded-2xl border border-sand-dark p-6">
+        <div className="space-y-5">
+          <div className="bg-white rounded-2xl border border-sand-dark p-5 sm:p-6">
             <h2 className="text-sm font-semibold text-text-muted uppercase tracking-wider mb-5">Request Details</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
               <div>
                 <p className="text-xs text-text-muted mb-1">Company</p>
                 <p className="text-sm font-medium text-navy">{request.company || '—'}</p>
@@ -140,7 +140,7 @@ export default function DemoRequestDetail() {
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl border border-sand-dark p-6">
+          <div className="bg-white rounded-2xl border border-sand-dark p-5 sm:p-6">
             <h2 className="text-sm font-semibold text-text-muted uppercase tracking-wider mb-4">Message</h2>
             <p className="text-sm text-text-secondary whitespace-pre-wrap leading-relaxed">
               {request.message || '—'}

@@ -77,7 +77,7 @@ export default function Login() {
   return (
     <div>
       {/* HERO */}
-      <section className="section-padding bg-gradient-to-b from-offwhite to-sand pb-8 md:pb-12">
+      <section className="section-padding bg-gradient-to-b from-offwhite to-sand pb-6 md:pb-10">
         <div className="container-app">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -85,13 +85,13 @@ export default function Login() {
             transition={{ duration: 0.5 }}
             className="max-w-3xl mx-auto text-center"
           >
-            <span className="inline-flex items-center px-4 py-1.5 bg-indigo-pale text-indigo text-xs font-semibold rounded-full mb-5">
+            <span className="inline-flex items-center px-4 py-1.5 bg-indigo-pale text-indigo text-xs font-semibold rounded-full mb-4">
               Sign In
             </span>
-            <h1 className="text-4xl sm:text-5xl font-heading font-bold text-navy mb-5 leading-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-navy mb-4 leading-tight">
               Welcome Back
             </h1>
-            <p className="text-lg text-text-secondary max-w-xl mx-auto">
+            <p className="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
               Sign in to access your ImCam Hub dashboard.
             </p>
           </motion.div>
@@ -107,7 +107,7 @@ export default function Login() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="max-w-md mx-auto"
           >
-            <div className="bg-white rounded-3xl border border-sand-dark shadow-lg p-7 md:p-10 relative overflow-hidden">
+            <div className="bg-white rounded-3xl border border-sand-dark shadow-lg p-6 md:p-8 lg:p-10 relative overflow-hidden">
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue via-indigo to-purple" />
               <form onSubmit={handleSubmit} noValidate className="space-y-5">
                 <div>

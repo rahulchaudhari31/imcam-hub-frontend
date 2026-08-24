@@ -308,4 +308,75 @@
     background: radial-gradient(circle, rgba(139, 92, 246, 0.06) 0%, transparent 70%);
     pointer-events: none;
   }
+
+  /* ─── Responsive utilities ─── */
+  .text-responsive-xl {
+    @apply text-2xl sm:text-3xl lg:text-4xl;
+  }
+  .text-responsive-2xl {
+    @apply text-3xl sm:text-4xl lg:text-5xl;
+  }
+  .text-responsive-3xl {
+    @apply text-4xl sm:text-5xl lg:text-6xl;
+  }
+  .section-padding-responsive {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+  .container-responsive {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+  .gap-responsive {
+    @apply gap-4 sm:gap-6 lg:gap-8;
+  }
+  .card-padding-responsive {
+    @apply p-4 sm:p-5 lg:p-6;
+  }
+}
+
+@layer utilities {
+  .tap-highlight-transparent {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  /* Prevent horizontal overflow on mobile */
+  .max-w-full {
+    max-width: 100%;
+  }
+  
+  /* Ensure images don't overflow */
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Better touch targets on mobile */
+  @media (max-width: 767px) {
+    button, a, input, select, textarea {
+      min-height: 44px;
+    }
+    input, select, textarea {
+      font-size: 16px; /* Prevent zoom on iOS */
+    }
+  }
 }

@@ -14,7 +14,6 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
-
 const featureItems = [
   {
     name: 'Admin Dashboard',
@@ -66,7 +65,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [mobileAccordionOpen, setMobileAccordionOpen] = useState(false);
+  const [mobileAccordionOpen, setMobileAccordionOpen] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
   const { user, logout } = useAuth();
@@ -90,7 +89,7 @@ export default function Navbar() {
 
   useEffect(() => {
     setMobileOpen(false);
-    setMobileAccordionOpen(false);
+    setMobileAccordionOpen(null);
     setDropdownOpen(false);
   }, [location.pathname]);
 
@@ -324,11 +323,13 @@ export default function Navbar() {
                             </Link>
                             <button
                               onClick={() =>
-                                setMobileAccordionOpen(!mobileAccordionOpen)
+                                setMobileAccordionOpen(
+                                  mobileAccordionOpen === link.name ? null : link.name
+                                )
                               }
                               className="p-2 rounded-xl hover:bg-sand transition-colors text-text-muted"
                               aria-label={
-                                mobileAccordionOpen
+                                mobileAccordionOpen === link.name
                                   ? 'Collapse features'
                                   : 'Expand features'
                               }
@@ -336,14 +337,14 @@ export default function Navbar() {
                               <ChevronDown
                                 size={18}
                                 className={`transition-transform duration-200 ${
-                                  mobileAccordionOpen ? 'rotate-180' : ''
+                                  mobileAccordionOpen === link.name ? 'rotate-180' : ''
                                 }`}
                               />
                             </button>
                           </div>
 
                           <AnimatePresence>
-                            {mobileAccordionOpen && (
+                            {mobileAccordionOpen === link.name && (
                               <motion.div
                                 initial={{ height: 0, opacity: 0 }}
                                 animate={{ height: 'auto', opacity: 1 }}

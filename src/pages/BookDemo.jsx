@@ -8,9 +8,7 @@ import {
   Clock,
   Play,
   FileText,
-  Building2,
   Users,
-  MessageSquare,
   Phone,
   Mail,
   Quote,
@@ -170,7 +168,7 @@ export default function BookDemo() {
       {/* =========================================
           HERO
           ========================================= */}
-      <section className="section-padding bg-gradient-to-b from-offwhite to-sand pb-8 md:pb-12">
+      <section className="section-padding bg-gradient-to-b from-offwhite to-sand pb-6 md:pb-10">
         <div className="container-app">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -178,13 +176,13 @@ export default function BookDemo() {
             transition={{ duration: 0.5 }}
             className="max-w-3xl mx-auto text-center"
           >
-            <span className="inline-flex items-center px-4 py-1.5 bg-indigo-pale text-indigo text-xs font-semibold rounded-full mb-5">
+            <span className="inline-flex items-center px-4 py-1.5 bg-indigo-pale text-indigo text-xs font-semibold rounded-full mb-4">
               Book a Demo
             </span>
-            <h1 className="text-4xl sm:text-5xl font-heading font-bold text-navy mb-5 leading-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-navy mb-4 leading-tight">
               See ImCam Hub in Action
             </h1>
-            <p className="text-lg text-text-secondary max-w-xl mx-auto">
+            <p className="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
               Get a personalized walkthrough of the platform. No commitment,
               no hard sell — just a clear look at how ImCam Hub fits your
               practice.
@@ -208,7 +206,7 @@ export default function BookDemo() {
                 transition={{ duration: 0.4 }}
                 className="max-w-2xl mx-auto"
               >
-                <div className="bg-white rounded-3xl border border-sand-dark shadow-lg p-10 md:p-14 text-center">
+                <div className="bg-white rounded-3xl border border-sand-dark shadow-lg p-8 md:p-12 text-center">
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
@@ -218,14 +216,14 @@ export default function BookDemo() {
                       damping: 20,
                       delay: 0.15,
                     }}
-                    className="w-20 h-20 bg-emerald-pale rounded-full flex items-center justify-center mx-auto mb-6"
+                    className="w-16 h-16 sm:w-20 sm:h-20 bg-emerald-pale rounded-full flex items-center justify-center mx-auto mb-5"
                   >
-                    <CheckCircle2 size={40} className="text-emerald" />
+                    <CheckCircle2 size={32} sm:size={40} className="text-emerald" />
                   </motion.div>
-                  <h2 className="text-3xl font-heading font-bold text-navy mb-3">
+                  <h2 className="text-2xl sm:text-3xl font-heading font-bold text-navy mb-3">
                     Demo Request Received
                   </h2>
-                  <p className="text-text-secondary max-w-md mx-auto mb-8 leading-relaxed">
+                  <p className="text-text-secondary max-w-md mx-auto mb-6 leading-relaxed">
                     Thank you, <span className="font-semibold text-navy">{form.fullName || 'there'}</span>!
                     Our team will confirm your slot within 24 hours and send
                     a calendar invite to <span className="font-semibold text-navy">{form.email}</span>.
@@ -233,13 +231,13 @@ export default function BookDemo() {
                   <div className="flex flex-col sm:flex-row gap-3 justify-center">
                     <Link
                       to="/"
-                      className="inline-flex items-center justify-center gap-2 btn-gradient-primary px-7 py-3 rounded-full text-sm font-semibold transition-all active:scale-[0.98]"
+                      className="inline-flex items-center justify-center gap-2 btn-gradient-primary px-6 py-3 rounded-full text-sm font-semibold transition-all active:scale-[0.98]"
                     >
                       Return Home
                     </Link>
                     <Link
                       to="/features"
-                      className="inline-flex items-center justify-center gap-2 border-2 border-navy text-navy hover:bg-navy hover:text-white px-7 py-3 rounded-full text-sm font-semibold transition-all active:scale-[0.98]"
+                      className="inline-flex items-center justify-center gap-2 border-2 border-navy text-navy hover:bg-navy hover:text-white px-6 py-3 rounded-full text-sm font-semibold transition-all active:scale-[0.98]"
                     >
                       Explore Features
                     </Link>
@@ -253,10 +251,10 @@ export default function BookDemo() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="grid lg:grid-cols-[1fr_420px] gap-10 lg:gap-14 items-start"
+                className="grid lg:grid-cols-[1fr_420px] gap-8 lg:gap-12 items-start"
               >
                 {/* LEFT: Form */}
-                <div className="bg-white rounded-3xl border border-sand-dark shadow-lg p-7 md:p-10 relative overflow-hidden">
+                <div className="bg-white rounded-3xl border border-sand-dark shadow-lg p-6 md:p-8 lg:p-10 relative overflow-hidden">
                   <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue via-indigo to-purple" />
                   <form onSubmit={handleSubmit} noValidate className="space-y-5">
                     <FormField

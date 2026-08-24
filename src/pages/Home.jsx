@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import demoVideo from '../assets/video/gettyimages-2183092187-640_adpp.mp4';
+import demoVideo from '../assets/video/ImCamHub_promo-01.mp4';
 import {
   fetchFaqItems,
   fetchContactInfo,
@@ -308,8 +308,8 @@ function VideoShowcase({ section, statsSection }) {
     color: item.color || ['text-emerald', 'text-cyan', 'text-purple', 'text-indigo'][index % 4],
   }));
 
-  return (
-    <div className="relative min-h-[90vh] flex items-center overflow-hidden">
+return (
+    <div className="relative min-h-[70vh] sm:min-h-[80vh] lg:min-h-[90vh] flex items-center overflow-hidden">
       {/* Background video */}
       <video
         ref={videoRef}
@@ -327,7 +327,7 @@ function VideoShowcase({ section, statsSection }) {
       <div className="absolute inset-0 bg-gradient-to-r from-navy/50 via-navy/20 to-transparent" />
 
       {/* Content overlay */}
-      <div className="relative z-10 container-app py-20">
+      <div className="relative z-10 container-app py-12 sm:py-16 lg:py-20">
         <div className="max-w-3xl">
           <motion.span
             initial={{ opacity: 0, y: 10 }}
@@ -343,7 +343,7 @@ function VideoShowcase({ section, statsSection }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-6 leading-tight"
+            className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-white mb-5 leading-tight"
           >
             {section?.title || (
               <>
@@ -357,7 +357,7 @@ function VideoShowcase({ section, statsSection }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-lg text-white/70 max-w-xl mb-10 leading-relaxed"
+            className="text-base sm:text-lg text-white/70 max-w-xl mb-8 leading-relaxed"
           >
             Watch how our <span className="text-cyan-light font-medium">smart</span> platform streamlines{' '}
             <span className="text-cyan-light font-medium">UK visa</span>{' '}
@@ -372,16 +372,16 @@ function VideoShowcase({ section, statsSection }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10"
+            className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-8"
           >
             {highlights.map((item, i) => (
               <motion.div
                 key={i}
                 whileHover={{ y: -3 }}
-                className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:bg-white/15 transition-colors"
+                className="bg-white/10 backdrop-blur-sm rounded-xl p-3 sm:p-4 border border-white/10 hover:bg-white/15 transition-colors"
               >
-                <item.icon size={20} className={`${item.color} mb-2`} />
-                <div className="text-2xl font-bold text-white">{item.stat}</div>
+                <item.icon size={18} sm:size={20} className={`${item.color} mb-2`} />
+                <div className="text-xl sm:text-2xl font-bold text-white">{item.stat}</div>
                 <div className="text-xs text-white/60">{item.label}</div>
               </motion.div>
             ))}
@@ -393,17 +393,17 @@ function VideoShowcase({ section, statsSection }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
-            className="flex flex-col sm:flex-row gap-4"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4"
           >
             <Link
               to={section?.button_link || '/book-demo'}
-              className="inline-flex items-center justify-center gap-2 bg-amber hover:bg-amber-dark text-white px-8 py-3.5 rounded-full text-sm font-semibold transition-all duration-200 shadow-[0_2px_8px_rgba(242,153,74,0.35)] hover:shadow-[0_4px_16px_rgba(242,153,74,0.4)] hover:scale-[1.03] active:scale-[0.98]"
+              className="inline-flex items-center justify-center gap-2 bg-amber hover:bg-amber-dark text-white px-6 sm:px-8 py-3 rounded-full text-sm font-semibold transition-all duration-200 shadow-[0_2px_8px_rgba(242,153,74,0.35)] hover:shadow-[0_4px_16px_rgba(242,153,74,0.4)] hover:scale-[1.03] active:scale-[0.98]"
             >
-              {section?.button_text || 'Book a Free Demo'} <ArrowRight size={18} />
+              {section?.button_text || 'Book a Free Demo'} <ArrowRight size={16} sm:size={18} />
             </Link>
             <Link
               to={section?.secondaryButtonLink || '/features'}
-              className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white hover:bg-white/10 px-8 py-3.5 rounded-full text-sm font-semibold transition-all duration-200 active:scale-[0.98]"
+              className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white hover:bg-white/10 px-6 sm:px-8 py-3 rounded-full text-sm font-semibold transition-all duration-200 active:scale-[0.98]"
             >
               {section?.secondaryButtonText || 'Explore Features'}
             </Link>
@@ -475,12 +475,12 @@ export default function Home() {
           ========================================= */}
       <VideoShowcase section={videoSection} statsSection={statsSection} />
 
-      {/* =========================================
+{/* =========================================
           HERO SECTION — Light Background + Image
           ========================================= */}
-      <section className="min-h-[85vh] flex items-center bg-gradient-to-b from-offwhite to-sand">
-        <div className="container-app py-20">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <section className="min-h-[60vh] sm:min-h-[70vh] lg:min-h-[85vh] flex items-center bg-gradient-to-b from-offwhite to-sand">
+        <div className="container-app py-12 sm:py-16 lg:py-20">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 lg:gap-16 items-center">
             {/* Left: Copy */}
             <motion.div
               ref={heroRef}
@@ -488,7 +488,7 @@ export default function Home() {
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, ease: 'easeOut' }}
             >
-              <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-heading font-bold text-navy leading-[1.1] mb-6">
+              <h1 className="text-3xl sm:text-4xl lg:text-[3.5rem] font-heading font-bold text-navy leading-[1.1] mb-5">
                 {heroSection?.title || (
                   <>
                     The Complete Case Management Platform for{' '}
@@ -496,7 +496,7 @@ export default function Home() {
                   </>
                 )}
               </h1>
-              <p className="text-lg text-text-secondary leading-relaxed mb-8 max-w-lg">
+              <p className="text-base sm:text-lg text-text-secondary leading-relaxed mb-6 max-w-lg">
                 Manage <span className="text-accent-blue font-medium">Skilled Worker visas</span>,{' '}
                 <span className="text-accent-blue font-medium">Sponsor Licences</span>, ILR, and British Citizenship
                 cases — from first enquiry to final approval, in one connected platform.
@@ -508,7 +508,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 40 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
-              className="rounded-3xl overflow-hidden border-2 border-sand-dark shadow-[0_8px_30px_rgba(11,31,58,0.12)]"
+              className="rounded-3xl overflow-hidden border-2 border-sand-dark shadow-[0_8px_30px_rgba(11,31,58,0.12)] hidden lg:block"
             >
               <img
                 src={resolveCmsAsset(heroSection?.image_url) || 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop'}
@@ -530,7 +530,7 @@ export default function Home() {
             <span className="inline-flex items-center px-4 py-1.5 bg-amber/10 text-amber text-xs font-semibold rounded-full mb-4">
               Problem vs Solution
             </span>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-navy mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-navy mb-4">
               The Problem vs. <span className="gradient-text">The Solution</span>
             </h2>
             <p className="text-text-secondary max-w-2xl mx-auto">
@@ -538,11 +538,11 @@ export default function Home() {
             </p>
           </AnimatedSection>
 
-          <div className="space-y-4 max-w-5xl mx-auto">
+          <div className="space-y-3 sm:space-y-4 max-w-5xl mx-auto">
             {problemSolutions.map((item, i) => (
               <AnimatedSection key={i} delay={i * 0.06}>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                  <div className="flex items-start gap-3 rounded-2xl border border-rose/10 bg-rose/[0.04] p-5 hover:shadow-[0_8px_30px_rgba(11,31,58,0.08)] transition-shadow">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4">
+                  <div className="flex items-start gap-3 rounded-2xl border border-rose/10 bg-rose/[0.04] p-4 sm:p-5 hover:shadow-[0_8px_30px_rgba(11,31,58,0.08)] transition-shadow">
                     <div className="w-8 h-8 rounded-lg bg-rose/10 flex items-center justify-center shrink-0">
                       <X size={16} className="text-rose" />
                     </div>
@@ -550,7 +550,7 @@ export default function Home() {
                       {item.problem}
                     </p>
                   </div>
-                  <div className="flex items-start gap-3 rounded-2xl border border-emerald/15 bg-emerald/[0.04] p-5 hover:shadow-[0_8px_30px_rgba(11,31,58,0.08)] transition-shadow">
+                  <div className="flex items-start gap-3 rounded-2xl border border-emerald/15 bg-emerald/[0.04] p-4 sm:p-5 hover:shadow-[0_8px_30px_rgba(11,31,58,0.08)] transition-shadow">
                     <div className="w-8 h-8 rounded-lg bg-emerald/10 flex items-center justify-center shrink-0">
                       <Check size={16} className="text-emerald" />
                     </div>
@@ -565,17 +565,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* =========================================
+{/* =========================================
           TRUSTED FEATURE STRIP
           ========================================= */}
-      <section className="py-16 bg-white border-y border-sand-dark">
+      <section className="py-12 sm:py-16 bg-white border-y border-sand-dark">
         <div className="container-app">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {displayTrustedFeatures.map((feature, i) => (
               <AnimatedSection key={i} delay={i * 0.08}>
-                <div className="flex items-start gap-4 p-5 rounded-2xl bg-sand/50 hover:bg-sand transition-colors">
-                  <div className={`w-11 h-11 rounded-xl ${feature.color} flex items-center justify-center shrink-0`}>
-                    <feature.icon size={22} />
+                <div className="flex items-start gap-3 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-sand/50 hover:bg-sand transition-colors">
+                  <div className={`w-10 h-10 sm:w-11 sm:h-11 rounded-xl ${feature.color} flex items-center justify-center shrink-0`}>
+                    <feature.icon size={20} sm:size={22} />
                   </div>
                   <div>
                     <h3 className="text-sm font-semibold text-navy mb-1">
@@ -612,7 +612,7 @@ export default function Home() {
             </p>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {displayAiAgents.map((agent, i) => (
               <AnimatedSection key={i} delay={i * 0.08}>
                 <div className="bg-white rounded-2xl border border-sand-dark/80 p-6 h-full hover:shadow-[0_8px_30px_rgba(11,31,58,0.08)] transition-all duration-300">
@@ -664,7 +664,7 @@ export default function Home() {
             </p>
           </AnimatedSection>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {displayCoreModules.map((mod, i) => (
               <AnimatedSection key={i} delay={i * 0.08}>
                 <Link to={mod.path || mod.link || '/features'} className="block group h-full">
@@ -776,22 +776,22 @@ export default function Home() {
             <span className="inline-flex items-center px-4 py-1.5 bg-purple-pale text-purple text-xs font-semibold rounded-full mb-4">
               FAQ
             </span>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-navy">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-navy">
               Questions from <span className="gradient-text-purple">UK Consultancies</span>
             </h2>
           </AnimatedSection>
 
-          <div className="grid lg:grid-cols-[1fr_340px] gap-10 items-start">
+          <div className="grid lg:grid-cols-[1fr_340px] gap-8 lg:gap-10 items-start">
             {/* Left: FAQ accordion */}
             <AnimatedSection>
-              <div className="bg-white rounded-2xl border border-sand-dark p-6 md:p-8">
+              <div className="bg-white rounded-2xl border border-sand-dark p-5 md:p-8">
                 <FAQAccordion items={displayFaqs} />
               </div>
             </AnimatedSection>
 
             {/* Right: Contact card */}
             <AnimatedSection delay={0.15}>
-              <div className="bg-gradient-to-br from-navy to-navy-light rounded-2xl p-8 text-white sticky top-28 relative overflow-hidden">
+              <div className="bg-gradient-to-br from-navy to-navy-light rounded-2xl p-6 md:p-8 text-white lg:sticky lg:top-28 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-purple/20 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl" />
                 <h3 className="font-heading font-semibold text-lg mb-2 relative z-10">
                   Still have questions?
@@ -832,10 +832,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* =========================================
+{/* =========================================
           CLOSING CTA BANNER
           ========================================= */}
-      <section className="relative py-20 overflow-hidden">
+      <section className="relative py-16 sm:py-20 overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&h=800&fit=crop"
           alt=""
@@ -845,7 +845,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-navy/85" />
         <div className="relative z-10 container-app text-center">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-white mb-4">
               {ctaSection?.title || (
                 <>
                   Ready to see ImCam Hub <span className="text-cyan-light">in action</span>?
@@ -858,9 +858,9 @@ export default function Home() {
             </p>
             <Link
               to={ctaSection?.button_link || '/book-demo'}
-              className="inline-flex items-center justify-center gap-2 btn-gradient-primary px-8 py-3.5 rounded-full text-sm font-semibold transition-all duration-200 active:scale-[0.98]"
+              className="inline-flex items-center justify-center gap-2 btn-gradient-primary px-6 sm:px-8 py-3 rounded-full text-sm font-semibold transition-all duration-200 active:scale-[0.98]"
             >
-              {ctaSection?.button_text || 'Book a Free Demo'} <ArrowRight size={18} />
+              {ctaSection?.button_text || 'Book a Free Demo'} <ArrowRight size={16} sm:size={18} />
             </Link>
           </AnimatedSection>
         </div>

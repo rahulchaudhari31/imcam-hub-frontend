@@ -151,15 +151,15 @@ export default function Resources() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="max-w-3xl mx-auto text-center mb-10"
+            className="max-w-3xl mx-auto text-center mb-8"
           >
-            <span className="inline-flex items-center px-4 py-1.5 bg-blue-pale text-blue text-xs font-semibold rounded-full mb-5">
+            <span className="inline-flex items-center px-4 py-1.5 bg-blue-pale text-blue text-xs font-semibold rounded-full mb-4">
               Resources
             </span>
-            <h1 className="text-4xl sm:text-5xl font-heading font-bold text-navy mb-5 leading-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-navy mb-4 leading-tight">
               Resources & <span className="gradient-text">Insights</span>
             </h1>
-            <p className="text-lg text-text-secondary max-w-xl mx-auto">
+            <p className="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
               Guides, case studies, and product updates to help your
               immigration practice work smarter.
             </p>
@@ -233,7 +233,7 @@ export default function Resources() {
               variants={container}
               initial="hidden"
               animate="show"
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-7"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7"
             >
               {filtered.map((resource) => {
                 const colors = categoryColors[resource.category];
@@ -295,12 +295,12 @@ export default function Resources() {
       {/* =========================================
           EMAIL CAPTURE STRIP
           ========================================= */}
-      <section className="py-14 bg-sand border-y border-sand-dark">
+      <section className="py-12 sm:py-14 bg-sand border-y border-sand-dark">
         <div className="container-app">
           <AnimateOnScroll>
-            <div className="bg-white rounded-2xl border border-sand-dark p-8 md:p-10 flex flex-col md:flex-row items-center gap-8">
+            <div className="bg-white rounded-2xl border border-sand-dark p-6 sm:p-8 md:p-10 flex flex-col md:flex-row items-center gap-6 sm:gap-8">
               <div className="flex-1 text-center md:text-left">
-                <h3 className="text-xl font-heading font-semibold text-navy mb-2">
+                <h3 className="text-lg sm:text-xl font-heading font-semibold text-navy mb-2">
                   Stay in the <span className="gradient-text">loop</span>
                 </h3>
                 <p className="text-sm text-text-secondary">
@@ -310,16 +310,16 @@ export default function Resources() {
               </div>
               <div className="w-full md:w-auto">
                 {subscribed ? (
-                  <div className="flex items-center gap-2 text-emerald font-semibold text-sm">
+                  <div className="flex items-center justify-center md:justify-start gap-2 text-emerald font-semibold text-sm">
                     <CheckCircle2 size={18} />
                     You&apos;re subscribed!
                   </div>
                 ) : (
                   <form
                     onSubmit={handleSubscribe}
-                    className="flex gap-2 w-full md:w-auto"
+                    className="flex flex-col sm:flex-row gap-2 w-full md:w-auto"
                   >
-                    <div className="relative flex-1 md:w-64">
+                    <div className="relative flex-1">
                       <Mail
                         size={16}
                         className="absolute left-3.5 top-1/2 -translate-y-1/2 text-text-muted"
@@ -350,7 +350,7 @@ export default function Resources() {
       {/* =========================================
           CLOSING CTA
           ========================================= */}
-      <section className="relative py-20 overflow-hidden">
+      <section className="relative py-16 sm:py-20 overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1920&h=800&fit=crop"
           alt=""
@@ -360,7 +360,7 @@ export default function Resources() {
         <div className="absolute inset-0 bg-navy/85" />
         <div className="relative z-10 container-app text-center">
           <AnimateOnScroll>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-white mb-4">
               Ready to see ImCam Hub in action?
             </h2>
             <p className="text-white/60 max-w-xl mx-auto mb-8">
@@ -369,9 +369,9 @@ export default function Resources() {
             </p>
             <Link
               to="/book-demo"
-              className="inline-flex items-center justify-center gap-2 btn-gradient-primary px-8 py-3.5 rounded-full text-sm font-semibold transition-all duration-200 active:scale-[0.98]"
+              className="inline-flex items-center justify-center gap-2 btn-gradient-primary px-6 sm:px-8 py-3 rounded-full text-sm font-semibold transition-all duration-200 active:scale-[0.98]"
             >
-              Book a Free Demo <ArrowRight size={18} />
+              Book a Free Demo <ArrowRight size={16} sm:size={18} />
             </Link>
           </AnimateOnScroll>
         </div>

@@ -4,7 +4,7 @@ import { FileText, ChevronLeft, ChevronRight, AlertCircle } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import Badge from '../../components/Badge';
 
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 const LIMIT = 20;
 
 const STATUS_OPTIONS = [
@@ -26,7 +26,7 @@ function SkeletonRow() {
   return (
     <tr className="border-b border-sand-dark animate-pulse">
       {Array.from({ length: 8 }).map((_, i) => (
-        <td key={i} className="px-4 py-3">
+        <td key={i} className="px-3 sm:px-4 py-3">
           <div className="h-4 bg-sand rounded w-3/4" />
         </td>
       ))}
@@ -80,8 +80,8 @@ export default function DemoRequests() {
 
   return (
     <div>
-      <div className="mb-6">
-        <h1 className="text-2xl font-heading font-bold text-navy">Demo Requests</h1>
+      <div className="mb-5">
+        <h1 className="text-xl sm:text-2xl font-heading font-bold text-navy">Demo Requests</h1>
         <p className="text-text-secondary mt-1">
           Manage and review demo requests submitted through the website.
         </p>
@@ -124,17 +124,17 @@ export default function DemoRequests() {
 
         {!error && (
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <table className="w-full text-sm min-w-[600px]">
               <thead>
                 <tr className="border-b border-sand-dark text-left text-text-muted">
-                  <th className="px-4 py-3 font-medium">Company</th>
-                  <th className="px-4 py-3 font-medium">Full Name</th>
-                  <th className="px-4 py-3 font-medium">Email</th>
-                  <th className="px-4 py-3 font-medium">Phone</th>
-                  <th className="px-4 py-3 font-medium">Firm Size</th>
-                  <th className="px-4 py-3 font-medium">Status</th>
-                  <th className="px-4 py-3 font-medium">Created</th>
-                  <th className="px-4 py-3 font-medium">Actions</th>
+                  <th className="px-3 sm:px-4 py-3 font-medium">Company</th>
+                  <th className="px-3 sm:px-4 py-3 font-medium">Full Name</th>
+                  <th className="px-3 sm:px-4 py-3 font-medium">Email</th>
+                  <th className="px-3 sm:px-4 py-3 font-medium hidden sm:table-cell">Phone</th>
+                  <th className="px-3 sm:px-4 py-3 font-medium hidden sm:table-cell">Firm Size</th>
+                  <th className="px-3 sm:px-4 py-3 font-medium">Status</th>
+                  <th className="px-3 sm:px-4 py-3 font-medium hidden md:table-cell">Created</th>
+                  <th className="px-3 sm:px-4 py-3 font-medium">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -149,7 +149,7 @@ export default function DemoRequests() {
                 )}
                 {!loading && requests.length === 0 && (
                   <tr>
-                    <td colSpan={8} className="px-4 py-12 text-center">
+                    <td colSpan={8} className="px-3 sm:px-4 py-12 text-center">
                       <FileText size={36} className="mx-auto text-text-muted mb-3" />
                       <p className="text-text-secondary text-sm">No demo requests found.</p>
                     </td>
@@ -158,20 +158,20 @@ export default function DemoRequests() {
                 {!loading &&
                   requests.map((req) => (
                     <tr key={req.id} className="border-b border-sand-dark hover:bg-offwhite/60 transition-colors">
-                      <td className="px-4 py-3 text-navy font-medium max-w-[180px] truncate">{req.company}</td>
-                      <td className="px-4 py-3 text-text-secondary max-w-[150px] truncate">{req.full_name}</td>
-                      <td className="px-4 py-3 text-text-secondary max-w-[200px] truncate">{req.email}</td>
-                      <td className="px-4 py-3 text-text-secondary">{req.phone || '—'}</td>
-                      <td className="px-4 py-3 text-text-secondary">{req.firm_size || '—'}</td>
-                      <td className="px-4 py-3">
+                      <td className="px-3 sm:px-4 py-3 text-navy font-medium max-w-[180px] truncate">{req.company}</td>
+                      <td className="px-3 sm:px-4 py-3 text-text-secondary max-w-[150px] truncate">{req.full_name}</td>
+                      <td className="px-3 sm:px-4 py-3 text-text-secondary max-w-[200px] truncate">{req.email}</td>
+                      <td className="px-3 sm:px-4 py-3 text-text-secondary hidden sm:table-cell">{req.phone || '—'}</td>
+                      <td className="px-3 sm:px-4 py-3 text-text-secondary hidden sm:table-cell">{req.firm_size || '—'}</td>
+                      <td className="px-3 sm:px-4 py-3">
                         <Badge variant={STATUS_BADGE[req.status] || 'default'}>
                           {req.status ? req.status.charAt(0).toUpperCase() + req.status.slice(1) : '—'}
                         </Badge>
                       </td>
-                      <td className="px-4 py-3 text-text-muted whitespace-nowrap">
+                      <td className="px-3 sm:px-4 py-3 text-text-muted whitespace-nowrap hidden md:table-cell">
                         {req.created_at ? new Date(req.created_at).toLocaleString() : '—'}
                       </td>
-                      <td className="px-4 py-3">
+                      <td className="px-3 sm:px-4 py-3">
                         <Link
                           to={`/admin/demo-requests/${req.id}`}
                           className="inline-flex items-center gap-1 text-blue hover:text-blue-light text-sm font-medium transition-colors"
@@ -187,7 +187,7 @@ export default function DemoRequests() {
         )}
 
         {!error && pagination.totalPages > 1 && (
-          <div className="flex items-center justify-between px-5 py-4 border-t border-sand-dark">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 px-4 sm:px-5 py-4 border-t border-sand-dark">
             <button
               onClick={() => setCurrentPage((p) => p - 1)}
               disabled={currentPage <= 1}

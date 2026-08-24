@@ -285,7 +285,7 @@ export default function Solutions() {
             </p>
           </AnimateOnScroll>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {challenges.map((challenge, i) => (
               <AnimateOnScroll key={i} delay={i * 0.08}>
                 <div className="bg-[#F8F5F3] rounded-2xl border border-[#E8E2DC] overflow-hidden h-full group">
@@ -336,7 +336,7 @@ export default function Solutions() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: '-80px' }}
-            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
           >
             {displaySolutions.map((sol, i) => (
               <motion.div
@@ -376,7 +376,7 @@ export default function Solutions() {
             </p>
           </AnimateOnScroll>
 
-          <div className="grid md:grid-cols-3 gap-8 relative">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
             {/* Connecting line (desktop) */}
             <div className="hidden md:block absolute top-[52px] left-[20%] right-[20%] h-[2px]">
               <div className="w-full h-full bg-sand-dark relative">

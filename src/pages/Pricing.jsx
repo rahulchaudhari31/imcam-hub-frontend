@@ -8,7 +8,6 @@ import {
   Minus,
   Star,
   Users,
-  Zap,
   Sparkles,
   Shield,
   TrendingUp,
@@ -136,7 +135,6 @@ function AnimatedCounter({ target, suffix = '', prefix = '', duration = 1.5 }) {
 
   useEffect(() => {
     if (!inView) return;
-    let start = 0;
     const end = target;
     const stepTime = (duration * 1000) / end;
     const minStep = 16;
@@ -194,7 +192,7 @@ export default function Pricing() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="text-4xl sm:text-5xl font-heading font-bold text-navy mb-6 leading-tight"
+                className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-navy mb-5 leading-tight"
               >
                 Simple, Transparent{' '}
                 <span className="relative inline-block">
@@ -211,7 +209,7 @@ export default function Pricing() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="text-lg text-text-secondary max-w-xl mb-8"
+                className="text-base sm:text-lg text-text-secondary max-w-xl mb-6"
               >
                 Start with a free trial. Scale as you grow. No hidden fees, no
                 long-term contracts.
@@ -340,7 +338,7 @@ export default function Pricing() {
           </div>
 
           {/* Cards */}
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {plans.map((plan) => (
               <div
                 key={plan.name}
@@ -412,8 +410,8 @@ export default function Pricing() {
           ========================================= */}
       <section className="section-padding">
         <div className="container-app">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-navy mb-4">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-navy mb-4">
               Full Feature <span className="gradient-text">Comparison</span>
             </h2>
             <p className="text-text-secondary max-w-2xl mx-auto">
@@ -426,13 +424,13 @@ export default function Pricing() {
               <table className="w-full text-sm min-w-[540px]">
                 <thead>
                   <tr className="bg-sand/70">
-                    <th className="text-left py-4 px-6 font-semibold text-navy w-[50%] sticky top-0 bg-sand/70 backdrop-blur-sm z-10">
+                    <th className="text-left py-3 px-4 sm:py-4 sm:px-6 font-semibold text-navy w-[50%] sticky top-0 bg-sand/70 backdrop-blur-sm z-10">
                       Feature
                     </th>
-                    <th className="text-center py-4 px-6 font-semibold text-navy w-[25%] sticky top-0 bg-sand/70 backdrop-blur-sm z-10">
+                    <th className="text-center py-3 px-4 sm:py-4 sm:px-6 font-semibold text-navy w-[25%] sticky top-0 bg-sand/70 backdrop-blur-sm z-10">
                       Standard
                     </th>
-                    <th className="text-center py-4 px-6 font-semibold text-navy w-[25%] sticky top-0 bg-sand/70 backdrop-blur-sm z-10">
+                    <th className="text-center py-3 px-4 sm:py-4 sm:px-6 font-semibold text-navy w-[25%] sticky top-0 bg-sand/70 backdrop-blur-sm z-10">
                       <span className="text-blue">Pro</span>
                     </th>
                   </tr>
@@ -451,13 +449,13 @@ export default function Pricing() {
                           : 'bg-sand/30'
                       }`}
                     >
-                      <td className="py-3.5 px-6 text-text-secondary">
+                      <td className="py-3 px-4 sm:py-3.5 sm:px-6 text-text-secondary">
                         {row.label}
                       </td>
-                      <td className="py-3.5 px-6 text-center">
+                      <td className="py-3 px-4 sm:py-3.5 sm:px-6 text-center">
                         {renderCell(row.standard)}
                       </td>
-                      <td className="py-3.5 px-6 text-center">
+                      <td className="py-3 px-4 sm:py-3.5 sm:px-6 text-center">
                         {renderCell(row.pro)}
                       </td>
                     </tr>
@@ -474,13 +472,13 @@ export default function Pricing() {
           ========================================= */}
       <section className="section-padding bg-sand">
         <div className="container-app max-w-3xl">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-navy">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-navy">
               Billing <span className="gradient-text">Questions</span>
             </h2>
           </div>
 
-          <div className="bg-white rounded-2xl border border-sand-dark p-6 md:p-8">
+          <div className="bg-white rounded-2xl border border-sand-dark p-5 md:p-8">
             <FAQAccordion items={faqs} />
           </div>
         </div>
@@ -489,7 +487,7 @@ export default function Pricing() {
       {/* =========================================
           CLOSING CTA
           ========================================= */}
-      <section className="relative py-20 overflow-hidden">
+      <section className="relative py-16 sm:py-20 overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1920&h=800&fit=crop"
           alt=""
@@ -498,7 +496,7 @@ export default function Pricing() {
         />
         <div className="absolute inset-0 bg-navy/85" />
         <div className="relative z-10 container-app text-center">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-white mb-4">
             Ready to see ImCam Hub <span className="text-blue-lighter">in action</span>?
           </h2>
           <p className="text-white/60 max-w-xl mx-auto mb-8">
@@ -507,9 +505,9 @@ export default function Pricing() {
           </p>
           <Link
             to="/book-demo"
-            className="inline-flex items-center justify-center gap-2 btn-gradient-primary px-8 py-3.5 rounded-full text-sm font-semibold transition-all duration-200 active:scale-[0.98]"
+            className="inline-flex items-center justify-center gap-2 btn-gradient-primary px-6 sm:px-8 py-3 rounded-full text-sm font-semibold transition-all duration-200 active:scale-[0.98]"
           >
-            Book a Free Demo <ArrowRight size={18} />
+            Book a Free Demo <ArrowRight size={16} sm:size={18} />
           </Link>
         </div>
       </section>

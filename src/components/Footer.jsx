@@ -69,7 +69,7 @@ export default function Footer() {
 
       <div className="section-padding">
         <div className="container-app">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-14">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 mb-10 lg:mb-14">
             <div className="lg:col-span-4">
               <Link to="/" className="inline-flex mb-4" aria-label="ImCam Hub home">
                 <div className="bg-white p-3">
@@ -160,9 +160,9 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <div className="border-t border-white/10 pt-6 sm:pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-white/35 text-sm">&copy; {new Date().getFullYear()} ImCam Hub. All rights reserved.</p>
-            <div className="flex items-center gap-5">
+            <div className="flex items-center gap-4 sm:gap-5">
               <Link to="/resources" className="text-white/35 hover:text-white/70 text-sm transition-colors">Privacy Policy</Link>
               <Link to="/resources" className="text-white/35 hover:text-white/70 text-sm transition-colors">Terms of Service</Link>
             </div>

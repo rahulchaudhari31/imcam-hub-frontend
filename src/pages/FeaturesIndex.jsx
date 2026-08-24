@@ -93,7 +93,7 @@ export default function FeaturesIndex() {
 
       <section className="section-padding">
         <div className="container-app">
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {roles.map((role, index) => (
               <motion.div
                 key={role.path}
