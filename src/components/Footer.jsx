@@ -20,9 +20,7 @@ const companyLinks = [
 ];
 
 const defaultSocialLinks = [
-  { name: 'Twitter', label: 'X', href: '#', platform: 'twitter' },
   { name: 'LinkedIn', label: 'in', href: '#', platform: 'linkedin' },
-  { name: 'GitHub', label: 'GH', href: '#', platform: 'github' },
 ];
 
 const socialLabels = {
@@ -55,12 +53,14 @@ export default function Footer() {
   const address = contactInfo?.address || '[UK office address]\n[City, Postcode]\nUnited Kingdom';
 
   const displaySocialLinks = socialLinksData
-    ? socialLinksData.map((s) => ({
-        name: s.platform,
-        label: socialLabels[s.platform] || s.platform.slice(0, 2),
-        href: s.url,
-        platform: s.platform,
-      }))
+    ? socialLinksData
+        .filter((s) => s.platform !== 'twitter' && s.platform !== 'github' && s.platform !== 'linkedin')
+        .map((s) => ({
+          name: s.platform,
+          label: socialLabels[s.platform] || s.platform.slice(0, 2),
+          href: s.url,
+          platform: s.platform,
+        }))
     : defaultSocialLinks;
 
   return (
