@@ -58,7 +58,6 @@ const navLinks = [
   { name: 'Features', path: '/features', hasDropdown: true },
   { name: 'Solutions', path: '/solutions' },
   { name: 'Pricing', path: '/pricing' },
-  { name: 'Resources', path: '/resources' },
 ];
 
 export default function Navbar() {
@@ -129,8 +128,9 @@ export default function Navbar() {
                     onMouseEnter={() => setDropdownOpen(true)}
                     onMouseLeave={closeDropdown}
                   >
-                    <Link
-                      to={link.path}
+                    <button
+                      type="button"
+                      onClick={() => setDropdownOpen((prev) => !prev)}
                       className={`px-4 py-2 rounded-full text-[15px] font-medium transition-all duration-200 ${
                         location.pathname.startsWith(link.path)
                           ? 'text-blue bg-blue-pale'
@@ -138,7 +138,7 @@ export default function Navbar() {
                       }`}
                     >
                       {link.name}
-                    </Link>
+                    </button>
 
                     <AnimatePresence>
                       {dropdownOpen && (
@@ -310,17 +310,21 @@ export default function Navbar() {
                       link.hasDropdown ? (
                         <div key={link.name}>
                           <div className="flex items-center">
-                            <Link
-                              to={link.path}
-                              onClick={() => setMobileOpen(false)}
-                              className={`flex-1 px-4 py-3 rounded-xl text-[15px] font-medium transition-colors ${
+                            <button
+                              type="button"
+                              onClick={() =>
+                                setMobileAccordionOpen(
+                                  mobileAccordionOpen === link.name ? null : link.name
+                                )
+                              }
+                              className={`flex-1 px-4 py-3 rounded-xl text-[15px] font-medium transition-colors text-left ${
                                 location.pathname.startsWith(link.path)
                                   ? 'text-blue bg-blue-pale'
                                   : 'text-text-secondary hover:text-navy hover:bg-sand/60'
                               }`}
                             >
                               {link.name}
-                            </Link>
+                            </button>
                             <button
                               onClick={() =>
                                 setMobileAccordionOpen(

@@ -4,6 +4,8 @@ import { ArrowRight, LayoutDashboard, Users, UserCheck, Building2 } from 'lucide
 import usePageMeta from '../hooks/usePageMeta';
 import Card from '../components/Card';
 
+const SHOW_FEATURES_INDEX = false; // <-- Set to true to re-enable
+
 const roles = [
   {
     icon: LayoutDashboard,
@@ -48,6 +50,10 @@ export default function FeaturesIndex() {
     'Features — ImCam Hub',
     'Explore the four connected portals of ImCam Hub for UK immigration consultancies: admin, caseworker, client, and business/sponsor — covering Skilled Worker, Sponsor Licence, ILR, and Citizenship work.'
   );
+
+  if (!SHOW_FEATURES_INDEX) {
+    return null;
+  }
 
   return (
     <div>
