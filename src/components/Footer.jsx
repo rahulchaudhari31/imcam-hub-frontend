@@ -19,11 +19,7 @@ const companyLinks = [
   { name: 'Careers', path: '/resources' },
 ];
 
-const defaultSocialLinks = [
-  { name: 'Twitter', label: 'X', href: '#', platform: 'twitter' },
-  { name: 'LinkedIn', label: 'in', href: '#', platform: 'linkedin' },
-  { name: 'GitHub', label: 'GH', href: '#', platform: 'github' },
-];
+const defaultSocialLinks = [];
 
 const socialLabels = {
   twitter: 'X',
@@ -55,12 +51,14 @@ export default function Footer() {
   const address = contactInfo?.address || '[UK office address]\n[City, Postcode]\nUnited Kingdom';
 
   const displaySocialLinks = socialLinksData
-    ? socialLinksData.map((s) => ({
-        name: s.platform,
-        label: socialLabels[s.platform] || s.platform.slice(0, 2),
-        href: s.url,
-        platform: s.platform,
-      }))
+    ? socialLinksData
+        .filter((s) => s.platform !== 'twitter' && s.platform !== 'github' && s.platform !== 'linkedin')
+        .map((s) => ({
+          name: s.platform,
+          label: socialLabels[s.platform] || s.platform.slice(0, 2),
+          href: s.url,
+          platform: s.platform,
+        }))
     : defaultSocialLinks;
 
   return (
@@ -83,22 +81,24 @@ export default function Footer() {
               <p className="text-white/80 text-sm tracking-wide leading-relaxed mb-5 max-w-[280px]">
                 Structured case management. Powered by smart automation.
               </p>
-              <div className="flex items-center gap-3">
-                {displaySocialLinks.map((social) => (
-                  <a
-                    key={social.platform}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={social.name}
-                    className="w-9 h-9 rounded-xl bg-white/[0.06] hover:bg-blue/20 flex items-center justify-center transition-colors group"
-                  >
-                    <span className="text-white/50 group-hover:text-blue-light transition-colors text-xs font-bold">
-                      {social.label}
-                    </span>
-                  </a>
-                ))}
-              </div>
+              {displaySocialLinks.length > 0 && (
+                <div className="flex items-center gap-3">
+                  {displaySocialLinks.map((social) => (
+                    <a
+                      key={social.platform}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.name}
+                      className="w-9 h-9 rounded-xl bg-white/[0.06] hover:bg-blue/20 flex items-center justify-center transition-colors group"
+                    >
+                      <span className="text-white/50 group-hover:text-blue-light transition-colors text-xs font-bold">
+                        {social.label}
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              )}
             </div>
 
             <div className="lg:col-span-3">

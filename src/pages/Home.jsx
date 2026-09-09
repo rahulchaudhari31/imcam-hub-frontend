@@ -27,7 +27,6 @@ import {
   MessageSquare,
   Phone,
   MapPin,
-  Clock,
   X,
 } from 'lucide-react';
 import FAQAccordion from '../components/FAQAccordion';
@@ -287,7 +286,7 @@ const faqs = [
   },
 ];
 
-function VideoShowcase({ section, statsSection }) {
+function VideoShowcase({ section }) {
   const videoRef = useRef(null);
 
   useEffect(() => {
@@ -295,17 +294,6 @@ function VideoShowcase({ section, statsSection }) {
     if (!v) return;
     v.play().catch(() => {});
   }, []);
-
-const highlights = contentArray(statsSection, [
-    { icon: Clock, stat: '60%', label: 'Faster Processing', color: 'text-cyan' },
-    { icon: Users, stat: '98%', label: 'Client Satisfaction', color: 'text-purple' },
-    { icon: Shield, stat: '100%', label: 'Compliance Rate', color: 'text-indigo' },
-  ]).map((item, index) => ({
-    ...item,
-    icon: [Clock, Users, Shield][index % 3],
-    stat: item.stat || item.value,
-    color: item.color || ['text-cyan', 'text-purple', 'text-indigo'][index % 3],
-  }));
 
 return (
     <div className="relative min-h-[70vh] sm:min-h-[80vh] lg:min-h-[90vh] flex items-center overflow-hidden">
@@ -324,90 +312,27 @@ return (
       <div className="absolute inset-0 bg-navy/40" />
       <div className="absolute inset-0 bg-gradient-to-r from-navy/50 via-navy/20 to-transparent" />
 
-      {/* Content overlay */}
-      <div className="relative z-10 container-app py-12 sm:py-16 lg:py-20">
-        <div className="max-w-3xl">
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-white/10 backdrop-blur-sm text-amber text-xs font-semibold rounded-full mb-6 border border-white/10"
-          >
-            <Play size={10} fill="currentColor" /> Platform Demo
-          </motion.span>
-
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-white mb-5 leading-tight"
-          >
-            {section?.title || (
-              <>
-                See ImCam Hub <span className="text-cyan-light">in Action</span>
-              </>
-            )}
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-base sm:text-lg text-white/70 max-w-xl mb-8 leading-relaxed"
-          >
-            Watch how our <span className="text-cyan-light font-medium">smart</span> platform streamlines{' '}
-            <span className="text-cyan-light font-medium">UK visa</span>{' '}
-            <span className="text-cyan-light font-medium">case management</span> — from{' '}
-            <span className="text-cyan-light font-medium">Skilled Worker</span> applications and Sponsor Licence
-            compliance through ILR and British Citizenship, every step lives in one connected system.
-          </motion.p>
-
-          {/* Stats row */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-8"
-          >
-            {highlights.map((item, i) => (
-              <motion.div
-                key={i}
-                whileHover={{ y: -3 }}
-                className="bg-white/10 backdrop-blur-sm rounded-xl p-3 sm:p-4 border border-white/10 hover:bg-white/15 transition-colors"
-              >
-                <item.icon size={18} sm:size={20} className={`${item.color} mb-2`} />
-                <div className="text-xl sm:text-2xl font-bold text-white">{item.stat}</div>
-                <div className="text-xs text-white/60">{item.label}</div>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4"
-          >
-            <Link
-              to={section?.button_link || '/book-demo'}
-              className="inline-flex items-center justify-center gap-2 bg-amber hover:bg-amber-dark text-white px-6 sm:px-8 py-3 rounded-full text-sm font-semibold transition-all duration-200 shadow-[0_2px_8px_rgba(242,153,74,0.35)] hover:shadow-[0_4px_16px_rgba(242,153,74,0.4)] hover:scale-[1.03] active:scale-[0.98]"
-            >
-              {section?.button_text || 'Book a Free Demo'} <ArrowRight size={16} sm:size={18} />
-            </Link>
-            <Link
-              to={section?.secondaryButtonLink || '/features'}
-              className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white hover:bg-white/10 px-6 sm:px-8 py-3 rounded-full text-sm font-semibold transition-all duration-200 active:scale-[0.98]"
-            >
-              {section?.secondaryButtonText || 'Explore Features'}
-            </Link>
-          </motion.div>
-        </div>
-      </div>
+      {/* Buttons — bottom right */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.3 }}
+        className="absolute bottom-8 right-8 sm:bottom-12 sm:right-12 lg:bottom-16 lg:right-16 z-10 flex flex-col sm:flex-row gap-3 sm:gap-4"
+      >
+        <Link
+          to={section?.button_link || '/book-demo'}
+          className="inline-flex items-center justify-center gap-2 bg-amber hover:bg-amber-dark text-white px-6 sm:px-8 py-3 rounded-full text-sm font-semibold transition-all duration-200 shadow-[0_2px_8px_rgba(242,153,74,0.35)] hover:shadow-[0_4px_16px_rgba(242,153,74,0.4)] hover:scale-[1.03] active:scale-[0.98]"
+        >
+          {section?.button_text || 'Book a Free Demo'} <ArrowRight size={16} sm:size={18} />
+        </Link>
+        <Link
+          to={section?.secondaryButtonLink || '/features'}
+          className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white hover:bg-white/10 px-6 sm:px-8 py-3 rounded-full text-sm font-semibold transition-all duration-200 active:scale-[0.98]"
+        >
+          {section?.secondaryButtonText || 'Explore Features'}
+        </Link>
+      </motion.div>
 
     </div>
   );
@@ -452,7 +377,6 @@ export default function Home() {
   const contactAddress = cmsContact?.address || '[UK office address]\n[City, Postcode]';
   const heroSection = cmsSections.hero;
   const videoSection = cmsSections.video_showcase;
-  const statsSection = cmsSections.stats;
   const trustedSection = cmsSections.trusted_features;
   const aiSection = cmsSections.ai_agents;
   const modulesSection = cmsSections.core_modules;
@@ -471,7 +395,7 @@ export default function Home() {
       {/* =========================================
           VIDEO SHOWCASE — Full Background
           ========================================= */}
-      <VideoShowcase section={videoSection} statsSection={statsSection} />
+      <VideoShowcase section={videoSection} />
 
 {/* =========================================
           HERO SECTION — Light Background + Image
@@ -536,29 +460,34 @@ export default function Home() {
             </p>
           </AnimatedSection>
 
-          <div className="space-y-3 sm:space-y-4 max-w-5xl mx-auto">
-            {problemSolutions.map((item, i) => (
-              <AnimatedSection key={i} delay={i * 0.06}>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4">
-                  <div className="flex items-start gap-3 rounded-2xl border border-rose/10 bg-rose/[0.04] p-4 sm:p-5 hover:shadow-[0_8px_30px_rgba(11,31,58,0.08)] transition-shadow">
-                    <div className="w-8 h-8 rounded-lg bg-rose/10 flex items-center justify-center shrink-0">
-                      <X size={16} className="text-rose" />
+          <div className="max-w-5xl mx-auto">
+            <div className="rounded-2xl border border-sand-dark bg-white hover:shadow-[0_8px_30px_rgba(11,31,58,0.08)] transition-shadow overflow-hidden divide-y divide-sand-dark">
+              {problemSolutions.map((item, i) => (
+                <AnimatedSection key={i} delay={i * 0.06}>
+                  <div className="flex flex-col lg:flex-row items-stretch">
+                    <div className="flex items-start gap-3 p-4 sm:p-5 flex-1">
+                      <div className="w-8 h-8 rounded-lg bg-rose/10 flex items-center justify-center shrink-0">
+                        <X size={16} className="text-rose" />
+                      </div>
+                      <p className="text-sm text-text-secondary leading-relaxed pt-1.5">
+                        {item.problem}
+                      </p>
                     </div>
-                    <p className="text-sm text-text-secondary leading-relaxed pt-1.5">
-                      {item.problem}
-                    </p>
-                  </div>
-                  <div className="flex items-start gap-3 rounded-2xl border border-emerald/15 bg-emerald/[0.04] p-4 sm:p-5 hover:shadow-[0_8px_30px_rgba(11,31,58,0.08)] transition-shadow">
-                    <div className="w-8 h-8 rounded-lg bg-emerald/10 flex items-center justify-center shrink-0">
-                      <Check size={16} className="text-emerald" />
+                    <div className="flex items-center justify-center px-3 py-2 lg:py-0">
+                      <span className="text-sm font-bold text-amber uppercase tracking-widest bg-amber/10 px-3 py-1 rounded-full">vs</span>
                     </div>
-                    <p className="text-sm text-text-secondary leading-relaxed pt-1.5">
-                      {item.solution}
-                    </p>
+                    <div className="flex items-start gap-3 p-4 sm:p-5 flex-1 bg-emerald/[0.03]">
+                      <div className="w-8 h-8 rounded-lg bg-emerald/10 flex items-center justify-center shrink-0">
+                        <Check size={16} className="text-emerald" />
+                      </div>
+                      <p className="text-sm text-text-secondary leading-relaxed pt-1.5">
+                        {item.solution}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </AnimatedSection>
-            ))}
+                </AnimatedSection>
+              ))}
+            </div>
           </div>
         </div>
       </section>
