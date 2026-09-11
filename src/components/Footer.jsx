@@ -150,12 +150,13 @@ export default function Footer() {
                     <span>{phone}</span>
                   </a>
                 </li>
-                <li>
+                {/* Address hidden temporarily */}
+                {/* <li>
                   <div className="flex items-start gap-3 text-sm text-white/50">
                     <MapPin size={20} className="shrink-0 mt-0.5 text-white/40" />
                     <span style={{ whiteSpace: 'pre-line' }}>{address}</span>
                   </div>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>
