@@ -473,8 +473,8 @@ export default function Home() {
                         {item.problem}
                       </p>
                     </div>
-                    <div className="flex items-center justify-center px-3 py-2 lg:py-0">
-                      <span className="text-sm font-bold text-amber uppercase tracking-widest bg-amber/10 px-3 py-1 rounded-full">vs</span>
+                    <div className="flex items-center justify-center px-2 py-1 lg:py-0">
+                      <span className="text-[10px] font-bold text-navy uppercase tracking-widest bg-sand px-2 py-0.5 rounded-full border border-sand-dark">vs</span>
                     </div>
                     <div className="flex items-start gap-3 p-4 sm:p-5 flex-1 bg-emerald/[0.03]">
                       <div className="w-8 h-8 rounded-lg bg-emerald/10 flex items-center justify-center shrink-0">
