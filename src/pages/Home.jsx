@@ -742,10 +742,11 @@ export default function Home() {
                     <Phone size={20} className="text-white/40" />
                     {contactPhone}
                   </a>
-                  <div className="flex items-start gap-3 text-sm text-white/70">
+                  {/* Address hidden temporarily */}
+                  {/* <div className="flex items-start gap-3 text-sm text-white/70">
                     <MapPin size={20} className="text-white/40 shrink-0 mt-0.5" />
                     <span style={{ whiteSpace: 'pre-line' }}>{contactAddress}</span>
-                  </div>
+                  </div> */}
                 </div>
                 <Link
                   to="/book-demo"
