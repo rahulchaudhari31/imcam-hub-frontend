@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence, useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import usePageMeta from '../hooks/usePageMeta';
 import {
   ArrowRight,
@@ -17,50 +17,230 @@ import pricingImg from '../assets/images/features/Pricing photo.png';
 
 const plans = [
   {
-    name: 'Standard',
-    monthlyPrice: 349,
-    annualPrice: 279,
-    description:
-      'Everything a growing immigration practice needs to manage cases, clients, and compliance in one place.',
-    features: [
-      'Up to 100 active cases',
-      '5 caseworker accounts',
-      'Candidate & client portals',
-      'Document checklist automation',
-      'Deadline tracking & alerts',
-      'Standard compliance reports',
-      'Email support',
-      'Basic analytics dashboard',
-    ],
-    cta: 'Start Free Trial',
+    name: 'Starter',
+    tagline: 'Perfect for small agencies',
+    price: 49,
+    currency: 'GBP',
+    interval: 'month',
     popular: false,
+    totalModules: 51,
+    includedModules: 44,
+    moduleCategories: {
+      ADMIN: [
+        'Dashboard',
+        'Cases',
+        'Candidates',
+        'Caseworkers',
+        'Businesses',
+        'Finance',
+        'Reports',
+        'Pipeline',
+        'Documents',
+        'Calendar',
+        'Messages',
+        'Permissions',
+        'Settings',
+        'Licence Requests',
+        'Enquiries',
+      ],
+      CASEWORKER: [
+        'Dashboard',
+        'Cases',
+        'Pipeline',
+        'Tasks',
+        'Calendar',
+        'Documents',
+        'Clients',
+        'Messages',
+        'Licence Reviews',
+      ],
+      CANDIDATE: [
+        'Dashboard',
+        'Application',
+        'Documents',
+        'Payments',
+        'Messages',
+        'Appointments',
+        'Calendar',
+        'Application Status',
+        'My Account',
+      ],
+      BUSINESS: [
+        'Dashboard',
+        'Profile',
+        'Licence',
+        'Compliance',
+        'Workers',
+        'Documents',
+        'Messages',
+        'Payment',
+        'Calendar',
+        'Reporting Obligations',
+        'Settings',
+      ],
+    },
+    cta: 'Start Free Trial',
     checkColor: 'text-blue',
     ctaClass: 'border-2 border-navy text-navy hover:bg-navy hover:text-white',
   },
   {
-    name: 'Pro',
-    monthlyPrice: 799,
-    annualPrice: 639,
-    description:
-      'Advanced capabilities, unlimited scale, and priority support for established immigration teams.',
-    features: [
-      'Unlimited active cases',
-      'Unlimited caseworker accounts',
-      'Everything in Standard',
-      'Smart Chat, Email & Contract drafting',
-      'Speech-to-text & text-to-speech',
-      'Firm Feed activity stream',
-      'Advanced analytics & exports',
-      'Multi-office management',
-      'Priority support & onboarding',
-      'API access & custom integrations',
-    ],
-    cta: 'Book a Demo',
+    name: 'Professional',
+    tagline: 'For growing businesses',
+    price: 69,
+    currency: 'GBP',
+    interval: 'month',
     popular: true,
+    totalModules: 51,
+    includedModules: 51,
+    moduleCategories: {
+      ADMIN: [
+        'Dashboard',
+        'Cases',
+        'Candidates',
+        'Caseworkers',
+        'Businesses',
+        'Finance',
+        'Reports',
+        'Pipeline',
+        'Workload',
+        'Documents',
+        'Calendar',
+        'Messages',
+        'Escalations',
+        'Audit Logs',
+        'Permissions',
+        'Settings',
+        'Licence Requests',
+        'Enquiries',
+        'Assign',
+        'Departments',
+      ],
+      CASEWORKER: [
+        'Dashboard',
+        'Cases',
+        'Pipeline',
+        'Tasks',
+        'Calendar',
+        'Documents',
+        'Clients',
+        'Messages',
+        'Performance',
+        'Finance',
+        'Licence Reviews',
+      ],
+      CANDIDATE: [
+        'Dashboard',
+        'Application',
+        'Documents',
+        'Payments',
+        'Messages',
+        'Appointments',
+        'Calendar',
+        'Application Status',
+        'My Account',
+      ],
+      BUSINESS: [
+        'Dashboard',
+        'Profile',
+        'Licence',
+        'Compliance',
+        'Workers',
+        'Documents',
+        'Messages',
+        'Payment',
+        'Calendar',
+        'Reporting Obligations',
+        'Settings',
+      ],
+    },
+    cta: 'Book a Demo',
     checkColor: 'text-blue',
     ctaClass: 'btn-gradient-primary',
   },
+  {
+    name: 'Enterprise',
+    tagline: 'Full power for large organisations',
+    price: 249,
+    currency: 'GBP',
+    interval: 'month',
+    popular: false,
+    totalModules: 51,
+    includedModules: 51,
+    moduleCategories: {
+      ADMIN: [
+        'Dashboard',
+        'Cases',
+        'Candidates',
+        'Caseworkers',
+        'Businesses',
+        'Finance',
+        'Reports',
+        'Pipeline',
+        'Workload',
+        'Documents',
+        'Calendar',
+        'Messages',
+        'Escalations',
+        'Audit Logs',
+        'Permissions',
+        'Settings',
+        'Licence Requests',
+        'Enquiries',
+        'Assign',
+        'Departments',
+      ],
+      CASEWORKER: [
+        'Dashboard',
+        'Cases',
+        'Pipeline',
+        'Tasks',
+        'Calendar',
+        'Documents',
+        'Clients',
+        'Messages',
+        'Performance',
+        'Finance',
+        'Licence Reviews',
+      ],
+      CANDIDATE: [
+        'Dashboard',
+        'Application',
+        'Documents',
+        'Payments',
+        'Messages',
+        'Appointments',
+        'Calendar',
+        'Application Status',
+        'My Account',
+      ],
+      BUSINESS: [
+        'Dashboard',
+        'Profile',
+        'Licence',
+        'Compliance',
+        'Workers',
+        'Documents',
+        'Messages',
+        'Payment',
+        'Calendar',
+        'Reporting Obligations',
+        'Settings',
+      ],
+    },
+    cta: 'Contact Sales',
+    checkColor: 'text-blue',
+    ctaClass: 'border-2 border-navy text-navy hover:bg-navy hover:text-white',
+  },
 ];
+
+const VISIBLE_MODULES = 6;
+
+const categoryStyles = {
+  ADMIN: 'bg-blue-pale text-blue',
+  CASEWORKER: 'bg-purple-pale text-purple',
+  CANDIDATE: 'bg-emerald-pale text-emerald',
+  BUSINESS: 'bg-amber/10 text-amber',
+};
 
 const comparisonFeatures = [
   { label: 'Active cases', standard: 'Up to 100', pro: 'Unlimited' },
@@ -163,10 +343,9 @@ function AnimatedCounter({ target, suffix = '', prefix = '', duration = 1.5 }) {
 export default function Pricing() {
   usePageMeta(
     'Pricing — ImCam Hub',
-    'Simple, transparent pricing for immigration practices of every size. Compare Standard and Pro plans with monthly or annual billing.'
+    'Simple, transparent pricing for immigration practices of every size. Compare Starter, Professional and Enterprise plans.'
   );
 
-  const [isAnnual, setIsAnnual] = useState(false);
   const [hoveredRow, setHoveredRow] = useState(null);
 
   return (
@@ -281,7 +460,7 @@ export default function Pricing() {
                   </div>
                   <div>
                     <div className="text-xs text-text-muted">Starting from</div>
-                    <div className="text-lg font-bold text-navy">$279<span className="text-xs font-normal text-text-muted">/mo</span></div>
+                    <div className="text-lg font-bold text-navy">£49<span className="text-xs font-normal text-text-muted">/month</span></div>
                   </div>
                 </div>
               </motion.div>
@@ -291,116 +470,113 @@ export default function Pricing() {
       </section>
 
       {/* =========================================
-          TOGGLE + PRICING CARDS
+          PRICING CARDS
           ========================================= */}
       <section className="section-padding pb-0">
         <div className="container-app">
-          {/* Toggle */}
-          <div className="flex items-center justify-center gap-4 mb-12">
-            <span
-              className={`text-sm font-medium transition-colors ${
-                !isAnnual ? 'text-navy' : 'text-text-muted'
-              }`}
-            >
-              Monthly
-            </span>
-            <button
-              onClick={() => setIsAnnual(!isAnnual)}
-              className={`relative w-14 h-7 rounded-full transition-all duration-300 ${
-                isAnnual ? 'bg-blue' : 'bg-navy/20'
-              }`}
-              aria-label={`Switch to ${isAnnual ? 'monthly' : 'annual'} billing`}
-            >
-              <div
-                className={`absolute top-0.5 left-0.5 w-6 h-6 bg-white rounded-full shadow-md transition-transform duration-300`}
-                style={{ transform: `translateX(${isAnnual ? 28 : 0}px)` }}
-              />
-            </button>
-            <span
-              className={`text-sm font-medium transition-colors ${
-                isAnnual ? 'text-navy' : 'text-text-muted'
-              }`}
-            >
-              Annual
-            </span>
-            <AnimatePresence>
-              {isAnnual && (
-                <motion.span
-                  initial={{ opacity: 0, scale: 0.8, x: -8 }}
-                  animate={{ opacity: 1, scale: 1, x: 0 }}
-                  exit={{ opacity: 0, scale: 0.8, x: -8 }}
-                  className="inline-flex items-center px-2.5 py-1 bg-blue-pale text-blue text-[11px] font-bold rounded-full tracking-wide"
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {plans.map((plan) => {
+              const modules = Object.entries(plan.moduleCategories).flatMap(
+                ([cat, list]) => list.map((name) => ({ cat, name }))
+              );
+              const visibleModules = modules.slice(0, VISIBLE_MODULES);
+              const moreCount = plan.includedModules - visibleModules.length;
+
+              return (
+                <div
+                  key={plan.name}
+                  className={`relative rounded-3xl p-8 flex flex-col transition-all duration-300 hover:-translate-y-1 ${
+                    plan.popular
+                      ? 'bg-white border-2 border-blue shadow-[0_8px_40px_rgba(37,99,235,0.15)] hover:shadow-[0_12px_50px_rgba(37,99,235,0.25)]'
+                      : 'bg-white border-2 border-navy/15 shadow-[0_4px_20px_rgba(11,31,58,0.06)] hover:shadow-[0_8px_30px_rgba(11,31,58,0.1)]'
+                  }`}
                 >
-                  SAVE 20%
-                </motion.span>
-              )}
-            </AnimatePresence>
-          </div>
-
-          {/* Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {plans.map((plan) => (
-              <div
-                key={plan.name}
-                className={`relative rounded-3xl p-8 md:p-10 flex flex-col transition-all duration-300 hover:-translate-y-1 ${
-                  plan.popular
-                    ? 'bg-white border-2 border-blue shadow-[0_8px_40px_rgba(37,99,235,0.15)] hover:shadow-[0_12px_50px_rgba(37,99,235,0.25)]'
-                    : 'bg-white border-2 border-navy/15 shadow-[0_4px_20px_rgba(11,31,58,0.06)] hover:shadow-[0_8px_30px_rgba(11,31,58,0.1)]'
-                }`}
-              >
-                {/* Badge */}
-                {plan.popular && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                    <span className="inline-flex items-center px-4 py-1.5 bg-blue text-white text-[11px] font-bold rounded-full tracking-wide shadow-md">
-                      MOST POPULAR
-                    </span>
-                  </div>
-                )}
-
-                {/* Plan header */}
-                <div className="mb-6">
-                  <h3 className="text-xl font-heading font-semibold text-navy mb-2">
-                    {plan.name}
-                  </h3>
-                  <div className="flex items-baseline gap-1 mb-3">
-                    <span className="text-sm text-text-muted font-medium">$</span>
-                    <span className="text-5xl font-bold text-navy tracking-tight transition-all duration-300">
-                      {isAnnual ? plan.annualPrice : plan.monthlyPrice}
-                    </span>
-                    <span className="text-sm text-text-muted font-medium">/mo</span>
-                  </div>
-                  {isAnnual && (
-                    <p className="text-xs text-blue font-semibold mb-1">
-                      Save ${(plan.monthlyPrice - plan.annualPrice) * 12}/year
-                    </p>
+                  {/* Badge */}
+                  {plan.popular && (
+                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
+                      <span className="inline-flex items-center px-4 py-1.5 bg-blue text-white text-[11px] font-bold rounded-full tracking-wide shadow-md">
+                        MOST POPULAR
+                      </span>
+                    </div>
                   )}
-                  <p className="text-sm text-text-secondary leading-relaxed">
-                    {plan.description}
-                  </p>
+
+                  {/* Plan header */}
+                  <div className="mb-6">
+                    <h3 className="text-xl font-heading font-semibold text-navy mb-2">
+                      {plan.name}
+                    </h3>
+                    <div className="flex items-baseline gap-1 mb-4">
+                      <span className="text-sm text-text-muted font-medium">£</span>
+                      <span className="text-5xl font-bold text-navy tracking-tight">
+                        {plan.price}
+                      </span>
+                      <span className="text-sm text-text-muted font-medium">/month</span>
+                    </div>
+                    <p className="text-sm text-text-secondary leading-relaxed">
+                      {plan.tagline}
+                    </p>
+                  </div>
+
+                  {/* Modules */}
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-xs font-bold tracking-widest text-text-muted uppercase">
+                      Modules ({plan.totalModules})
+                    </span>
+                    <span className="inline-flex items-center px-2 py-0.5 bg-blue-pale text-blue text-[10px] font-bold rounded-full tracking-wide">
+                      {plan.includedModules} included
+                    </span>
+                  </div>
+
+                  <ul className="space-y-3 mb-8 flex-1">
+                    {visibleModules.map((mod) => (
+                      <li
+                        key={`${mod.cat}-${mod.name}`}
+                        className="flex items-center gap-2.5 text-sm"
+                      >
+                        <CheckCircle2
+                          size={16}
+                          className={`flex-shrink-0 ${plan.checkColor}`}
+                        />
+                        <span className="text-text-secondary">{mod.name}</span>
+                        <span
+                          className={`ml-auto flex-shrink-0 px-1.5 py-0.5 rounded-md text-[9px] font-bold tracking-wide uppercase ${categoryStyles[mod.cat]}`}
+                        >
+                          {mod.cat}
+                        </span>
+                      </li>
+                    ))}
+                    {moreCount > 0 && (
+                      <li className="flex items-center gap-2.5 text-sm">
+                        <CheckCircle2
+                          size={16}
+                          className={`flex-shrink-0 ${plan.checkColor}`}
+                        />
+                        <span className="font-semibold text-text-secondary">
+                          +{moreCount} more
+                        </span>
+                      </li>
+                    )}
+                  </ul>
+
+                  {/* CTA */}
+                  {plan.cta === 'Contact Sales' ? (
+                    <a
+                      href="mailto:hello@incamhub.com"
+                      className={`flex items-center justify-center gap-2 w-full ${plan.ctaClass} px-6 py-3.5 rounded-full text-sm font-semibold transition-all duration-200 active:scale-[0.98]`}
+                    >
+                      {plan.cta} <ArrowRight size={16} />
+                    </a>
+                  ) : (
+                    <Link
+                      to="/book-demo"
+                      className={`flex items-center justify-center gap-2 w-full ${plan.ctaClass} px-6 py-3.5 rounded-full text-sm font-semibold transition-all duration-200 active:scale-[0.98]`}
+                    >
+                      {plan.cta} <ArrowRight size={16} />
+                    </Link>
+                  )}
                 </div>
-
-                {/* Feature list */}
-                <ul className="space-y-3 mb-8 flex-1">
-                  {plan.features.map((feature, j) => (
-                    <li key={j} className="flex items-start gap-3 text-sm">
-                      <CheckCircle2
-                        size={18}
-                        className={`flex-shrink-0 mt-0.5 ${plan.checkColor}`}
-                      />
-                      <span className="text-text-secondary">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* CTA */}
-                <Link
-                  to="/book-demo"
-                  className={`flex items-center justify-center gap-2 w-full ${plan.ctaClass} px-6 py-3.5 rounded-full text-sm font-semibold transition-all duration-200 active:scale-[0.98]`}
-                >
-                  {plan.cta} <ArrowRight size={16} />
-                </Link>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
