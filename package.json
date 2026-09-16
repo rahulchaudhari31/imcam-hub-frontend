@@ -1,0 +1,17 @@
+{
+  "name": "imcam-hub",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix imcam-hub-backend\" \"npm run dev --prefix imcam-hub-frontend\" \"npm run dev --prefix imcam-hub-adminpanel\"",
+    "dev:backend": "npm run dev --prefix imcam-hub-backend",
+    "dev:frontend": "npm run dev --prefix imcam-hub-frontend",
+    "dev:admin": "npm run dev --prefix imcam-hub-adminpanel",
+    "build": "npm run build --prefix imcam-hub-frontend && npm run build --prefix imcam-hub-adminpanel",
+    "install:all": "npm install --prefix imcam-hub-backend && npm install --prefix imcam-hub-frontend && npm install --prefix imcam-hub-adminpanel",
+    "db:migrate": "cd imcam-hub-backend && psql $DATABASE_URL -f migrations/001_initial_schema.sql && psql $DATABASE_URL -f migrations/002_cms_schema.sql && psql $DATABASE_URL -f migrations/003_cases_schema.sql && psql $DATABASE_URL -f migrations/004_documents_schema.sql && psql $DATABASE_URL -f migrations/002_cms_seed.sql"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
