@@ -75,7 +75,8 @@ const defaultFaqs = [
 export default function FeatureCandidate() {
   usePageMeta(
     'Client Portal — ImCam Hub',
-    'A self-service portal for individual UK visa applicants: track your Skilled Worker, ILR, or British Citizenship case, upload documents, and message your caseworker in real time.'
+    'A self-service portal for individual UK visa applicants: track your Skilled Worker, ILR, or British Citizenship case, upload documents, and message your caseworker in real time.',
+    'features'
   );
 
   const [page, setPage] = useState(null);

@@ -12,7 +12,6 @@ import {
   ArrowRight,
   Check,
   ChevronDown,
-  Play,
   Shield,
   ShieldCheck,
   Workflow,
@@ -26,7 +25,6 @@ import {
   FileSearch,
   MessageSquare,
   Phone,
-  MapPin,
   X,
 } from 'lucide-react';
 import FAQAccordion from '../components/FAQAccordion';
@@ -341,7 +339,8 @@ return (
 export default function Home() {
   usePageMeta(
     'UK Immigration Case Management Platform — ImCam Hub',
-    'ImCam Hub is the case management platform for UK immigration consultancies. Manage Skilled Worker visas, Sponsor Licences, ILR, and British Citizenship cases in one place.'
+    'ImCam Hub is the case management platform for UK immigration consultancies. Manage Skilled Worker visas, Sponsor Licences, ILR, and British Citizenship cases in one place.',
+    'home'
   );
 
   const heroRef = useRef(null);
@@ -374,7 +373,6 @@ export default function Home() {
   const displayFaqs = cmsFaqs || faqs;
   const contactEmail = cmsContact?.email || 'hello@incamhub.com';
   const contactPhone = cmsContact?.phone || '+44 20 7946 0958';
-  const contactAddress = cmsContact?.address || '[UK office address]\n[City, Postcode]';
   const heroSection = cmsSections.hero;
   const videoSection = cmsSections.video_showcase;
   const trustedSection = cmsSections.trusted_features;

@@ -350,7 +350,8 @@ function AnimatedCounter({ target, suffix = '', prefix = '', duration = 1.5 }) {
 export default function Pricing() {
   usePageMeta(
     'Pricing — ImCam Hub',
-    'Simple, transparent pricing for immigration practices of every size. Compare Starter, Professional and Enterprise plans.'
+    'Simple, transparent pricing for immigration practices of every size. Compare Starter, Professional and Enterprise plans.',
+    'pricing'
   );
 
   const [hoveredRow, setHoveredRow] = useState(null);

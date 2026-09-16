@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, ArrowUpRight } from 'lucide-react';
+import { Mail, Phone, ArrowUpRight } from 'lucide-react';
 import { fetchContactInfo, fetchSocialLinks, fetchFooterLinks } from '../services/cmsService';
 
 const productLinks = [
@@ -75,7 +75,6 @@ export default function Footer() {
 
   const email = contactInfo?.email || 'hello@incamhub.com';
   const phone = contactInfo?.phone || '+44 20 7946 0958';
-  const address = contactInfo?.address || '[UK office address]\n[City, Postcode]\nUnited Kingdom';
 
   const displaySocialLinks = socialLinksData
     ? socialLinksData

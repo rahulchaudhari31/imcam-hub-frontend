@@ -74,7 +74,8 @@ const defaultFaqs = [
 export default function FeatureAdmin() {
   usePageMeta(
     'Admin Portal — ImCam Hub',
-    'The command centre for UK immigration consultancies: oversee cases, caseworkers, CoS requests, compliance reviews, and revenue across Skilled Worker, Sponsor Licence, ILR, and Citizenship work.'
+    'The command centre for UK immigration consultancies: oversee cases, caseworkers, CoS requests, compliance reviews, and revenue across Skilled Worker, Sponsor Licence, ILR, and Citizenship work.',
+    'features'
   );
 
   const [page, setPage] = useState(null);

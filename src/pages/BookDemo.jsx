@@ -78,7 +78,8 @@ function resolveStepIcon(name) {
 export default function BookDemo() {
   usePageMeta(
     'Book a Free Demo',
-    'Schedule a personalized walkthrough of ImCam Hub. See how our platform transforms immigration case management for your practice.'
+    'Schedule a personalized walkthrough of ImCam Hub. See how our platform transforms immigration case management for your practice.',
+    'demo'
   );
 
   const [config, setConfig] = useState(null);

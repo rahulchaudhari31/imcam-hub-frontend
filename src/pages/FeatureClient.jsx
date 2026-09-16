@@ -74,7 +74,8 @@ const defaultFaqs = [
 export default function FeatureClient() {
   usePageMeta(
     'Sponsor Business — ImCam Hub',
-    'UK sponsor licence management for businesses: track licence status, CoS allocation, sponsored workers, and compliance obligations in one live portal.'
+    'UK sponsor licence management for businesses: track licence status, CoS allocation, sponsored workers, and compliance obligations in one live portal.',
+    'features'
   );
 
   const [page, setPage] = useState(null);

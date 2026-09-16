@@ -75,7 +75,8 @@ const defaultFaqs = [
 export default function FeatureCaseworker() {
   usePageMeta(
     'Caseworker Portal — ImCam Hub',
-    'A focused workspace for UK immigration caseworkers: manage assigned Skilled Worker, Sponsor Licence, ILR, and Citizenship cases, documents, and deadlines in one place.'
+    'A focused workspace for UK immigration caseworkers: manage assigned Skilled Worker, Sponsor Licence, ILR, and Citizenship cases, documents, and deadlines in one place.',
+    'features'
   );
 
   const [page, setPage] = useState(null);

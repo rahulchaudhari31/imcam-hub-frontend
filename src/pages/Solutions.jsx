@@ -172,7 +172,8 @@ const staggerItem = {
 export default function Solutions() {
   usePageMeta(
     'Solutions — ImCam Hub',
-    'Document vault, case pipelines, client and sponsor portals, reporting, and AI-powered case intelligence — built for UK immigration consultancies.'
+    'Document vault, case pipelines, client and sponsor portals, reporting, and AI-powered case intelligence — built for UK immigration consultancies.',
+    'solutions'
   );
   const [cmsServices, setCmsServices] = useState(null);
   const [cmsSections, setCmsSections] = useState(null);
