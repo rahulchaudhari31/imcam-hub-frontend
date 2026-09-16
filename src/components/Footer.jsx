@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, ArrowUpRight } from 'lucide-react';
-import { fetchContactInfo, fetchSocialLinks } from '../services/cmsService';
+import { Mail, Phone, ArrowUpRight } from 'lucide-react';
+import { fetchContactInfo, fetchSocialLinks, fetchFooterLinks } from '../services/cmsService';
 
 const productLinks = [
   { name: 'Admin Dashboard', path: '/features/admin' },
@@ -34,10 +34,37 @@ const socialLabels = {
 export default function Footer() {
   const [contactInfo, setContactInfo] = useState(null);
   const [socialLinksData, setSocialLinksData] = useState(null);
+  const [cmsFooterLinks, setCmsFooterLinks] = useState(null);
 
   useEffect(() => {
     const load = async () => {
-      const [contact, socials] = await Promise.all([fetchContactInfo(), fetchSocialLinks()]);
+      const [contact, socials, footerLinks] = await Promise.all([
+        fetchContactInfo(),
+        fetchSocialLinks(),
+        fetchFooterLinks(),
+      ]);
+      if (footerLinks && footerLinks.length > 0) {
+        const grouped = { product: [], company: [] };
+        for (const link of footerLinks) {
+          const group = grouped[link.group_key];
+          if (group) {
+            group.push({
+              name: link.label,
+              path: link.url || '/',
+              order: link.display_order || 0,
+            });
+          }
+        }
+        grouped.product = grouped.product.sort(
+          (a, b) => a.order - b.order
+        );
+        grouped.company = grouped.company.sort(
+          (a, b) => a.order - b.order
+        );
+        if (grouped.product.length || grouped.company.length) {
+          setCmsFooterLinks(grouped);
+        }
+      }
       if (contact) setContactInfo(contact);
       if (socials && socials.length > 0) {
         setSocialLinksData(socials.filter((s) => s.is_active !== false));
@@ -48,7 +75,6 @@ export default function Footer() {
 
   const email = contactInfo?.email || 'hello@incamhub.com';
   const phone = contactInfo?.phone || '+44 20 7946 0958';
-  const address = contactInfo?.address || '[UK office address]\n[City, Postcode]\nUnited Kingdom';
 
   const displaySocialLinks = socialLinksData
     ? socialLinksData
@@ -60,6 +86,14 @@ export default function Footer() {
           platform: s.platform,
         }))
     : defaultSocialLinks;
+
+  const displayProductLinks = cmsFooterLinks?.product?.length
+    ? cmsFooterLinks.product
+    : productLinks;
+
+  const displayCompanyLinks = cmsFooterLinks?.company?.length
+    ? cmsFooterLinks.company
+    : companyLinks;
 
   return (
     <footer className="bg-navy relative overflow-hidden">
@@ -104,7 +138,7 @@ export default function Footer() {
             <div className="lg:col-span-3">
               <h4 className="text-white font-semibold text-sm mb-4 tracking-wide">Product</h4>
               <ul className="space-y-2.5">
-                {productLinks.map((link) => (
+                {displayProductLinks.map((link) => (
                   <li key={link.name}>
                     <Link
                       to={link.path}
@@ -121,7 +155,7 @@ export default function Footer() {
             <div className="lg:col-span-2">
               <h4 className="text-white font-semibold text-sm mb-4 tracking-wide">Company</h4>
               <ul className="space-y-2.5">
-                {companyLinks.map((link) => (
+                {displayCompanyLinks.map((link) => (
                   <li key={link.name}>
                     <Link
                       to={link.path}

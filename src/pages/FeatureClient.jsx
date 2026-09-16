@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import {
   LayoutDashboard,
   ShieldCheck,
@@ -8,10 +9,12 @@ import {
 } from 'lucide-react';
 import usePageMeta from '../hooks/usePageMeta';
 import FeaturePageTemplate from '../components/FeaturePageTemplate';
+import { fetchFeaturePage, fetchFaqItems, resolveCmsAsset } from '../services/cmsService';
+import resolveFeatureIcon from '../services/featureIcons';
 import bannerImg from '../assets/images/Candidate banner .jpeg';
 import introImg from '../assets/images/Candidate dashboard.png';
 
-const features = [
+const defaultFeatures = [
   {
     icon: LayoutDashboard,
     title: 'Licence Status at a Glance',
@@ -50,7 +53,7 @@ const features = [
   },
 ];
 
-const faqs = [
+const defaultFaqs = [
   {
     question: 'Can we see the status of every sponsored worker in one place?',
     answer:
@@ -71,27 +74,72 @@ const faqs = [
 export default function FeatureClient() {
   usePageMeta(
     'Sponsor Business — ImCam Hub',
-    'UK sponsor licence management for businesses: track licence status, CoS allocation, sponsored workers, and compliance obligations in one live portal.'
+    'UK sponsor licence management for businesses: track licence status, CoS allocation, sponsored workers, and compliance obligations in one live portal.',
+    'features'
   );
+
+  const [page, setPage] = useState(null);
+  const [faqs, setFaqs] = useState(null);
+
+  useEffect(() => {
+    let mounted = true;
+    const load = async () => {
+      const [cmsPage, cmsFaqs] = await Promise.all([
+        fetchFeaturePage('client'),
+        fetchFaqItems('client'),
+      ]);
+      if (!mounted) return;
+      if (cmsPage) setPage(cmsPage);
+      if (cmsFaqs && cmsFaqs.length > 0) {
+        setFaqs(cmsFaqs.map((f) => ({ question: f.question, answer: f.answer })));
+      }
+    };
+    load();
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   return (
     <FeaturePageTemplate
       title="Sponsor Business"
-      roleName="Sponsoring Business"
-      bannerText="Built for Sponsoring Businesses"
-      bannerSubline="UK Sponsor Licence software for growing businesses."
-      bannerColor="bg-navy"
-      introHeading="UK Sponsor Licence Management Software, Built for Businesses"
-      introText={[
-        'The Business Portal gives sponsoring businesses a live, consolidated view of their sponsor licence, sponsored workers, and compliance obligations, without relying on spreadsheets or chasing updates from an immigration consultancy.',
-        'See your licence status, available CoS allocation, and upcoming renewal deadlines at a glance, alongside every sponsored worker\'s case progress. Built as part of ImCam Hub\'s UK immigration case management software, it keeps sponsor licence compliance straightforward, transparent, and audit-ready at every stage.',
-      ]}
-      introImageLabel="Business Portal Preview"
-      introReverse
-      bannerImage={bannerImg}
-      introImage={introImg}
-      features={features}
-      faqs={faqs}
+      roleName={page?.role_name || 'Sponsoring Business'}
+      bannerText={page?.banner_text || 'Built for Sponsoring Businesses'}
+      bannerSubline={
+        page?.banner_subline || 'UK Sponsor Licence software for growing businesses.'
+      }
+      bannerColor={page?.banner_color || 'bg-navy'}
+      introHeading={
+        page?.intro_heading || 'UK Sponsor Licence Management Software, Built for Businesses'
+      }
+      introText={
+        page?.intro_text || [
+          'The Business Portal gives sponsoring businesses a live, consolidated view of their sponsor licence, sponsored workers, and compliance obligations, without relying on spreadsheets or chasing updates from an immigration consultancy.',
+          'See your licence status, available CoS allocation, and upcoming renewal deadlines at a glance, alongside every sponsored worker\'s case progress. Built as part of ImCam Hub\'s UK immigration case management software, it keeps sponsor licence compliance straightforward, transparent, and audit-ready at every stage.',
+        ]
+      }
+      introImageLabel={page?.intro_image_label || 'Business Portal Preview'}
+      introReverse={page?.intro_reverse ?? true}
+      bannerImage={resolveCmsAsset(page?.banner_image) || bannerImg}
+      introImage={resolveCmsAsset(page?.intro_image) || introImg}
+      middleImage={resolveCmsAsset(page?.middle_image)}
+      middleBadge={page?.middle_badge}
+      middleHeading={page?.middle_heading}
+      middleParagraphs={page?.middle_paragraphs}
+      middlePoints={page?.middle_points}
+      features={
+        page?.features?.length
+          ? page.features
+              .slice()
+              .sort((a, b) => (a.display_order || 0) - (b.display_order || 0))
+              .map((f) => ({
+                icon: resolveFeatureIcon(f.icon),
+                title: f.title,
+                description: f.description,
+              }))
+          : defaultFeatures
+      }
+      faqs={faqs || defaultFaqs}
     />
   );
 }

@@ -13,6 +13,7 @@ import {
   TrendingUp,
 } from 'lucide-react';
 import FAQAccordion from '../components/FAQAccordion';
+import { fetchPricing, fetchFaqItems } from '../services/cmsService';
 import pricingImg from '../assets/images/features/Pricing photo.png';
 
 const plans = [
@@ -298,6 +299,12 @@ const faqs = [
   },
 ];
 
+function parseComparisonValue(value) {
+  if (value === 'true') return true;
+  if (value === 'false') return false;
+  return value || '';
+}
+
 function renderCell(value) {
   if (value === true) {
     return <CheckCircle2 size={18} className="text-blue mx-auto" />;
@@ -343,10 +350,66 @@ function AnimatedCounter({ target, suffix = '', prefix = '', duration = 1.5 }) {
 export default function Pricing() {
   usePageMeta(
     'Pricing — ImCam Hub',
-    'Simple, transparent pricing for immigration practices of every size. Compare Starter, Professional and Enterprise plans.'
+    'Simple, transparent pricing for immigration practices of every size. Compare Starter, Professional and Enterprise plans.',
+    'pricing'
   );
 
   const [hoveredRow, setHoveredRow] = useState(null);
+  const [cmsPlans, setCmsPlans] = useState(null);
+  const [cmsComparison, setCmsComparison] = useState(null);
+  const [cmsFaqs, setCmsFaqs] = useState(null);
+
+  useEffect(() => {
+    let mounted = true;
+    const load = async () => {
+      const [pricing, faqs] = await Promise.all([
+        fetchPricing(),
+        fetchFaqItems('pricing'),
+      ]);
+      if (!mounted) return;
+      if (pricing) {
+        if (pricing.plans?.length) setCmsPlans(pricing.plans);
+        if (pricing.comparison?.length) setCmsComparison(pricing.comparison);
+      }
+      if (faqs && faqs.length > 0) {
+        setCmsFaqs(faqs.map((f) => ({ question: f.question, answer: f.answer })));
+      }
+    };
+    load();
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  const displayPlans = cmsPlans
+    ? plans.map((plan) => {
+        const cms = cmsPlans.find(
+          (p) => p.name.toLowerCase() === plan.name.toLowerCase()
+        );
+        if (!cms) return plan;
+        return {
+          ...plan,
+          price: cms.monthly_price ?? plan.price,
+          tagline: cms.description || plan.tagline,
+          popular: cms.popular ?? plan.popular,
+          cta: cms.cta_text || plan.cta,
+          ctaClass: cms.cta_class || plan.ctaClass,
+        };
+      })
+    : plans;
+
+  const displayComparison = cmsComparison
+    ? cmsComparison
+        .slice()
+        .sort((a, b) => (a.display_order || 0) - (b.display_order || 0))
+        .map((row) => ({
+          label: row.label,
+          standard: parseComparisonValue(row.standard_value),
+          pro: parseComparisonValue(row.pro_value),
+        }))
+    : comparisonFeatures;
+
+  const displayFaqs = cmsFaqs || faqs;
 
   return (
     <div>
@@ -475,7 +538,7 @@ export default function Pricing() {
       <section className="section-padding pb-0">
         <div className="container-app">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {plans.map((plan) => {
+            {displayPlans.map((plan) => {
               const modules = Object.entries(plan.moduleCategories).flatMap(
                 ([cat, list]) => list.map((name) => ({ cat, name }))
               );
@@ -612,7 +675,7 @@ export default function Pricing() {
                   </tr>
                 </thead>
                 <tbody>
-                  {comparisonFeatures.map((row, i) => (
+                  {displayComparison.map((row, i) => (
                     <tr
                       key={i}
                       onMouseEnter={() => setHoveredRow(i)}
@@ -655,7 +718,7 @@ export default function Pricing() {
           </div>
 
           <div className="bg-white rounded-2xl border border-sand-dark p-5 md:p-8">
-            <FAQAccordion items={faqs} />
+            <FAQAccordion items={displayFaqs} />
           </div>
         </div>
       </section>

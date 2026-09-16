@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import {
@@ -14,6 +14,7 @@ import {
   Quote,
 } from 'lucide-react';
 import usePageMeta from '../hooks/usePageMeta';
+import { fetchBookDemoConfig } from '../services/cmsService';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
@@ -63,11 +64,83 @@ function FormField({ label, name, required, error, children }) {
   );
 }
 
+const stepIconMap = {
+  Clock,
+  Play,
+  FileText,
+  Shield,
+};
+
+function resolveStepIcon(name) {
+  return stepIconMap[name] || Play;
+}
+
 export default function BookDemo() {
   usePageMeta(
     'Book a Free Demo',
-    'Schedule a personalized walkthrough of ImCam Hub. See how our platform transforms immigration case management for your practice.'
+    'Schedule a personalized walkthrough of ImCam Hub. See how our platform transforms immigration case management for your practice.',
+    'demo'
   );
+
+  const [config, setConfig] = useState(null);
+
+  useEffect(() => {
+    let mounted = true;
+    const load = async () => {
+      const cms = await fetchBookDemoConfig();
+      if (mounted && cms) setConfig(cms);
+    };
+    load();
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  const heroTitle = config?.hero_title || 'See ImCam Hub in Action';
+  const heroDescription =
+    config?.hero_description ||
+    'Get a personalized walkthrough of the platform. No commitment, no hard sell — just a clear look at how ImCam Hub fits your practice.';
+  const trustTitle = config?.trust_title || 'What to expect';
+  const trustDescription =
+    config?.trust_description ||
+    'Over 200 immigration practices trust ImCam Hub to manage their cases, deadlines, and client relationships. This demo is a no-pressure walkthrough tailored to your firm\'s specific workflows and questions.';
+  const steps =
+    config?.steps?.length
+      ? config.steps.map((step) => ({
+          icon: resolveStepIcon(step.icon),
+          text: step.text,
+          color: step.color || 'bg-blue/10 text-blue',
+        }))
+      : [
+          {
+            icon: Clock,
+            text: 'We confirm your preferred slot within 24 hours',
+            color: 'bg-blue/10 text-blue',
+          },
+          {
+            icon: Play,
+            text: '30-minute live walkthrough with a product specialist',
+            color: 'bg-indigo/10 text-indigo',
+          },
+          {
+            icon: FileText,
+            text: 'Custom quote based on your firm size and needs',
+            color: 'bg-emerald/10 text-emerald',
+          },
+          {
+            icon: Shield,
+            text: 'No commitment — decide at your own pace',
+            color: 'bg-purple/10 text-purple',
+          },
+        ];
+  const testimonialQuote =
+    config?.testimonial_quote ||
+    'We went from 3 different tools and endless email chains to one system in under a month. Our caseworkers saved 10+ hours a week within the first quarter.';
+  const testimonialAuthor = config?.testimonial_author || 'Sarah Mitchell';
+  const testimonialRole =
+    config?.testimonial_role || 'Managing Partner, Mitchell & Associates';
+  const contactPhone = config?.contact_phone || '1-800-555-1234';
+  const contactEmail = config?.contact_email || 'hello@incamhub.com';
 
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
@@ -180,12 +253,10 @@ export default function BookDemo() {
               Book a Demo
             </span>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-navy mb-4 leading-tight">
-              See ImCam Hub in Action
+              {heroTitle}
             </h1>
             <p className="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
-              Get a personalized walkthrough of the platform. No commitment,
-              no hard sell — just a clear look at how ImCam Hub fits your
-              practice.
+              {heroDescription}
             </p>
           </motion.div>
         </div>
@@ -381,13 +452,10 @@ export default function BookDemo() {
                   <AnimateOnScroll>
                     <div>
                       <h3 className="text-xl font-heading font-semibold text-navy mb-3">
-                        What to expect
+                        {trustTitle}
                       </h3>
                       <p className="text-sm text-text-secondary leading-relaxed">
-                        Over 200 immigration practices trust ImCam Hub to manage
-                        their cases, deadlines, and client relationships. This
-                        demo is a no-pressure walkthrough tailored to your
-                        firm&apos;s specific workflows and questions.
+                        {trustDescription}
                       </p>
                     </div>
                   </AnimateOnScroll>
@@ -398,28 +466,7 @@ export default function BookDemo() {
                       <h4 className="text-sm font-semibold text-navy uppercase tracking-wide">
                         What happens next
                       </h4>
-                      {[
-                        {
-                          icon: Clock,
-                          text: 'We confirm your preferred slot within 24 hours',
-                          color: 'bg-blue/10 text-blue',
-                        },
-                        {
-                          icon: Play,
-                          text: '30-minute live walkthrough with a product specialist',
-                          color: 'bg-indigo/10 text-indigo',
-                        },
-                        {
-                          icon: FileText,
-                          text: 'Custom quote based on your firm size and needs',
-                          color: 'bg-emerald/10 text-emerald',
-                        },
-                        {
-                          icon: Shield,
-                          text: 'No commitment — decide at your own pace',
-                          color: 'bg-purple/10 text-purple',
-                        },
-                      ].map((step, i) => (
+                      {steps.map((step, i) => (
                         <div key={i} className="flex items-start gap-3">
                           <div className={`w-8 h-8 rounded-lg ${step.color} flex items-center justify-center shrink-0`}>
                             <step.icon size={16} />
@@ -441,9 +488,7 @@ export default function BookDemo() {
                         className="text-indigo-light/30 absolute top-4 left-5"
                       />
                       <p className="text-white/80 text-sm leading-relaxed italic mb-4 pl-4 relative z-10">
-                        &ldquo;We went from 3 different tools and endless email
-                        chains to one system in under a month. Our caseworkers
-                        saved 10+ hours a week within the first quarter.&rdquo;
+                        &ldquo;{testimonialQuote}&rdquo;
                       </p>
                       <div className="flex items-center gap-3 pl-4 relative z-10">
                         <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center">
@@ -451,10 +496,10 @@ export default function BookDemo() {
                         </div>
                         <div>
                           <p className="text-sm font-semibold text-white">
-                            Sarah Mitchell
+                            {testimonialAuthor}
                           </p>
                           <p className="text-xs text-white/50">
-                            Managing Partner, Mitchell & Associates
+                            {testimonialRole}
                           </p>
                         </div>
                       </div>
@@ -466,11 +511,11 @@ export default function BookDemo() {
                     <div className="flex items-center gap-4 text-xs text-text-muted">
                       <div className="flex items-center gap-1.5">
                         <Phone size={14} />
-                        <span>1-800-555-1234</span>
+                        <span>{contactPhone}</span>
                       </div>
                       <div className="flex items-center gap-1.5">
                         <Mail size={14} />
-                        <span>hello@incamhub.com</span>
+                        <span>{contactEmail}</span>
                       </div>
                     </div>
                   </AnimateOnScroll>

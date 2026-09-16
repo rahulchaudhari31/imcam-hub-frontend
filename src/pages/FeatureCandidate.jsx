@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import {
   Activity,
   Upload,
@@ -8,11 +9,13 @@ import {
 } from 'lucide-react';
 import usePageMeta from '../hooks/usePageMeta';
 import FeaturePageTemplate from '../components/FeaturePageTemplate';
+import { fetchFeaturePage, fetchFaqItems, resolveCmsAsset } from '../services/cmsService';
+import resolveFeatureIcon from '../services/featureIcons';
 import bannerImg from '../assets/images/Client banner.png';
 import introImg from '../assets/images/Client dashboard .png';
 import caseworkerImg from '../assets/images/features/Caseworker_image.jpg';
 
-const features = [
+const defaultFeatures = [
   {
     icon: Activity,
     title: 'Live Application Tracking',
@@ -51,7 +54,7 @@ const features = [
   },
 ];
 
-const faqs = [
+const defaultFaqs = [
   {
     question: 'Is the client portal mobile-friendly?',
     answer:
@@ -72,38 +75,79 @@ const faqs = [
 export default function FeatureCandidate() {
   usePageMeta(
     'Client Portal — ImCam Hub',
-    'A self-service portal for individual UK visa applicants: track your Skilled Worker, ILR, or British Citizenship case, upload documents, and message your caseworker in real time.'
+    'A self-service portal for individual UK visa applicants: track your Skilled Worker, ILR, or British Citizenship case, upload documents, and message your caseworker in real time.',
+    'features'
   );
+
+  const [page, setPage] = useState(null);
+  const [faqs, setFaqs] = useState(null);
+
+  useEffect(() => {
+    let mounted = true;
+    const load = async () => {
+      const [cmsPage, cmsFaqs] = await Promise.all([
+        fetchFeaturePage('candidate'),
+        fetchFaqItems('candidate'),
+      ]);
+      if (!mounted) return;
+      if (cmsPage) setPage(cmsPage);
+      if (cmsFaqs && cmsFaqs.length > 0) {
+        setFaqs(cmsFaqs.map((f) => ({ question: f.question, answer: f.answer })));
+      }
+    };
+    load();
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   return (
     <FeaturePageTemplate
       title="Client Portal"
-      roleName="Individual Applicant"
-      bannerText="Built for Applicants"
-      bannerSubline="Everything you need to follow your case."
-      bannerColor="bg-navy"
-      introHeading="One Portal to Track Your Entire Visa Application"
-      introText={[
-        'The Client Portal gives individual applicants a clear, live view of their UK visa case — whether it\'s a Skilled Worker visa, ILR, or British Citizenship application — without needing to call or email for updates.',
-        'See exactly which stage your case is at, what\'s needed from you, and what your caseworker is handling next. Built as part of ImCam Hub\'s UK immigration case management software, it replaces uncertainty and status-check emails with straightforward, real-time visibility.',
-      ]}
-      introImageLabel="Client Portal Preview"
-      bannerImage={bannerImg}
-      introImage={introImg}
-      middleImage={caseworkerImg}
-      middleBadge="Client Portal"
-      middleHeading="Follow your application, step by step"
-      middleParagraphs={[
-        'Waiting to hear back about a UK visa application is stressful enough without chasing updates by phone or email. The Client Portal gives you a live view of your case — from first enquiry through to final decision.',
-        'Log in anytime to see where your application stands, what your caseworker is handling next, and what\'s needed from you — with everything tied to your Skilled Worker, ILR, or British Citizenship case.',
-      ]}
-      middlePoints={[
-        'See your current stage and percentage complete at a glance.',
-        'Track received versus outstanding documents with clear checklists.',
-        'Message your caseworker directly — no email chains or phone tag.',
-      ]}
-      features={features}
-      faqs={faqs}
+      roleName={page?.role_name || 'Individual Applicant'}
+      bannerText={page?.banner_text || 'Built for Applicants'}
+      bannerSubline={page?.banner_subline || 'Everything you need to follow your case.'}
+      bannerColor={page?.banner_color || 'bg-navy'}
+      introHeading={page?.intro_heading || 'One Portal to Track Your Entire Visa Application'}
+      introText={
+        page?.intro_text || [
+          'The Client Portal gives individual applicants a clear, live view of their UK visa case — whether it\'s a Skilled Worker visa, ILR, or British Citizenship application — without needing to call or email for updates.',
+          'See exactly which stage your case is at, what\'s needed from you, and what your caseworker is handling next. Built as part of ImCam Hub\'s UK immigration case management software, it replaces uncertainty and status-check emails with straightforward, real-time visibility.',
+        ]
+      }
+      introImageLabel={page?.intro_image_label || 'Client Portal Preview'}
+      introReverse={page?.intro_reverse}
+      bannerImage={resolveCmsAsset(page?.banner_image) || bannerImg}
+      introImage={resolveCmsAsset(page?.intro_image) || introImg}
+      middleImage={resolveCmsAsset(page?.middle_image) || caseworkerImg}
+      middleBadge={page?.middle_badge || 'Client Portal'}
+      middleHeading={page?.middle_heading || 'Follow your application, step by step'}
+      middleParagraphs={
+        page?.middle_paragraphs || [
+          'Waiting to hear back about a UK visa application is stressful enough without chasing updates by phone or email. The Client Portal gives you a live view of your case — from first enquiry through to final decision.',
+          'Log in anytime to see where your application stands, what your caseworker is handling next, and what\'s needed from you — with everything tied to your Skilled Worker, ILR, or British Citizenship case.',
+        ]
+      }
+      middlePoints={
+        page?.middle_points || [
+          'See your current stage and percentage complete at a glance.',
+          'Track received versus outstanding documents with clear checklists.',
+          'Message your caseworker directly — no email chains or phone tag.',
+        ]
+      }
+      features={
+        page?.features?.length
+          ? page.features
+              .slice()
+              .sort((a, b) => (a.display_order || 0) - (b.display_order || 0))
+              .map((f) => ({
+                icon: resolveFeatureIcon(f.icon),
+                title: f.title,
+                description: f.description,
+              }))
+          : defaultFeatures
+      }
+      faqs={faqs || defaultFaqs}
     />
   );
 }

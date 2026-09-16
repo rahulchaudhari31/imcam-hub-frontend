@@ -117,8 +117,6 @@ export default function Resources() {
     'Immigration practice guides, case management tips, compliance updates, and product tutorials from the ImCam Hub team.'
   );
 
-  return null;
-
   const [activeFilter, setActiveFilter] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [email, setEmail] = useState('');

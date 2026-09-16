@@ -22,8 +22,11 @@ export async function fetchHomeSections() {
   return cmsFetch('/api/cms/home');
 }
 
-export async function fetchFaqItems() {
-  return cmsFetch('/api/cms/faqs?active=true');
+export async function fetchFaqItems(pageKey) {
+  const query = pageKey
+    ? `?active=true&page_key=${encodeURIComponent(pageKey)}`
+    : '?active=true';
+  return cmsFetch(`/api/cms/faqs${query}`);
 }
 
 export async function fetchTestimonials() {
@@ -48,4 +51,28 @@ export async function fetchServices() {
 
 export async function fetchSeoSettings(pageKey) {
   return cmsFetch(`/api/cms/seo/${pageKey}`);
+}
+
+export async function fetchFeaturePage(pageKey) {
+  return cmsFetch(`/api/cms/features/page/${pageKey}`);
+}
+
+export async function fetchPricing() {
+  return cmsFetch('/api/cms/pricing?active=true');
+}
+
+export async function fetchBookDemoConfig() {
+  return cmsFetch('/api/cms/book-demo');
+}
+
+export async function fetchSolutions() {
+  return cmsFetch('/api/cms/solutions?active=true');
+}
+
+export async function fetchNavigation() {
+  return cmsFetch('/api/cms/navigation?active=true');
+}
+
+export async function fetchFooterLinks() {
+  return cmsFetch('/api/cms/footer-links?active=true');
 }

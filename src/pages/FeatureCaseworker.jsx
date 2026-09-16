@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import {
   ClipboardList,
   FileCheck,
@@ -8,11 +9,13 @@ import {
 } from 'lucide-react';
 import usePageMeta from '../hooks/usePageMeta';
 import FeaturePageTemplate from '../components/FeaturePageTemplate';
+import { fetchFeaturePage, fetchFaqItems, resolveCmsAsset } from '../services/cmsService';
+import resolveFeatureIcon from '../services/featureIcons';
 import caseworkerImg from '../assets/images/features/Caseworker_image.jpg';
 import bannerImg from '../assets/images/features/Caseworker_banner.jpeg';
 import introImg from '../assets/images/features/Caseworker_dashboard.png';
 
-const features = [
+const defaultFeatures = [
   {
     icon: ClipboardList,
     title: 'Assigned Case Dashboard',
@@ -51,7 +54,7 @@ const features = [
   },
 ];
 
-const faqs = [
+const defaultFaqs = [
   {
     question: 'How does the document checklist automation work?',
     answer:
@@ -72,28 +75,70 @@ const faqs = [
 export default function FeatureCaseworker() {
   usePageMeta(
     'Caseworker Portal — ImCam Hub',
-    'A focused workspace for UK immigration caseworkers: manage assigned Skilled Worker, Sponsor Licence, ILR, and Citizenship cases, documents, and deadlines in one place.'
+    'A focused workspace for UK immigration caseworkers: manage assigned Skilled Worker, Sponsor Licence, ILR, and Citizenship cases, documents, and deadlines in one place.',
+    'features'
   );
+
+  const [page, setPage] = useState(null);
+  const [faqs, setFaqs] = useState(null);
+
+  useEffect(() => {
+    let mounted = true;
+    const load = async () => {
+      const [cmsPage, cmsFaqs] = await Promise.all([
+        fetchFeaturePage('caseworker'),
+        fetchFaqItems('caseworker'),
+      ]);
+      if (!mounted) return;
+      if (cmsPage) setPage(cmsPage);
+      if (cmsFaqs && cmsFaqs.length > 0) {
+        setFaqs(cmsFaqs.map((f) => ({ question: f.question, answer: f.answer })));
+      }
+    };
+    load();
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   return (
     <FeaturePageTemplate
       title="Caseworker Portal"
-      roleName="Caseworker"
-      bannerText="Built for Caseworkers"
-      bannerSubline="Everything you need for a case — one platform."
-      bannerColor="bg-navy"
-      introHeading="Manage Every Assigned Case, Task, and Deadline in One Place"
-      introText={[
-        'The Caseworker Portal is where day-to-day case management software for UK immigration teams actually happens — giving caseworkers a clear, focused view of every case assigned to them, from Skilled Worker visa applications to Sponsor Licence, ILR, and British Citizenship work.',
-        'Track assigned tasks and deadlines, manage documents and client communication, and move each case through its workflow without losing time to scattered emails or spreadsheets. Purpose-built for UK immigration consultancies, it gives caseworkers exactly what they need to focus on cases, not admin.',
-      ]}
-      introImageLabel="Caseworker Portal Preview"
-      introReverse
-      bannerImage={bannerImg}
-      introImage={introImg}
-      middleImage={caseworkerImg}
-      features={features}
-      faqs={faqs}
+      roleName={page?.role_name || 'Caseworker'}
+      bannerText={page?.banner_text || 'Built for Caseworkers'}
+      bannerSubline={page?.banner_subline || 'Everything you need for a case — one platform.'}
+      bannerColor={page?.banner_color || 'bg-navy'}
+      introHeading={
+        page?.intro_heading || 'Manage Every Assigned Case, Task, and Deadline in One Place'
+      }
+      introText={
+        page?.intro_text || [
+          'The Caseworker Portal is where day-to-day case management software for UK immigration teams actually happens — giving caseworkers a clear, focused view of every case assigned to them, from Skilled Worker visa applications to Sponsor Licence, ILR, and British Citizenship work.',
+          'Track assigned tasks and deadlines, manage documents and client communication, and move each case through its workflow without losing time to scattered emails or spreadsheets. Purpose-built for UK immigration consultancies, it gives caseworkers exactly what they need to focus on cases, not admin.',
+        ]
+      }
+      introImageLabel={page?.intro_image_label || 'Caseworker Portal Preview'}
+      introReverse={page?.intro_reverse ?? true}
+      bannerImage={resolveCmsAsset(page?.banner_image) || bannerImg}
+      introImage={resolveCmsAsset(page?.intro_image) || introImg}
+      middleImage={resolveCmsAsset(page?.middle_image) || caseworkerImg}
+      middleBadge={page?.middle_badge || 'Caseworker Portal'}
+      middleHeading={page?.middle_heading || 'A day in the caseworker\'s seat'}
+      middleParagraphs={page?.middle_paragraphs}
+      middlePoints={page?.middle_points}
+      features={
+        page?.features?.length
+          ? page.features
+              .slice()
+              .sort((a, b) => (a.display_order || 0) - (b.display_order || 0))
+              .map((f) => ({
+                icon: resolveFeatureIcon(f.icon),
+                title: f.title,
+                description: f.description,
+              }))
+          : defaultFeatures
+      }
+      faqs={faqs || defaultFaqs}
     />
   );
 }

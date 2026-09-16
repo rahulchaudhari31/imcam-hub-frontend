@@ -12,6 +12,7 @@ import {
   LogOut,
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { fetchNavigation } from '../services/cmsService';
 
 const featureItems = [
   {
@@ -59,14 +60,75 @@ const navLinks = [
   { name: 'Pricing', path: '/pricing' },
 ];
 
+const featureItemDefaultsByPath = Object.fromEntries(
+  featureItems.map((item) => [item.path, item])
+);
+
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileAccordionOpen, setMobileAccordionOpen] = useState(null);
+  const [cmsNavLinks, setCmsNavLinks] = useState(null);
+  const [cmsFeatureItems, setCmsFeatureItems] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
   const { user, logout } = useAuth();
+
+  useEffect(() => {
+    let mounted = true;
+    const load = async () => {
+      const items = await fetchNavigation();
+      if (!mounted || !items || items.length === 0) return;
+      const sorted = items
+        .slice()
+        .sort((a, b) => (a.display_order || 0) - (b.display_order || 0));
+      const topLevel = sorted.filter((item) => !item.parent_id);
+      const childrenByParent = {};
+      for (const item of sorted) {
+        if (item.parent_id) {
+          if (!childrenByParent[item.parent_id]) childrenByParent[item.parent_id] = [];
+          childrenByParent[item.parent_id].push(item);
+        }
+      }
+      setCmsNavLinks(
+        topLevel.map((item) => ({
+          name: item.label,
+          path: item.url || '/',
+          hasDropdown: (childrenByParent[item.id] || []).length > 0,
+        }))
+      );
+      const dropParent = topLevel.find(
+        (item) => (childrenByParent[item.id] || []).length > 0
+      );
+      if (dropParent) {
+        setCmsFeatureItems(
+          childrenByParent[dropParent.id]
+            .sort((a, b) => (a.display_order || 0) - (b.display_order || 0))
+            .map((child) => {
+              const url = child.url || '/';
+              const def = featureItemDefaultsByPath[url] || {};
+              return {
+                name: child.label,
+                path: url,
+                icon: def.icon || LayoutDashboard,
+                description: def.description || '',
+                iconBg: def.iconBg || 'bg-blue/10',
+                iconHover: def.iconHover || 'group-hover:bg-blue/20',
+                textColor: def.textColor || 'text-blue',
+              };
+            })
+        );
+      }
+    };
+    load();
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  const displayNavLinks = cmsNavLinks || navLinks;
+  const displayFeatureItems = cmsFeatureItems || featureItems;
 
   const handleLogout = () => {
     logout();
@@ -119,7 +181,7 @@ export default function Navbar() {
 
             {/* Center: Desktop nav links */}
             <div className="hidden lg:flex items-center gap-1 ml-8">
-              {navLinks.map((link) =>
+              {displayNavLinks.map((link) =>
                 link.hasDropdown ? (
                   <div
                     key={link.name}
@@ -151,7 +213,7 @@ export default function Navbar() {
                           onMouseLeave={closeDropdown}
                         >
                           <div className="bg-white rounded-2xl shadow-[0_8px_30px_rgba(11,31,58,0.12)] border border-sand-dark p-2 min-w-[280px]">
-                            {featureItems.map((item) => {
+                            {displayFeatureItems.map((item) => {
                               const Icon = item.icon;
                               return (
                                 <Link
@@ -297,7 +359,7 @@ export default function Navbar() {
                 {/* Drawer links */}
                 <div className="flex-1 overflow-y-auto px-4 py-4">
                   <div className="space-y-1">
-                    {navLinks.map((link) =>
+                    {displayNavLinks.map((link) =>
                       link.hasDropdown ? (
                         <div key={link.name}>
                           <div className="flex items-center">
@@ -348,7 +410,7 @@ export default function Navbar() {
                                 className="overflow-hidden"
                               >
                                 <div className="pl-4 pb-2 pt-1 space-y-1">
-                                  {featureItems.map((item) => {
+                                  {displayFeatureItems.map((item) => {
                                     const Icon = item.icon;
                                     return (
                                       <Link

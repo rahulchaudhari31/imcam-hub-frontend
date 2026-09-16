@@ -48,7 +48,8 @@ const roles = [
 export default function FeaturesIndex() {
   usePageMeta(
     'Features — ImCam Hub',
-    'Explore the four connected portals of ImCam Hub for UK immigration consultancies: admin, caseworker, client, and business/sponsor — covering Skilled Worker, Sponsor Licence, ILR, and Citizenship work.'
+    'Explore the four connected portals of ImCam Hub for UK immigration consultancies: admin, caseworker, client, and business/sponsor — covering Skilled Worker, Sponsor Licence, ILR, and Citizenship work.',
+    'features'
   );
 
   if (!SHOW_FEATURES_INDEX) {
