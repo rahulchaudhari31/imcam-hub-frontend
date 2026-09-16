@@ -24,6 +24,10 @@ imcam-hub-backend/uploads/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+server.err
+
+# Credential/binary leftovers
+login.json
 
 # OS / editor
 .DS_Store
