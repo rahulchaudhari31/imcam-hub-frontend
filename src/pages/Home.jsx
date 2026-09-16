@@ -355,7 +355,7 @@ export default function Home() {
     const loadCms = async () => {
       const [sections, faqs, contact] = await Promise.all([
         fetchHomeSections(),
-        fetchFaqItems(),
+        fetchFaqItems('global'),
         fetchContactInfo(),
       ]);
       if (sections && sections.length > 0) {

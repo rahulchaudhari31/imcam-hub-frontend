@@ -1,0 +1,50 @@
+import {
+  LayoutDashboard,
+  Users,
+  CreditCard,
+  FileCheck,
+  ClipboardList,
+  Building2,
+  Clock,
+  Workflow,
+  MessageSquare,
+  ShieldCheck,
+  Activity,
+  Upload,
+  Sparkles,
+  BarChart3,
+  UserCheck,
+  Bell,
+  ShieldAlert,
+  Database,
+  PieChart,
+  Bot,
+  Star,
+} from 'lucide-react';
+
+const iconMap = {
+  LayoutDashboard,
+  Users,
+  CreditCard,
+  FileCheck,
+  ClipboardList,
+  Building2,
+  Clock,
+  Workflow,
+  MessageSquare,
+  ShieldCheck,
+  Activity,
+  Upload,
+  Sparkles,
+  BarChart3,
+  UserCheck,
+  Bell,
+  ShieldAlert,
+  Database,
+  PieChart,
+  Bot,
+};
+
+export default function resolveFeatureIcon(name) {
+  return iconMap[name] || Star;
+}

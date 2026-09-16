@@ -17,7 +17,7 @@ import {
   BarChart3,
   Building2,
 } from 'lucide-react';
-import { fetchServices } from '../services/cmsService';
+import { fetchServices, fetchSolutions } from '../services/cmsService';
 
 function AnimateOnScroll({ children, className = '', delay = 0 }) {
   const ref = useRef(null);
@@ -175,10 +175,14 @@ export default function Solutions() {
     'Document vault, case pipelines, client and sponsor portals, reporting, and AI-powered case intelligence — built for UK immigration consultancies.'
   );
   const [cmsServices, setCmsServices] = useState(null);
+  const [cmsSections, setCmsSections] = useState(null);
 
   useEffect(() => {
     const loadServices = async () => {
-      const services = await fetchServices();
+      const [services, sections] = await Promise.all([
+        fetchServices(),
+        fetchSolutions(),
+      ]);
       if (services && services.length > 0) {
         setCmsServices(
           services.map((service, index) => ({
@@ -188,11 +192,72 @@ export default function Solutions() {
           }))
         );
       }
+      if (sections && sections.length > 0) {
+        setCmsSections(
+          sections.reduce((acc, section) => {
+            acc[section.section_key] = section;
+            return acc;
+          }, {})
+        );
+      }
     };
     loadServices();
   }, []);
 
   const displaySolutions = cmsServices || solutions;
+  const sections = cmsSections || {};
+
+  const heroSection = sections.hero;
+  const statsSection = sections.stats;
+  const challengesSection = sections.challenges;
+  const solutionsSection = sections.solutions;
+  const howSection = sections.how_it_works;
+  const ctaSection = sections.cta;
+
+  const heroBadge = heroSection?.content?.badge || 'The Problem';
+  const heroTitle =
+    heroSection?.title ||
+    'The Challenges UK Immigration Consultancies Face';
+  const heroDescription =
+    heroSection?.description ||
+    'Complex regulations. Tight deadlines. High client expectations. Lean teams. Fragmented tools. ImCam Hub was built to solve every one of these challenges for UK immigration consultancies.';
+  const heroStats = statsSection?.content?.items?.length
+    ? statsSection.content.items
+    : [
+        { value: '73%', label: 'of firms use spreadsheets', color: 'text-rose' },
+        { value: '40%', label: 'cases miss deadlines', color: 'text-orange' },
+        { value: '6hrs', label: 'wasted daily on admin', color: 'text-amber' },
+      ];
+  const challengesHeading = challengesSection?.title || 'Sound Familiar?';
+  const challengesSub =
+    challengesSection?.description ||
+    'These are the daily realities UK immigration teams face without a unified system.';
+  const displayChallenges = challengesSection?.content?.items?.length
+    ? challengesSection.content.items.map((item, i) => ({
+        ...challenges[i % challenges.length],
+        title: item.title,
+        description: item.description,
+      }))
+    : challenges;
+  const solutionsHeading = solutionsSection?.title || 'Our Solutions';
+  const solutionsSub =
+    solutionsSection?.description ||
+    'Eight powerful capabilities that eliminate manual work, reduce risk, and keep your caseload moving automatically.';
+  const howHeading = howSection?.title || 'How It Works';
+  const howSub =
+    howSection?.description || 'Three steps from sign-up to a fully connected immigration practice.';
+  const displaySteps = howSection?.content?.steps?.length
+    ? howSection.content.steps.map((step, i) => ({
+        ...steps[i % steps.length],
+        number: step.number,
+        title: step.title,
+        description: step.description,
+      }))
+    : steps;
+  const ctaTitle = ctaSection?.title || 'Ready to see ImCam Hub in action?';
+  const ctaDescription =
+    ctaSection?.description ||
+    'Join UK immigration consultancies that have transformed their workflow with ImCam Hub. Schedule a personalized demo today.';
 
   return (
     <div>
@@ -226,21 +291,33 @@ export default function Solutions() {
               className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 backdrop-blur-sm border border-white/10 rounded-full mb-8"
             >
               <span className="w-2 h-2 rounded-full bg-rose animate-pulse" />
-              <span className="text-xs font-semibold text-white/80 tracking-wide uppercase">The Problem</span>
+                <span className="text-xs font-semibold text-white/80 tracking-wide uppercase">{heroBadge}</span>
             </motion.div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-white mb-6 leading-[1.1]">
-              The Challenges UK Immigration{' '}
-              <br className="hidden sm:block" />
-              Consultancies <span className="gradient-text-cyan">Face</span>
+              {heroSection?.title ? (
+                heroTitle
+              ) : (
+                <>
+                  The Challenges UK Immigration{' '}
+                  <br className="hidden sm:block" />
+                  Consultancies <span className="gradient-text-cyan">Face</span>
+                </>
+              )}
             </h1>
 
-            <p className="text-lg sm:text-xl text-white/60 max-w-3xl mx-auto mb-10 leading-relaxed">
-              Complex regulations. Tight deadlines. High client expectations.
-              Lean teams. Fragmented tools. ImCam Hub was built to solve{' '}
-              <span className="text-white font-medium">every one</span> of these
-              challenges for UK immigration consultancies.
-            </p>
+            {heroSection?.description ? (
+              <p className="text-lg sm:text-xl text-white/60 max-w-3xl mx-auto mb-10 leading-relaxed">
+                {heroDescription}
+              </p>
+            ) : (
+              <p className="text-lg sm:text-xl text-white/60 max-w-3xl mx-auto mb-10 leading-relaxed">
+                Complex regulations. Tight deadlines. High client expectations.
+                Lean teams. Fragmented tools. ImCam Hub was built to solve{' '}
+                <span className="text-white font-medium">every one</span> of these
+                challenges for UK immigration consultancies.
+              </p>
+            )}
 
             {/* Stats row */}
             <motion.div
@@ -249,11 +326,7 @@ export default function Solutions() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="flex flex-wrap items-center justify-center gap-6 sm:gap-10"
             >
-              {[
-                { value: '73%', label: 'of firms use spreadsheets', color: 'text-rose' },
-                { value: '40%', label: 'cases miss deadlines', color: 'text-orange' },
-                { value: '6hrs', label: 'wasted daily on admin', color: 'text-amber' },
-              ].map((stat, i) => (
+              {heroStats.map((stat, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, y: 10 }}
@@ -277,16 +350,15 @@ export default function Solutions() {
         <div className="container-app">
           <AnimateOnScroll className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-navy mb-4">
-              Sound Familiar?
+              {challengesHeading}
             </h2>
             <p className="text-text-secondary max-w-2xl mx-auto">
-              These are the daily realities UK immigration teams face without
-              a unified system.
+              {challengesSub}
             </p>
           </AnimateOnScroll>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {challenges.map((challenge, i) => (
+            {displayChallenges.map((challenge, i) => (
               <AnimateOnScroll key={i} delay={i * 0.08}>
                 <div className="bg-[#F8F5F3] rounded-2xl border border-[#E8E2DC] overflow-hidden h-full group">
                   <div className="aspect-[3/2] overflow-hidden">
@@ -323,11 +395,16 @@ export default function Solutions() {
         <div className="container-app relative z-10">
           <AnimateOnScroll className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
-              Our <span className="gradient-text-cyan">Solutions</span>
+              {solutionsSection?.title ? (
+                <>{solutionsHeading}</>
+              ) : (
+                <>
+                  Our <span className="gradient-text-cyan">Solutions</span>
+                </>
+              )}
             </h2>
             <p className="text-white/60 max-w-2xl mx-auto">
-              Eight powerful capabilities that eliminate manual work,
-              reduce risk, and keep your caseload moving automatically.
+              {solutionsSub}
             </p>
           </AnimateOnScroll>
 
@@ -368,11 +445,16 @@ export default function Solutions() {
         <div className="container-app">
           <AnimateOnScroll className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-navy mb-4">
-              How It <span className="gradient-text">Works</span>
+              {howSection?.title ? (
+                <>{howHeading}</>
+              ) : (
+                <>
+                  How It <span className="gradient-text">Works</span>
+                </>
+              )}
             </h2>
             <p className="text-text-secondary max-w-2xl mx-auto">
-              Three steps from sign-up to a fully connected immigration
-              practice.
+              {howSub}
             </p>
           </AnimateOnScroll>
 
@@ -390,7 +472,7 @@ export default function Solutions() {
               </div>
             </div>
 
-            {steps.map((step, i) => (
+            {displaySteps.map((step, i) => (
               <AnimateOnScroll key={i} delay={i * 0.15}>
                 <div className="text-center relative">
                   {/* Step circle */}
@@ -404,7 +486,7 @@ export default function Solutions() {
                   </div>
 
                   {/* Arrow between steps (mobile) */}
-                  {i < steps.length - 1 && (
+                  {i < displaySteps.length - 1 && (
                     <div className="md:hidden flex justify-center -my-2 relative z-10">
                       <div className="w-[2px] h-8 bg-sand-dark">
                         <motion.div
@@ -445,11 +527,16 @@ export default function Solutions() {
         <div className="relative z-10 container-app text-center">
           <AnimateOnScroll>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
-              Ready to see ImCam Hub <span className="text-cyan-light">in action</span>?
+              {ctaSection?.title ? (
+                <>{ctaTitle}</>
+              ) : (
+                <>
+                  Ready to see ImCam Hub <span className="text-cyan-light">in action</span>?
+                </>
+              )}
             </h2>
             <p className="text-white/60 max-w-xl mx-auto mb-8">
-              Join UK immigration consultancies that have transformed their
-              workflow with ImCam Hub. Schedule a personalized demo today.
+              {ctaDescription}
             </p>
             <Link
               to="/book-demo"
