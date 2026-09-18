@@ -294,7 +294,7 @@ function VideoShowcase({ section }) {
   }, []);
 
 return (
-    <div className="relative min-h-[70vh] sm:min-h-[80vh] lg:min-h-[90vh] flex items-center overflow-hidden">
+    <div className="relative min-h-[60vh] sm:min-h-[80vh] lg:min-h-[90vh] flex items-end sm:items-center overflow-hidden">
       {/* Background video */}
       <video
         ref={videoRef}
@@ -309,6 +309,7 @@ return (
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-navy/40" />
       <div className="absolute inset-0 bg-gradient-to-r from-navy/50 via-navy/20 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-navy/60 to-transparent" />
 
       {/* Buttons — bottom right */}
       <motion.div
@@ -316,17 +317,17 @@ return (
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.3 }}
-        className="absolute bottom-8 right-8 sm:bottom-12 sm:right-12 lg:bottom-16 lg:right-16 z-10 flex flex-col sm:flex-row gap-3 sm:gap-4"
+        className="absolute inset-x-0 bottom-6 px-6 sm:inset-x-auto sm:right-12 sm:bottom-12 sm:px-0 lg:bottom-16 lg:right-16 z-10 flex flex-col sm:flex-row gap-3 sm:gap-4"
       >
         <Link
           to={section?.button_link || '/book-demo'}
-          className="inline-flex items-center justify-center gap-2 bg-amber hover:bg-amber-dark text-white px-6 sm:px-8 py-3 rounded-full text-sm font-semibold transition-all duration-200 shadow-[0_2px_8px_rgba(242,153,74,0.35)] hover:shadow-[0_4px_16px_rgba(242,153,74,0.4)] hover:scale-[1.03] active:scale-[0.98]"
+          className="inline-flex items-center justify-center gap-2 bg-amber hover:bg-amber-dark text-white px-6 sm:px-8 py-3 rounded-full text-sm font-semibold transition-all duration-200 shadow-[0_2px_8px_rgba(242,153,74,0.35)] hover:shadow-[0_4px_16px_rgba(242,153,74,0.4)] hover:scale-[1.03] active:scale-[0.98] w-full sm:w-auto"
         >
           {section?.button_text || 'Book a Free Demo'} <ArrowRight size={16} sm:size={18} />
         </Link>
         <Link
           to={section?.secondaryButtonLink || '/features'}
-          className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white hover:bg-white/10 px-6 sm:px-8 py-3 rounded-full text-sm font-semibold transition-all duration-200 active:scale-[0.98]"
+          className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white hover:bg-white/10 px-6 sm:px-8 py-3 rounded-full text-sm font-semibold transition-all duration-200 active:scale-[0.98] w-full sm:w-auto"
         >
           {section?.secondaryButtonText || 'Explore Features'}
         </Link>
