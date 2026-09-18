@@ -43,7 +43,7 @@ const featureItems = [
     textColor: 'text-emerald',
   },
   {
-    name: 'Sponsor Business',
+    name: 'Sponsor/Business Portal',
     path: '/features/client',
     icon: Building2,
     description: 'Sponsor licence oversight & compliance',
@@ -238,14 +238,6 @@ export default function Navbar() {
                                 </Link>
                               );
                             })}
-                            <div className="mt-1 pt-1 border-t border-sand-dark">
-                              <Link
-                                to="/features"
-                                className="block px-4 py-2.5 text-sm font-medium text-text-muted hover:text-navy rounded-xl hover:bg-sand/60 transition-colors text-center"
-                              >
-                                View all features
-                              </Link>
-                            </div>
                           </div>
                         </motion.div>
                       )}

@@ -73,7 +73,7 @@ const defaultFaqs = [
 
 export default function FeatureClient() {
   usePageMeta(
-    'Sponsor Business — ImCam Hub',
+    'Sponsor/Business Portal — ImCam Hub',
     'UK sponsor licence management for businesses: track licence status, CoS allocation, sponsored workers, and compliance obligations in one live portal.',
     'features'
   );
@@ -102,7 +102,7 @@ export default function FeatureClient() {
 
   return (
     <FeaturePageTemplate
-      title="Sponsor Business"
+      title="Sponsor/Business Portal"
       roleName={page?.role_name || 'Sponsoring Business'}
       bannerText={page?.banner_text || 'Built for Sponsoring Businesses'}
       bannerSubline={

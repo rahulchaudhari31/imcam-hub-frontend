@@ -143,7 +143,7 @@ const steps = [
     number: '02',
     title: 'Onboard Cases & Clients',
     description:
-      'Add candidates or sponsoring businesses and start their case journey — Skilled Worker, Sponsor Licence, ILR, or Citizenship — with pre-built workflows ready to go, no manual setup required.',
+      'Add clients or sponsoring businesses and start their case journey — Skilled Worker, Sponsor Licence, ILR, or Citizenship — with pre-built workflows ready to go, no manual setup required.',
     icon: Users,
     color: 'bg-indigo/10 text-indigo',
   },

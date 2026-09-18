@@ -30,16 +30,16 @@ import {
 import FAQAccordion from '../components/FAQAccordion';
 import usePageMeta from '../hooks/usePageMeta';
 
-function AnimatedSection({ children, className = '', delay = 0 }) {
+function AnimatedSection({ children, className = '', delay = 0, distance = 30, duration = 0.5 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-60px' });
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: distance }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay, ease: 'easeOut' }}
+      transition={{ duration, delay, ease: 'easeOut' }}
       className={className}
     >
       {children}
@@ -50,7 +50,7 @@ function AnimatedSection({ children, className = '', delay = 0 }) {
 const problemSolutions = [
   {
     problem: 'Hours lost every week to scattered emails, disconnected spreadsheets, and cases tracked across too many places',
-    solution: 'One connected platform for the entire case journey — enquiry, application, compliance, and completion',
+    solution: 'Manage all your cases here — Skilled Worker, Sponsor Licence, ILR, British Citizenship and more',
   },
   {
     problem: 'Deadlines get missed',
@@ -86,26 +86,32 @@ const trustedFeatures = [
   {
     icon: Shield,
     title: 'Role-Based Access',
-    description: 'Every user sees only the cases and data relevant to their role.',
+    description: 'Secure by design. Every user sees only the cases and data their role needs — nothing more, nothing less.',
     color: 'bg-indigo/10 text-indigo',
   },
   {
     icon: BarChart3,
     title: 'Real-Time Visibility',
-    description: 'Live dashboards track every case, deadline, and caseworker\'s progress instantly.',
+    description: 'Always know where everything stands. Live dashboards track every case, deadline, and workload the moment it changes.',
     color: 'bg-emerald/10 text-emerald',
   },
   {
     icon: Building2,
     title: 'Four Connected Portals',
-    description: 'Admin, caseworker, client, and business, all sharing one live case.',
+    description: 'Admin, caseworker, client, and business — one shared case, zero duplication, fully in sync.',
     color: 'bg-cyan/10 text-cyan',
   },
   {
     icon: FileSearch,
     title: 'AI-Powered Case Intelligence',
-    description: 'Auto-checks documents, flags compliance risks, and predicts delays early.',
+    description: 'AI watches the details so your team can focus on the case — flagging risks and predicting delays before they happen.',
     color: 'bg-purple/10 text-purple',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Audit & Compliance for Your Regulator',
+    description: 'Every case keeps a complete, exportable trail — records, logs, and checks ready for your regulator (OISC) at any time, without last-minute file hunts.',
+    color: 'bg-amber/10 text-amber',
   },
 ];
 
@@ -445,11 +451,11 @@ export default function Home() {
       {/* =========================================
           PROBLEM VS SOLUTION
           ========================================= */}
-      <section className="section-padding bg-sand">
+      <section className="section-padding bg-sand pt-4 md:pt-10">
         <div className="container-app">
-          <AnimatedSection className="text-center mb-12">
+          <AnimatedSection className="text-center mb-12" distance={12} duration={0.9}>
             <span className="inline-flex items-center px-4 py-1.5 bg-amber/10 text-amber text-xs font-semibold rounded-full mb-4">
-              Problem vs Solution
+              The Problem vs. The Solution
             </span>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-navy mb-4">
               The Problem vs. <span className="gradient-text">The Solution</span>
@@ -462,7 +468,7 @@ export default function Home() {
           <div className="max-w-5xl mx-auto">
             <div className="rounded-2xl border border-sand-dark bg-white hover:shadow-[0_8px_30px_rgba(11,31,58,0.08)] transition-shadow overflow-hidden divide-y divide-sand-dark">
               {problemSolutions.map((item, i) => (
-                <AnimatedSection key={i} delay={i * 0.06}>
+                <AnimatedSection key={i} delay={i * 0.06} distance={12} duration={0.9}>
                   <div className="flex flex-col lg:flex-row items-stretch">
                     <div className="flex items-start gap-3 p-4 sm:p-5 flex-1">
                       <div className="w-8 h-8 rounded-lg bg-rose/10 flex items-center justify-center shrink-0">
@@ -496,18 +502,18 @@ export default function Home() {
           ========================================= */}
       <section className="py-12 sm:py-16 bg-white border-y border-sand-dark">
         <div className="container-app">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6">
             {displayTrustedFeatures.map((feature, i) => (
               <AnimatedSection key={i} delay={i * 0.08}>
-                <div className="flex items-start gap-3 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-sand/50 hover:bg-sand transition-colors">
+                <div className="flex flex-col h-full items-start gap-3 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-sand/50 hover:bg-sand transition-colors">
                   <div className={`w-10 h-10 sm:w-11 sm:h-11 rounded-xl ${feature.color} flex items-center justify-center shrink-0`}>
-                    <feature.icon size={20} sm:size={22} />
+                    <feature.icon size={22} />
                   </div>
-                  <div>
-                    <h3 className="text-sm font-semibold text-navy mb-1">
+                  <div className="min-w-0 flex-1">
+                    <h3 className="text-sm font-semibold text-navy leading-tight mb-1 line-clamp-2">
                       {feature.title}
                     </h3>
-                    <p className="text-xs text-text-muted leading-relaxed">
+                    <p className="text-xs text-text-muted leading-relaxed line-clamp-4">
                       {feature.description}
                     </p>
                   </div>
