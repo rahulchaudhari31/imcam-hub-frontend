@@ -88,7 +88,7 @@ const solutions = [
   },
   {
     icon: MessageSquare,
-    title: 'Client Portal',
+    title: 'Candidate Portal',
     description:
       'Give individual clients an immigration client portal software experience to track application progress, upload documents, and message their caseworker — reducing back-and-forth.',
     color: 'bg-purple/15 text-purple-light',

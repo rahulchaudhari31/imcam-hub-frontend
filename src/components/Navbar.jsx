@@ -34,7 +34,7 @@ const featureItems = [
     textColor: 'text-blue',
   },
   {
-    name: 'Client Portal',
+    name: 'Candidate Portal',
     path: '/features/candidate',
     icon: UserCheck,
     description: 'Applicant self-service tracking',

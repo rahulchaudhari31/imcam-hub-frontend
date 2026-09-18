@@ -80,7 +80,7 @@ const featuresStandard = [
 
 const featuresPortal = [
   {
-    title: 'Client Portal',
+    title: 'Candidate Portal',
     icon: Laptop,
     items: [
       'Dedicated dashboard for clients',
@@ -112,7 +112,7 @@ const plans = [
   {
     id: 'standard',
     name: 'Subscription Plan',
-    tagline: 'Perfect for small agencies',
+    tagline: 'Customised',
     price: 49,
     currency: 'GBP',
     interval: 'month',
@@ -125,7 +125,7 @@ const plans = [
   {
     id: 'pro',
     name: 'Subscription Plan',
-    tagline: 'For growing businesses',
+    tagline: 'For big companies',
     price: 69,
     currency: 'GBP',
     interval: 'month',

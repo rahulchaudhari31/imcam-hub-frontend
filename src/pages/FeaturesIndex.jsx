@@ -27,7 +27,7 @@ const roles = [
   },
   {
     icon: UserCheck,
-    title: 'Client Portal',
+    title: 'Candidate Portal',
     path: '/features/candidate',
     description: 'Self-service portal for individual applicants to track their Skilled Worker, ILR, or Citizenship case in real time.',
     color: 'bg-blue/10 text-blue',

@@ -187,7 +187,7 @@ const coreModules = [
   },
   {
     icon: UserCheck,
-    title: 'Client Portal',
+    title: 'Candidate Portal',
     description: 'Self-service tracking, document upload, and direct messaging for individual applicants.',
     path: '/features/candidate',
     color: 'bg-blue/10',
@@ -271,7 +271,7 @@ const faqs = [
   {
     question: 'Can clients and sponsoring businesses track their own case progress?',
     answer:
-      'Yes. Individual clients track their application through the Client Portal, while sponsoring businesses see licence status, sponsored workers, and CoS allocation in the Business Portal — both updated in real time, with direct messaging to their caseworker.',
+      'Yes. Individual clients track their application through the Candidate Portal, while sponsoring businesses see licence status, sponsored workers, and CoS allocation in the Business Portal — both updated in real time, with direct messaging to their caseworker.',
   },
   {
     question: 'Is ImCam Hub compliant with data privacy regulations?',
