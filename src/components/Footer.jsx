@@ -6,7 +6,7 @@ import { fetchContactInfo, fetchSocialLinks, fetchFooterLinks } from '../service
 const productLinks = [
   { name: 'Admin Dashboard', path: '/features/admin' },
   { name: 'Caseworker Portal', path: '/features/caseworker' },
-  { name: 'Client Portal', path: '/features/candidate' },
+  { name: 'Candidate Portal', path: '/features/candidate' },
   { name: 'Sponsor/Business Portal', path: '/features/client' },
 ];
 
