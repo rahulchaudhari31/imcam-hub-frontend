@@ -11,237 +11,132 @@ import {
   Sparkles,
   Shield,
   TrendingUp,
+  FolderKanban,
+  ShieldCheck,
+  FileText,
+  LifeBuoy,
+  Building2,
+  Laptop,
 } from 'lucide-react';
 import FAQAccordion from '../components/FAQAccordion';
 import { fetchPricing, fetchFaqItems } from '../services/cmsService';
 import pricingImg from '../assets/images/features/Pricing photo.png';
 
+const featuresStandard = [
+  {
+    title: 'Case & Workflow Management',
+    icon: FolderKanban,
+    items: [
+      'Full case lifecycle tracking — Enquiries → Application → Compliance → Completion',
+      'Pipeline view of all cases at every stage',
+      'Calendar with deadlines, appointments, and key dates',
+      'Unassigned case tracking so nothing slips through',
+    ],
+  },
+  {
+    title: 'Team & People Management',
+    icon: Users,
+    items: [
+      'Add and manage unlimited caseworkers',
+      'Manage client and sponsor records in one directory',
+      'Admin user roles and permissions',
+    ],
+  },
+  {
+    title: 'Licensing & Compliance',
+    icon: ShieldCheck,
+    items: [
+      'Licence request tracking',
+      'CoS (Certificate of Sponsorship) request management',
+      'Compliance review workflows',
+      'CCL fee approval tracking',
+      'Real-time visa and sponsor alerts',
+    ],
+  },
+  {
+    title: 'Documents & Communication',
+    icon: FileText,
+    items: [
+      'Centralised document storage per case',
+      'In-platform messaging with clients and team',
+      'Notifications and announcements',
+    ],
+  },
+  {
+    title: 'Finance & Reporting',
+    icon: TrendingUp,
+    items: [
+      'Revenue tracking',
+      'Downloadable reports',
+      'Consolidated dashboard with live case metrics — total cases, in progress, delayed, completed',
+    ],
+  },
+  {
+    title: 'Support',
+    icon: LifeBuoy,
+    items: ['Standard email/chat support'],
+  },
+];
+
+const featuresPortal = [
+  {
+    title: 'Client Portal',
+    icon: Laptop,
+    items: [
+      'Dedicated dashboard for clients',
+      'Step-by-step application tracking',
+      'Clear caseworker ownership indicators',
+      'Key case details at a glance',
+      'In-portal forms and document upload',
+      'Client care letter access',
+      'Built-in messaging and support',
+    ],
+  },
+  {
+    title: 'Business Portal',
+    icon: Building2,
+    items: [
+      'Licence status at a glance',
+      'Active worker and CoS tracking',
+      'Pending and overdue case alerts',
+      'Automatic compliance reminders',
+      'Full sponsored worker records',
+      'Key personnel and employee records',
+      'Built-in compliance tracking tools',
+      'Invoicing, payments, and messaging',
+    ],
+  },
+];
+
 const plans = [
   {
-    name: 'Starter',
+    id: 'standard',
+    name: 'Subscription Plan',
     tagline: 'Perfect for small agencies',
     price: 49,
     currency: 'GBP',
     interval: 'month',
     popular: false,
-    totalModules: 51,
-    includedModules: 44,
-    moduleCategories: {
-      ADMIN: [
-        'Dashboard',
-        'Cases',
-        'Candidates',
-        'Caseworkers',
-        'Businesses',
-        'Finance',
-        'Reports',
-        'Pipeline',
-        'Documents',
-        'Calendar',
-        'Messages',
-        'Permissions',
-        'Settings',
-        'Licence Requests',
-        'Enquiries',
-      ],
-      CASEWORKER: [
-        'Dashboard',
-        'Cases',
-        'Pipeline',
-        'Tasks',
-        'Calendar',
-        'Documents',
-        'Clients',
-        'Messages',
-        'Licence Reviews',
-      ],
-      CANDIDATE: [
-        'Dashboard',
-        'Application',
-        'Documents',
-        'Payments',
-        'Messages',
-        'Appointments',
-        'Calendar',
-        'Application Status',
-        'My Account',
-      ],
-      BUSINESS: [
-        'Dashboard',
-        'Profile',
-        'Licence',
-        'Compliance',
-        'Workers',
-        'Documents',
-        'Messages',
-        'Payment',
-        'Calendar',
-        'Reporting Obligations',
-        'Settings',
-      ],
-    },
+    features: featuresStandard,
     cta: 'Start Free Trial',
     checkColor: 'text-blue',
     ctaClass: 'border-2 border-navy text-navy hover:bg-navy hover:text-white',
   },
   {
-    name: 'Professional',
+    id: 'pro',
+    name: 'Subscription Plan',
     tagline: 'For growing businesses',
     price: 69,
     currency: 'GBP',
     interval: 'month',
     popular: true,
-    totalModules: 51,
-    includedModules: 51,
-    moduleCategories: {
-      ADMIN: [
-        'Dashboard',
-        'Cases',
-        'Candidates',
-        'Caseworkers',
-        'Businesses',
-        'Finance',
-        'Reports',
-        'Pipeline',
-        'Workload',
-        'Documents',
-        'Calendar',
-        'Messages',
-        'Escalations',
-        'Audit Logs',
-        'Permissions',
-        'Settings',
-        'Licence Requests',
-        'Enquiries',
-        'Assign',
-        'Departments',
-      ],
-      CASEWORKER: [
-        'Dashboard',
-        'Cases',
-        'Pipeline',
-        'Tasks',
-        'Calendar',
-        'Documents',
-        'Clients',
-        'Messages',
-        'Performance',
-        'Finance',
-        'Licence Reviews',
-      ],
-      CANDIDATE: [
-        'Dashboard',
-        'Application',
-        'Documents',
-        'Payments',
-        'Messages',
-        'Appointments',
-        'Calendar',
-        'Application Status',
-        'My Account',
-      ],
-      BUSINESS: [
-        'Dashboard',
-        'Profile',
-        'Licence',
-        'Compliance',
-        'Workers',
-        'Documents',
-        'Messages',
-        'Payment',
-        'Calendar',
-        'Reporting Obligations',
-        'Settings',
-      ],
-    },
+    everythingPlus: true,
+    features: featuresPortal,
     cta: 'Book a Demo',
     checkColor: 'text-blue',
     ctaClass: 'btn-gradient-primary',
   },
-  {
-    name: 'Enterprise',
-    tagline: 'Full power for large organisations',
-    price: 249,
-    currency: 'GBP',
-    interval: 'month',
-    popular: false,
-    totalModules: 51,
-    includedModules: 51,
-    moduleCategories: {
-      ADMIN: [
-        'Dashboard',
-        'Cases',
-        'Candidates',
-        'Caseworkers',
-        'Businesses',
-        'Finance',
-        'Reports',
-        'Pipeline',
-        'Workload',
-        'Documents',
-        'Calendar',
-        'Messages',
-        'Escalations',
-        'Audit Logs',
-        'Permissions',
-        'Settings',
-        'Licence Requests',
-        'Enquiries',
-        'Assign',
-        'Departments',
-      ],
-      CASEWORKER: [
-        'Dashboard',
-        'Cases',
-        'Pipeline',
-        'Tasks',
-        'Calendar',
-        'Documents',
-        'Clients',
-        'Messages',
-        'Performance',
-        'Finance',
-        'Licence Reviews',
-      ],
-      CANDIDATE: [
-        'Dashboard',
-        'Application',
-        'Documents',
-        'Payments',
-        'Messages',
-        'Appointments',
-        'Calendar',
-        'Application Status',
-        'My Account',
-      ],
-      BUSINESS: [
-        'Dashboard',
-        'Profile',
-        'Licence',
-        'Compliance',
-        'Workers',
-        'Documents',
-        'Messages',
-        'Payment',
-        'Calendar',
-        'Reporting Obligations',
-        'Settings',
-      ],
-    },
-    cta: 'Contact Sales',
-    checkColor: 'text-blue',
-    ctaClass: 'border-2 border-navy text-navy hover:bg-navy hover:text-white',
-  },
 ];
-
-const VISIBLE_MODULES = 6;
-
-const categoryStyles = {
-  ADMIN: 'bg-blue-pale text-blue',
-  CASEWORKER: 'bg-purple-pale text-purple',
-  CANDIDATE: 'bg-emerald-pale text-emerald',
-  BUSINESS: 'bg-amber/10 text-amber',
-};
 
 const comparisonFeatures = [
   { label: 'Active cases', standard: 'Up to 100', pro: 'Unlimited' },
@@ -350,7 +245,7 @@ function AnimatedCounter({ target, suffix = '', prefix = '', duration = 1.5 }) {
 export default function Pricing() {
   usePageMeta(
     'Pricing — ImCam Hub',
-    'Simple, transparent pricing for immigration practices of every size. Compare Starter, Professional and Enterprise plans.',
+    'Simple, transparent pricing for immigration practices of every size. Choose the Subscription Plan that fits your firm — £49/month for small agencies, £69/month with client and business portals.',
     'pricing'
   );
 
@@ -537,109 +432,99 @@ export default function Pricing() {
           ========================================= */}
       <section className="section-padding pb-0">
         <div className="container-app">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {displayPlans.map((plan) => {
-              const modules = Object.entries(plan.moduleCategories).flatMap(
-                ([cat, list]) => list.map((name) => ({ cat, name }))
-              );
-              const visibleModules = modules.slice(0, VISIBLE_MODULES);
-              const moreCount = plan.includedModules - visibleModules.length;
-
-              return (
-                <div
-                  key={plan.name}
-                  className={`relative rounded-3xl p-8 flex flex-col transition-all duration-300 hover:-translate-y-1 ${
-                    plan.popular
-                      ? 'bg-white border-2 border-blue shadow-[0_8px_40px_rgba(37,99,235,0.15)] hover:shadow-[0_12px_50px_rgba(37,99,235,0.25)]'
-                      : 'bg-white border-2 border-navy/15 shadow-[0_4px_20px_rgba(11,31,58,0.06)] hover:shadow-[0_8px_30px_rgba(11,31,58,0.1)]'
-                  }`}
-                >
-                  {/* Badge */}
-                  {plan.popular && (
-                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                      <span className="inline-flex items-center px-4 py-1.5 bg-blue text-white text-[11px] font-bold rounded-full tracking-wide shadow-md">
-                        MOST POPULAR
-                      </span>
-                    </div>
-                  )}
-
-                  {/* Plan header */}
-                  <div className="mb-6">
-                    <h3 className="text-xl font-heading font-semibold text-navy mb-2">
-                      {plan.name}
-                    </h3>
-                    <div className="flex items-baseline gap-1 mb-4">
-                      <span className="text-sm text-text-muted font-medium">£</span>
-                      <span className="text-5xl font-bold text-navy tracking-tight">
-                        {plan.price}
-                      </span>
-                      <span className="text-sm text-text-muted font-medium">/month</span>
-                    </div>
-                    <p className="text-sm text-text-secondary leading-relaxed">
-                      {plan.tagline}
-                    </p>
-                  </div>
-
-                  {/* Modules */}
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-xs font-bold tracking-widest text-text-muted uppercase">
-                      Modules ({plan.totalModules})
-                    </span>
-                    <span className="inline-flex items-center px-2 py-0.5 bg-blue-pale text-blue text-[10px] font-bold rounded-full tracking-wide">
-                      {plan.includedModules} included
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {displayPlans.map((plan, i) => (
+              <div
+                key={plan.id || i}
+                className={`relative rounded-3xl p-8 flex flex-col transition-all duration-300 hover:-translate-y-1 ${
+                  plan.popular
+                    ? 'bg-white border-2 border-blue shadow-[0_8px_40px_rgba(37,99,235,0.15)] hover:shadow-[0_12px_50px_rgba(37,99,235,0.25)]'
+                    : 'bg-white border-2 border-navy/15 shadow-[0_4px_20px_rgba(11,31,58,0.06)] hover:shadow-[0_8px_30px_rgba(11,31,58,0.1)]'
+                }`}
+              >
+                {/* Badge */}
+                {plan.popular && (
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
+                    <span className="inline-flex items-center px-4 py-1.5 bg-blue text-white text-[11px] font-bold rounded-full tracking-wide shadow-md">
+                      MOST POPULAR
                     </span>
                   </div>
+                )}
 
-                  <ul className="space-y-3 mb-8 flex-1">
-                    {visibleModules.map((mod) => (
-                      <li
-                        key={`${mod.cat}-${mod.name}`}
-                        className="flex items-center gap-2.5 text-sm"
-                      >
-                        <CheckCircle2
-                          size={16}
-                          className={`flex-shrink-0 ${plan.checkColor}`}
-                        />
-                        <span className="text-text-secondary">{mod.name}</span>
-                        <span
-                          className={`ml-auto flex-shrink-0 px-1.5 py-0.5 rounded-md text-[9px] font-bold tracking-wide uppercase ${categoryStyles[mod.cat]}`}
-                        >
-                          {mod.cat}
-                        </span>
-                      </li>
-                    ))}
-                    {moreCount > 0 && (
-                      <li className="flex items-center gap-2.5 text-sm">
-                        <CheckCircle2
-                          size={16}
-                          className={`flex-shrink-0 ${plan.checkColor}`}
-                        />
-                        <span className="font-semibold text-text-secondary">
-                          +{moreCount} more
-                        </span>
-                      </li>
-                    )}
-                  </ul>
-
-                  {/* CTA */}
-                  {plan.cta === 'Contact Sales' ? (
-                    <a
-                      href="mailto:hello@incamhub.com"
-                      className={`flex items-center justify-center gap-2 w-full ${plan.ctaClass} px-6 py-3.5 rounded-full text-sm font-semibold transition-all duration-200 active:scale-[0.98]`}
-                    >
-                      {plan.cta} <ArrowRight size={16} />
-                    </a>
-                  ) : (
-                    <Link
-                      to="/book-demo"
-                      className={`flex items-center justify-center gap-2 w-full ${plan.ctaClass} px-6 py-3.5 rounded-full text-sm font-semibold transition-all duration-200 active:scale-[0.98]`}
-                    >
-                      {plan.cta} <ArrowRight size={16} />
-                    </Link>
-                  )}
+                {/* Plan header */}
+                <div className="mb-6">
+                  <h3 className="text-xl font-heading font-semibold text-navy mb-2">
+                    {plan.name}
+                  </h3>
+                  <div className="flex items-baseline gap-1 mb-4">
+                    <span className="text-sm text-text-muted font-medium">£</span>
+                    <span className="text-5xl font-bold text-navy tracking-tight">
+                      {plan.price}
+                    </span>
+                    <span className="text-sm text-text-muted font-medium">/month</span>
+                  </div>
+                  <p className="text-sm text-text-secondary leading-relaxed">
+                    {plan.tagline}
+                  </p>
                 </div>
-              );
-            })}
+
+                {/* Everything in Standard banner */}
+                {plan.everythingPlus && (
+                  <div className="flex items-center gap-2 mb-5 px-4 py-2.5 rounded-xl bg-blue-pale text-blue text-xs font-semibold">
+                    <Sparkles size={14} />
+                    Everything in Standard Plan, plus:
+                  </div>
+                )}
+
+                {/* Features */}
+                <div className="space-y-6 mb-8 flex-1">
+                  {plan.features.map((group) => (
+                    <div key={group.title}>
+                      <div className="flex items-center gap-2 mb-2.5">
+                        <group.icon
+                          size={15}
+                          className="text-blue flex-shrink-0"
+                        />
+                        <span className="text-[11px] font-bold tracking-widest text-navy uppercase">
+                          {group.title}
+                        </span>
+                      </div>
+                      <ul className="space-y-2">
+                        {group.items.map((item) => (
+                          <li
+                            key={item}
+                            className="flex items-start gap-2 text-sm"
+                          >
+                            <CheckCircle2
+                              size={15}
+                              className={`flex-shrink-0 mt-0.5 ${plan.checkColor}`}
+                            />
+                            <span className="text-text-secondary">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+
+                {/* CTA */}
+                {plan.cta === 'Contact Sales' ? (
+                  <a
+                    href="mailto:hello@incamhub.com"
+                    className={`flex items-center justify-center gap-2 w-full ${plan.ctaClass} px-6 py-3.5 rounded-full text-sm font-semibold transition-all duration-200 active:scale-[0.98]`}
+                  >
+                    {plan.cta} <ArrowRight size={16} />
+                  </a>
+                ) : (
+                  <Link
+                    to="/book-demo"
+                    className={`flex items-center justify-center gap-2 w-full ${plan.ctaClass} px-6 py-3.5 rounded-full text-sm font-semibold transition-all duration-200 active:scale-[0.98]`}
+                  >
+                    {plan.cta} <ArrowRight size={16} />
+                  </Link>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </section>
