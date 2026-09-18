@@ -7,16 +7,13 @@ const productLinks = [
   { name: 'Admin Dashboard', path: '/features/admin' },
   { name: 'Caseworker Portal', path: '/features/caseworker' },
   { name: 'Client Portal', path: '/features/candidate' },
-  { name: 'Sponsor Business', path: '/features/client' },
-  { name: 'Integrations', path: '/resources' },
+  { name: 'Sponsor/Business Portal', path: '/features/client' },
 ];
 
 const companyLinks = [
   { name: 'About Us', path: '/resources' },
   { name: 'Solutions', path: '/solutions' },
   { name: 'Pricing', path: '/pricing' },
-  { name: 'Resources', path: '/resources' },
-  { name: 'Careers', path: '/resources' },
 ];
 
 const defaultSocialLinks = [];
@@ -103,14 +100,12 @@ export default function Footer() {
         <div className="container-app">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 mb-10 lg:mb-14">
             <div className="lg:col-span-4">
-              <Link to="/" className="inline-flex mb-4" aria-label="ImCam Hub home">
-                <div className="bg-white p-3">
-                  <img
-                    src="/assets/imcam%20hub%20logo%201%20cropped.png"
-                    alt="ImCam Hub"
-                    className="h-12 w-auto"
-                  />
-                </div>
+              <Link to="/" className="inline-flex mb-4 transition-opacity hover:opacity-80" aria-label="ImCam Hub home">
+                <img
+                  src="/assets/imcam%20hub%20logo%201%20transparent.png"
+                  alt="ImCam Hub"
+                  className="h-12 sm:h-14 w-auto"
+                />
               </Link>
               <p className="text-white/80 text-sm tracking-wide leading-relaxed mb-5 max-w-[280px]">
                 Structured case management. Powered by smart automation.

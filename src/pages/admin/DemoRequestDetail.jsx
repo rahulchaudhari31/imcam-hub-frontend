@@ -126,6 +126,18 @@ export default function DemoRequestDetail() {
                 <p className="text-sm font-medium text-navy">{request.firm_size || '—'}</p>
               </div>
               <div>
+                <p className="text-xs text-text-muted mb-1">Preferred Date</p>
+                <p className="text-sm font-medium text-navy">
+                  {request.preferred_date ? new Date(request.preferred_date).toLocaleDateString() : '—'}
+                </p>
+              </div>
+              <div>
+                <p className="text-xs text-text-muted mb-1">Preferred Time</p>
+                <p className="text-sm font-medium text-navy">
+                  {request.preferred_time ? request.preferred_time.slice(0, 5) : '—'}
+                </p>
+              </div>
+              <div>
                 <p className="text-xs text-text-muted mb-1">Status</p>
                 <Badge variant={STATUS_BADGE[request.status] || 'default'}>
                   {request.status ? request.status.charAt(0).toUpperCase() + request.status.slice(1) : '—'}

@@ -12,7 +12,8 @@ import FeaturePageTemplate from '../components/FeaturePageTemplate';
 import { fetchFeaturePage, fetchFaqItems, resolveCmsAsset } from '../services/cmsService';
 import resolveFeatureIcon from '../services/featureIcons';
 import bannerImg from '../assets/images/features/Admin_banner.jpeg';
-import introImg from '../assets/images/features/Admin_dashboard.png';
+
+const introImage = 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop';
 
 const defaultFeatures = [
   {
@@ -120,7 +121,7 @@ export default function FeatureAdmin() {
       introImageLabel={page?.intro_image_label || 'Admin Dashboard Preview'}
       introReverse={page?.intro_reverse}
       bannerImage={resolveCmsAsset(page?.banner_image) || bannerImg}
-      introImage={resolveCmsAsset(page?.intro_image) || introImg}
+      introImage={resolveCmsAsset(page?.intro_image) || introImage}
       middleImage={resolveCmsAsset(page?.middle_image)}
       middleBadge={page?.middle_badge}
       middleHeading={page?.middle_heading}

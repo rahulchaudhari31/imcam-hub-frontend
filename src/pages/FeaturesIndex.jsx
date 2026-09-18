@@ -36,7 +36,7 @@ const roles = [
   },
   {
     icon: Building2,
-    title: 'Sponsor Business',
+    title: 'Sponsor/Business Portal',
     path: '/features/client',
     description: 'Live visibility into sponsor licence status, sponsored workers, and CoS allocation for growing UK businesses.',
     color: 'bg-purple/10 text-purple',

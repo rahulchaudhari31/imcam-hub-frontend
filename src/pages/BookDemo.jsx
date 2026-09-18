@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import {
@@ -139,7 +139,7 @@ export default function BookDemo() {
   const testimonialAuthor = config?.testimonial_author || 'Sarah Mitchell';
   const testimonialRole =
     config?.testimonial_role || 'Managing Partner, Mitchell & Associates';
-  const contactPhone = config?.contact_phone || '1-800-555-1234';
+  const contactPhone = config?.contact_phone || '+44 20 7946 0958';
   const contactEmail = config?.contact_email || 'hello@incamhub.com';
 
   const [submitted, setSubmitted] = useState(false);
@@ -152,8 +152,12 @@ export default function BookDemo() {
     email: '',
     phone: '',
     firmSize: '',
+    preferredDate: '',
+    preferredTime: '',
     message: '',
   });
+
+  const todayMin = useMemo(() => new Date().toISOString().split('T')[0], []);
 
   const update = (field) => (e) => {
     setForm((prev) => ({ ...prev, [field]: e.target.value }));
@@ -189,6 +193,16 @@ export default function BookDemo() {
       e.phone = 'Please provide a valid phone number.';
     }
     if (!form.firmSize) e.firmSize = 'Please select a firm size.';
+    if (form.preferredDate) {
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(form.preferredDate)) {
+        e.preferredDate = 'Please provide a valid date.';
+      } else if (form.preferredDate < todayMin) {
+        e.preferredDate = 'Preferred date cannot be in the past.';
+      }
+    }
+    if (form.preferredTime && !/^([01]\d|2[0-3]):[0-5]\d$/.test(form.preferredTime)) {
+      e.preferredTime = 'Please provide a valid time (HH:MM).';
+    }
     if (!form.message.trim()) {
       e.message = 'Message is required.';
     } else if (form.message.trim().length > 2000) {
@@ -216,6 +230,8 @@ export default function BookDemo() {
           email: form.email.trim(),
           phone: form.phone.trim(),
           firmSize: form.firmSize,
+          preferredDate: form.preferredDate || null,
+          preferredTime: form.preferredTime || null,
           message: form.message.trim(),
         }),
       });
@@ -410,6 +426,40 @@ export default function BookDemo() {
                       </select>
                     </FormField>
 
+                    <div className="grid sm:grid-cols-2 gap-5">
+                      <FormField
+                        label="Preferred Date"
+                        name="preferredDate"
+                        error={errors.preferredDate}
+                      >
+                        <input
+                          id="preferredDate"
+                          type="date"
+                          min={todayMin}
+                          value={form.preferredDate}
+                          onChange={update('preferredDate')}
+                          className={`${fieldBase} ${errors.preferredDate ? fieldError : fieldIdle}`}
+                        />
+                      </FormField>
+
+                      <FormField
+                        label="Preferred Time"
+                        name="preferredTime"
+                        error={errors.preferredTime}
+                      >
+                        <input
+                          id="preferredTime"
+                          type="time"
+                          value={form.preferredTime}
+                          onChange={update('preferredTime')}
+                          className={`${fieldBase} ${errors.preferredTime ? fieldError : fieldIdle}`}
+                        />
+                      </FormField>
+                    </div>
+                    <p className="text-xs text-text-muted -mt-2">
+                      Optional — choose a date and time that suits you, and we&apos;ll do our best to match it.
+                    </p>
+
                     <FormField label="Message / Notes" name="message" required error={errors.message}>
                       <textarea
                         id="message"
@@ -436,13 +486,13 @@ export default function BookDemo() {
 
                 {/* RIGHT: Supporting content */}
                 <div className="space-y-7">
-                  {/* Hero image */}
+{/* Hero image */}
                   <AnimateOnScroll>
-                    <div className="rounded-2xl overflow-hidden shadow-[0_8px_30px_rgba(11,31,58,0.1)]">
+                    <div className="rounded-2xl overflow-hidden border border-navy/10 bg-white shadow-[0_8px_30px_rgba(11,31,58,0.1)]">
                       <img
-                        src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=800&h=400&fit=crop"
-                        alt="Modern immigration office workspace"
-                        className="w-full h-48 object-cover"
+                        src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop"
+                        alt="Immigration case management dashboard on a laptop screen"
+                        className="w-full aspect-[4/3] object-cover"
                         loading="lazy"
                       />
                     </div>
