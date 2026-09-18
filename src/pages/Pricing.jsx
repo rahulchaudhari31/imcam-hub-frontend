@@ -118,7 +118,7 @@ const plans = [
     interval: 'month',
     popular: false,
     features: featuresStandard,
-    cta: 'Start Free Trial',
+    cta: 'Book a Demo',
     checkColor: 'text-blue',
     ctaClass: 'border-2 border-navy text-navy hover:bg-navy hover:text-white',
   },
