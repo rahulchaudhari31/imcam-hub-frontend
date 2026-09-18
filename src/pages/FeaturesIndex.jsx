@@ -4,7 +4,7 @@ import { ArrowRight, LayoutDashboard, Users, UserCheck, Building2 } from 'lucide
 import usePageMeta from '../hooks/usePageMeta';
 import Card from '../components/Card';
 
-const SHOW_FEATURES_INDEX = false; // <-- Set to true to re-enable
+const SHOW_FEATURES_INDEX = true;
 
 const roles = [
   {

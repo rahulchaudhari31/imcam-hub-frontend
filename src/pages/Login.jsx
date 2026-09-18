@@ -62,10 +62,6 @@ export default function Login() {
       const user = await login(form.email.trim(), form.password);
       if (user?.role === 'admin') {
         navigate('/admin', { replace: true });
-      } else if (user?.role === 'caseworker') {
-        navigate('/caseworker/dashboard', { replace: true });
-      } else if (user?.role === 'client') {
-        navigate('/client/dashboard', { replace: true });
       } else {
         navigate('/', { replace: true });
       }
