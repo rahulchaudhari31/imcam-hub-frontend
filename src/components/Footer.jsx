@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, ArrowUpRight } from 'lucide-react';
+import { Mail, Phone, MapPin, Globe, ArrowUpRight } from 'lucide-react';
 import { fetchContactInfo, fetchSocialLinks, fetchFooterLinks } from '../services/cmsService';
 
 const productLinks = [
@@ -70,8 +70,11 @@ export default function Footer() {
     load();
   }, []);
 
-  const email = contactInfo?.email || 'hello@incamhub.com';
-  const phone = contactInfo?.phone || '+44 20 7946 0958';
+  const email = contactInfo?.email || 'srishti@e2eworld.co.uk';
+  const phone = contactInfo?.phone || '+44 (0) 121 778 2400';
+  const mobile = contactInfo?.content?.mobile || '+44 (0) 7570 380787';
+  const address = contactInfo?.address || 'Unit 2, 1204B Stratford Road, Hall Green, Birmingham. B28 8HN, England';
+  const website = contactInfo?.content?.website || 'https://e2ecybersolutions.com/';
 
   const displaySocialLinks = socialLinksData
     ? socialLinksData
@@ -128,6 +131,34 @@ export default function Footer() {
                   ))}
                 </div>
               )}
+              <div className="flex items-center gap-4 mt-6">
+                <a
+                  href="https://www.linkedin.com/in/aakanksha-chimote-6785a554/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn profile"
+                  className="transition-opacity hover:opacity-80"
+                >
+                  <img
+                    src="/assets/image004.png"
+                    alt="LinkedIn"
+                    className="h-9 w-9 object-contain"
+                  />
+                </a>
+                <a
+                  href="https://www.facebook.com/e2eHumanResourceConsultancy/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook page"
+                  className="transition-opacity hover:opacity-80"
+                >
+                  <img
+                    src="/assets/image003.png"
+                    alt="Facebook"
+                    className="h-9 w-9 object-contain"
+                  />
+                </a>
+              </div>
             </div>
 
             <div className="lg:col-span-3">
@@ -176,25 +207,41 @@ export default function Footer() {
                 <li>
                   <a href={`tel:${phone.replace(/[^+0-9]/g, '')}`} className="flex items-start gap-3 text-sm text-white/50 hover:text-white transition-colors group">
                     <Phone size={20} className="shrink-0 mt-0.5 text-white/40 group-hover:text-blue transition-colors" />
-                    <span>{phone}</span>
+                    <span>T: {phone}</span>
                   </a>
                 </li>
-                {/* Address hidden temporarily */}
-                {/* <li>
+                <li>
+                  <a href={`tel:${mobile.replace(/[^+0-9]/g, '')}`} className="flex items-start gap-3 text-sm text-white/50 hover:text-white transition-colors group">
+                    <Phone size={20} className="shrink-0 mt-0.5 text-white/40 group-hover:text-blue transition-colors" />
+                    <span>M: {mobile}</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-start gap-3 text-sm text-white/50 hover:text-white transition-colors group"
+                  >
+                    <Globe size={20} className="shrink-0 mt-0.5 text-white/40 group-hover:text-blue transition-colors" />
+                    <span>{website.replace(/^https?:\/\//, '').replace(/\/+$/, '')}</span>
+                  </a>
+                </li>
+                <li>
                   <div className="flex items-start gap-3 text-sm text-white/50">
                     <MapPin size={20} className="shrink-0 mt-0.5 text-white/40" />
                     <span style={{ whiteSpace: 'pre-line' }}>{address}</span>
                   </div>
-                </li> */}
+                </li>
               </ul>
             </div>
           </div>
 
           <div className="border-t border-white/10 pt-6 sm:pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-white/35 text-sm">&copy; {new Date().getFullYear()} ImCam Hub. All rights reserved.</p>
+            <p className="text-white/35 text-sm">&copy; {new Date().getFullYear()} Elite PiC Ltd. All rights reserved.</p>
             <div className="flex items-center gap-4 sm:gap-5">
               <Link to="/resources" className="text-white/35 hover:text-white/70 text-sm transition-colors">Privacy Policy</Link>
-              <Link to="/resources" className="text-white/35 hover:text-white/70 text-sm transition-colors">Terms of Service</Link>
+              <Link to="/terms" className="text-white/35 hover:text-white/70 text-sm transition-colors">Terms of Service</Link>
             </div>
           </div>
         </div>
