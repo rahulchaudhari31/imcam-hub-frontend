@@ -13,6 +13,7 @@ const FeatureClient = lazy(() => import('./pages/FeatureClient'));
 const Solutions = lazy(() => import('./pages/Solutions'));
 const Pricing = lazy(() => import('./pages/Pricing'));
 const Resources = lazy(() => import('./pages/Resources'));
+const Terms = lazy(() => import('./pages/Terms'));
 const BookDemo = lazy(() => import('./pages/BookDemo'));
 const Login = lazy(() => import('./pages/Login'));
 const Dashboard = lazy(() => import('./pages/admin/Dashboard'));
@@ -55,6 +56,7 @@ function App() {
             <Route path="/solutions" element={<Solutions />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/resources" element={<Resources />} />
+            <Route path="/terms" element={<Terms />} />
             <Route path="/book-demo" element={<BookDemo />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
