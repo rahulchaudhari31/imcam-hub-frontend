@@ -15,13 +15,13 @@ const featureColors = [
 ];
 
 const cardGradients = [
-  'from-blue/5 via-white to-blue-pale/60',
-  'from-indigo/5 via-white to-indigo-pale/60',
-  'from-purple/5 via-white to-purple-pale/60',
-  'from-emerald/5 via-white to-emerald-pale/60',
-  'from-cyan/5 via-white to-cyan-pale/60',
-  'from-orange/5 via-white to-orange-pale/60',
-  'from-pink/5 via-white to-pink-pale/60',
+  'from-blue-pale via-blue-pale/50 to-white',
+  'from-indigo-pale via-indigo-pale/50 to-white',
+  'from-purple-pale via-purple-pale/50 to-white',
+  'from-emerald-pale via-emerald-pale/50 to-white',
+  'from-cyan-pale via-cyan-pale/50 to-white',
+  'from-orange-pale via-orange-pale/50 to-white',
+  'from-pink-pale via-pink-pale/50 to-white',
 ];
 
 function AnimateOnScroll({ children, className = '', delay = 0 }) {
@@ -122,6 +122,10 @@ export default function FeaturePageTemplate({
     featureRows.push(features.slice(i, i + 3));
   }
 
+  const safeMiddleParagraphs =
+    middleParagraphs?.length ? middleParagraphs : defaultMiddleParagraphs;
+  const safeMiddlePoints = middlePoints?.length ? middlePoints : defaultMiddlePoints;
+
   return (
     <div>
       {/* 1. Ken-Burns Banner */}
@@ -208,13 +212,13 @@ export default function FeaturePageTemplate({
                     {middleHeading}
                   </h2>
                   <div className="space-y-4">
-                    {middleParagraphs.map((paragraph, i) => (
+                    {safeMiddleParagraphs.map((paragraph, i) => (
                       <p key={i} className="text-text-secondary leading-relaxed">
                         {paragraph}
                       </p>
                     ))}
                     <ul className="space-y-3 pt-2">
-                      {middlePoints.map((point, i) => (
+                      {safeMiddlePoints.map((point, i) => (
                         <li key={i} className="flex items-start gap-3">
                           <span className="mt-0.5 w-5 h-5 rounded-full bg-blue-pale text-blue flex items-center justify-center shrink-0">
                             <Check size={14} />
@@ -261,7 +265,7 @@ export default function FeaturePageTemplate({
                     <motion.div
                       whileHover={{ y: -4 }}
                       transition={{ duration: 0.2 }}
-                      className={`bg-gradient-to-br ${cardGradient} rounded-2xl border border-sand-dark/60 p-5 sm:p-6 h-full hover:shadow-[0_8px_30px_rgba(11,31,58,0.12)] transition-all duration-300`}
+                      className={`bg-gradient-to-br ${cardGradient} rounded-2xl border border-white p-5 sm:p-6 h-full hover:shadow-[0_10px_35px_rgba(11,31,58,0.14)] transition-all duration-300`}
                     >
                       <div className={`w-11 h-11 sm:w-12 sm:h-12 rounded-2xl ${colorClass} flex items-center justify-center mb-4`}>
                         <feature.icon size={22} sm:size={24} />
