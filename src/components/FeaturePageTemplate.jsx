@@ -15,13 +15,13 @@ const featureColors = [
 ];
 
 const cardGradients = [
-  'from-blue-pale via-blue-pale/50 to-white',
-  'from-indigo-pale via-indigo-pale/50 to-white',
-  'from-purple-pale via-purple-pale/50 to-white',
-  'from-emerald-pale via-emerald-pale/50 to-white',
-  'from-cyan-pale via-cyan-pale/50 to-white',
-  'from-orange-pale via-orange-pale/50 to-white',
-  'from-pink-pale via-pink-pale/50 to-white',
+  'bg-blue-pale',
+  'bg-indigo-pale',
+  'bg-purple-pale',
+  'bg-emerald-pale',
+  'bg-cyan-pale',
+  'bg-orange-pale',
+  'bg-pink-pale',
 ];
 
 function AnimateOnScroll({ children, className = '', delay = 0 }) {
@@ -265,7 +265,7 @@ export default function FeaturePageTemplate({
                     <motion.div
                       whileHover={{ y: -4 }}
                       transition={{ duration: 0.2 }}
-                      className={`bg-gradient-to-br ${cardGradient} rounded-2xl border border-white p-5 sm:p-6 h-full hover:shadow-[0_10px_35px_rgba(11,31,58,0.14)] transition-all duration-300`}
+                      className={`${cardGradient} rounded-2xl border border-white p-5 sm:p-6 h-full hover:shadow-[0_10px_35px_rgba(11,31,58,0.14)] transition-all duration-300`}
                     >
                       <div className={`w-11 h-11 sm:w-12 sm:h-12 rounded-2xl ${colorClass} flex items-center justify-center mb-4`}>
                         <feature.icon size={22} sm:size={24} />

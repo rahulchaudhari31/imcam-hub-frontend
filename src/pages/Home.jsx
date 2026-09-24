@@ -87,45 +87,45 @@ const trustedFeatures = [
     icon: Shield,
     title: 'Role-Based Access',
     description: 'Secure by design. Every user sees only the cases and data their role needs — nothing more, nothing less.',
-    color: 'bg-amber/10 text-amber',
-    cardGradient: 'from-amber-pale via-amber-pale/50 to-white',
-    cardBorder: 'border-amber/30',
+    color: 'bg-amber/25 text-amber-dark',
+    cardGradient: 'bg-amber-pale',
+    cardBorder: 'border-amber/60',
     titleColor: 'text-amber-dark',
   },
   {
     icon: BarChart3,
     title: 'Real-Time Visibility',
     description: 'Always know where everything stands. Live dashboards track every case, deadline, and workload the moment it changes.',
-    color: 'bg-emerald/10 text-emerald',
-    cardGradient: 'from-emerald-pale via-emerald-pale/50 to-white',
-    cardBorder: 'border-emerald/30',
+    color: 'bg-emerald/25 text-emerald',
+    cardGradient: 'bg-emerald-pale',
+    cardBorder: 'border-emerald/60',
     titleColor: 'text-emerald',
   },
   {
     icon: Building2,
     title: 'Four Connected Portals',
     description: 'Admin, caseworker, client, and business — one shared case, zero duplication, fully in sync.',
-    color: 'bg-cyan/10 text-cyan',
-    cardGradient: 'from-cyan-pale via-cyan-pale/50 to-white',
-    cardBorder: 'border-cyan/30',
+    color: 'bg-cyan/25 text-cyan',
+    cardGradient: 'bg-cyan-pale',
+    cardBorder: 'border-cyan/60',
     titleColor: 'text-cyan',
   },
   {
     icon: FileSearch,
     title: 'AI-Powered Case Intelligence',
     description: 'AI watches the details so your team can focus on the case — flagging risks and predicting delays before they happen.',
-    color: 'bg-purple/10 text-purple',
-    cardGradient: 'from-purple-pale via-purple-pale/50 to-white',
-    cardBorder: 'border-purple/30',
+    color: 'bg-purple/25 text-purple',
+    cardGradient: 'bg-purple-pale',
+    cardBorder: 'border-purple/60',
     titleColor: 'text-purple',
   },
   {
     icon: ShieldCheck,
     title: 'Audit & Compliance for Your Regulator',
     description: 'Every case keeps a complete, exportable trail — records, logs, and checks ready for your regulator (OISC) at any time, without last-minute file hunts.',
-    color: 'bg-indigo/10 text-indigo',
-    cardGradient: 'from-indigo-pale via-indigo-pale/50 to-white',
-    cardBorder: 'border-indigo/30',
+    color: 'bg-indigo/25 text-indigo',
+    cardGradient: 'bg-indigo-pale',
+    cardBorder: 'border-indigo/60',
     titleColor: 'text-indigo',
   },
 ];
@@ -137,9 +137,9 @@ const aiAgents = [
     description:
       'Track every case through enquiry, application, compliance, and completion with pre-built workflows for each UK visa type.',
     badges: ['FULL LIFECYCLE', 'PRE-BUILT WORKFLOWS'],
-    color: 'bg-blue/10 text-blue',
-    cardGradient: 'from-blue-pale via-blue-pale/50 to-white',
-    badgeBg: 'bg-blue-pale text-blue',
+    color: 'bg-blue/25 text-blue',
+    cardGradient: 'bg-blue-pale',
+    badgeBg: 'bg-blue text-white',
   },
   {
     icon: FileCheck,
@@ -147,9 +147,9 @@ const aiAgents = [
     description:
       'Store, organise, and retrieve every case document securely in one place, with checklists showing what\'s received and outstanding.',
     badges: ['SECURE STORAGE', 'CHECKLIST TRACKING'],
-    color: 'bg-indigo/10 text-indigo',
-    cardGradient: 'from-indigo-pale via-indigo-pale/50 to-white',
-    badgeBg: 'bg-indigo-pale text-indigo',
+    color: 'bg-indigo/25 text-indigo',
+    cardGradient: 'bg-indigo-pale',
+    badgeBg: 'bg-indigo text-white',
   },
   {
     icon: Users,
@@ -157,9 +157,9 @@ const aiAgents = [
     description:
       'Assign cases and tasks to caseworkers, then monitor workload and progress from a single manager dashboard.',
     badges: ['TASK ASSIGNMENT', 'WORKLOAD VISIBILITY'],
-    color: 'bg-purple/10 text-purple',
-    cardGradient: 'from-purple-pale via-purple-pale/50 to-white',
-    badgeBg: 'bg-purple-pale text-purple',
+    color: 'bg-purple/25 text-purple',
+    cardGradient: 'bg-purple-pale',
+    badgeBg: 'bg-purple text-white',
   },
   {
     icon: Shield,
@@ -167,9 +167,9 @@ const aiAgents = [
     description:
       'Manage licence requests, CoS allocation, and compliance reviews with automatic alerts before deadlines are at risk.',
     badges: ['LICENCE TRACKING', 'AUTO ALERTS'],
-    color: 'bg-emerald/10 text-emerald',
-    cardGradient: 'from-emerald-pale via-emerald-pale/50 to-white',
-    badgeBg: 'bg-emerald-pale text-emerald',
+    color: 'bg-emerald/25 text-emerald',
+    cardGradient: 'bg-emerald-pale',
+    badgeBg: 'bg-emerald text-white',
   },
   {
     icon: UserCheck,
@@ -177,9 +177,9 @@ const aiAgents = [
     description:
       'Let individual clients track their application progress, upload documents, and message your team without needing to call or email.',
     badges: ['CLIENT PORTAL', 'SELF-SERVICE'],
-    color: 'bg-cyan/10 text-cyan',
-    cardGradient: 'from-cyan-pale via-cyan-pale/50 to-white',
-    badgeBg: 'bg-cyan-pale text-cyan',
+    color: 'bg-cyan/25 text-cyan',
+    cardGradient: 'bg-cyan-pale',
+    badgeBg: 'bg-cyan text-white',
   },
   {
     icon: Building2,
@@ -187,9 +187,9 @@ const aiAgents = [
     description:
       'Give sponsoring businesses live visibility into licence status, sponsored workers, compliance obligations, and upcoming renewal deadlines.',
     badges: ['SPONSOR PORTAL', 'LIVE COMPLIANCE'],
-    color: 'bg-orange/10 text-orange',
-    cardGradient: 'from-orange-pale via-orange-pale/50 to-white',
-    badgeBg: 'bg-orange-pale text-orange',
+    color: 'bg-orange/25 text-orange',
+    cardGradient: 'bg-orange-pale',
+    badgeBg: 'bg-orange text-white',
   },
 ];
 
@@ -199,40 +199,40 @@ const coreModules = [
     title: 'Admin Dashboard',
     description: 'Complete oversight of every case, caseworker, and compliance obligation across your consultancy.',
     path: '/features/admin',
-    color: 'bg-indigo/10',
+    color: 'bg-indigo/25',
     iconColor: 'text-indigo',
     hoverColor: 'group-hover:text-indigo',
-    cardGradient: 'from-indigo-pale via-indigo-pale/50 to-white',
+    cardGradient: 'bg-indigo-pale',
   },
   {
     icon: Users,
     title: 'Caseworker Portal',
     description: 'Every assigned case, task, and deadline in one place — from Skilled Worker to ILR and Citizenship work.',
     path: '/features/caseworker',
-    color: 'bg-emerald/10',
+    color: 'bg-emerald/25',
     iconColor: 'text-emerald',
     hoverColor: 'group-hover:text-emerald',
-    cardGradient: 'from-emerald-pale via-emerald-pale/50 to-white',
+    cardGradient: 'bg-emerald-pale',
   },
   {
     icon: UserCheck,
     title: 'Client Portal',
     description: 'Self-service tracking, document upload, and direct messaging for individual clients.',
     path: '/features/client-portal',
-    color: 'bg-blue/10',
+    color: 'bg-blue/25',
     iconColor: 'text-blue',
     hoverColor: 'group-hover:text-blue',
-    cardGradient: 'from-blue-pale via-blue-pale/50 to-white',
+    cardGradient: 'bg-blue-pale',
   },
   {
     icon: MessageSquare,
     title: 'Business/Sponsor Portal',
     description: 'Live visibility into sponsor licence status, sponsored workers, and CoS allocation.',
     path: '/features/client',
-    color: 'bg-purple/10',
+    color: 'bg-purple/25',
     iconColor: 'text-purple',
     hoverColor: 'group-hover:text-purple',
-    cardGradient: 'from-purple-pale via-purple-pale/50 to-white',
+    cardGradient: 'bg-purple-pale',
   },
 ];
 
@@ -533,7 +533,7 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6">
             {displayTrustedFeatures.map((feature, i) => (
               <AnimatedSection key={i} delay={i * 0.08}>
-                <div className={`flex flex-col h-full items-start gap-3 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-gradient-to-br ${feature.cardGradient || 'from-white to-sand'} ${feature.cardBorder || 'border-white/70'} border shadow-md hover:shadow-[0_10px_35px_rgba(11,31,58,0.14)] transition-all duration-300`}>
+                <div className={`flex flex-col h-full items-start gap-3 sm:gap-4 p-4 sm:p-5 rounded-2xl ${feature.cardGradient || 'bg-white'} ${feature.cardBorder || 'border-white/70'} border shadow-md hover:shadow-[0_10px_35px_rgba(11,31,58,0.14)] transition-all duration-300`}>
                   <div className={`w-10 h-10 sm:w-11 sm:h-11 rounded-xl ${feature.color} flex items-center justify-center shrink-0 ring-1 ring-black/5`}>
                     <feature.icon size={22} />
                   </div>
@@ -575,7 +575,7 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {displayAiAgents.map((agent, i) => (
               <AnimatedSection key={i} delay={i * 0.08}>
-                <div className={`bg-gradient-to-br ${agent.cardGradient || 'from-white to-sand'} rounded-2xl border border-white p-6 h-full hover:shadow-[0_10px_35px_rgba(11,31,58,0.14)] transition-all duration-300`}>
+                <div className={`${agent.cardGradient || 'bg-white'} rounded-2xl border border-white p-6 h-full hover:shadow-[0_10px_35px_rgba(11,31,58,0.14)] transition-all duration-300`}>
                   <div className={`w-12 h-12 rounded-2xl ${agent.color} flex items-center justify-center mb-4`}>
                     <agent.icon size={24} />
                   </div>
@@ -628,7 +628,7 @@ export default function Home() {
             {displayCoreModules.map((mod, i) => (
               <AnimatedSection key={i} delay={i * 0.08}>
                 <Link to={mod.path || mod.link || '/features'} className="block group h-full">
-                  <div className={`bg-gradient-to-br ${mod.cardGradient || 'from-white to-sand'} rounded-2xl border border-white p-6 h-full flex flex-col hover:shadow-[0_10px_35px_rgba(11,31,58,0.14)] transition-all duration-300`}>
+                  <div className={`${mod.cardGradient || 'bg-white'} rounded-2xl border border-white p-6 h-full flex flex-col hover:shadow-[0_10px_35px_rgba(11,31,58,0.14)] transition-all duration-300`}>
                     <div
                       className={`w-12 h-12 ${mod.color} rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
                     >
