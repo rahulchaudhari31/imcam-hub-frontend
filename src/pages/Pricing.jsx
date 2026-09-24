@@ -1,15 +1,13 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import usePageMeta from '../hooks/usePageMeta';
 import {
   ArrowRight,
   CheckCircle2,
   Minus,
-  Star,
   Users,
   Sparkles,
-  Shield,
   TrendingUp,
   FolderKanban,
   ShieldCheck,
@@ -80,7 +78,7 @@ const featuresStandard = [
 
 const featuresPortal = [
   {
-    title: 'Candidate Portal',
+    title: 'Client Portal',
     icon: Laptop,
     items: [
       'Dedicated dashboard for clients',
@@ -210,38 +208,6 @@ function renderCell(value) {
   return <span className="text-text-secondary text-xs">{value}</span>;
 }
 
-function AnimatedCounter({ target, suffix = '', prefix = '', duration = 1.5 }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true });
-
-  useEffect(() => {
-    if (!inView) return;
-    const end = target;
-    const stepTime = (duration * 1000) / end;
-    const minStep = 16;
-    const steps = Math.ceil((duration * 1000) / Math.max(stepTime, minStep));
-    const increment = end / steps;
-    let current = 0;
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= end) {
-        setCount(end);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(current));
-      }
-    }, Math.max(stepTime, minStep));
-    return () => clearInterval(timer);
-  }, [inView, target, duration]);
-
-  return (
-    <span ref={ref}>
-      {prefix}{count}{suffix}
-    </span>
-  );
-}
-
 export default function Pricing() {
   usePageMeta(
     'Pricing — ImCam Hub',
@@ -351,38 +317,6 @@ export default function Pricing() {
                 Start with a free trial. Scale as you grow. No hidden fees, no
                 long-term contracts.
               </motion.p>
-
-              {/* Trust strip */}
-              <div className="flex flex-wrap items-center gap-4">
-                {[
-                  { icon: Star, label: '4.9/5', sublabel: 'on G2', color: 'text-amber', bg: 'bg-amber/10', value: 4.9, suffix: '/5', isDecimal: true },
-                  { icon: Users, label: '200+', sublabel: 'firms trust us', color: 'text-blue', bg: 'bg-blue-pale', value: 200, suffix: '+' },
-                  { icon: Shield, label: '14', sublabel: 'day free trial', color: 'text-blue', bg: 'bg-blue-soft', value: 14, suffix: '-day' },
-                ].map((item, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
-                    whileHover={{ y: -3, scale: 1.02 }}
-                    className={`flex items-center gap-2.5 px-4 py-2.5 rounded-xl ${item.bg} border border-white/60 shadow-sm cursor-default select-none`}
-                  >
-                    <div className={`w-8 h-8 rounded-lg ${item.bg} flex items-center justify-center`}>
-                      <item.icon size={16} className={item.color} />
-                    </div>
-                    <div>
-                      <div className={`text-sm font-bold ${item.color}`}>
-                        {item.isDecimal ? (
-                          <AnimatedCounter target={4.9} suffix="/5" duration={1.2} />
-                        ) : (
-                          <AnimatedCounter target={item.value} suffix={item.suffix} duration={1.2} />
-                        )}
-                      </div>
-                      <div className="text-[10px] text-text-muted leading-none">{item.sublabel}</div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
             </div>
 
             {/* Right: Interactive Image */}
@@ -510,7 +444,7 @@ export default function Pricing() {
                 {/* CTA */}
                 {plan.cta === 'Contact Sales' ? (
                   <a
-                    href="mailto:hello@incamhub.com"
+                    href="mailto:support@imcamhub.com"
                     className={`flex items-center justify-center gap-2 w-full ${plan.ctaClass} px-6 py-3.5 rounded-full text-sm font-semibold transition-all duration-200 active:scale-[0.98]`}
                   >
                     {plan.cta} <ArrowRight size={16} />

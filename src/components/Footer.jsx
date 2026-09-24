@@ -6,7 +6,7 @@ import { fetchContactInfo, fetchSocialLinks, fetchFooterLinks } from '../service
 const productLinks = [
   { name: 'Admin Dashboard', path: '/features/admin' },
   { name: 'Caseworker Portal', path: '/features/caseworker' },
-  { name: 'Candidate Portal', path: '/features/candidate' },
+  { name: 'Client Portal', path: '/features/client-portal' },
   { name: 'Sponsor/Business Portal', path: '/features/client' },
 ];
 
@@ -70,15 +70,14 @@ export default function Footer() {
     load();
   }, []);
 
-  const email = contactInfo?.email || 'hello@incamhub.com';
+  const email = contactInfo?.email || 'support@imcamhub.com';
   const phone = contactInfo?.phone || '+44 (0) 121 778 2400';
-  const mobile = contactInfo?.content?.mobile || '+44 (0) 7570 380787';
   const address = contactInfo?.address || 'Unit 2, 1204B Stratford Road, Hall Green, Birmingham. B28 8HN, England';
   const website = contactInfo?.content?.website || 'https://e2ecybersolutions.com/';
 
   const displaySocialLinks = socialLinksData
     ? socialLinksData
-        .filter((s) => s.platform !== 'twitter' && s.platform !== 'github' && s.platform !== 'linkedin')
+        .filter((s) => s.platform !== 'twitter' && s.platform !== 'github' && s.platform !== 'linkedin' && s.platform !== 'facebook')
         .map((s) => ({
           name: s.platform,
           label: socialLabels[s.platform] || s.platform.slice(0, 2),
@@ -131,34 +130,6 @@ export default function Footer() {
                   ))}
                 </div>
               )}
-              <div className="flex items-center gap-4 mt-6">
-                <a
-                  href="https://www.linkedin.com/in/aakanksha-chimote-6785a554/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn profile"
-                  className="transition-opacity hover:opacity-80"
-                >
-                  <img
-                    src="/assets/image004.png"
-                    alt="LinkedIn"
-                    className="h-9 w-9 object-contain"
-                  />
-                </a>
-                <a
-                  href="https://www.facebook.com/e2eHumanResourceConsultancy/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Facebook page"
-                  className="transition-opacity hover:opacity-80"
-                >
-                  <img
-                    src="/assets/image003.png"
-                    alt="Facebook"
-                    className="h-9 w-9 object-contain"
-                  />
-                </a>
-              </div>
             </div>
 
             <div className="lg:col-span-3">
@@ -208,12 +179,6 @@ export default function Footer() {
                   <a href={`tel:${phone.replace(/[^+0-9]/g, '')}`} className="flex items-start gap-3 text-sm text-white/50 hover:text-white transition-colors group">
                     <Phone size={20} className="shrink-0 mt-0.5 text-white/40 group-hover:text-blue transition-colors" />
                     <span>T: {phone}</span>
-                  </a>
-                </li>
-                <li>
-                  <a href={`tel:${mobile.replace(/[^+0-9]/g, '')}`} className="flex items-start gap-3 text-sm text-white/50 hover:text-white transition-colors group">
-                    <Phone size={20} className="shrink-0 mt-0.5 text-white/40 group-hover:text-blue transition-colors" />
-                    <span>M: {mobile}</span>
                   </a>
                 </li>
                 <li>

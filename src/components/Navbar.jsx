@@ -34,10 +34,10 @@ const featureItems = [
     textColor: 'text-blue',
   },
   {
-    name: 'Candidate Portal',
-    path: '/features/candidate',
+    name: 'Client Portal',
+    path: '/features/client-portal',
     icon: UserCheck,
-    description: 'Applicant self-service tracking',
+    description: 'Client self-service tracking',
     iconBg: 'bg-emerald/10',
     iconHover: 'group-hover:bg-emerald/20',
     textColor: 'text-emerald',

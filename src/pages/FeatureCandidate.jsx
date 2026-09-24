@@ -56,9 +56,9 @@ const defaultFeatures = [
 
 const defaultFaqs = [
   {
-    question: 'Is the candidate portal mobile-friendly?',
+    question: 'Is the client portal mobile-friendly?',
     answer:
-      'Yes. The Candidate Portal is fully responsive and works on any device — phone, tablet, or desktop. You can upload documents, check your case status, and message your caseworker from anywhere.',
+      'Yes. The Client Portal is fully responsive and works on any device — phone, tablet, or desktop. You can upload documents, check your case status, and message your caseworker from anywhere.',
   },
   {
     question: 'Can other applicants see my information?',
@@ -74,7 +74,7 @@ const defaultFaqs = [
 
 export default function FeatureCandidate() {
   usePageMeta(
-    'Candidate Portal — ImCam Hub',
+    'Client Portal — ImCam Hub',
     'A self-service portal for individual UK visa applicants: track your Skilled Worker, ILR, or British Citizenship case, upload documents, and message your caseworker in real time.',
     'features'
   );
@@ -103,7 +103,7 @@ export default function FeatureCandidate() {
 
   return (
     <FeaturePageTemplate
-      title="Candidate Portal"
+      title="Client Portal"
       roleName={page?.role_name || 'Individual Applicant'}
       bannerText={page?.banner_text || 'Built for Applicants'}
       bannerSubline={page?.banner_subline || 'Everything you need to follow your case.'}
@@ -111,20 +111,20 @@ export default function FeatureCandidate() {
       introHeading={page?.intro_heading || 'One Portal to Track Your Entire Visa Application'}
       introText={
         page?.intro_text || [
-          'The Candidate Portal gives individual applicants a clear, live view of their UK visa case — whether it\'s a Skilled Worker visa, ILR, or British Citizenship application — without needing to call or email for updates.',
+          'The Client Portal gives individual applicants a clear, live view of their UK visa case — whether it\'s a Skilled Worker visa, ILR, or British Citizenship application — without needing to call or email for updates.',
           'See exactly which stage your case is at, what\'s needed from you, and what your caseworker is handling next. Built as part of ImCam Hub\'s UK immigration case management software, it replaces uncertainty and status-check emails with straightforward, real-time visibility.',
         ]
       }
-      introImageLabel={page?.intro_image_label || 'Candidate Portal Preview'}
+      introImageLabel={page?.intro_image_label || 'Client Portal Preview'}
       introReverse={page?.intro_reverse}
       bannerImage={resolveCmsAsset(page?.banner_image) || bannerImg}
       introImage={resolveCmsAsset(page?.intro_image) || introImg}
       middleImage={resolveCmsAsset(page?.middle_image) || caseworkerImg}
-      middleBadge={page?.middle_badge || 'Candidate Portal'}
+      middleBadge={page?.middle_badge || 'Client Portal'}
       middleHeading={page?.middle_heading || 'Follow your application, step by step'}
       middleParagraphs={
         page?.middle_paragraphs || [
-          'Waiting to hear back about a UK visa application is stressful enough without chasing updates by phone or email. The Candidate Portal gives you a live view of your case — from first enquiry through to final decision.',
+          'Waiting to hear back about a UK visa application is stressful enough without chasing updates by phone or email. The Client Portal gives you a live view of your case — from first enquiry through to final decision.',
           'Log in anytime to see where your application stands, what your caseworker is handling next, and what\'s needed from you — with everything tied to your Skilled Worker, ILR, or British Citizenship case.',
         ]
       }

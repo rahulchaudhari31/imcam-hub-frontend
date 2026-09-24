@@ -14,6 +14,16 @@ const featureColors = [
   'bg-pink/10 text-pink',
 ];
 
+const cardGradients = [
+  'from-blue/5 via-white to-blue-pale/60',
+  'from-indigo/5 via-white to-indigo-pale/60',
+  'from-purple/5 via-white to-purple-pale/60',
+  'from-emerald/5 via-white to-emerald-pale/60',
+  'from-cyan/5 via-white to-cyan-pale/60',
+  'from-orange/5 via-white to-orange-pale/60',
+  'from-pink/5 via-white to-pink-pale/60',
+];
+
 function AnimateOnScroll({ children, className = '', delay = 0 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-60px' });
@@ -245,12 +255,13 @@ export default function FeaturePageTemplate({
             >
               {row.map((feature, i) => {
                 const colorClass = featureColors[(rowIndex * 3 + i) % featureColors.length];
+                const cardGradient = cardGradients[(rowIndex * 3 + i) % cardGradients.length];
                 return (
                   <AnimateOnScroll key={i} delay={i * 0.06}>
                     <motion.div
                       whileHover={{ y: -4 }}
                       transition={{ duration: 0.2 }}
-                      className="bg-white rounded-2xl border border-sand-dark p-5 sm:p-6 h-full hover:shadow-[0_8px_30px_rgba(11,31,58,0.08)] transition-shadow"
+                      className={`bg-gradient-to-br ${cardGradient} rounded-2xl border border-sand-dark/60 p-5 sm:p-6 h-full hover:shadow-[0_8px_30px_rgba(11,31,58,0.12)] transition-all duration-300`}
                     >
                       <div className={`w-11 h-11 sm:w-12 sm:h-12 rounded-2xl ${colorClass} flex items-center justify-center mb-4`}>
                         <feature.icon size={22} sm:size={24} />

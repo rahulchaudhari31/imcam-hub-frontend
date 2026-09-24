@@ -51,7 +51,7 @@ function App() {
             <Route path="/features" element={<FeaturesIndex />} />
             <Route path="/features/admin" element={<FeatureAdmin />} />
             <Route path="/features/caseworker" element={<FeatureCaseworker />} />
-            <Route path="/features/candidate" element={<FeatureCandidate />} />
+            <Route path="/features/client-portal" element={<FeatureCandidate />} />
             <Route path="/features/client" element={<FeatureClient />} />
             <Route path="/solutions" element={<Solutions />} />
             <Route path="/pricing" element={<Pricing />} />

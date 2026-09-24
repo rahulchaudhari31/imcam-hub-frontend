@@ -140,7 +140,7 @@ export default function BookDemo() {
   const testimonialRole =
     config?.testimonial_role || 'Managing Partner, Mitchell & Associates';
   const contactPhone = config?.contact_phone || '+44 20 7946 0958';
-  const contactEmail = config?.contact_email || 'hello@incamhub.com';
+  const contactEmail = config?.contact_email || 'support@imcamhub.com';
 
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
