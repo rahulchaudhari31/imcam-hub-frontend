@@ -70,7 +70,7 @@ export default function Footer() {
     load();
   }, []);
 
-  const email = contactInfo?.email || 'srishti@e2eworld.co.uk';
+  const email = contactInfo?.email || 'hello@incamhub.com';
   const phone = contactInfo?.phone || '+44 (0) 121 778 2400';
   const mobile = contactInfo?.content?.mobile || '+44 (0) 7570 380787';
   const address = contactInfo?.address || 'Unit 2, 1204B Stratford Road, Hall Green, Birmingham. B28 8HN, England';

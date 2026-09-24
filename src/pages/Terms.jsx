@@ -1,199 +1,269 @@
 import { motion } from 'framer-motion';
 import usePageMeta from '../hooks/usePageMeta';
 
-const contents = [
-  { id: 'section-1', label: '1. Purpose and Scope of the Agreement' },
-  { id: 'section-2', label: '2. Definitions and Interpretation' },
-  { id: 'section-3', label: '3. Contract Formation and Acceptance' },
-  { id: 'section-4', label: '4. Contract Documents and Order of Precedence' },
-  { id: 'section-5', label: '5. Eligibility and Authority' },
-  { id: 'section-6', label: '6. Description of ImCamHub' },
-  { id: 'section-7', label: '7. Licence to Use Software' },
-  { id: 'section-8', label: '8. Subscription Model' },
-  { id: 'section-9', label: '9. Permitted Use' },
-  { id: 'section-10', label: '10. Restrictions on Use' },
-  { id: 'section-11', label: '11. Software Updates and Changes' },
-  { id: 'section-12', label: '12. Beta, Free Trial and Demonstration Versions' },
-  { id: 'section-13', label: '13. User Types and Roles' },
-  { id: 'section-14', label: '14. Client/Admin Portal' },
-  { id: 'section-15', label: '15. Caseworker Portal' },
-  { id: 'section-16', label: '16. Candidate Portal' },
-  { id: 'section-17', label: '17. Business/Sponsor Portal' },
-  { id: 'section-18', label: '18. Super Admin / e2e Cyber Solutions Access' },
-  { id: 'section-19', label: '19. User Accounts and Credentials' },
-  { id: 'section-20', label: '20. User Permissions and Access Controls' },
-  { id: 'section-21', label: '21. Adding, Removing and Managing Users' },
-  { id: 'section-22', label: '22. Customer Responsibility for User Activity' },
-  { id: 'section-23', label: '23. Nature and Purpose of ImCamHub' },
-  { id: 'section-24', label: '24. No Guarantee of Immigration Outcome' },
-  { id: 'section-25', label: '25. Immigration Advice and Professional Responsibility' },
-  { id: 'section-26', label: '26. Customer\u2019s Regulatory Responsibilities' },
-  { id: 'section-27', label: '27. Accuracy of Immigration Information' },
-  { id: 'section-28', label: '28. Changes to UK Immigration Law and Policy' },
-  { id: 'section-29', label: '29. Home Office / UKVI Disclaimer' },
-  { id: 'section-30', label: '30. No Automatic Immigration Decision-Making' },
-  { id: 'section-31', label: '31. No Automatic Home Office Submission' },
-  { id: 'section-32', label: '32. Human Review and Verification' },
-  { id: 'section-33', label: '33. Responsibility for Applications and Submissions' },
-  { id: 'section-34', label: '34. Customer Responsibilities' },
-  { id: 'section-35', label: '35. Accuracy and Completeness of Information' },
-  { id: 'section-36', label: '36. Candidate/Employee Responsibilities' },
-  { id: 'section-37', label: '37. Business/Sponsor Responsibilities' },
-  { id: 'section-38', label: '38. Immigration Firm/Adviser Responsibilities' },
-  { id: 'section-39', label: '39. Obtaining Consents and Authorisations' },
-  { id: 'section-40', label: '40. Lawful Use of the Platform' },
-  { id: 'section-41', label: '41. Case Creation and Management' },
-  { id: 'section-42', label: '42. Document Upload and Storage' },
-  { id: 'section-43', label: '43. Document Access and Permissions' },
-  { id: 'section-44', label: '44. Document Accuracy and Authenticity' },
-  { id: 'section-45', label: '45. Electronic Signatures' },
-  { id: 'section-46', label: '46. Records and Audit Trails' },
-  { id: 'section-47', label: '47. Data Export' },
-  { id: 'section-48', label: '48. Document and Data Retention' },
-  { id: 'section-49', label: '49. Deletion of Cases and Documents' },
-  { id: 'section-50', label: '50. Email and Platform Communications' },
-  { id: 'section-51', label: '51. Notifications and Reminders' },
-  { id: 'section-52', label: '52. Customer Responsibility for Communications' },
+const parts = [
   {
-    id: 'section-53',
-    label: '53. Email Delivery and Third-Party Communication Services',
-  },
-  { id: 'section-54', label: '54. Data Protection' },
-  { id: 'section-55', label: '55. Controller and Processor Roles' },
-  { id: 'section-56', label: '56. UK GDPR and Data Protection Act 2018' },
-  { id: 'section-57', label: '57. Personal Data' },
-  { id: 'section-58', label: '58. Special Category Data' },
-  { id: 'section-59', label: '59. Criminal Offence Data' },
-  { id: 'section-60', label: '60. Children\u2019s Data' },
-  { id: 'section-61', label: '61. Data Processing Instructions' },
-  { id: 'section-62', label: '62. Data Security' },
-  { id: 'section-63', label: '63. Data Breach and Security Incidents' },
-  { id: 'section-64', label: '64. Data Subject Rights' },
-  { id: 'section-65', label: '65. International Data Transfers' },
-  { id: 'section-66', label: '66. Sub-Processors' },
-  { id: 'section-67', label: '67. Data Retention and Deletion' },
-  { id: 'section-68', label: '68. Data Protection Impact Assessments' },
-  { id: 'section-69', label: '69. Data Processing Agreement' },
-  { id: 'section-70', label: '70. Confidentiality' },
-  { id: 'section-71', label: '71. Client Confidential Information' },
-  { id: 'section-72', label: '72. Segregation of Customer Data' },
-  {
-    id: 'section-73',
-    label: '73. Access to Customer Systems and Data by e2e Cyber Solutions',
-  },
-  { id: 'section-74', label: '74. Security Measures' },
-  { id: 'section-75', label: '75. Access Logging and Monitoring' },
-  { id: 'section-76', label: '76. Cybersecurity' },
-  { id: 'section-77', label: '77. Backups and Disaster Recovery' },
-  { id: 'section-78', label: '78. Business Continuity' },
-  { id: 'section-79', label: '79. Security Vulnerabilities' },
-  { id: 'section-80', label: '80. Ownership of ImCamHub' },
-  {
-    id: 'section-81',
-    label: '81. e2e Cyber Solutions Intellectual Property',
-  },
-  { id: 'section-82', label: '82. Customer Data Ownership' },
-  { id: 'section-83', label: '83. Customer Content and Documents' },
-  { id: 'section-84', label: '84. Templates and Materials' },
-  { id: 'section-85', label: '85. Feedback and Suggestions' },
-  {
-    id: 'section-86',
-    label: '86. Restrictions on Copying, Reverse Engineering and Scraping',
-  },
-  { id: 'section-87', label: '87. Third-Party Intellectual Property' },
-  { id: 'section-88', label: '88. Third-Party Services' },
-  { id: 'section-89', label: '89. Third-Party Integrations' },
-  { id: 'section-90', label: '90. APIs' },
-  { id: 'section-91', label: '91. Third-Party Service Availability' },
-  { id: 'section-92', label: '92. Third-Party Terms and Conditions' },
-  { id: 'section-93', label: '93. Subscription Fees' },
-  { id: 'section-94', label: '94. Monthly Billing' },
-  { id: 'section-95', label: '95. Free Trial / Demonstration' },
-  { id: 'section-96', label: '96. Payment' },
-  { id: 'section-97', label: '97. Taxes and VAT' },
-  { id: 'section-98', label: '98. Failed or Late Payments' },
-  { id: 'section-99', label: '99. Price Changes' },
-  { id: 'section-100', label: '100. Renewal' },
-  { id: 'section-101', label: '101. Cancellation' },
-  { id: 'section-102', label: '102. Availability of ImCamHub' },
-  { id: 'section-103', label: '103. Maintenance' },
-  { id: 'section-104', label: '104. Planned Downtime' },
-  { id: 'section-105', label: '105. Emergency Maintenance' },
-  { id: 'section-106', label: '106. Technical Support' },
-  { id: 'section-107', label: '107. Service Levels / SLA' },
-  { id: 'section-108', label: '108. Service Credits, If Applicable' },
-  { id: 'section-109', label: '109. Suspension of Access' },
-  { id: 'section-110', label: '110. Termination by Customer' },
-  { id: 'section-111', label: '111. Termination by e2e Cyber Solutions' },
-  { id: 'section-112', label: '112. Termination for Breach' },
-  { id: 'section-113', label: '113. Termination for Non-Payment' },
-  { id: 'section-114', label: '114. Effect of Termination' },
-  { id: 'section-115', label: '115. Customer Data Following Termination' },
-  { id: 'section-116', label: '116. Survival of Terms' },
-  { id: 'section-117', label: '117. e2e Cyber Solutions Warranties' },
-  { id: 'section-118', label: '118. Customer Warranties' },
-  { id: 'section-119', label: '119. Software Disclaimer' },
-  { id: 'section-120', label: '120. Accuracy Disclaimer' },
-  { id: 'section-121', label: '121. Immigration Outcome Disclaimer' },
-  { id: 'section-122', label: '122. Third-Party Services Disclaimer' },
-  { id: 'section-123', label: '123. Availability Disclaimer' },
-  { id: 'section-124', label: '124. Limitation of Liability' },
-  { id: 'section-125', label: '125. Excluded Losses' },
-  { id: 'section-126', label: '126. Liability Cap' },
-  { id: 'section-127', label: '127. Customer Indemnity' },
-  { id: 'section-128', label: '128. Intellectual Property Indemnity' },
-  { id: 'section-129', label: '129. Data Protection Liability' },
-  {
-    id: 'section-130',
-    label: '130. Professional / Immigration Advice Liability',
-  },
-  { id: 'section-131', label: '131. Fraud and Misrepresentation' },
-  { id: 'section-132', label: '132. Liabilities That Cannot Be Excluded' },
-  { id: 'section-133', label: '133. Compliance with Laws' },
-  { id: 'section-134', label: '134. Immigration Regulatory Compliance' },
-  { id: 'section-135', label: '135. Professional Regulatory Compliance' },
-  { id: 'section-136', label: '136. Data Protection Compliance' },
-  { id: 'section-137', label: '137. Anti-Bribery and Corruption' },
-  {
-    id: 'section-138',
-    label: '138. Modern Slavery, Where Appropriate',
+    title: 'Part 1 — Introduction & Contract Framework',
+    sections: [
+      { id: 'section-1', label: '1. Purpose and Scope of the Agreement' },
+      { id: 'section-2', label: '2. Definitions and Interpretation' },
+      { id: 'section-3', label: '3. Contract Formation and Acceptance' },
+      { id: 'section-4', label: '4. Order of Precedence of Contract Documents' },
+      { id: 'section-5', label: '5. Eligibility to Enter into the Agreement' },
+    ],
   },
   {
-    id: 'section-139',
-    label: '139. Sanctions and Export Controls, Where Relevant',
+    title: 'Part 2 — IMCAM Hub Software & Licence',
+    sections: [
+      { id: 'section-6', label: '6. Description of IMCAM Hub' },
+      { id: 'section-7', label: '7. Licence to Use the Software' },
+      { id: 'section-8', label: '8. Subscription Model' },
+      { id: 'section-9', label: '9. Permitted Use' },
+      { id: 'section-10', label: '10. Restrictions on Use' },
+      { id: 'section-11', label: '11. Software Updates and Changes' },
+      { id: 'section-12', label: '12. Beta, Trial and Demonstration Versions' },
+    ],
   },
   {
-    id: 'section-140',
-    label: '140. Regulatory Investigations and Cooperation',
+    title: 'Part 3 — Users, Portals & Access',
+    sections: [
+      { id: 'section-13', label: '13. User Types and Roles' },
+      { id: 'section-14', label: '14. Client/Admin Portal' },
+      { id: 'section-15', label: '15. Caseworker Portal' },
+      { id: 'section-16', label: '16. Candidate Portal' },
+      { id: 'section-17', label: '17. Business/Sponsor Portal' },
+      { id: 'section-18', label: '18. Super Admin / e2e World Access' },
+      { id: 'section-19', label: '19. User Accounts and Credentials' },
+      { id: 'section-20', label: '20. User Permissions and Access Controls' },
+      { id: 'section-21', label: '21. Adding, Removing and Managing Users' },
+      { id: 'section-22', label: '22. Customer Responsibility for User Activity' },
+    ],
   },
-  { id: 'section-141', label: '141. Changes to the Software' },
-  { id: 'section-142', label: '142. Changes to Features' },
-  { id: 'section-143', label: '143. Changes to Immigration Content' },
-  { id: 'section-144', label: '144. Changes to These Terms' },
   {
-    id: 'section-145',
-    label: '145. Notification of Material Changes',
+    title: 'Part 4 — Immigration-Specific Provisions',
+    sections: [
+      { id: 'section-23', label: '23. Nature and Purpose of IMCAM Hub' },
+      { id: 'section-24', label: '24. No Guarantee of Immigration Outcome' },
+      { id: 'section-25', label: '25. Immigration Advice and Professional Responsibility' },
+      { id: 'section-26', label: '26. Customer\u2019s Regulatory Responsibilities' },
+      { id: 'section-27', label: '27. Accuracy of Immigration Information' },
+      { id: 'section-28', label: '28. Changes to UK Immigration Law and Policy' },
+      { id: 'section-29', label: '29. Home Office / UKVI Disclaimer' },
+      { id: 'section-30', label: '30. No Automatic Immigration Decision-Making' },
+      { id: 'section-31', label: '31. No Automatic Home Office Submission' },
+      { id: 'section-32', label: '32. Human Review and Verification' },
+      { id: 'section-33', label: '33. Responsibility for Applications and Submissions' },
+    ],
   },
-  { id: 'section-146', label: '146. Force Majeure' },
-  { id: 'section-147', label: '147. Notices' },
-  { id: 'section-148', label: '148. Assignment' },
-  { id: 'section-149', label: '149. Subcontracting' },
-  { id: 'section-150', label: '150. Change of Control' },
-  { id: 'section-151', label: '151. Entire Agreement' },
-  { id: 'section-152', label: '152. Variation' },
-  { id: 'section-153', label: '153. Waiver' },
-  { id: 'section-154', label: '154. Severability' },
-  { id: 'section-155', label: '155. No Partnership or Agency' },
-  { id: 'section-156', label: '156. Third-Party Rights' },
   {
-    id: 'section-157',
-    label: '157. Relationship Between the Parties',
+    title: 'Part 5 — Customer Responsibilities',
+    sections: [
+      { id: 'section-34', label: '34. Customer Responsibilities' },
+      { id: 'section-35', label: '35. Accuracy and Completeness of Information' },
+      { id: 'section-36', label: '36. Candidate/Employee Responsibilities' },
+      { id: 'section-37', label: '37. Business/Sponsor Responsibilities' },
+      { id: 'section-38', label: '38. Immigration Firm/Adviser Responsibilities' },
+      { id: 'section-39', label: '39. Obtaining Consents and Authorisations' },
+      { id: 'section-40', label: '40. Lawful Use of the Platform' },
+    ],
   },
-  { id: 'section-158', label: '158. Further Assurance' },
-  { id: 'section-159', label: '159. Complaints' },
-  { id: 'section-160', label: '160. Dispute Resolution' },
-  { id: 'section-161', label: '161. Governing Law' },
-  { id: 'section-162', label: '162. Jurisdiction' },
+  {
+    title: 'Part 6 — Case Management & Documents',
+    sections: [
+      { id: 'section-41', label: '41. Case Creation and Management' },
+      { id: 'section-42', label: '42. Document Upload and Storage' },
+      { id: 'section-43', label: '43. Document Access and Permissions' },
+      { id: 'section-44', label: '44. Document Accuracy and Authenticity' },
+      { id: 'section-45', label: '45. Electronic Signatures' },
+      { id: 'section-46', label: '46. Records and Audit Trails' },
+      { id: 'section-47', label: '47. Data Export' },
+      { id: 'section-48', label: '48. Document and Data Retention' },
+      { id: 'section-49', label: '49. Deletion of Cases and Documents' },
+    ],
+  },
+  {
+    title: 'Part 7 — Communications & Notifications',
+    sections: [
+      { id: 'section-50', label: '50. Email and Platform Communications' },
+      { id: 'section-51', label: '51. Notifications and Reminders' },
+      { id: 'section-52', label: '52. Customer Responsibility for Communications' },
+      { id: 'section-53', label: '53. Email Delivery and Third-Party Communication Services' },
+    ],
+  },
+  {
+    title: 'Part 8 — Data Protection & Privacy',
+    sections: [
+      { id: 'section-54', label: '54. Data Protection' },
+      { id: 'section-55', label: '55. Controller and Processor Roles' },
+      { id: 'section-56', label: '56. UK GDPR and Data Protection Act 2018' },
+      { id: 'section-57', label: '57. Personal Data' },
+      { id: 'section-58', label: '58. Special Category Data' },
+      { id: 'section-59', label: '59. Criminal Offence Data' },
+      { id: 'section-60', label: '60. Children\u2019s Data' },
+      { id: 'section-61', label: '61. Data Processing Instructions' },
+      { id: 'section-62', label: '62. Data Security' },
+      { id: 'section-63', label: '63. Data Breach and Security Incidents' },
+      { id: 'section-64', label: '64. Data Subject Rights' },
+      { id: 'section-65', label: '65. International Data Transfers' },
+      { id: 'section-66', label: '66. Sub-Processors' },
+      { id: 'section-67', label: '67. Data Retention and Deletion' },
+      { id: 'section-68', label: '68. Data Protection Impact Assessments' },
+      { id: 'section-69', label: '69. Data Processing Agreement' },
+    ],
+  },
+  {
+    title: 'Part 9 — Confidentiality & Security',
+    sections: [
+      { id: 'section-70', label: '70. Confidentiality' },
+      { id: 'section-71', label: '71. Client Confidential Information' },
+      { id: 'section-72', label: '72. Segregation of Customer Data' },
+      { id: 'section-73', label: '73. Access to Customer Systems and Data by e2e World' },
+      { id: 'section-74', label: '74. Security Measures' },
+      { id: 'section-75', label: '75. Access Logging and Monitoring' },
+      { id: 'section-76', label: '76. Cybersecurity' },
+      { id: 'section-77', label: '77. Backups and Disaster Recovery' },
+      { id: 'section-78', label: '78. Business Continuity' },
+      { id: 'section-79', label: '79. Security Vulnerabilities' },
+    ],
+  },
+  {
+    title: 'Part 10 — Intellectual Property',
+    sections: [
+      { id: 'section-80', label: '80. Ownership of IMCAM Hub' },
+      { id: 'section-81', label: '81. e2e World Intellectual Property' },
+      { id: 'section-82', label: '82. Customer Data Ownership' },
+      { id: 'section-83', label: '83. Customer Content and Documents' },
+      { id: 'section-84', label: '84. Templates and Materials' },
+      { id: 'section-85', label: '85. Feedback and Suggestions' },
+      { id: 'section-86', label: '86. Restrictions on Copying, Reverse Engineering and Scraping' },
+      { id: 'section-87', label: '87. Third-Party Intellectual Property' },
+    ],
+  },
+  {
+    title: 'Part 11 — Third-Party Services & Integrations',
+    sections: [
+      { id: 'section-88', label: '88. Third-Party Services' },
+      { id: 'section-89', label: '89. Third-Party Integrations' },
+      { id: 'section-90', label: '90. APIs' },
+      { id: 'section-91', label: '91. Third-Party Service Availability' },
+      { id: 'section-92', label: '92. Third-Party Terms and Conditions' },
+    ],
+  },
+  {
+    title: 'Part 12 — Fees & Subscription',
+    sections: [
+      { id: 'section-93', label: '93. Subscription Fees' },
+      { id: 'section-94', label: '94. Monthly Billing' },
+      { id: 'section-95', label: '95. Free Trial / Demonstration' },
+      { id: 'section-96', label: '96. Payment' },
+      { id: 'section-97', label: '97. Taxes and VAT' },
+      { id: 'section-98', label: '98. Failed or Late Payments' },
+      { id: 'section-99', label: '99. Price Changes' },
+      { id: 'section-100', label: '100. Renewal' },
+      { id: 'section-101', label: '101. Cancellation' },
+    ],
+  },
+  {
+    title: 'Part 13 — Service Availability & Support',
+    sections: [
+      { id: 'section-102', label: '102. Availability of IMCAM Hub' },
+      { id: 'section-103', label: '103. Maintenance' },
+      { id: 'section-104', label: '104. Planned Downtime' },
+      { id: 'section-105', label: '105. Emergency Maintenance' },
+      { id: 'section-106', label: '106. Technical Support' },
+      { id: 'section-107', label: '107. Service Levels / SLA' },
+      { id: 'section-108', label: '108. Service Credits, if applicable' },
+    ],
+  },
+  {
+    title: 'Part 14 — Suspension & Termination',
+    sections: [
+      { id: 'section-109', label: '109. Suspension of Access' },
+      { id: 'section-110', label: '110. Termination by Customer' },
+      { id: 'section-111', label: '111. Termination by e2e World' },
+      { id: 'section-112', label: '112. Termination for Breach' },
+      { id: 'section-113', label: '113. Termination for Non-Payment' },
+      { id: 'section-114', label: '114. Effect of Termination' },
+      { id: 'section-115', label: '115. Customer Data Following Termination' },
+      { id: 'section-116', label: '116. Survival of Terms' },
+    ],
+  },
+  {
+    title: 'Part 15 — Warranties & Disclaimers',
+    sections: [
+      { id: 'section-117', label: '117. e2e World Warranties' },
+      { id: 'section-118', label: '118. Customer Warranties' },
+      { id: 'section-119', label: '119. Software Disclaimer' },
+      { id: 'section-120', label: '120. Accuracy Disclaimer' },
+      { id: 'section-121', label: '121. Immigration Outcome Disclaimer' },
+      { id: 'section-122', label: '122. Third-Party Services Disclaimer' },
+      { id: 'section-123', label: '123. Availability Disclaimer' },
+    ],
+  },
+  {
+    title: 'Part 16 — Liability & Indemnities',
+    sections: [
+      { id: 'section-124', label: '124. Limitation of Liability' },
+      { id: 'section-125', label: '125. Excluded Losses' },
+      { id: 'section-126', label: '126. Liability Cap' },
+      { id: 'section-127', label: '127. Customer Indemnity' },
+      { id: 'section-128', label: '128. Intellectual Property Indemnity' },
+      { id: 'section-129', label: '129. Data Protection Liability' },
+      { id: 'section-130', label: '130. Professional/Immigration Advice Liability' },
+      { id: 'section-131', label: '131. Fraud and Misrepresentation' },
+      { id: 'section-132', label: '132. Liabilities That Cannot Be Excluded' },
+    ],
+  },
+  {
+    title: 'Part 17 — Regulatory & Legal Compliance',
+    sections: [
+      { id: 'section-133', label: '133. Compliance with Laws' },
+      { id: 'section-134', label: '134. Immigration Regulatory Compliance' },
+      { id: 'section-135', label: '135. Professional Regulatory Compliance' },
+      { id: 'section-136', label: '136. Data Protection Compliance' },
+      { id: 'section-137', label: '137. Anti-Bribery and Corruption' },
+      { id: 'section-138', label: '138. Modern Slavery, Where Appropriate' },
+      { id: 'section-139', label: '139. Sanctions and Export Controls, Where Relevant' },
+      { id: 'section-140', label: '140. Regulatory Investigations and Cooperation' },
+    ],
+  },
+  {
+    title: 'Part 18 — Changes to IMCAM Hub & Agreement',
+    sections: [
+      { id: 'section-141', label: '141. Changes to the Software' },
+      { id: 'section-142', label: '142. Changes to Features' },
+      { id: 'section-143', label: '143. Changes to Immigration Content' },
+      { id: 'section-144', label: '144. Changes to These Terms' },
+      { id: 'section-145', label: '145. Notification of Material Changes' },
+    ],
+  },
+  {
+    title: 'Part 19 — General Contractual Provisions',
+    sections: [
+      { id: 'section-146', label: '146. Force Majeure' },
+      { id: 'section-147', label: '147. Notices' },
+      { id: 'section-148', label: '148. Assignment' },
+      { id: 'section-149', label: '149. Subcontracting' },
+      { id: 'section-150', label: '150. Change of Control' },
+      { id: 'section-151', label: '151. Entire Agreement' },
+      { id: 'section-152', label: '152. Variation' },
+      { id: 'section-153', label: '153. Waiver' },
+      { id: 'section-154', label: '154. Severability' },
+      { id: 'section-155', label: '155. No Partnership or Agency' },
+      { id: 'section-156', label: '156. Third-Party Rights' },
+      { id: 'section-157', label: '157. Relationship Between the Parties' },
+      { id: 'section-158', label: '158. Further Assurance' },
+    ],
+  },
+  {
+    title: 'Part 20 — Governing Law & Disputes',
+    sections: [
+      { id: 'section-159', label: '159. Complaints' },
+      { id: 'section-160', label: '160. Dispute Resolution' },
+      { id: 'section-161', label: '161. Governing Law' },
+      { id: 'section-162', label: '162. Jurisdiction' },
+    ],
+  },
 ];
 
 const clauseText =
@@ -205,10 +275,21 @@ function ClauseHeading({ num }) {
   return <span className="font-semibold text-navy">{num}</span>;
 }
 
+function PartHeading({ num, title }) {
+  return (
+    <div id={`part-${num}`} className="mt-14 mb-8 border-t border-sand-dark pt-8 scroll-mt-24">
+      <p className="text-xs font-bold uppercase tracking-wide text-blue mb-1">
+        Part {num}
+      </p>
+      <h2 className="text-2xl font-heading font-bold text-navy">{title}</h2>
+    </div>
+  );
+}
+
 export default function Terms() {
   usePageMeta(
-    'Terms & Conditions — ImCam Hub',
-    'The Terms and Conditions (Agreement) under which e2e Cyber Solutions provides access to and use of ImCamHub, its immigration case management software.'
+    'Terms & Conditions — IMCAM Hub',
+    'The Terms and Conditions (Agreement) under which e2e World provides access to and use of IMCAM Hub, its immigration case management software.'
   );
 
   return (
@@ -232,8 +313,8 @@ export default function Terms() {
             </h1>
             <p className="text-base sm:text-lg text-text-secondary max-w-xl">
               These Terms and Conditions (&ldquo;Agreement&rdquo;) set out the
-              terms under which e2e Cyber Solutions provides access to and use
-              of ImCamHub, the immigration case management software platform.
+              terms under which e2e World provides access to and use
+              of IMCAM Hub, the immigration case management software platform.
             </p>
           </motion.div>
         </div>
@@ -247,19 +328,28 @@ export default function Terms() {
           {/* Contents */}
           <nav aria-label="Table of contents" className="mb-10">
             <h2 className="text-lg font-heading font-bold text-navy mb-4">Contents</h2>
-            <ol className="space-y-2">
-              {contents.map((item) => (
-                <li key={item.id}>
-                  <a
-                    href={`#${item.id}`}
-                    className="text-sm text-blue hover:text-navy transition-colors hover:underline"
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ol>
+            {parts.map((part) => (
+              <div key={part.title} className="mb-5">
+                <p className="text-xs font-bold uppercase tracking-wide text-blue mb-2">
+                  {part.title}
+                </p>
+                <ol className="space-y-2 pl-5 border-l border-sand-dark">
+                  {part.sections.map((item) => (
+                    <li key={item.id}>
+                      <a
+                        href={`#${item.id}`}
+                        className="text-sm text-blue hover:text-navy transition-colors hover:underline"
+                      >
+                        {item.label}
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            ))}
           </nav>
+
+          <PartHeading num="1" title="Introduction & Contract Framework" />
 
           {/* Section 1 */}
           <section id="section-1" className="mb-12 scroll-mt-24">
@@ -268,20 +358,19 @@ export default function Terms() {
             </h2>
             <p className={clauseText}>
               <ClauseHeading num="1.1" /> These Terms and Conditions
-              (&ldquo;Agreement&rdquo;) set out the terms under which e2e Cyber
-              Solutions (&ldquo;e2e Cyber Solutions&rdquo;, &ldquo;we&rdquo;,
+              (&ldquo;Agreement&rdquo;) set out the terms under which e2e World (&ldquo;e2e World&rdquo;, &ldquo;we&rdquo;,
               &ldquo;us&rdquo; or &ldquo;our&rdquo;) provides access to and use
-              of its immigration case management software known as ImCamHub
-              (&ldquo;ImCamHub&rdquo; or the &ldquo;Software&rdquo;).
+              of its immigration case management software known as IMCAM Hub
+              (&ldquo;IMCAM Hub&rdquo; or the &ldquo;Software&rdquo;).
             </p>
             <p className={clauseText}>
               <ClauseHeading num="1.2" /> The Agreement is entered into between
-              e2e Cyber Solutions and the organisation, immigration firm,
+              e2e World and the organisation, immigration firm,
               immigration adviser, business or other entity that subscribes to
-              ImCamHub (&ldquo;Customer&rdquo; or &ldquo;you&rdquo;).
+              IMCAM Hub (&ldquo;Customer&rdquo; or &ldquo;you&rdquo;).
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="1.3" /> ImCamHub is a business-to-business
+              <ClauseHeading num="1.3" /> IMCAM Hub is a business-to-business
               software platform designed to assist organisations with the
               management and administration of UK immigration-related cases,
               including the management of immigration cases, candidates,
@@ -289,7 +378,7 @@ export default function Terms() {
               information.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="1.4" /> The Customer may use ImCamHub through
+              <ClauseHeading num="1.4" /> The Customer may use IMCAM Hub through
               the functionality and user portals made available as part of its
               subscription. These may include, depending on the Customer&rsquo;s
               subscription and configuration:
@@ -306,7 +395,7 @@ export default function Terms() {
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="c." /> the Candidate Portal, for individuals
-                whose immigration matters are being managed through ImCamHub,
+                whose immigration matters are being managed through IMCAM Hub,
                 including employees, workers, applicants or other candidates;
               </li>
               <li className={listItemText}>
@@ -317,21 +406,21 @@ export default function Terms() {
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="e." /> the Super Admin functionality, which
-                is operated by or on behalf of e2e Cyber Solutions for the
-                administration, maintenance, security and support of ImCamHub.
+                is operated by or on behalf of e2e World for the
+                administration, maintenance, security and support of IMCAM Hub.
               </li>
             </ul>
             <p className={clauseText}>
               <ClauseHeading num="1.5" /> The Customer may authorise its
               employees, workers, contractors, professional representatives and
-              other permitted individuals to access and use ImCamHub where such
+              other permitted individuals to access and use IMCAM Hub where such
               access is necessary for the Customer&rsquo;s use of the Software
               (&ldquo;Authorised Users&rdquo;).
             </p>
             <p className={clauseText}>
               <ClauseHeading num="1.6" /> The Customer is responsible for
               ensuring that its Authorised Users comply with this Agreement and
-              shall remain responsible for all use of ImCamHub through accounts
+              shall remain responsible for all use of IMCAM Hub through accounts
               created or authorised by the Customer, subject to the provisions
               of this Agreement.
             </p>
@@ -342,32 +431,32 @@ export default function Terms() {
               availability and functionality of each portal and the permissions
               available to each Authorised User may be determined by the
               Customer&rsquo;s subscription, configuration and role-based access
-              controls within ImCamHub.
+              controls within IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="1.8" /> Where the Customer provides access to
-              ImCamHub to a candidate, employee, worker, business, sponsor or
+              IMCAM Hub to a candidate, employee, worker, business, sponsor or
               other third party in connection with an immigration matter, such
-              person may use ImCamHub only for the purposes authorised by the
+              person may use IMCAM Hub only for the purposes authorised by the
               Customer and subject to the applicable functionality and
               permissions provided through the Software.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="1.9" /> The Customer acknowledges that
-              ImCamHub is a technology and case-management platform. ImCamHub
-              and e2e cyber Solutions does not provide immigration advice or
+              IMCAM Hub is a technology and case-management platform. IMCAM Hub
+              and e2e WORLD does not provide immigration advice or
               make immigration decisions on behalf of the Customer or its
               clients, candidates or employees through the Software.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="1.10" /> The Customer&rsquo;s subscription to
-              and use of ImCamHub does not transfer ownership of the Software to
+              and use of IMCAM Hub does not transfer ownership of the Software to
               the Customer. The Customer receives only the rights to access and
-              use ImCamHub expressly granted under this Agreement.
+              use IMCAM Hub expressly granted under this Agreement.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="1.11" /> This Agreement applies to the
-              Customer&rsquo;s use of ImCamHub and to all Authorised Users
+              Customer&rsquo;s use of IMCAM Hub and to all Authorised Users
               accessing the Software under the Customer&rsquo;s account, unless a
               separate written agreement expressly states otherwise.
             </p>
@@ -394,32 +483,32 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="&ldquo;Authorised User&rdquo;" /> means an
               individual who is authorised by the Customer to access and use
-              ImCamHub under the Customer&rsquo;s subscription, including
+              IMCAM Hub under the Customer&rsquo;s subscription, including
               administrators, caseworkers, employees, contractors and other
               permitted users.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="&ldquo;Business&rdquo;" /> means an
               organisation, employer or sponsor that is granted access to
-              ImCamHub in connection with the management of immigration matters
+              IMCAM Hub in connection with the management of immigration matters
               relating to its employees, workers or prospective employees.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="&ldquo;Business Portal&rdquo;" /> means the
-              part of ImCamHub made available to authorised Businesses for
+              part of IMCAM Hub made available to authorised Businesses for
               accessing and managing information and functionality relating to
               their employees, workers, sponsorship and immigration matters.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="&ldquo;Candidate&rdquo;" /> means an
               individual whose immigration matter, application or related
-              information is being managed through ImCamHub. This may include
+              information is being managed through IMCAM Hub. This may include
               an employee, worker, applicant, prospective employee or other
               individual whose information is processed through the Software.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="&ldquo;Candidate Portal&rdquo;" /> means the
-              part of ImCamHub through which Candidates may access, provide,
+              part of IMCAM Hub through which Candidates may access, provide,
               review, upload or sign information and documents relating to their
               immigration matter, subject to the permissions provided by the
               Customer.
@@ -427,16 +516,16 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="&ldquo;Case&rdquo;" /> means an immigration
               matter, application, instruction or other immigration-related
-              matter created and managed within ImCamHub.
+              matter created and managed within IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="&ldquo;Caseworker&rdquo;" /> means an
               individual authorised by the Customer to manage or work on Cases
-              through ImCamHub.
+              through IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="&ldquo;Caseworker Portal&rdquo;" /> means the
-              part of ImCamHub made available to Caseworkers and other
+              part of IMCAM Hub made available to Caseworkers and other
               authorised personnel for managing Cases and related information.
             </p>
             <p className={clauseText}>
@@ -446,7 +535,7 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="&ldquo;Client/Admin Portal&rdquo;" /> means
-              the part of ImCamHub made available to the Customer&rsquo;s
+              the part of IMCAM Hub made available to the Customer&rsquo;s
               authorised administrators and other permitted personnel for
               managing the Customer&rsquo;s organisation, users, Cases and
               related information.
@@ -464,14 +553,13 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="&ldquo;Customer&rdquo;" /> means the
               organisation, immigration firm, immigration adviser, business or
-              other legal entity that enters into an agreement with e2e Cyber
-              Solutions for access to and use of ImCamHub.
+              other legal entity that enters into an agreement with e2e World for access to and use of IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="&ldquo;Customer Data&rdquo;" /> means
               information, documents, records, communications and other content
               submitted, uploaded, entered into, generated within or otherwise
-              provided to ImCamHub by or on behalf of the Customer or its
+              provided to IMCAM Hub by or on behalf of the Customer or its
               Authorised Users, including information relating to Candidates,
               Clients, employees, workers and Businesses.
             </p>
@@ -479,38 +567,37 @@ export default function Terms() {
               <ClauseHeading num="&ldquo;Data Protection Legislation&rdquo;" />{" "}
               means all applicable legislation relating to privacy and the
               protection of Personal Data applicable to the parties and their
-              use of ImCamHub, including the UK General Data Protection
+              use of IMCAM Hub, including the UK General Data Protection
               Regulation (&ldquo;UK GDPR&rdquo;), the Data Protection Act 2018
               and any legislation amending, replacing or supplementing them.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="&ldquo;Documentation&rdquo;" /> means any user
               guides, instructions, technical documentation, help materials or
-              other documentation relating to ImCamHub made available by e2e
-              Cyber Solutions.
+              other documentation relating to IMCAM Hub made available by e2e World.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="&ldquo;e2e Cyber Solutions&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo; or &ldquo;our&rdquo;" />{" "}
-              means the legal entity identified as the provider of ImCamHub in
+              <ClauseHeading num="&ldquo;e2e World&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo; or &ldquo;our&rdquo;" />{" "}
+              means the legal entity identified as the provider of IMCAM Hub in
               the applicable Order Form or Agreement.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="&ldquo;Fees&rdquo;" /> means the subscription
               fees and any other charges payable by the Customer for access to
-              and use of ImCamHub.
+              and use of IMCAM Hub.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="&ldquo;ImCamHub&rdquo; or &ldquo;Software&rdquo;" />{" "}
+              <ClauseHeading num="&ldquo;IMCAM Hub&rdquo; or &ldquo;Software&rdquo;" />{" "}
               means the immigration case management software platform operated
-              and made available by e2e Cyber Solutions, including its portals,
+              and made available by e2e World, including its portals,
               applications, features, functionality, interfaces, databases and
               related services, as updated or modified from time to time.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="&ldquo;Order Form&rdquo;" /> means any order
               form, subscription agreement, online order, proposal or other
-              document setting out the Customer&rsquo;s subscription to ImCamHub
-              and accepted by e2e Cyber Solutions.
+              document setting out the Customer&rsquo;s subscription to IMCAM Hub
+              and accepted by e2e World.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="&ldquo;Personal Data&rdquo;" /> has the
@@ -519,25 +606,25 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="&ldquo;Portal&rdquo;" /> means any user
-              interface or access environment forming part of ImCamHub,
+              interface or access environment forming part of IMCAM Hub,
               including the Client/Admin Portal, Caseworker Portal, Candidate
               Portal and Business Portal.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="&ldquo;Subscription&rdquo;" /> means the
-              Customer&rsquo;s subscription to ImCamHub, including the
+              Customer&rsquo;s subscription to IMCAM Hub, including the
               subscription period, applicable plan, permitted users, features
               and Fees.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="&ldquo;Subscription Period&rdquo;" /> means
               the period during which the Customer is entitled to access and
-              use ImCamHub under its Subscription.
+              use IMCAM Hub under its Subscription.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="&ldquo;Super Admin&rdquo;" /> means an
-              authorised e2e Cyber Solutions administrator with administrative
-              access to ImCamHub for purposes including platform administration,
+              authorised e2e World administrator with administrative
+              access to IMCAM Hub for purposes including platform administration,
               maintenance, security, technical support and system management.
             </p>
             <p className={clauseText}>
@@ -545,7 +632,7 @@ export default function Terms() {
               software, services, platforms, APIs, hosting services,
               communication services, payment services, electronic signature
               services or other services provided by third parties and used in
-              connection with ImCamHub.
+              connection with IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="&ldquo;UKVI&rdquo;" /> means UK Visas and
@@ -571,7 +658,7 @@ export default function Terms() {
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="c." /> references to a &ldquo;party&rdquo;
-                or &ldquo;parties&rdquo; mean e2e Cyber Solutions and/or the
+                or &ldquo;parties&rdquo; mean e2e World and/or the
                 Customer, as applicable;
               </li>
               <li className={listItemText}>
@@ -640,9 +727,8 @@ export default function Terms() {
             </h2>
             <p className={clauseText}>
               <ClauseHeading num="3.1" /> These Terms and Conditions apply to
-              the Customer&rsquo;s access to and use of ImCamHub and form a
-              legally binding agreement between the Customer and e2e Cyber
-              Solutions.
+              the Customer&rsquo;s access to and use of IMCAM Hub and form a
+              legally binding agreement between the Customer and e2e World.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="3.2" /> The Agreement shall come into effect
@@ -655,21 +741,20 @@ export default function Terms() {
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="b." /> the date on which the Customer
-                places an order or subscribes to ImCamHub;
+                places an order or subscribes to IMCAM Hub;
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="c." /> the date on which e2e Cyber
-                Solutions accepts the Customer&rsquo;s order or subscription; or
+                <ClauseHeading num="c." /> the date on which e2e World accepts the Customer&rsquo;s order or subscription; or
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="d." /> the date on which the Customer or
-                any of its Authorised Users first accesses or uses ImCamHub,
+                any of its Authorised Users first accesses or uses IMCAM Hub,
               </li>
             </ul>
             <p className={clauseText}>unless otherwise agreed in writing.</p>
             <p className={clauseText}>
               <ClauseHeading num="3.3" /> Where the Customer subscribes to
-              ImCamHub through an online registration or purchasing process,
+              IMCAM Hub through an online registration or purchasing process,
               the Customer may be required to confirm its acceptance of these
               Terms by selecting an acceptance checkbox, clicking an acceptance
               button or completing another electronic acceptance process.
@@ -707,25 +792,25 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="3.6" /> The Customer is responsible for
               ensuring that its Authorised Users are made aware of any
-              provisions of this Agreement that apply to their use of ImCamHub.
+              provisions of this Agreement that apply to their use of IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="3.7" /> Authorised User&rsquo;s access to
-              ImCamHub does not create a separate contractual relationship
-              between that Authorised User and e2e Cyber Solutions. The
+              IMCAM Hub does not create a separate contractual relationship
+              between that Authorised User and e2e World. The
               Customer remains the contracting party responsible for the
-              Subscription and for the use of ImCamHub by its Authorised Users,
+              Subscription and for the use of IMCAM Hub by its Authorised Users,
               subject to any separate terms expressly applicable to individual
               users.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="3.8" /> e2e Cyber Solutions may refuse or
+              <ClauseHeading num="3.8" /> e2e World may refuse or
               reject an application for a Subscription at its reasonable
               discretion, including where:
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
               <li className={listItemText}>
-                <ClauseHeading num="a." /> the proposed use of ImCamHub would
+                <ClauseHeading num="a." /> the proposed use of IMCAM Hub would
                 create legal, regulatory, security or operational concerns;
               </li>
               <li className={listItemText}>
@@ -738,37 +823,37 @@ export default function Terms() {
                 satisfy applicable payment or subscription requirements; or
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="d." /> e2e Cyber Solutions has reasonable
-                grounds to believe that ImCamHub may be misused.
+                <ClauseHeading num="d." /> e2e World has reasonable
+                grounds to believe that IMCAM Hub may be misused.
               </li>
             </ul>
             <p className={clauseText}>
               <ClauseHeading num="3.9" /> Any quotation, proposal,
               demonstration, discussion or other pre-contract communication
-              provided by e2e Cyber Solutions does not constitute acceptance of
+              provided by e2e World does not constitute acceptance of
               an order unless expressly stated otherwise.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="3.10" /> Any demonstration or free trial of
-              ImCamHub is subject to these Terms unless e2e Cyber Solutions
+              IMCAM Hub is subject to these Terms unless e2e World
               expressly states otherwise in writing.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="3.11" /> Where a free trial is provided, the
-              trial does not create any obligation on e2e Cyber Solutions to
+              trial does not create any obligation on e2e World to
               continue providing the Software after the trial period unless the
-              Customer enters into a paid Subscription or e2e Cyber Solutions
+              Customer enters into a paid Subscription or e2e World
               otherwise agrees in writing.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="3.12" /> Where the Customer continues to use
-              ImCamHub after the expiry of a free trial and a paid Subscription
-              has not been agreed, e2e Cyber Solutions may suspend or terminate
+              IMCAM Hub after the expiry of a free trial and a paid Subscription
+              has not been agreed, e2e World may suspend or terminate
               access to the Software.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="3.13" /> Any additional terms expressly
-              agreed between e2e Cyber Solutions and the Customer in an Order
+              agreed between e2e World and the Customer in an Order
               Form or other written agreement shall form part of the Agreement.
             </p>
           </section>
@@ -776,11 +861,11 @@ export default function Terms() {
           {/* Section 4 */}
           <section id="section-4" className="mb-12 scroll-mt-24">
             <h2 className="text-xl sm:text-2xl font-heading font-bold text-navy mb-6 leading-snug">
-              4. CONTRACT DOCUMENTS AND ORDER OF PRECEDENCE
+              4. ORDER OF PRECEDENCE OF CONTRACT DOCUMENTS
             </h2>
             <p className={clauseText}>
               <ClauseHeading num="4.1" /> The contractual arrangements between
-              e2e Cyber Solutions and the Customer may consist of the following
+              e2e World and the Customer may consist of the following
               documents, where applicable:
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
@@ -805,7 +890,7 @@ export default function Terms() {
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="f." /> any other written terms expressly
-                agreed between e2e Cyber Solutions and the Customer.
+                agreed between e2e World and the Customer.
               </li>
             </ul>
             <p className={clauseText}>
@@ -877,10 +962,10 @@ export default function Terms() {
           {/* Section 5 */}
           <section id="section-5" className="mb-4 scroll-mt-24">
             <h2 className="text-xl sm:text-2xl font-heading font-bold text-navy mb-6 leading-snug">
-              5. ELIGIBILITY AND AUTHORITY
+              5. ELIGIBILITY TO ENTER INTO THE AGREEMENT
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="5.1" /> ImCamHub is a business-to-business
+              <ClauseHeading num="5.1" /> IMCAM Hub is a business-to-business
               software service intended for use by organisations, including
               immigration firms, immigration advisers, employers, businesses,
               sponsors and other professional or commercial organisations.
@@ -901,7 +986,7 @@ export default function Terms() {
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="b." /> it has the necessary authority to
-                enter into the Agreement and use ImCamHub for its business or
+                enter into the Agreement and use IMCAM Hub for its business or
                 organisational purposes;
               </li>
               <li className={listItemText}>
@@ -909,13 +994,12 @@ export default function Terms() {
                 Agreement on its behalf has the authority to bind the Customer;
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="d." /> all information provided to e2e
-                Cyber Solutions in connection with the Customer&rsquo;s account
+                <ClauseHeading num="d." /> all information provided to e2e World in connection with the Customer&rsquo;s account
                 and Subscription is accurate and complete; and
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="e." /> it will comply with all applicable
-                laws and regulations in connection with its use of ImCamHub.
+                laws and regulations in connection with its use of IMCAM Hub.
               </li>
             </ul>
             <p className={clauseText}>
@@ -926,21 +1010,20 @@ export default function Terms() {
               licence or professional status required for its activities.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="5.5" /> The Customer must not use ImCamHub
+              <ClauseHeading num="5.5" /> The Customer must not use IMCAM Hub
               for activities that the Customer is not legally authorised or
               permitted to undertake.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="5.6" /> Where the Customer provides access to
-              ImCamHub to its employees, caseworkers, candidates, clients,
+              IMCAM Hub to its employees, caseworkers, candidates, clients,
               businesses, sponsors, contractors or other third parties, the
               Customer is responsible for ensuring that such persons are
               appropriately authorised to access the relevant information and
               functionality.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="5.7" /> The Customer must notify e2e Cyber
-              Solutions promptly if:
+              <ClauseHeading num="5.7" /> The Customer must notify e2e World promptly if:
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
               <li className={listItemText}>
@@ -948,7 +1031,7 @@ export default function Terms() {
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="b." /> the Customer&rsquo;s legal status
-                changes in a way that affects its use of ImCamHub;
+                changes in a way that affects its use of IMCAM Hub;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="c." /> the person responsible for the
@@ -957,20 +1040,20 @@ export default function Terms() {
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="d." /> the Customer becomes aware of any
-                material issue affecting its legal authority to use ImCamHub.
+                material issue affecting its legal authority to use IMCAM Hub.
               </li>
             </ul>
             <p className={clauseText}>
-              <ClauseHeading num="5.8" /> e2e Cyber Solutions may request
+              <ClauseHeading num="5.8" /> e2e World may request
               reasonable information or documentation to verify the
               Customer&rsquo;s identity, legal status or authority where
               reasonably necessary for security, legal, regulatory or
               operational purposes.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="5.9" /> If e2e Cyber Solutions reasonably
+              <ClauseHeading num="5.9" /> If e2e World reasonably
               believes that a person has entered into the Agreement without the
-              authority to bind the Customer, e2e Cyber Solutions may suspend
+              authority to bind the Customer, e2e World may suspend
               or restrict the relevant account while the matter is
               investigated.
             </p>
@@ -981,19 +1064,21 @@ export default function Terms() {
             </p>
           </section>
 
+          <PartHeading num="2" title="IMCAM Hub Software & Licence" />
+
           {/* Section 6 */}
           <section id="section-6" className="mb-12 scroll-mt-24">
             <h2 className="text-xl sm:text-2xl font-heading font-bold text-navy mb-6 leading-snug">
-              6. DESCRIPTION OF IMCAMHUB
+              6. DESCRIPTION OF IMCAM HUB
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="6.1" /> ImCamHub is a cloud-based immigration
+              <ClauseHeading num="6.1" /> IMCAM Hub is a cloud-based immigration
               case management and administration platform developed and operated
-              by e2e Cyber Solutions for use by organisations involved in UK
+              by e2e World for use by organisations involved in UK
               immigration, sponsorship and related employment matters.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="6.2" /> ImCamHub is designed to provide
+              <ClauseHeading num="6.2" /> IMCAM Hub is designed to provide
               Customers with a centralised platform through which they may
               manage immigration-related cases, Candidates, Clients, employees,
               Businesses, documents, information, communications, tasks,
@@ -1002,7 +1087,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="6.3" /> Depending on the Customer&rsquo;s
               Subscription and the functionality made available to the Customer,
-              ImCamHub may include:
+              IMCAM Hub may include:
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
               <li className={listItemText}>
@@ -1060,7 +1145,7 @@ export default function Terms() {
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="o." /> other features and functionality made
-                available by e2e Cyber Solutions from time to time.
+                available by e2e World from time to time.
               </li>
             </ul>
             <p className={clauseText}>
@@ -1071,14 +1156,14 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="6.5" /> The Customer acknowledges that
-              ImCamHub is a technology platform intended to assist with the
+              IMCAM Hub is a technology platform intended to assist with the
               administration and management of immigration-related matters. It
               does not replace the professional judgment, review or
               decision-making of the Customer or any appropriately qualified
               professional engaged by the Customer.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="6.6" /> ImCamHub software does not:
+              <ClauseHeading num="6.6" /> IMCAM Hub software does not:
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
               <li className={listItemText}>
@@ -1105,21 +1190,20 @@ export default function Terms() {
               </li>
             </ul>
             <p className={clauseText}>
-              <ClauseHeading num="6.7" /> The Customer acknowledges that e2e
-              Cyber Solutions may add, modify, improve, replace or discontinue
-              features or functionality of ImCamHub from time to time, subject
+              <ClauseHeading num="6.7" /> The Customer acknowledges that e2e World may add, modify, improve, replace or discontinue
+              features or functionality of IMCAM Hub from time to time, subject
               to the provisions of this Agreement concerning material changes
               to the Software.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="6.8" /> e2e Cyber Solutions may provide
+              <ClauseHeading num="6.8" /> e2e World may provide
               different versions, packages, modules or levels of functionality
-              within ImCamHub. The Customer&rsquo;s access to any particular
+              within IMCAM Hub. The Customer&rsquo;s access to any particular
               feature is subject to the applicable Subscription and any
               additional terms agreed between the parties.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="6.9" /> Descriptions of ImCamHub provided in
+              <ClauseHeading num="6.9" /> Descriptions of IMCAM Hub provided in
               marketing materials, demonstrations, presentations or other
               promotional materials are for general information only and do not
               constitute a warranty that every described feature will be
@@ -1129,7 +1213,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="6.10" /> Where a feature is described as being
               subject to development, testing, improvement or future release,
-              e2e Cyber Solutions does not guarantee that the feature will be
+              e2e World does not guarantee that the feature will be
               released, made available by a particular date or included within
               the Customer&rsquo;s Subscription.
             </p>
@@ -1145,9 +1229,9 @@ export default function Terms() {
             </h3>
             <p className={clauseText}>
               Subject to the Customer&rsquo;s compliance with this Agreement and
-              payment of all applicable Fees, e2e Cyber Solutions grants the
+              payment of all applicable Fees, e2e World grants the
               Customer a limited, non-exclusive, non-transferable and
-              non-sublicensable right to access and use ImCamHub during the
+              non-sublicensable right to access and use IMCAM Hub during the
               applicable Subscription Period for the Customer&rsquo;s internal
               business and professional purposes.
             </p>
@@ -1160,7 +1244,7 @@ export default function Terms() {
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
               <li className={listItemText}>
-                <ClauseHeading num="a." /> access ImCamHub through the
+                <ClauseHeading num="a." /> access IMCAM Hub through the
                 applicable user portals;
               </li>
               <li className={listItemText}>
@@ -1179,7 +1263,7 @@ export default function Terms() {
               <li className={listItemText}>
                 <ClauseHeading num="e." /> permit Candidates, Businesses and
                 other authorised third parties to access the relevant parts of
-                ImCamHub where such access forms part of the Customer&rsquo;s
+                IMCAM Hub where such access forms part of the Customer&rsquo;s
                 intended use of the Software.
               </li>
             </ul>
@@ -1187,7 +1271,7 @@ export default function Terms() {
               7.3 Internal Business Use
             </h3>
             <p className={clauseText}>
-              The Customer may use ImCamHub for its own legitimate business and
+              The Customer may use IMCAM Hub for its own legitimate business and
               professional activities and for the management of immigration
               matters relating to its Clients, Candidates, employees, workers
               and Businesses.
@@ -1201,7 +1285,7 @@ export default function Terms() {
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
               <li className={listItemText}>
-                <ClauseHeading num="a." /> ImCamHub;
+                <ClauseHeading num="a." /> IMCAM Hub;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="b." /> the Software;
@@ -1222,12 +1306,12 @@ export default function Terms() {
                 Software;
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="g." /> e2e Cyber Solutions&rsquo;s
+                <ClauseHeading num="g." /> e2e World&rsquo;s
                 trademarks, branding or other intellectual property; or
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="h." /> any other Intellectual Property
-                Rights owned or licensed by e2e Cyber Solutions.
+                Rights owned or licensed by e2e World.
               </li>
             </ul>
             <h3 className="text-base font-heading font-semibold text-navy mb-3 mt-8">
@@ -1235,27 +1319,27 @@ export default function Terms() {
             </h3>
             <p className={clauseText}>
               The Customer retains its rights and ownership in Customer Data,
-              subject to the rights granted to e2e Cyber Solutions under this
+              subject to the rights granted to e2e World under this
               Agreement and the applicable Data Processing Agreement.
             </p>
             <h3 className="text-base font-heading font-semibold text-navy mb-3 mt-8">
               7.6 No Resale or Sublicensing
             </h3>
             <p className={clauseText}>
-              Unless expressly authorised in writing by e2e Cyber Solutions, the
+              Unless expressly authorised in writing by e2e World, the
               Customer must not:
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
               <li className={listItemText}>
                 <ClauseHeading num="a." /> sell, resell, rent, lease or
-                otherwise commercialise access to ImCamHub;
+                otherwise commercialise access to IMCAM Hub;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="b." /> sublicense or grant rights to use
-                ImCamHub to another organisation;
+                IMCAM Hub to another organisation;
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="c." /> makes ImCamHub available as a
+                <ClauseHeading num="c." /> makes IMCAM Hub available as a
                 service to third parties for their own independent business
                 purposes; or
               </li>
@@ -1269,7 +1353,7 @@ export default function Terms() {
               7.7 Authorised Users
             </h3>
             <p className={clauseText}>
-              The Customer may permit its Authorised Users to access ImCamHub
+              The Customer may permit its Authorised Users to access IMCAM Hub
               only to the extent necessary for their role and in accordance with
               the Customer&rsquo;s Subscription.
             </p>
@@ -1281,15 +1365,15 @@ export default function Terms() {
               7.8 Candidate and Business Access
             </h3>
             <p className={clauseText}>
-              Where the Customer provides access to ImCamHub to a Candidate,
+              Where the Customer provides access to IMCAM Hub to a Candidate,
               Business, employee, worker, Client or other third party, that
-              access does not transfer any ownership interest in ImCamHub to
+              access does not transfer any ownership interest in IMCAM Hub to
               that person or organisation.
             </p>
             <p className={clauseText}>
               Such access is limited to the functionality and information made
               available to them through the relevant Portal and may be withdrawn
-              or modified by the Customer or e2e Cyber Solutions in accordance
+              or modified by the Customer or e2e World in accordance
               with this Agreement.
             </p>
             <h3 className="text-base font-heading font-semibold text-navy mb-3 mt-8">
@@ -1301,7 +1385,7 @@ export default function Terms() {
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
               <li className={listItemText}>
-                <ClauseHeading num="a." /> copy or reproduce ImCamHub except
+                <ClauseHeading num="a." /> copy or reproduce IMCAM Hub except
                 where expressly permitted by this Agreement or applicable law;
               </li>
               <li className={listItemText}>
@@ -1330,8 +1414,7 @@ export default function Terms() {
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="g." /> circumvent or attempt to circumvent
-                any technical, security or access-control measures used by e2e
-                Cyber Solutions.
+                any technical, security or access-control measures used by e2e World.
               </li>
             </ul>
             <h3 className="text-base font-heading font-semibold text-navy mb-3 mt-8">
@@ -1342,7 +1425,7 @@ export default function Terms() {
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
               <li className={listItemText}>
-                <ClauseHeading num="a." /> areas of ImCamHub that are not
+                <ClauseHeading num="a." /> areas of IMCAM Hub that are not
                 authorised for its account or user role;
               </li>
               <li className={listItemText}>
@@ -1354,12 +1437,11 @@ export default function Terms() {
                 Candidates, Clients, Businesses or documents; or
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="d." /> e2e Cyber Solutions&rsquo;s internal
+                <ClauseHeading num="d." /> e2e World&rsquo;s internal
                 administrative systems,
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="e." /> unless expressly authorised by e2e
-                Cyber Solutions.
+                <ClauseHeading num="e." /> unless expressly authorised by e2e World.
               </li>
             </ul>
             <h3 className="text-base font-heading font-semibold text-navy mb-3 mt-8">
@@ -1367,15 +1449,15 @@ export default function Terms() {
             </h3>
             <p className={clauseText}>
               The Customer may not transfer, assign or otherwise dispose of its
-              right to use ImCamHub to another organisation or entity without
-              e2e Cyber Solutions&rsquo;s prior written consent.
+              right to use IMCAM Hub to another organisation or entity without
+              e2e World&rsquo;s prior written consent.
             </p>
             <h3 className="text-base font-heading font-semibold text-navy mb-3 mt-8">
               7.12 Suspension or Termination of the Licence
             </h3>
             <p className={clauseText}>
               The licence granted under this Section shall automatically cease
-              when the Customer&rsquo;s right to use ImCamHub ends, including
+              when the Customer&rsquo;s right to use IMCAM Hub ends, including
               upon expiry or termination of the Subscription, subject to any
               rights the Customer may have under this Agreement to access or
               export its Customer Data.
@@ -1384,17 +1466,16 @@ export default function Terms() {
               7.13 Reservation of Rights
             </h3>
             <p className={clauseText}>
-              All rights in and to ImCamHub and the Software that are not
+              All rights in and to IMCAM Hub and the Software that are not
               expressly granted to the Customer under this Agreement are
-              reserved by e2e Cyber Solutions and its licensors.
+              reserved by e2e World and its licensors.
             </p>
             <h3 className="text-base font-heading font-semibold text-navy mb-3 mt-8">
               7.14 Improvements and Developments
             </h3>
             <p className={clauseText}>
               Any improvements, modifications, updates, developments,
-              enhancements or new features incorporated into ImCamHub by e2e
-              Cyber Solutions shall remain the property of e2e Cyber Solutions
+              enhancements or new features incorporated into IMCAM Hub by e2e World shall remain the property of e2e World
               or its applicable licensors, unless expressly agreed otherwise in
               writing.
             </p>
@@ -1406,16 +1487,16 @@ export default function Terms() {
               8. SUBSCRIPTION MODEL
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="8.1" /> ImCamHub is provided to the Customer
+              <ClauseHeading num="8.1" /> IMCAM Hub is provided to the Customer
               on a subscription basis. The Customer does not purchase ownership
-              of the Software and is granted access to ImCamHub only for the
+              of the Software and is granted access to IMCAM Hub only for the
               duration of its applicable Subscription.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="8.2" /> The Customer&rsquo;s Subscription
               shall be based on the subscription plan, package, modules, user
               allowances, functionality and other commercial terms agreed
-              between the Customer and e2e Cyber Solutions.
+              between the Customer and e2e World.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="8.3" /> The details of the Customer&rsquo;s
@@ -1453,7 +1534,7 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="8.4" /> Unless otherwise agreed in writing,
-              access to ImCamHub is conditional upon the Customer maintaining a
+              access to IMCAM Hub is conditional upon the Customer maintaining a
               valid and paid Subscription.
             </p>
             <p className={clauseText}>
@@ -1465,16 +1546,15 @@ export default function Terms() {
               feature.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="8.6" /> e2e Cyber Solutions may offer
+              <ClauseHeading num="8.6" /> e2e World may offer
               different Subscription plans or packages from time to time. The
               features, functionality, usage limits and Fees applicable to each
               plan may differ.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="8.7" /> Where the Customer wishes to increase
-              its use of ImCamHub, including by adding additional users,
-              modules, functionality or other chargeable services, e2e Cyber
-              Solutions may require the Customer to upgrade its Subscription or
+              its use of IMCAM Hub, including by adding additional users,
+              modules, functionality or other chargeable services, e2e World may require the Customer to upgrade its Subscription or
               pay additional Fees.
             </p>
             <p className={clauseText}>
@@ -1490,15 +1570,15 @@ export default function Terms() {
               access controls applicable to its Subscription.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="8.10" /> e2e Cyber Solutions may monitor
-              usage of ImCamHub for the purposes of administering the
+              <ClauseHeading num="8.10" /> e2e World may monitor
+              usage of IMCAM Hub for the purposes of administering the
               Customer&rsquo;s Subscription, maintaining security, preventing
               misuse and ensuring compliance with this Agreement.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="8.11" /> Where e2e Cyber Solutions identifies
+              <ClauseHeading num="8.11" /> Where e2e World identifies
               that the Customer is materially exceeding the usage limits
-              applicable to its Subscription, e2e Cyber Solutions may contact
+              applicable to its Subscription, e2e World may contact
               the Customer to discuss an appropriate Subscription upgrade or
               additional Fees.
             </p>
@@ -1511,11 +1591,11 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="8.13" /> The Customer is responsible for
               ensuring that its Subscription is appropriate for its actual use
-              of ImCamHub and for notifying e2e Cyber Solutions where its
+              of IMCAM Hub and for notifying e2e World where its
               requirements change.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="8.14" /> e2e Cyber Solutions may introduce
+              <ClauseHeading num="8.14" /> e2e World may introduce
               new Subscription plans, packages or pricing structures from time
               to time. Any changes affecting an existing Customer&rsquo;s
               current Subscription shall be dealt with in accordance with the
@@ -1524,8 +1604,8 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="8.15" /> Nothing in this Agreement requires
-              e2e Cyber Solutions to provide every feature or functionality of
-              ImCamHub to every Customer. The features and functionality
+              e2e World to provide every feature or functionality of
+              IMCAM Hub to every Customer. The features and functionality
               available to the Customer shall be determined by the
               Customer&rsquo;s applicable Subscription and any additional
               services purchased by the Customer.
@@ -1534,7 +1614,7 @@ export default function Terms() {
               <ClauseHeading num="8.16" /> The Customer&rsquo;s Subscription
               does not give the Customer any right to access, use or obtain the
               source code, underlying infrastructure, databases, systems or
-              other technical components of ImCamHub except to the extent
+              other technical components of IMCAM Hub except to the extent
               expressly permitted under this Agreement.
             </p>
           </section>
@@ -1547,12 +1627,12 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="9.1" /> Subject to this Agreement and the
               Customer&rsquo;s applicable Subscription, the Customer may use
-              ImCamHub for its legitimate internal business and professional
+              IMCAM Hub for its legitimate internal business and professional
               purposes in connection with the management and administration of
               UK immigration-related matters.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="9.2" /> The Customer may use ImCamHub to:
+              <ClauseHeading num="9.2" /> The Customer may use IMCAM Hub to:
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
               <li className={listItemText}>
@@ -1577,7 +1657,7 @@ export default function Terms() {
               <li className={listItemText}>
                 <ClauseHeading num="f." /> communicate with Candidates, Clients,
                 employees, workers and Businesses through the communication
-                functionality made available within ImCamHub;
+                functionality made available within IMCAM Hub;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="g." /> send and receive relevant
@@ -1632,12 +1712,12 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="9.5" /> The Customer may permit its Authorised
-              Users to access and use ImCamHub according to their respective
+              Users to access and use IMCAM Hub according to their respective
               roles and permissions.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="9.6" /> The Customer may use information and
-              documents stored within ImCamHub for the legitimate purposes for
+              documents stored within IMCAM Hub for the legitimate purposes for
               which that information was collected and in accordance with
               applicable law, the Customer&rsquo;s professional obligations and
               any applicable data protection requirements.
@@ -1645,37 +1725,37 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="9.7" /> The Customer may download or export
               Customer Data using the export or download functionality made
-              available by ImCamHub, subject to any applicable technical
+              available by IMCAM Hub, subject to any applicable technical
               limitations and the provisions of this Agreement.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="9.8" /> The Customer may use ImCamHub to
+              <ClauseHeading num="9.8" /> The Customer may use IMCAM Hub to
               assist with the preparation, organisation and management of
               immigration applications and related matters. However, the
               Customer remains responsible for reviewing and verifying
               information and documents before relying upon or submitting them.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="9.9" /> The Customer may use ImCamHub to
+              <ClauseHeading num="9.9" /> The Customer may use IMCAM Hub to
               support its internal workflows and processes, provided that such
               use complies with this Agreement and all applicable laws and
               regulations.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="9.10" /> The Customer must ensure that its
-              use of ImCamHub is proportionate to the purposes for which access
+              use of IMCAM Hub is proportionate to the purposes for which access
               has been provided and that access to Personal Data and other
               confidential information is limited to persons who have a
               legitimate need to access it.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="9.11" /> The Customer may use ImCamHub only
+              <ClauseHeading num="9.11" /> The Customer may use IMCAM Hub only
               for lawful purposes and in a manner that does not infringe the
-              rights of e2e Cyber Solutions, another Customer, any Candidate,
+              rights of e2e World, another Customer, any Candidate,
               Client, Business, employee, worker or other person.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="9.12" /> The Customer may use ImCamHub on
+              <ClauseHeading num="9.12" /> The Customer may use IMCAM Hub on
               behalf of its Clients and Candidates where the Customer is
               authorised to provide the relevant immigration or related services
               and has the necessary authority to process and manage the relevant
@@ -1689,17 +1769,17 @@ export default function Terms() {
               other Customers, Businesses, Candidates or Cases.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="9.14" /> Where e2e Cyber Solutions makes new
+              <ClauseHeading num="9.14" /> Where e2e World makes new
               features or functionality available to the Customer as part of
               its Subscription, the Customer may use those features in
               accordance with this Agreement and any specific terms applicable
               to those features.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="9.15" /> The Customer must use ImCamHub
+              <ClauseHeading num="9.15" /> The Customer must use IMCAM Hub
               responsibly and in a manner that does not materially interfere
               with the operation, security, performance or availability of the
-              Software for e2e Cyber Solutions or other Customers.
+              Software for e2e World or other Customers.
             </p>
           </section>
 
@@ -1709,7 +1789,7 @@ export default function Terms() {
               10. RESTRICTIONS ON USE
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="10.1" /> The Customer must use ImCamHub only
+              <ClauseHeading num="10.1" /> The Customer must use IMCAM Hub only
               in accordance with this Agreement, its applicable Subscription
               and all applicable laws and regulations.
             </p>
@@ -1719,19 +1799,19 @@ export default function Terms() {
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
               <li className={listItemText}>
-                <ClauseHeading num="a." /> use ImCamHub for any unlawful,
+                <ClauseHeading num="a." /> use IMCAM Hub for any unlawful,
                 fraudulent, abusive or malicious purpose;
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="b." /> use ImCamHub to infringe the rights
+                <ClauseHeading num="b." /> use IMCAM Hub to infringe the rights
                 of any person, including intellectual property, privacy,
                 confidentiality or other legal rights;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="c." /> attempt to gain unauthorised access
-                to ImCamHub, any Portal, another Customer&rsquo;s account or any
+                to IMCAM Hub, any Portal, another Customer&rsquo;s account or any
                 systems, networks, databases or information connected to
-                ImCamHub;
+                IMCAM Hub;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="d." /> access, view, modify, download or
@@ -1750,94 +1830,93 @@ export default function Terms() {
               <li className={listItemText}>
                 <ClauseHeading num="g." /> circumvent, disable, interfere with
                 or attempt to bypass any security, authentication, access-control
-                or technical restrictions implemented by e2e Cyber Solutions;
+                or technical restrictions implemented by e2e World;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="h." /> introduce or transmit any virus,
                 malware, ransomware, spyware, malicious code or other harmful
-                software through or into ImCamHub;
+                software through or into IMCAM Hub;
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="i." /> use ImCamHub to conduct or
+                <ClauseHeading num="i." /> use IMCAM Hub to conduct or
                 facilitate phishing, fraud, identity theft, harassment or other
                 malicious activity;
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="j." /> use ImCamHub to store or transmit
+                <ClauseHeading num="j." /> use IMCAM Hub to store or transmit
                 content that is unlawful, defamatory, threatening, abusive,
                 discriminatory, obscene or otherwise unlawful;
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="k." /> use ImCamHub to send unsolicited
+                <ClauseHeading num="k." /> use IMCAM Hub to send unsolicited
                 bulk communications or spam in breach of applicable law;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="l." /> use automated systems, bots, scripts
-                or other methods to access or interact with ImCamHub except
-                where expressly permitted by e2e Cyber Solutions;
+                or other methods to access or interact with IMCAM Hub except
+                where expressly permitted by e2e World;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="m." /> scrape, crawl, harvest or
-                systematically extract information from ImCamHub except where
+                systematically extract information from IMCAM Hub except where
                 expressly authorised;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="n." /> copy, reproduce, modify, adapt,
-                translate or create derivative works of ImCamHub except as
+                translate or create derivative works of IMCAM Hub except as
                 expressly permitted by this Agreement or applicable law;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="o." /> reverse engineer, decompile,
                 disassemble or otherwise attempt to discover the source code,
-                underlying algorithms or technical architecture of ImCamHub,
+                underlying algorithms or technical architecture of IMCAM Hub,
                 except to the extent that such restriction is prohibited by
                 applicable law;
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="p." /> access or use ImCamHub for the
+                <ClauseHeading num="p." /> access or use IMCAM Hub for the
                 purpose of developing, training, testing or improving a
                 competing software product or service;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="q." /> reproduce, resell, lease, rent,
-                sublicense, distribute or commercially exploit ImCamHub except
+                sublicense, distribute or commercially exploit IMCAM Hub except
                 as expressly permitted under this Agreement;
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="r." /> use ImCamHub to provide services to
+                <ClauseHeading num="r." /> use IMCAM Hub to provide services to
                 unrelated third parties through the Customer&rsquo;s account in a
                 manner that effectively resells or sublicenses the Software;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="s." /> remove, conceal or alter any
                 copyright, trademark, proprietary or other notices contained in
-                ImCamHub;
+                IMCAM Hub;
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="t." /> attempt to obtain or use e2e Cyber
-                Solutions&rsquo;s source code, credentials, security keys, API
+                <ClauseHeading num="t." /> attempt to obtain or use e2e World&rsquo;s source code, credentials, security keys, API
                 keys or other confidential technical information without
                 authorisation;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="u." /> interfere with or disrupt the
-                operation, security, integrity or performance of ImCamHub or
+                operation, security, integrity or performance of IMCAM Hub or
                 any systems connected to it;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="v." /> conduct or permit penetration
                 testing, vulnerability scanning, load testing or other security
-                testing of ImCamHub without e2e Cyber Solutions&rsquo;s prior
+                testing of IMCAM Hub without e2e World&rsquo;s prior
                 written consent;
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="w." /> use ImCamHub in a way that could
-                reasonably be expected to damage e2e Cyber Solutions&rsquo;s
+                <ClauseHeading num="w." /> use IMCAM Hub in a way that could
+                reasonably be expected to damage e2e World&rsquo;s
                 systems, infrastructure, reputation or relationships with third
                 parties;
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="x." /> use ImCamHub to process information
+                <ClauseHeading num="x." /> use IMCAM Hub to process information
                 where the Customer does not have a lawful basis or appropriate
                 authority to process that information;
               </li>
@@ -1847,42 +1926,40 @@ export default function Terms() {
                 harm to another person or misusing the Software;
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="z." /> use ImCamHub to facilitate or
+                <ClauseHeading num="z." /> use IMCAM Hub to facilitate or
                 participate in illegal immigration activity, fraud or the
                 creation or submission of fraudulent documents;
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="aa." /> use ImCamHub to make automated
-                immigration decisions or represent that e2e Cyber Solutions or
-                ImCamHub has independently determined that an individual
+                <ClauseHeading num="aa." /> use IMCAM Hub to make automated
+                immigration decisions or represent that e2e World or
+                IMCAM Hub has independently determined that an individual
                 qualifies for an immigration route;
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="bb. ab." /> represent that ImCamHub is a
+                <ClauseHeading num="bb. ab." /> represent that IMCAM Hub is a
                 government system, a system operated by UKVI or an official Home
                 Office platform;
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="cc. ac." /> represent that e2e Cyber
-                Solutions has provided immigration advice or made an immigration
-                decision on behalf of the Customer unless e2e Cyber Solutions
+                <ClauseHeading num="cc. ac." /> represent that e2e World has provided immigration advice or made an immigration
+                decision on behalf of the Customer unless e2e World
                 has separately agreed to provide such services; or
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="dd. ad." /> otherwise use ImCamHub in a
+                <ClauseHeading num="dd. ad." /> otherwise use IMCAM Hub in a
                 manner that materially conflicts with the purpose for which the
                 Software is provided.
               </li>
             </ul>
             <p className={clauseText}>
               <ClauseHeading num="10.3" /> The Customer must not knowingly
-              permit any Authorised User or other person accessing ImCamHub
+              permit any Authorised User or other person accessing IMCAM Hub
               through the Customer&rsquo;s account to engage in any activity
               prohibited by this Section.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="10.4" /> The Customer must notify e2e Cyber
-              Solutions promptly if it becomes aware of:
+              <ClauseHeading num="10.4" /> The Customer must notify e2e World promptly if it becomes aware of:
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
               <li className={listItemText}>
@@ -1899,11 +1976,11 @@ export default function Terms() {
                 Data;
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="e." /> misuse of ImCamHub; or
+                <ClauseHeading num="e." /> misuse of IMCAM Hub; or
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="f." /> any other security incident that may
-                affect ImCamHub or another Customer.
+                affect IMCAM Hub or another Customer.
               </li>
             </ul>
             <p className={clauseText}>
@@ -1912,12 +1989,12 @@ export default function Terms() {
               excluded under applicable law.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="10.6" /> Where e2e Cyber Solutions reasonably
+              <ClauseHeading num="10.6" /> Where e2e World reasonably
               believes that the Customer or an Authorised User has breached this
-              Section, e2e Cyber Solutions may take appropriate protective
+              Section, e2e World may take appropriate protective
               measures in accordance with this Agreement, including restricting
               or suspending access where reasonably necessary to protect
-              ImCamHub, Customer Data, other Customers or the security of the
+              IMCAM Hub, Customer Data, other Customers or the security of the
               Software.
             </p>
           </section>
@@ -1928,13 +2005,13 @@ export default function Terms() {
               11. SOFTWARE UPDATES AND CHANGES
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="11.1" /> e2e Cyber Solutions may from time to
+              <ClauseHeading num="11.1" /> e2e World may from time to
               time develop, modify, update, improve, replace or otherwise change
-              ImCamHub, including its features, functionality, user interface,
+              IMCAM Hub, including its features, functionality, user interface,
               technical architecture and underlying technology.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="11.2" /> Changes to ImCamHub may include:
+              <ClauseHeading num="11.2" /> Changes to IMCAM Hub may include:
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
               <li className={listItemText}>
@@ -1972,14 +2049,14 @@ export default function Terms() {
               </li>
             </ul>
             <p className={clauseText}>
-              <ClauseHeading num="11.3" /> e2e Cyber Solutions may deploy
+              <ClauseHeading num="11.3" /> e2e World may deploy
               updates and changes without obtaining the Customer&rsquo;s prior
               consent where such changes:
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
               <li className={listItemText}>
                 <ClauseHeading num="a." /> are reasonably necessary to maintain
-                or improve the security, stability or performance of ImCamHub;
+                or improve the security, stability or performance of IMCAM Hub;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="b." /> are necessary to address technical
@@ -1995,7 +2072,7 @@ export default function Terms() {
               </li>
             </ul>
             <p className={clauseText}>
-              <ClauseHeading num="11.4" /> e2e Cyber Solutions may introduce
+              <ClauseHeading num="11.4" /> e2e World may introduce
               new features or functionality from time to time. Such features may
               be made available to all Customers, selected Customers or
               Customers subscribing to particular plans or modules.
@@ -2003,16 +2080,16 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="11.5" /> Where a material change is
               reasonably expected to significantly reduce the core functionality
-              of a Customer&rsquo;s existing Subscription, e2e Cyber Solutions
+              of a Customer&rsquo;s existing Subscription, e2e World
               shall, where reasonably practicable, provide the Customer with
               reasonable advance notice.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="11.6" /> Where e2e Cyber Solutions
+              <ClauseHeading num="11.6" /> Where e2e World
               permanently removes a material feature that is expressly included
               in the Customer&rsquo;s paid Subscription and the removal
               materially reduces the core functionality of that Subscription,
-              e2e Cyber Solutions may, where appropriate:
+              e2e World may, where appropriate:
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
               <li className={listItemText}>
@@ -2035,14 +2112,14 @@ export default function Terms() {
             </ul>
             <p className={clauseText}>
               <ClauseHeading num="11.7" /> Nothing in this Agreement requires
-              e2e Cyber Solutions to maintain any particular technology,
+              e2e World to maintain any particular technology,
               infrastructure, third-party service, programming language, hosting
-              provider or technical architecture for the operation of ImCamHub.
+              provider or technical architecture for the operation of IMCAM Hub.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="11.8" /> e2e Cyber Solutions may make changes
+              <ClauseHeading num="11.8" /> e2e World may make changes
               to the underlying technology or infrastructure used to provide
-              ImCamHub without notifying the Customer where those changes do not
+              IMCAM Hub without notifying the Customer where those changes do not
               materially affect the Customer&rsquo;s use of the Software.
             </p>
             <p className={clauseText}>
@@ -2054,23 +2131,22 @@ export default function Terms() {
               Agreement.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="11.10" /> e2e Cyber Solutions may provide
+              <ClauseHeading num="11.10" /> e2e World may provide
               updates that require changes to the Customer&rsquo;s systems,
               devices, browsers, integrations or other technical environments.
               The Customer is responsible for maintaining systems and equipment
-              reasonably necessary to access ImCamHub.
+              reasonably necessary to access IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="11.11" /> The Customer must not attempt to
               prevent, disable or interfere with software updates, security
-              updates or other technical changes implemented by e2e Cyber
-              Solutions.
+              updates or other technical changes implemented by e2e World.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="11.12" /> Where a change to ImCamHub is
+              <ClauseHeading num="11.12" /> Where a change to IMCAM Hub is
               required because of a change in UK immigration law, government
               policy, Home Office or UKVI processes, regulatory requirements or
-              other external circumstances, e2e Cyber Solutions may make the
+              other external circumstances, e2e World may make the
               necessary changes to the Software. Such changes do not constitute
               immigration advice or a guarantee that the Software will reflect
               every change immediately.
@@ -2085,18 +2161,17 @@ export default function Terms() {
           {/* Section 12 */}
           <section id="section-12" className="mb-4 scroll-mt-24">
             <h2 className="text-xl sm:text-2xl font-heading font-bold text-navy mb-6 leading-snug">
-              12. BETA, FREE TRIAL AND DEMONSTRATION VERSIONS
+              12. BETA, TRIAL AND DEMONSTRATION VERSIONS
             </h2>
             <p className={clauseText}>
               <ClauseHeading num="12.1" /> <span className="font-semibold text-navy">Free Trial</span>{" "}
-              e2e Cyber Solutions may, at its discretion, provide a Customer or
-              prospective Customer with temporary access to ImCamHub on a free
+              e2e World may, at its discretion, provide a Customer or
+              prospective Customer with temporary access to IMCAM Hub on a free
               trial basis (&ldquo;Free Trial&rdquo;).
             </p>
             <p className={clauseText}>
               <ClauseHeading num="12.2" /> <span className="font-semibold text-navy">Trial Period</span>{" "}
-              The duration of any Free Trial shall be determined by e2e Cyber
-              Solutions and may be specified in the relevant offer, registration
+              The duration of any Free Trial shall be determined by e2e World and may be specified in the relevant offer, registration
               process, Order Form or other communication provided to the
               Customer.
             </p>
@@ -2108,13 +2183,13 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="12.4" /> <span className="font-semibold text-navy">No Obligation to Provide a Free Trial</span>{" "}
-              e2e Cyber Solutions is not required to provide a Free Trial to
+              e2e World is not required to provide a Free Trial to
               any particular Customer and may withdraw, limit or modify the
               availability of Free Trials at any time.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="12.5" /> <span className="font-semibold text-navy">Free Trial Data</span>{" "}
-              Where a Customer enters Customer Data into ImCamHub during a Free
+              Where a Customer enters Customer Data into IMCAM Hub during a Free
               Trial, that information shall be treated as Customer Data and
               handled in accordance with the applicable confidentiality and data
               protection provisions of this Agreement.
@@ -2157,7 +2232,7 @@ export default function Terms() {
               <ClauseHeading num="12.8" /> <span className="font-semibold text-navy">Demonstrations</span>
             </p>
             <p className={clauseText}>
-              e2e Cyber Solutions may provide demonstrations of ImCamHub to
+              e2e World may provide demonstrations of IMCAM Hub to
               prospective Customers.
             </p>
             <p className={clauseText}>
@@ -2182,12 +2257,11 @@ export default function Terms() {
               <ClauseHeading num="12.9" /> <span className="font-semibold text-navy">Demonstration Accounts</span>{" "}
               Access provided solely for demonstration purposes must not be
               used as a substitute for a paid Subscription or for the
-              Customer&rsquo;s ordinary business operations unless e2e Cyber
-              Solutions expressly permits such use.
+              Customer&rsquo;s ordinary business operations unless e2e World expressly permits such use.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="12.10" /> <span className="font-semibold text-navy">Beta or Pre-Release Features</span>{" "}
-              e2e Cyber Solutions may make certain features or functionality
+              e2e World may make certain features or functionality
               available on a beta, pilot, testing or pre-release basis
               (&ldquo;Beta Features&rdquo;).
             </p>
@@ -2264,11 +2338,13 @@ export default function Terms() {
             </ul>
             <p className={clauseText}>
               <ClauseHeading num="12.16" /> <span className="font-semibold text-navy">End of Trial or Demonstration Access</span>{" "}
-              e2e Cyber Solutions may terminate or restrict Free Trial,
+              e2e World may terminate or restrict Free Trial,
               demonstration or Beta access at any time where reasonably
               necessary for security, legal, technical or operational reasons.
             </p>
           </section>
+
+          <PartHeading num="3" title="Users, Portals & Access" />
 
           {/* Section 13 */}
           <section id="section-13" className="mb-12 scroll-mt-24">
@@ -2276,16 +2352,16 @@ export default function Terms() {
               13. USER TYPES AND ROLES
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="13.1" /> ImCamHub provides role-based access
+              <ClauseHeading num="13.1" /> IMCAM Hub provides role-based access
               to different categories of users according to their
               responsibilities and the purposes for which they are authorised to
               use the Software.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="13.2" /> Depending on the Customer&rsquo;s
-              Subscription, configuration and use of ImCamHub, users may include
+              Subscription, configuration and use of IMCAM Hub, users may include
               Client/Admin Users, Caseworkers, Candidates, Business/Sponsor
-              Users and Super Admin Users. e2e Cyber Solutions may also make
+              Users and Super Admin Users. e2e World may also make
               other user roles available where required for the operation or
               development of the Software.
             </p>
@@ -2325,13 +2401,13 @@ export default function Terms() {
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="h." /> other administrative functionality
-                made available through ImCamHub.
+                made available through IMCAM Hub.
               </li>
             </ul>
             <p className={clauseText}>
               <ClauseHeading num="13.4" /> <span className="font-semibold text-navy">Caseworkers</span>{" "}
               A Caseworker is an individual authorised by the Customer to manage
-              or work on Cases through ImCamHub. A Caseworker&rsquo;s access
+              or work on Cases through IMCAM Hub. A Caseworker&rsquo;s access
               shall be limited to the Cases, information, documents and
               functionality made available to that Caseworker according to the
               permissions assigned to them.
@@ -2339,7 +2415,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="13.5" /> <span className="font-semibold text-navy">Candidates</span>{" "}
               A Candidate is an individual whose immigration matter, application
-              or related information is being managed through ImCamHub and who
+              or related information is being managed through IMCAM Hub and who
               may be provided access to the Candidate Portal. A Candidate may
               use the functionality made available to provide, review, upload or
               sign information and documents, receive communications and carry
@@ -2347,15 +2423,15 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="13.6" /> A Candidate does not become a
-              Customer of e2e Cyber Solutions solely because the Candidate is
-              provided access to ImCamHub through a Customer.
+              Customer of e2e World solely because the Candidate is
+              provided access to IMCAM Hub through a Customer.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="13.7" /> <span className="font-semibold text-navy">Business/Sponsor Users</span>{" "}
               A Business/Sponsor User is an individual authorised to access the
               Business/Sponsor Portal on behalf of a Business, employer, sponsor
               licence holder or other organisation connected with immigration or
-              sponsorship matters managed through ImCamHub.
+              sponsorship matters managed through IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="13.8" /> A Business/Sponsor User&rsquo;s
@@ -2365,8 +2441,7 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="13.9" /> <span className="font-semibold text-navy">Super Admin Users</span>{" "}
-              A Super Admin User is an individual authorised by e2e Cyber
-              Solutions to access administrative functionality within ImCamHub
+              A Super Admin User is an individual authorised by e2e World to access administrative functionality within IMCAM Hub
               for legitimate purposes connected with the administration,
               operation, maintenance, security and support of the Software.
               Super Admin access is further addressed in Section 18.
@@ -2377,7 +2452,7 @@ export default function Terms() {
               information or functionality available within the relevant Portal.
               Actual access shall depend on the Customer&rsquo;s Subscription,
               account configuration and the permissions and access controls
-              applied within ImCamHub.
+              applied within IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="13.11" /> The designation of a user as a
@@ -2396,7 +2471,7 @@ export default function Terms() {
             </h2>
             <p className={clauseText}>
               <ClauseHeading num="14.1" /> The Client/Admin Portal is the part
-              of ImCamHub made available to the Customer&rsquo;s authorised
+              of IMCAM Hub made available to the Customer&rsquo;s authorised
               administrators and other permitted personnel for the management of
               the Customer&rsquo;s organisation, users, Cases and related
               information.
@@ -2474,10 +2549,10 @@ export default function Terms() {
               a user to change permissions, assignments, account settings or
               other configuration, the Customer is responsible for reviewing
               those changes and ensuring that they are appropriate for the
-              Customer&rsquo;s organisation and use of ImCamHub.
+              Customer&rsquo;s organisation and use of IMCAM Hub.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="14.6" /> e2e Cyber Solutions is not
+              <ClauseHeading num="14.6" /> e2e World is not
               responsible for an access decision, Case assignment or permission
               setting made by a Client/Admin User acting within the
               functionality made available to the Customer, except to the extent
@@ -2492,7 +2567,7 @@ export default function Terms() {
             </h2>
             <p className={clauseText}>
               <ClauseHeading num="15.1" /> The Caseworker Portal is the part of
-              ImCamHub made available to Caseworkers and other authorised
+              IMCAM Hub made available to Caseworkers and other authorised
               personnel for the management and administration of Cases assigned
               or otherwise made accessible to them.
             </p>
@@ -2562,9 +2637,8 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="15.5" /> Use of the title or role
-              &lsquo;Caseworker&rsquo; within ImCamHub is a software access
-              designation only. It does not constitute confirmation by e2e Cyber
-              Solutions that the user is qualified, regulated or otherwise
+              &lsquo;Caseworker&rsquo; within IMCAM Hub is a software access
+              designation only. It does not constitute confirmation by e2e World that the user is qualified, regulated or otherwise
               authorised to provide immigration advice or services.
             </p>
             <p className={clauseText}>
@@ -2581,7 +2655,7 @@ export default function Terms() {
             </h2>
             <p className={clauseText}>
               <ClauseHeading num="16.1" /> The Candidate Portal is the part of
-              ImCamHub through which a Candidate may participate in the
+              IMCAM Hub through which a Candidate may participate in the
               management of their immigration matter where access has been
               provided by or on behalf of the Customer.
             </p>
@@ -2627,7 +2701,7 @@ export default function Terms() {
               <ClauseHeading num="16.3" /> Candidate access is provided in
               connection with a Case managed through the Customer&rsquo;s
               account and does not create a separate Subscription or contractual
-              relationship between the Candidate and e2e Cyber Solutions solely
+              relationship between the Candidate and e2e World solely
               by reason of that access.
             </p>
             <p className={clauseText}>
@@ -2646,8 +2720,8 @@ export default function Terms() {
               <ClauseHeading num="16.6" /> Information or documents provided
               through the Candidate Portal remain subject to review and
               verification by the Customer or other appropriately authorised
-              person. The availability of information within ImCamHub does not
-              mean that e2e Cyber Solutions has verified its accuracy,
+              person. The availability of information within IMCAM Hub does not
+              mean that e2e World has verified its accuracy,
               authenticity, completeness or suitability for an immigration
               application.
             </p>
@@ -2672,7 +2746,7 @@ export default function Terms() {
             </h2>
             <p className={clauseText}>
               <ClauseHeading num="17.1" /> The Business/Sponsor Portal is the
-              part of ImCamHub made available to authorised Businesses,
+              part of IMCAM Hub made available to authorised Businesses,
               employers, sponsor licence holders or other organisations involved
               in immigration, employment or sponsorship matters managed through
               the Software.
@@ -2744,7 +2818,7 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="17.5" /> Use of the Business/Sponsor Portal
-              does not transfer to e2e Cyber Solutions responsibility for the
+              does not transfer to e2e World responsibility for the
               Business&rsquo;s sponsor licence duties, immigration compliance,
               employment obligations, record-keeping duties or other legal or
               regulatory responsibilities.
@@ -2762,24 +2836,24 @@ export default function Terms() {
               advice, legal advice or professional services in connection with
               a Case, responsibility for those services remains with the person
               or organisation providing them and does not arise merely from use
-              of ImCamHub.
+              of IMCAM Hub.
             </p>
           </section>
 
           {/* Section 18 */}
           <section id="section-18" className="mb-12 scroll-mt-24">
             <h2 className="text-xl sm:text-2xl font-heading font-bold text-navy mb-6 leading-snug">
-              18. SUPER ADMIN / e2e CYBER SOLUTIONS ACCESS
+              18. SUPER ADMIN / e2e WORLD ACCESS
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="18.1" /> e2e Cyber Solutions may provide
-              authorised personnel with Super Admin access to ImCamHub where
+              <ClauseHeading num="18.1" /> e2e World may provide
+              authorised personnel with Super Admin access to IMCAM Hub where
               such access is reasonably necessary for the administration,
               operation, maintenance, security and support of the Software.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="18.2" /> Subject to the technical design and
-              controls implemented within ImCamHub, Super Admin functionality
+              controls implemented within IMCAM Hub, Super Admin functionality
               may be used for legitimate purposes including:
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
@@ -2801,7 +2875,7 @@ export default function Terms() {
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="e." /> maintaining the security, integrity,
-                availability and performance of ImCamHub;
+                availability and performance of IMCAM Hub;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="f." /> implementing updates, maintenance and
@@ -2814,25 +2888,24 @@ export default function Terms() {
               <li className={listItemText}>
                 <ClauseHeading num="h." /> performing other activities
                 reasonably necessary to provide, protect and administer
-                ImCamHub.
+                IMCAM Hub.
               </li>
             </ul>
             <p className={clauseText}>
-              <ClauseHeading num="18.3" /> Super Admin access does not give e2e
-              Cyber Solutions personnel an unrestricted right to use Customer
+              <ClauseHeading num="18.3" /> Super Admin access does not give e2e World personnel an unrestricted right to use Customer
               Data for unrelated purposes. Any access to Customer Data must be
               limited to legitimate purposes connected with the provision,
-              support, security or administration of ImCamHub, or as otherwise
+              support, security or administration of IMCAM Hub, or as otherwise
               permitted or required by the Agreement or applicable law.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="18.4" /> Where access to Customer Data is
-              required for support or troubleshooting, e2e Cyber Solutions shall
+              required for support or troubleshooting, e2e World shall
               take reasonable steps to limit access to the information
               reasonably necessary for the relevant purpose.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="18.5" /> e2e Cyber Solutions shall apply
+              <ClauseHeading num="18.5" /> e2e World shall apply
               appropriate organisational and technical controls to Super Admin
               access, which may include individual accounts, authentication
               controls, role-based permissions, access logging and periodic
@@ -2850,16 +2923,14 @@ export default function Terms() {
               Processing Agreement.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="18.8" /> e2e Cyber Solutions may restrict,
+              <ClauseHeading num="18.8" /> e2e World may restrict,
               suspend or revoke Super Admin privileges granted to its personnel
               where such access is no longer required or where necessary for
               security or operational reasons.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="18.9" /> Nothing in this Section requires e2e
-              Cyber Solutions to access Customer Data routinely, and the
-              existence of Super Admin functionality does not make e2e Cyber
-              Solutions responsible for reviewing, monitoring or verifying the
+              <ClauseHeading num="18.9" /> Nothing in this Section requires e2e World to access Customer Data routinely, and the
+              existence of Super Admin functionality does not make e2e World responsible for reviewing, monitoring or verifying the
               Customer&rsquo;s Cases, documents, immigration work or user
               activity unless expressly agreed otherwise.
             </p>
@@ -2871,7 +2942,7 @@ export default function Terms() {
               19. USER ACCOUNTS AND CREDENTIALS
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="19.1" /> Access to ImCamHub may require an
+              <ClauseHeading num="19.1" /> Access to IMCAM Hub may require an
               individual user account. Where individual accounts are required,
               each user must use their own account and credentials.
             </p>
@@ -2884,12 +2955,12 @@ export default function Terms() {
               <ClauseHeading num="19.3" /> Users must keep passwords,
               authentication details and other account credentials confidential
               and must not disclose or share them with another person except
-              where expressly permitted by e2e Cyber Solutions.
+              where expressly permitted by e2e World.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="19.4" /> The Customer must not knowingly
               permit multiple individuals to use a single individual user
-              account where ImCamHub requires separate user accounts.
+              account where IMCAM Hub requires separate user accounts.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="19.5" /> The Customer is responsible for
@@ -2899,7 +2970,7 @@ export default function Terms() {
               <li className={listItemText}>
                 <ClauseHeading num="a." /> choose and maintain secure
                 credentials in accordance with any requirements communicated
-                through ImCamHub;
+                through IMCAM Hub;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="b." /> do not share passwords or
@@ -2911,7 +2982,7 @@ export default function Terms() {
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="d." /> use any multi-factor or additional
-                authentication measures required by e2e Cyber Solutions;
+                authentication measures required by e2e World;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="e." /> sign out of or otherwise secure
@@ -2923,19 +2994,18 @@ export default function Terms() {
               </li>
             </ul>
             <p className={clauseText}>
-              <ClauseHeading num="19.6" /> The Customer must notify e2e Cyber
-              Solutions promptly if it becomes aware or reasonably suspects that
+              <ClauseHeading num="19.6" /> The Customer must notify e2e World promptly if it becomes aware or reasonably suspects that
               an account or credential has been compromised or used without
               authorisation.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="19.7" /> e2e Cyber Solutions may require a
+              <ClauseHeading num="19.7" /> e2e World may require a
               user to reset credentials, re-authenticate, use additional
               security measures or temporarily restrict access where reasonably
               necessary to protect the Software, Customer Data or other users.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="19.8" /> e2e Cyber Solutions may disable or
+              <ClauseHeading num="19.8" /> e2e World may disable or
               suspend a user account where it reasonably believes that the
               account is compromised, being misused, presents a security risk or
               is being used in breach of this Agreement.
@@ -2955,7 +3025,7 @@ export default function Terms() {
               20. USER PERMISSIONS AND ACCESS CONTROLS
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="20.1" /> ImCamHub may use role-based
+              <ClauseHeading num="20.1" /> IMCAM Hub may use role-based
               permissions and other access controls to determine which Portals,
               Cases, information, documents, functions and administrative
               features a user may access.
@@ -2975,7 +3045,7 @@ export default function Terms() {
               <ClauseHeading num="20.4" /> Permissions may differ according to
               user type, Case assignment, organisational relationship,
               Subscription, configuration and other access rules implemented
-              within ImCamHub.
+              within IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="20.5" /> Where the Customer gives a user
@@ -2991,15 +3061,15 @@ export default function Terms() {
               not been made available to that user.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="20.7" /> e2e Cyber Solutions may implement
+              <ClauseHeading num="20.7" /> e2e World may implement
               platform-level access restrictions or security controls where
-              reasonably necessary to protect ImCamHub, Customer Data, another
+              reasonably necessary to protect IMCAM Hub, Customer Data, another
               Customer or the integrity of the Software.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="20.8" /> Where e2e Cyber Solutions becomes
+              <ClauseHeading num="20.8" /> Where e2e World becomes
               aware of a material access-control issue affecting the
-              Customer&rsquo;s account, e2e Cyber Solutions may take reasonable
+              Customer&rsquo;s account, e2e World may take reasonable
               protective action, including restricting access while the issue is
               investigated.
             </p>
@@ -3024,7 +3094,7 @@ export default function Terms() {
             </h2>
             <p className={clauseText}>
               <ClauseHeading num="21.1" /> Subject to the Customer&rsquo;s
-              Subscription and the functionality made available within ImCamHub,
+              Subscription and the functionality made available within IMCAM Hub,
               authorised Client/Admin Users may add, invite, assign, manage,
               suspend or remove Authorised Users.
             </p>
@@ -3035,7 +3105,7 @@ export default function Terms() {
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
               <li className={listItemText}>
                 <ClauseHeading num="a." /> the person has a legitimate need to
-                access ImCamHub;
+                access IMCAM Hub;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="b." /> the Customer has authority to provide
@@ -3101,14 +3171,14 @@ export default function Terms() {
               and when it should be restricted or removed.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="21.7" /> e2e Cyber Solutions may assist with
+              <ClauseHeading num="21.7" /> e2e World may assist with
               account or user-management changes where support is reasonably
               required, but such assistance does not transfer responsibility for
               the Customer&rsquo;s decisions concerning who should be authorised
               to access its Customer Data.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="21.8" /> e2e Cyber Solutions may suspend,
+              <ClauseHeading num="21.8" /> e2e World may suspend,
               disable or remove a user account where permitted by this
               Agreement, including where required for security, legal,
               regulatory, technical or operational reasons.
@@ -3131,7 +3201,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="22.1" /> The Customer is responsible for
               managing the persons to whom it provides or authorises access to
-              ImCamHub and for taking reasonable steps to ensure that its
+              IMCAM Hub and for taking reasonable steps to ensure that its
               Authorised Users comply with the provisions of this Agreement
               applicable to their use of the Software.
             </p>
@@ -3189,22 +3259,21 @@ export default function Terms() {
               <ClauseHeading num="22.5" /> The Customer remains responsible for
               decisions, instructions, Case actions, document management,
               communications and other activities carried out by its Authorised
-              Users in the course of the Customer&rsquo;s use of ImCamHub,
+              Users in the course of the Customer&rsquo;s use of IMCAM Hub,
               except to the extent that the relevant activity results from a
-              fault, breach or unauthorised act for which e2e Cyber Solutions is
+              fault, breach or unauthorised act for which e2e World is
               responsible under this Agreement or applicable law.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="22.6" /> The Customer must notify e2e Cyber
-              Solutions promptly if it becomes aware of material misuse of
-              ImCamHub by an Authorised User or of circumstances that may
+              <ClauseHeading num="22.6" /> The Customer must notify e2e World promptly if it becomes aware of material misuse of
+              IMCAM Hub by an Authorised User or of circumstances that may
               materially affect the security or integrity of the
               Customer&rsquo;s account.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="22.7" /> Nothing in this Section makes the
               Customer responsible for unauthorised access caused solely by a
-              security failure within ImCamHub for which e2e Cyber Solutions is
+              security failure within IMCAM Hub for which e2e World is
               responsible under this Agreement, nor does it exclude or limit any
               liability that cannot lawfully be excluded or limited.
             </p>
@@ -3216,13 +3285,15 @@ export default function Terms() {
             </p>
           </section>
 
+          <PartHeading num="4" title="Immigration-Specific Provisions" />
+
           {/* Section 23 */}
           <section id="section-23" className="mb-12 scroll-mt-24">
             <h2 className="text-xl sm:text-2xl font-heading font-bold text-navy mb-6 leading-snug">
-              23. NATURE AND PURPOSE OF IMCAMHUB
+              23. NATURE AND PURPOSE OF IMCAM HUB
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="23.1" /> ImCamHub is a technology and
+              <ClauseHeading num="23.1" /> IMCAM Hub is a technology and
               case-management platform designed to assist Customers with the
               administration, organisation and management of UK immigration,
               sponsorship and related matters.
@@ -3236,7 +3307,7 @@ export default function Terms() {
               under the Customer&rsquo;s Subscription.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="23.3" /> ImCamHub is intended to support, and
+              <ClauseHeading num="23.3" /> IMCAM Hub is intended to support, and
               not replace, the professional judgement, legal assessment,
               regulatory responsibilities, review or decision-making of the
               Customer or any appropriately authorised professional involved in a
@@ -3245,21 +3316,21 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="23.4" /> The availability of a feature,
               workflow, template, field, reminder, status, document or other
-              functionality within ImCamHub does not constitute confirmation that
+              functionality within IMCAM Hub does not constitute confirmation that
               the feature or information is suitable, complete or legally
               sufficient for a particular immigration matter.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="23.5" /> Unless e2e Cyber Solutions has
+              <ClauseHeading num="23.5" /> Unless e2e World has
               expressly entered into a separate written agreement to provide
-              professional services, the provision of ImCamHub itself does not
+              professional services, the provision of IMCAM Hub itself does not
               constitute the provision of immigration advice, legal advice or
-              regulated immigration services by e2e Cyber Solutions through the
+              regulated immigration services by e2e World through the
               Software.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="23.6" /> The Customer remains responsible for
-              determining how ImCamHub is used within its organisation and for
+              determining how IMCAM Hub is used within its organisation and for
               ensuring that its use of the Software is appropriate for the
               immigration and related activities undertaken by the Customer.
             </p>
@@ -3271,8 +3342,8 @@ export default function Terms() {
               24. NO GUARANTEE OF IMMIGRATION OUTCOME
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="24.1" /> e2e Cyber Solutions does not warrant
-              or guarantee that use of ImCamHub will result in the grant,
+              <ClauseHeading num="24.1" /> e2e World does not warrant
+              or guarantee that use of IMCAM Hub will result in the grant,
               extension, variation, maintenance or other favourable outcome of
               any visa, immigration permission, sponsor licence, sponsorship
               matter or other immigration-related application or process.
@@ -3286,17 +3357,17 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="24.3" /> No feature, status, workflow,
               reminder, template, document, calculation, report or other output
-              generated, stored or displayed within ImCamHub shall be interpreted
+              generated, stored or displayed within IMCAM Hub shall be interpreted
               as a prediction or guarantee of an immigration outcome.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="24.4" /> The Customer must not represent to a
-              Candidate, Client, Business or other person that use of ImCamHub
+              Candidate, Client, Business or other person that use of IMCAM Hub
               guarantees or materially assures a particular immigration outcome.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="24.5" /> Nothing in this Section limits any
-              obligation expressly undertaken by e2e Cyber Solutions under this
+              obligation expressly undertaken by e2e World under this
               Agreement in relation to the operation of the Software.
             </p>
           </section>
@@ -3307,7 +3378,7 @@ export default function Terms() {
               25. IMMIGRATION ADVICE AND PROFESSIONAL RESPONSIBILITY
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="25.1" /> ImCamHub is software used to support
+              <ClauseHeading num="25.1" /> IMCAM Hub is software used to support
               immigration case management. The Software does not, by itself,
               provide immigration or legal advice and must not be treated as a
               substitute for advice or professional judgement from a person who
@@ -3358,14 +3429,13 @@ export default function Terms() {
             </ul>
             <p className={clauseText}>
               <ClauseHeading num="25.4" /> The presence of information,
-              templates, workflows or other material within ImCamHub does not
-              transfer professional responsibility for a Case to e2e Cyber
-              Solutions.
+              templates, workflows or other material within IMCAM Hub does not
+              transfer professional responsibility for a Case to e2e World.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="25.5" /> Where e2e Cyber Solutions separately
+              <ClauseHeading num="25.5" /> Where e2e World separately
               provides immigration, legal or professional services outside the
-              provision of ImCamHub, those services may be subject to separate
+              provision of IMCAM Hub, those services may be subject to separate
               terms and nothing in this Agreement is intended to alter the
               allocation of responsibility under those separate terms.
             </p>
@@ -3380,7 +3450,7 @@ export default function Terms() {
               <ClauseHeading num="26.1" /> The Customer is responsible for
               identifying and complying with all legal, professional and
               regulatory requirements applicable to its activities and its use of
-              ImCamHub.
+              IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="26.2" /> Where the Customer or any person
@@ -3398,20 +3468,19 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="26.4" /> The Customer must not use, or permit
-              another person to use, ImCamHub to carry out regulated immigration
+              another person to use, IMCAM Hub to carry out regulated immigration
               activities where the relevant person is not legally permitted to
               carry out those activities.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="26.5" /> e2e Cyber Solutions may request
+              <ClauseHeading num="26.5" /> e2e World may request
               reasonable information concerning the Customer&rsquo;s authority to
-              undertake activities through ImCamHub where reasonably necessary
+              undertake activities through IMCAM Hub where reasonably necessary
               for legal, regulatory, security or risk-management purposes.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="26.6" /> The availability of access to ImCamHub
-              does not constitute verification, approval or endorsement by e2e
-              Cyber Solutions of the Customer&rsquo;s or any user&rsquo;s
+              <ClauseHeading num="26.6" /> The availability of access to IMCAM Hub
+              does not constitute verification, approval or endorsement by e2e World of the Customer&rsquo;s or any user&rsquo;s
               regulatory status.
             </p>
           </section>
@@ -3424,7 +3493,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="27.1" /> The Customer is responsible for
               ensuring that information entered into, uploaded to, recorded in or
-              relied upon through ImCamHub is reviewed for accuracy, completeness
+              relied upon through IMCAM Hub is reviewed for accuracy, completeness
               and relevance as appropriate to the relevant Case.
             </p>
             <p className={clauseText}>
@@ -3440,20 +3509,20 @@ export default function Terms() {
               on that material for professional or submission purposes.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="27.4" /> e2e Cyber Solutions does not verify
+              <ClauseHeading num="27.4" /> e2e World does not verify
               the truth, authenticity, completeness or legal sufficiency of
               Customer Data merely because that information is entered into or
-              stored within ImCamHub.
+              stored within IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="27.5" /> Any validation, required-field
               prompt, warning, workflow rule or similar technical control within
-              ImCamHub is an administrative aid only and does not replace
+              IMCAM Hub is an administrative aid only and does not replace
               substantive review of the relevant information.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="27.6" /> The Customer must not knowingly use
-              ImCamHub to create, maintain or submit false, fraudulent or
+              IMCAM Hub to create, maintain or submit false, fraudulent or
               materially misleading immigration information or documentation.
             </p>
           </section>
@@ -3469,8 +3538,8 @@ export default function Terms() {
               operational requirements may change from time to time.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="28.2" /> e2e Cyber Solutions may update
-              ImCamHub in response to changes in immigration law, policy,
+              <ClauseHeading num="28.2" /> e2e World may update
+              IMCAM Hub in response to changes in immigration law, policy,
               guidance or government processes, but does not guarantee that every
               such change will be reflected in the Software immediately or by any
               particular date.
@@ -3484,21 +3553,20 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="28.4" /> The Customer must not rely solely on a
               workflow, template, reminder, field, checklist, status or other
-              content within ImCamHub as confirmation of the current legal or
+              content within IMCAM Hub as confirmation of the current legal or
               procedural requirements applicable to a Case.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="28.5" /> Where the Customer becomes aware that
-              information or functionality within ImCamHub may no longer reflect
+              information or functionality within IMCAM Hub may no longer reflect
               a material legal or procedural requirement, the Customer should use
-              appropriate professional judgement and may notify e2e Cyber
-              Solutions so that the matter can be reviewed.
+              appropriate professional judgement and may notify e2e World so that the matter can be reviewed.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="28.6" /> Updates made by e2e Cyber Solutions to
+              <ClauseHeading num="28.6" /> Updates made by e2e World to
               reflect immigration-law or policy changes do not constitute a
               guarantee of legal completeness and do not transfer responsibility
-              for professional review to e2e Cyber Solutions.
+              for professional review to e2e World.
             </p>
           </section>
 
@@ -3508,34 +3576,34 @@ export default function Terms() {
               29. HOME OFFICE / UKVI DISCLAIMER
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="29.1" /> ImCamHub is an independent software
-              platform operated by e2e Cyber Solutions. It is not a Home Office
+              <ClauseHeading num="29.1" /> IMCAM Hub is an independent software
+              platform operated by e2e World. It is not a Home Office
               or UKVI system and, unless expressly stated in relation to a
               specific authorised integration, is not affiliated with, endorsed
               by or operated on behalf of the Home Office or UKVI.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="29.2" /> References within ImCamHub to the Home
+              <ClauseHeading num="29.2" /> References within IMCAM Hub to the Home
               Office, UKVI, immigration routes, sponsorship processes, forms,
               guidance or other government matters are provided only in
               connection with the Software&rsquo;s immigration case-management
               purpose.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="29.3" /> The Customer must not present ImCamHub
+              <ClauseHeading num="29.3" /> The Customer must not present IMCAM Hub
               to any person as an official government platform or imply that use
-              of ImCamHub gives a Customer, Candidate, Client or Business
+              of IMCAM Hub gives a Customer, Candidate, Client or Business
               preferential access to, or treatment by, the Home Office or UKVI.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="29.4" /> e2e Cyber Solutions is not responsible
+              <ClauseHeading num="29.4" /> e2e World is not responsible
               for the availability, operation, content or decisions of Home
               Office or UKVI systems, websites or services, or for delays,
               outages or changes affecting those external systems.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="29.5" /> A status, label or progress indicator
-              within ImCamHub is an internal case-management record unless
+              within IMCAM Hub is an internal case-management record unless
               expressly stated otherwise and should not be treated as an official
               Home Office or UKVI status or decision.
             </p>
@@ -3547,7 +3615,7 @@ export default function Terms() {
               30. NO AUTOMATIC IMMIGRATION DECISION-MAKING
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="30.1" /> ImCamHub does not independently make
+              <ClauseHeading num="30.1" /> IMCAM Hub does not independently make
               immigration decisions on behalf of the Customer, a Candidate,
               Client, Business or any government authority.
             </p>
@@ -3570,7 +3638,7 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="30.5" /> The Customer must not represent that
-              ImCamHub has made an official, professional or government
+              IMCAM Hub has made an official, professional or government
               immigration decision concerning an individual.
             </p>
           </section>
@@ -3581,21 +3649,21 @@ export default function Terms() {
               31. NO AUTOMATIC HOME OFFICE SUBMISSION
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="31.1" /> Unless e2e Cyber Solutions expressly
+              <ClauseHeading num="31.1" /> Unless e2e World expressly
               introduces and identifies a specific authorised submission
-              functionality in the future, ImCamHub does not automatically submit
+              functionality in the future, IMCAM Hub does not automatically submit
               visa applications, sponsorship applications, representations,
               evidence or other material to the Home Office, UKVI or another
               government authority.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="31.2" /> Information or documents prepared,
-              collected, stored, generated or organised within ImCamHub remain
+              collected, stored, generated or organised within IMCAM Hub remain
               subject to review before any external submission.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="31.3" /> The Customer is responsible for
-              ensuring that any information transferred from ImCamHub to a Home
+              ensuring that any information transferred from IMCAM Hub to a Home
               Office, UKVI or other external system is accurate, complete,
               current and appropriate for submission.
             </p>
@@ -3607,7 +3675,7 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="31.5" /> A Case status, completed workflow,
-              uploaded document or other activity within ImCamHub does not by
+              uploaded document or other activity within IMCAM Hub does not by
               itself establish that an application or document has been submitted
               to or received by the Home Office or UKVI.
             </p>
@@ -3627,7 +3695,7 @@ export default function Terms() {
               <ClauseHeading num="32.1" /> The Customer must ensure that
               appropriate human review is carried out before material
               information, documents, representations or applications managed
-              through ImCamHub are relied upon for immigration, sponsorship,
+              through IMCAM Hub are relied upon for immigration, sponsorship,
               legal, regulatory or professional purposes.
             </p>
             <p className={clauseText}>
@@ -3692,7 +3760,7 @@ export default function Terms() {
               <ClauseHeading num="33.1" /> The Customer remains responsible for
               the preparation, review, approval and submission of immigration
               applications, sponsorship matters, representations and other
-              external submissions managed with the assistance of ImCamHub.
+              external submissions managed with the assistance of IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="33.2" /> Before an application or submission is
@@ -3743,8 +3811,8 @@ export default function Terms() {
               evidence or records of submission where required.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="33.5" /> e2e Cyber Solutions is not responsible
-              merely by reason of providing ImCamHub for an error, omission,
+              <ClauseHeading num="33.5" /> e2e World is not responsible
+              merely by reason of providing IMCAM Hub for an error, omission,
               missed deadline, incorrect submission or adverse immigration
               outcome arising from information, documents, professional judgement
               or submission activity controlled by the Customer or its users.
@@ -3752,16 +3820,18 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="33.6" /> Clause 33.5 does not exclude
               responsibility to the extent that loss is caused by a breach of
-              this Agreement by e2e Cyber Solutions or by a matter for which
+              this Agreement by e2e World or by a matter for which
               liability cannot lawfully be excluded or limited.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="33.7" /> Nothing in this Section alters any
-              separate written agreement under which e2e Cyber Solutions has
+              separate written agreement under which e2e World has
               expressly agreed to provide professional immigration or other
-              services independently of the ImCamHub Subscription.
+              services independently of the IMCAM Hub Subscription.
             </p>
           </section>
+
+          <PartHeading num="5" title="Customer Responsibilities" />
 
           {/* Section 34 */}
           <section id="section-34" className="mb-12 scroll-mt-24">
@@ -3770,7 +3840,7 @@ export default function Terms() {
             </h2>
             <p className={clauseText}>
               <ClauseHeading num="34.1" /> The Customer is responsible for its
-              use of ImCamHub and for managing its organisation, Authorised
+              use of IMCAM Hub and for managing its organisation, Authorised
               Users, Cases, Customer Data and activities carried out through the
               Customer&rsquo;s account in accordance with this Agreement.
             </p>
@@ -3780,7 +3850,7 @@ export default function Terms() {
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
               <li className={listItemText}>
-                <ClauseHeading num="a." /> use ImCamHub only for legitimate
+                <ClauseHeading num="a." /> use IMCAM Hub only for legitimate
                 business and professional purposes permitted by this Agreement;
               </li>
               <li className={listItemText}>
@@ -3789,13 +3859,13 @@ export default function Terms() {
                 its activities;
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="c." /> provide e2e Cyber Solutions with reasonable
+                <ClauseHeading num="c." /> provide e2e World with reasonable
                 cooperation and information required for the provision,
-                administration, security and support of ImCamHub;
+                administration, security and support of IMCAM Hub;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="d." /> ensure that its Authorised Users use
-                ImCamHub in accordance with this Agreement;
+                IMCAM Hub in accordance with this Agreement;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="e." /> manage user access, roles and
@@ -3804,7 +3874,7 @@ export default function Terms() {
               <li className={listItemText}>
                 <ClauseHeading num="f." /> take reasonable steps to protect
                 accounts, credentials, devices and systems used to access
-                ImCamHub;
+                IMCAM Hub;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="g." /> maintain appropriate internal
@@ -3823,23 +3893,23 @@ export default function Terms() {
               <li className={listItemText}>
                 <ClauseHeading num="j." /> maintain systems, browsers, devices,
                 internet connectivity and other technical resources reasonably
-                necessary to access ImCamHub; and
+                necessary to access IMCAM Hub; and
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="k." /> notify e2e Cyber Solutions promptly of material
+                <ClauseHeading num="k." /> notify e2e World promptly of material
                 security incidents, unauthorised access or misuse affecting the
                 Customer&rsquo;s account.
               </li>
             </ul>
             <p className={clauseText}>
               <ClauseHeading num="34.3" /> The Customer is responsible for
-              determining whether ImCamHub and the functionality included in its
+              determining whether IMCAM Hub and the functionality included in its
               Subscription are suitable for the Customer&rsquo;s intended business
               and professional use.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="34.4" /> Where the Customer delegates
-              activities within ImCamHub to an Authorised User, Candidate,
+              activities within IMCAM Hub to an Authorised User, Candidate,
               Business/Sponsor User or other permitted person, the Customer
               remains responsible for managing that person&rsquo;s access and for
               the responsibilities allocated to the Customer under this
@@ -3847,15 +3917,15 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="34.5" /> The Customer shall provide information
-              or cooperation reasonably requested by e2e Cyber Solutions where necessary
+              or cooperation reasonably requested by e2e World where necessary
               to investigate a technical, security, data protection, account or
-              compliance issue affecting ImCamHub or the Customer&rsquo;s use of
+              compliance issue affecting IMCAM Hub or the Customer&rsquo;s use of
               it.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="34.6" /> Nothing in this Section transfers to
               the Customer responsibility for matters that are expressly the
-              responsibility of e2e Cyber Solutions under this Agreement or applicable law.
+              responsibility of e2e World under this Agreement or applicable law.
             </p>
           </section>
 
@@ -3894,14 +3964,14 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="35.5" /> Any technical validation, mandatory
               field, automated prompt, warning, checklist or other functionality
-              within ImCamHub is intended to assist administration only and does
+              within IMCAM Hub is intended to assist administration only and does
               not confirm that information is factually correct, legally
               sufficient or complete for a particular immigration matter.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="35.6" /> The Customer must not knowingly enter,
               upload, maintain, use or submit false, fraudulent or materially
-              misleading information or documents through ImCamHub.
+              misleading information or documents through IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="35.7" /> The Customer is responsible for
@@ -3918,13 +3988,13 @@ export default function Terms() {
             </h2>
             <p className={clauseText}>
               <ClauseHeading num="36.1" /> Where a Candidate, employee, worker or
-              prospective employee is provided access to ImCamHub through the
+              prospective employee is provided access to IMCAM Hub through the
               Customer&rsquo;s account, the Customer shall take reasonable steps
               to ensure that the person understands the requirements applicable
               to their use of the Candidate Portal.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="36.2" /> A Candidate or employee using ImCamHub
+              <ClauseHeading num="36.2" /> A Candidate or employee using IMCAM Hub
               should:
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
@@ -3965,7 +4035,7 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="36.4" /> A Candidate&rsquo;s or employee&rsquo;s
-              use of ImCamHub does not make e2e Cyber Solutions responsible for the
+              use of IMCAM Hub does not make e2e World responsible for the
               accuracy, authenticity or completeness of information or documents
               supplied by that person.
             </p>
@@ -3973,14 +4043,14 @@ export default function Terms() {
               <ClauseHeading num="36.5" /> The Customer is responsible for
               communicating with the Candidate or employee regarding any
               consequences of failing to provide required information or
-              documents, except where e2e Cyber Solutions has separately agreed in writing
+              documents, except where e2e World has separately agreed in writing
               to undertake a particular communication or service.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="36.6" /> Nothing in this Section creates a
               direct contractual obligation owed by a Candidate or employee to
-              e2e Cyber Solutions solely by reason of their access to the Customer&rsquo;s
-              ImCamHub account, unless separate terms expressly apply to that
+              e2e World solely by reason of their access to the Customer&rsquo;s
+              IMCAM Hub account, unless separate terms expressly apply to that
               user.
             </p>
           </section>
@@ -3992,7 +4062,7 @@ export default function Terms() {
             </h2>
             <p className={clauseText}>
               <ClauseHeading num="37.1" /> Where a Business, employer or sponsor
-              is provided access to ImCamHub, it remains responsible for its own
+              is provided access to IMCAM Hub, it remains responsible for its own
               immigration, sponsorship, employment, record-keeping and regulatory
               obligations.
             </p>
@@ -4033,7 +4103,7 @@ export default function Terms() {
               <li className={listItemText}>
                 <ClauseHeading num="f." /> ensuring that it has authority to
                 provide or access Personal Data and confidential information
-                through ImCamHub; and
+                through IMCAM Hub; and
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="g." /> complying with its own employment,
@@ -4043,20 +4113,20 @@ export default function Terms() {
             </ul>
             <p className={clauseText}>
               <ClauseHeading num="37.4" /> Reminders, dates, statuses, reports or
-              other information displayed within ImCamHub are administrative aids
+              other information displayed within IMCAM Hub are administrative aids
               and do not transfer the Business&rsquo;s or sponsor&rsquo;s legal
-              responsibilities to e2e Cyber Solutions or the Customer.
+              responsibilities to e2e World or the Customer.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="37.5" /> Where an immigration firm or other
-              Customer manages matters for a Business or sponsor through ImCamHub,
+              Customer manages matters for a Business or sponsor through IMCAM Hub,
               the allocation of professional responsibilities between that
               Customer and the Business remains governed by their own engagement
               or arrangements and applicable law.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="37.6" /> The Business must not use access
-              provided through ImCamHub to view or obtain information relating to
+              provided through IMCAM Hub to view or obtain information relating to
               persons, Cases or organisations for which it has not been
               authorised.
             </p>
@@ -4077,13 +4147,13 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="38.2" /> The Customer is responsible for
               ensuring that any person who provides regulated immigration advice
-              or services through or with the assistance of ImCamHub is
+              or services through or with the assistance of IMCAM Hub is
               appropriately authorised, supervised and permitted to undertake the
               relevant work.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="38.3" /> Without limiting Part 4 of this
-              Agreement, an immigration firm or adviser using ImCamHub remains
+              Agreement, an immigration firm or adviser using IMCAM Hub remains
               responsible for:
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
@@ -4128,20 +4198,20 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="38.4" /> The Customer must not rely on the
               availability of a Caseworker role, workflow, template, checklist or
-              other ImCamHub functionality as evidence that a user is
+              other IMCAM Hub functionality as evidence that a user is
               professionally authorised or that a particular professional
               requirement has been satisfied.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="38.5" /> Where the Customer is not itself
               authorised to provide regulated immigration advice or services, it
-              must not use ImCamHub as a means of carrying out activities that it
+              must not use IMCAM Hub as a means of carrying out activities that it
               is not legally permitted to undertake.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="38.6" /> Nothing in this Section represents
-              that e2e Cyber Solutions has verified or approved the professional competence
-              or regulatory status of the Customer or its users unless e2e Cyber Solutions
+              that e2e World has verified or approved the professional competence
+              or regulatory status of the Customer or its users unless e2e World
               expressly confirms otherwise in writing.
             </p>
           </section>
@@ -4155,14 +4225,14 @@ export default function Terms() {
               <ClauseHeading num="39.1" /> The Customer is responsible for
               obtaining and maintaining all consents, permissions, notices,
               instructions and other authorisations reasonably required for its
-              use of ImCamHub and for the collection, use, disclosure and
+              use of IMCAM Hub and for the collection, use, disclosure and
               processing of information through the Software.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="39.2" /> Without limiting the data protection
               provisions of this Agreement, the Customer must ensure that it has
               an appropriate lawful basis and any other required authority before
-              providing Personal Data or confidential information to ImCamHub or
+              providing Personal Data or confidential information to IMCAM Hub or
               making that information accessible to another user.
             </p>
             <p className={clauseText}>
@@ -4174,7 +4244,7 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="39.4" /> Where an electronic signature,
-              declaration, approval or authority is obtained through ImCamHub,
+              declaration, approval or authority is obtained through IMCAM Hub,
               the Customer is responsible for determining whether that method is
               appropriate and legally sufficient for the relevant purpose, unless
               this Agreement expressly states otherwise.
@@ -4187,7 +4257,7 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="39.6" /> The Customer shall provide reasonable
-              evidence of relevant authority or consent to e2e Cyber Solutions where
+              evidence of relevant authority or consent to e2e World where
               reasonably required to address a complaint, data protection
               request, security matter, legal requirement or dispute concerning
               access to or processing of Customer Data.
@@ -4207,12 +4277,12 @@ export default function Terms() {
             </h2>
             <p className={clauseText}>
               <ClauseHeading num="40.1" /> The Customer and its Authorised Users
-              must use ImCamHub only for lawful purposes and in accordance with
+              must use IMCAM Hub only for lawful purposes and in accordance with
               this Agreement.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="40.2" /> The Customer must not use, and must
-              take reasonable steps not to permit ImCamHub to be used, in a
+              take reasonable steps not to permit IMCAM Hub to be used, in a
               manner that:
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
@@ -4238,7 +4308,7 @@ export default function Terms() {
                 confidential information, Personal Data, Cases or documents;
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="f." /> misrepresents ImCamHub as a Home
+                <ClauseHeading num="f." /> misrepresents IMCAM Hub as a Home
                 Office, UKVI or other government system;
               </li>
               <li className={listItemText}>
@@ -4251,25 +4321,25 @@ export default function Terms() {
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="i." /> otherwise conflicts materially with
-                the legitimate purpose for which ImCamHub is provided.
+                the legitimate purpose for which IMCAM Hub is provided.
               </li>
             </ul>
             <p className={clauseText}>
               <ClauseHeading num="40.3" /> The Customer must take reasonable
               steps to prevent and address unlawful or unauthorised use by
-              persons accessing ImCamHub through the Customer&rsquo;s account.
+              persons accessing IMCAM Hub through the Customer&rsquo;s account.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="40.4" /> Where the Customer becomes aware of
               suspected unlawful use, fraud, unauthorised access or other
-              material misuse affecting ImCamHub, it must notify e2e Cyber Solutions
-              promptly where the matter may affect the Software, e2e Cyber Solutions,
+              material misuse affecting IMCAM Hub, it must notify e2e World
+              promptly where the matter may affect the Software, e2e World,
               another Customer or the security of Customer Data.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="40.5" /> e2e Cyber Solutions may take reasonable
+              <ClauseHeading num="40.5" /> e2e World may take reasonable
               protective action in accordance with this Agreement where it
-              reasonably believes that ImCamHub is being used unlawfully or in a
+              reasonably believes that IMCAM Hub is being used unlawfully or in a
               manner presenting a material legal, security or operational risk.
             </p>
             <p className={clauseText}>
@@ -4286,6 +4356,8 @@ export default function Terms() {
             </p>
           </section>
 
+          <PartHeading num="6" title="Case Management & Documents" />
+
           {/* Section 41 */}
           <section id="section-41" className="mb-12 scroll-mt-24">
             <h2 className="text-xl sm:text-2xl font-heading font-bold text-navy mb-6 leading-snug">
@@ -4294,14 +4366,14 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="41.1" /> Subject to the Customer&rsquo;s
               Subscription and assigned permissions, Authorised Users may create,
-              maintain and manage Cases within ImCamHub for legitimate
+              maintain and manage Cases within IMCAM Hub for legitimate
               immigration, sponsorship and related administrative purposes.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="41.2" /> A Case may contain information and
               records relating to a Candidate, Client, employee, worker,
               Business, sponsor, immigration application, sponsorship matter or
-              other activity managed by the Customer through ImCamHub.
+              other activity managed by the Customer through IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="41.3" /> Case-management functionality may
@@ -4353,10 +4425,10 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="41.5" /> Case statuses, workflow stages,
-              reminders and similar administrative indicators within ImCamHub
+              reminders and similar administrative indicators within IMCAM Hub
               are intended to support the Customer&rsquo;s internal management.
               They do not constitute an official Home Office or UKVI status or a
-              professional determination by e2e Cyber Solutions.
+              professional determination by e2e World.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="41.6" /> The Customer remains responsible for
@@ -4365,7 +4437,7 @@ export default function Terms() {
               timescales.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="41.7" /> e2e Cyber Solutions does not undertake
+              <ClauseHeading num="41.7" /> e2e World does not undertake
               to monitor individual Cases for completeness, accuracy, deadlines
               or required professional action unless expressly agreed under a
               separate written service arrangement.
@@ -4378,13 +4450,13 @@ export default function Terms() {
               42. DOCUMENT UPLOAD AND STORAGE
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="42.1" /> ImCamHub may allow the Customer and
+              <ClauseHeading num="42.1" /> IMCAM Hub may allow the Customer and
               permitted users to upload, store, organise, access and manage
               documents and other files relating to Cases and the
               Customer&rsquo;s use of the Software.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="42.2" /> Documents stored through ImCamHub may
+              <ClauseHeading num="42.2" /> Documents stored through IMCAM Hub may
               include, where appropriate, identity documents, immigration
               documents, application records, supporting evidence, employment or
               sponsorship records, correspondence, forms, declarations, signed
@@ -4392,7 +4464,7 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="42.3" /> The Customer must ensure that
-              documents uploaded to ImCamHub are uploaded for a legitimate and
+              documents uploaded to IMCAM Hub are uploaded for a legitimate and
               lawful purpose and that the Customer has the necessary authority to
               store and process them.
             </p>
@@ -4423,7 +4495,7 @@ export default function Terms() {
               </li>
             </ul>
             <p className={clauseText}>
-              <ClauseHeading num="42.5" /> e2e Cyber Solutions may apply
+              <ClauseHeading num="42.5" /> e2e World may apply
               technical restrictions to file types, file sizes, storage volumes
               or other document functionality for security, performance or
               Subscription-management purposes.
@@ -4437,7 +4509,7 @@ export default function Terms() {
               purposes.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="42.7" /> The Customer should not treat ImCamHub
+              <ClauseHeading num="42.7" /> The Customer should not treat IMCAM Hub
               as the sole repository for any document where applicable law,
               professional obligations, business-continuity requirements or the
               circumstances of the Case require the Customer to maintain an
@@ -4445,7 +4517,7 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="42.8" /> The technical arrangements for hosting
-              and storage may be provided by e2e Cyber Solutions or its
+              and storage may be provided by e2e World or its
               authorised service providers and shall be subject to the data
               protection, security, confidentiality and third-party service
               provisions of this Agreement.
@@ -4458,7 +4530,7 @@ export default function Terms() {
               43. DOCUMENT ACCESS AND PERMISSIONS
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="43.1" /> Access to documents within ImCamHub
+              <ClauseHeading num="43.1" /> Access to documents within IMCAM Hub
               shall be governed by the Customer&rsquo;s Subscription, user role,
               Case assignment, account configuration and applicable access
               permissions.
@@ -4488,7 +4560,7 @@ export default function Terms() {
               of that user&rsquo;s authority.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="43.6" /> e2e Cyber Solutions may implement
+              <ClauseHeading num="43.6" /> e2e World may implement
               platform-level restrictions or controls to protect documents and
               Customer Data, including restrictions designed to prevent
               unauthorised cross-Customer access.
@@ -4496,7 +4568,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="43.7" /> Customer Data and documents belonging
               to one Customer must not be made accessible to another Customer
-              through ordinary use of ImCamHub unless the relevant disclosure has
+              through ordinary use of IMCAM Hub unless the relevant disclosure has
               been expressly and lawfully authorised.
             </p>
             <p className={clauseText}>
@@ -4520,8 +4592,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="44.2" /> The fact that a document has been
               uploaded, stored, displayed, categorised, electronically signed or
-              otherwise processed within ImCamHub does not mean that e2e Cyber
-              Solutions has verified or approved that document.
+              otherwise processed within IMCAM Hub does not mean that e2e World has verified or approved that document.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="44.3" /> Where documents are provided by
@@ -4532,7 +4603,7 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="44.4" /> The Customer must not knowingly use
-              ImCamHub to create, alter, store or facilitate the use of
+              IMCAM Hub to create, alter, store or facilitate the use of
               fraudulent, forged or materially misleading documents in connection
               with an immigration or sponsorship matter.
             </p>
@@ -4544,7 +4615,7 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="44.6" /> Any document classification, label,
-              checklist, prompt or technical validation provided by ImCamHub is
+              checklist, prompt or technical validation provided by IMCAM Hub is
               an administrative aid and is not a certification of authenticity,
               evidential sufficiency or legal validity.
             </p>
@@ -4556,7 +4627,7 @@ export default function Terms() {
               45. ELECTRONIC SIGNATURES
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="45.1" /> ImCamHub may provide functionality
+              <ClauseHeading num="45.1" /> IMCAM Hub may provide functionality
               allowing documents, declarations, approvals or other records to be
               signed or acknowledged electronically.
             </p>
@@ -4580,7 +4651,7 @@ export default function Terms() {
               record.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="45.5" /> e2e Cyber Solutions does not warrant
+              <ClauseHeading num="45.5" /> e2e World does not warrant
               that an electronic signature will satisfy every statutory,
               regulatory, evidential, professional or third-party requirement
               applicable to every document or jurisdiction.
@@ -4611,7 +4682,7 @@ export default function Terms() {
               46. RECORDS AND AUDIT TRAILS
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="46.1" /> ImCamHub may create and retain system
+              <ClauseHeading num="46.1" /> IMCAM Hub may create and retain system
               records or audit information concerning activities carried out
               within the Software.
             </p>
@@ -4654,7 +4725,7 @@ export default function Terms() {
               <ClauseHeading num="46.3" /> Audit and activity records are
               intended to assist with administration, security, accountability
               and Case management. They do not necessarily constitute a complete
-              evidential record of every action occurring outside ImCamHub.
+              evidential record of every action occurring outside IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="46.4" /> The Customer is responsible for
@@ -4663,7 +4734,7 @@ export default function Terms() {
               internal policies.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="46.5" /> e2e Cyber Solutions may use relevant
+              <ClauseHeading num="46.5" /> e2e World may use relevant
               system logs and audit information for legitimate purposes including
               security monitoring, troubleshooting, investigating misuse,
               supporting Customers, maintaining the Software and demonstrating
@@ -4672,7 +4743,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="46.6" /> Access to audit records may vary
               according to Subscription, user role and functionality. Nothing in
-              this Agreement requires e2e Cyber Solutions to make all internal
+              this Agreement requires e2e World to make all internal
               technical or security logs available to the Customer.
             </p>
             <p className={clauseText}>
@@ -4691,7 +4762,7 @@ export default function Terms() {
               <ClauseHeading num="47.1" /> Where export or download functionality
               is made available, the Customer may export or download Customer
               Data and documents in accordance with its Subscription, assigned
-              permissions and the technical capabilities of ImCamHub.
+              permissions and the technical capabilities of IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="47.2" /> The format, structure, scope and
@@ -4705,13 +4776,13 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="47.4" /> Once Customer Data or documents are
-              exported or downloaded from ImCamHub, the Customer is responsible
+              exported or downloaded from IMCAM Hub, the Customer is responsible
               for the security, storage, use, disclosure and disposal of the
               exported copy to the extent that those matters are within the
               Customer&rsquo;s control.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="47.5" /> e2e Cyber Solutions may apply
+              <ClauseHeading num="47.5" /> e2e World may apply
               reasonable technical, security or usage controls to export
               functionality where necessary to protect the Software, Customer
               Data or other Customers.
@@ -4737,10 +4808,10 @@ export default function Terms() {
             </h2>
             <p className={clauseText}>
               <ClauseHeading num="48.1" /> Customer Data and documents may be
-              retained within ImCamHub for the duration of the
+              retained within IMCAM Hub for the duration of the
               Customer&rsquo;s Subscription and for such additional periods as
               are permitted or required under this Agreement, the applicable Data
-              Processing Agreement, e2e Cyber Solutions&rsquo;s documented
+              Processing Agreement, e2e World&rsquo;s documented
               retention arrangements or applicable law.
             </p>
             <p className={clauseText}>
@@ -4751,7 +4822,7 @@ export default function Terms() {
               retention settings or deletion controls are available to it.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="48.3" /> e2e Cyber Solutions may retain
+              <ClauseHeading num="48.3" /> e2e World may retain
               particular records for longer where reasonably necessary to:
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
@@ -4788,11 +4859,11 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="48.5" /> Unless a specific retention period is
               expressly agreed, the existence of storage functionality within
-              ImCamHub does not represent that Customer Data or documents will be
+              IMCAM Hub does not represent that Customer Data or documents will be
               retained indefinitely.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="48.6" /> Where e2e Cyber Solutions introduces
+              <ClauseHeading num="48.6" /> Where e2e World introduces
               configurable retention functionality, the Customer is responsible
               for selecting and managing settings appropriate to its legal,
               regulatory and professional obligations.
@@ -4800,7 +4871,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="48.7" /> Any final operational retention
               periods, backup cycles or post-termination deletion periods adopted
-              for ImCamHub may be documented in the applicable Data Processing
+              for IMCAM Hub may be documented in the applicable Data Processing
               Agreement, retention policy, Order Form or other contractual
               documentation.
             </p>
@@ -4813,7 +4884,7 @@ export default function Terms() {
             </h2>
             <p className={clauseText}>
               <ClauseHeading num="49.1" /> Subject to the functionality made
-              available within ImCamHub, authorised users may be able to delete,
+              available within IMCAM Hub, authorised users may be able to delete,
               archive or otherwise remove Cases, documents or other Customer Data
               from active use.
             </p>
@@ -4838,14 +4909,13 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="49.5" /> Where data remains in backup or
-              security systems after deletion from active use, e2e Cyber
-              Solutions shall restrict further use of that data except where
+              security systems after deletion from active use, e2e World shall restrict further use of that data except where
               restoration, security, legal or compliance requirements make access
               necessary, subject to applicable law and the Data Processing
               Agreement.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="49.6" /> e2e Cyber Solutions may delete
+              <ClauseHeading num="49.6" /> e2e World may delete
               Customer Data where permitted or required under this Agreement,
               including following termination or expiry of a Subscription,
               subject to any applicable data-return, retention, legal-hold or
@@ -4867,11 +4937,13 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="49.9" /> The specific technical deletion
               process and applicable time periods may depend on the hosting,
-              backup and storage arrangements used for ImCamHub and may be
+              backup and storage arrangements used for IMCAM Hub and may be
               further specified in the Data Processing Agreement or relevant
               policy.
             </p>
           </section>
+
+          <PartHeading num="7" title="Communications & Notifications" />
 
           {/* Section 50 */}
           <section id="section-50" className="mb-12 scroll-mt-24">
@@ -4879,7 +4951,7 @@ export default function Terms() {
               50. EMAIL AND PLATFORM COMMUNICATIONS
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="50.1" /> ImCamHub may provide functionality
+              <ClauseHeading num="50.1" /> IMCAM Hub may provide functionality
               enabling the Customer and its Authorised Users to send, receive,
               record, manage or view communications relating to Cases,
               Candidates, Clients, employees, workers, Businesses and other
@@ -4893,7 +4965,7 @@ export default function Terms() {
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
               <li className={listItemText}>
                 <ClauseHeading num="a." /> emails sent or received through or in
-                connection with ImCamHub;
+                connection with IMCAM Hub;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="b." /> messages or communications exchanged
@@ -4916,7 +4988,7 @@ export default function Terms() {
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="g." /> other communication functionality made
-                available by e2e Cyber Solutions from time to time.
+                available by e2e World from time to time.
               </li>
             </ul>
             <p className={clauseText}>
@@ -4924,11 +4996,11 @@ export default function Terms() {
               determining which communications should be sent, to whom they
               should be sent, and whether the content is accurate, appropriate,
               lawful and professionally suitable before sending, except where a
-              communication is generated solely by e2e Cyber Solutions for the
-              administration, security or operation of ImCamHub.
+              communication is generated solely by e2e World for the
+              administration, security or operation of IMCAM Hub.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="50.4" /> Where ImCamHub enables communications
+              <ClauseHeading num="50.4" /> Where IMCAM Hub enables communications
               to be associated with or stored against a Case, the Customer is
               responsible for determining whether the communication forms part
               of the Customer&rsquo;s professional or business record and
@@ -4936,7 +5008,7 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="50.5" /> The Customer must ensure that
-              communications sent through ImCamHub do not contain unlawful,
+              communications sent through IMCAM Hub do not contain unlawful,
               fraudulent, abusive, defamatory, discriminatory, misleading or
               otherwise prohibited content and do not infringe another
               person&rsquo;s privacy, confidentiality or other legal rights.
@@ -4950,22 +5022,21 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="50.7" /> The ability to send or receive a
-              communication through ImCamHub does not mean that e2e Cyber
-              Solutions has reviewed, approved or verified the communication or
+              communication through IMCAM Hub does not mean that e2e World has reviewed, approved or verified the communication or
               any attachment.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="50.8" /> Where the Customer uses ImCamHub to
+              <ClauseHeading num="50.8" /> Where the Customer uses IMCAM Hub to
               communicate professional or immigration advice, the Customer
               remains responsible for that advice and for ensuring that it is
               provided by an appropriately authorised person where required.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="50.9" /> e2e Cyber Solutions may send
+              <ClauseHeading num="50.9" /> e2e World may send
               service-related communications directly to the Customer or
               relevant users where reasonably necessary for account
               administration, security, maintenance, support, changes to the
-              Software or other matters concerning use of ImCamHub.
+              Software or other matters concerning use of IMCAM Hub.
             </p>
           </section>
 
@@ -4975,7 +5046,7 @@ export default function Terms() {
               51. NOTIFICATIONS AND REMINDERS
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="51.1" /> ImCamHub may provide automated or
+              <ClauseHeading num="51.1" /> IMCAM Hub may provide automated or
               user-configured notifications and reminders intended to assist
               with the administration and management of Cases and related
               activities.
@@ -5016,7 +5087,7 @@ export default function Terms() {
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="i." /> other events or dates supported by
-                the functionality of ImCamHub.
+                the functionality of IMCAM Hub.
               </li>
             </ul>
             <p className={clauseText}>
@@ -5028,14 +5099,14 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="51.4" /> The Customer must not rely solely on
-              ImCamHub to ensure that a deadline, expiry date, reporting
+              IMCAM Hub to ensure that a deadline, expiry date, reporting
               obligation, appointment or other time-sensitive action is
               identified or completed.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="51.5" /> The accuracy and usefulness of a
               notification or reminder may depend on the accuracy, completeness
-              and currency of the information entered into ImCamHub and on the
+              and currency of the information entered into IMCAM Hub and on the
               configuration selected by the Customer or its Authorised Users.
             </p>
             <p className={clauseText}>
@@ -5046,13 +5117,12 @@ export default function Terms() {
               appropriate.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="51.7" /> e2e Cyber Solutions does not
+              <ClauseHeading num="51.7" /> e2e World does not
               guarantee that every notification or reminder will be delivered,
               received, read or acted upon by the intended recipient, including
               where delivery is affected by third-party systems, internet
               connectivity, recipient settings, spam filtering, incorrect
-              contact details or other matters outside e2e Cyber
-              Solutions&rsquo;s reasonable control.
+              contact details or other matters outside e2e World&rsquo;s reasonable control.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="51.8" /> Where a notification or reminder
@@ -5071,7 +5141,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="52.1" /> The Customer is responsible for
               communications sent by or on behalf of the Customer through
-              ImCamHub and for the actions of its Authorised Users in using
+              IMCAM Hub and for the actions of its Authorised Users in using
               communication functionality, subject to the allocation of
               responsibility elsewhere in this Agreement.
             </p>
@@ -5102,7 +5172,7 @@ export default function Terms() {
                 electronic-communications requirements;
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="f." /> users do not use ImCamHub for spam,
+                <ClauseHeading num="f." /> users do not use IMCAM Hub for spam,
                 phishing, harassment, fraud or other prohibited activity; and
               </li>
               <li className={listItemText}>
@@ -5132,12 +5202,11 @@ export default function Terms() {
               obligations.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="52.6" /> e2e Cyber Solutions is not
+              <ClauseHeading num="52.6" /> e2e World is not
               responsible for the content of Customer communications or for an
               error in a recipient, attachment, instruction or message selected
               or supplied by the Customer or its users, except to the extent
-              that the error results from a fault or breach for which e2e Cyber
-              Solutions is responsible.
+              that the error results from a fault or breach for which e2e World is responsible.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="52.7" /> The Customer must not configure or
@@ -5148,7 +5217,7 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="52.8" /> Where the Customer permits Candidates
-              or Business/Sponsor Users to communicate through ImCamHub, the
+              or Business/Sponsor Users to communicate through IMCAM Hub, the
               Customer remains responsible for managing the scope of that access
               and for taking reasonable steps to address misuse that comes to
               its attention.
@@ -5162,14 +5231,14 @@ export default function Terms() {
             </h2>
             <p className={clauseText}>
               <ClauseHeading num="53.1" /> Email and other communication
-              functionality within ImCamHub may depend on third-party email,
+              functionality within IMCAM Hub may depend on third-party email,
               hosting, telecommunications, authentication or communication
               service providers.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="53.2" /> The Customer acknowledges that
               delivery of an email or electronic communication may be affected
-              by matters outside e2e Cyber Solutions&rsquo;s reasonable control,
+              by matters outside e2e World&rsquo;s reasonable control,
               including:
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
@@ -5206,7 +5275,7 @@ export default function Terms() {
               </li>
             </ul>
             <p className={clauseText}>
-              <ClauseHeading num="53.3" /> A message being shown within ImCamHub
+              <ClauseHeading num="53.3" /> A message being shown within IMCAM Hub
               as sent, generated, queued or otherwise processed does not
               necessarily establish that the intended recipient has received,
               opened, read or acted upon the communication.
@@ -5219,7 +5288,7 @@ export default function Terms() {
               communication is required.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="53.5" /> e2e Cyber Solutions may use reputable
+              <ClauseHeading num="53.5" /> e2e World may use reputable
               Third-Party Services to provide or support communication
               functionality and may change such providers from time to time in
               accordance with the provisions of this Agreement concerning
@@ -5229,21 +5298,19 @@ export default function Terms() {
               <ClauseHeading num="53.6" /> Use of a Third-Party Service may be
               subject to technical limits, acceptable-use requirements, security
               controls or other conditions imposed by the relevant provider. The
-              Customer must not use ImCamHub in a manner that causes e2e Cyber
-              Solutions to breach such requirements.
+              Customer must not use IMCAM Hub in a manner that causes e2e World to breach such requirements.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="53.7" /> e2e Cyber Solutions may temporarily
+              <ClauseHeading num="53.7" /> e2e World may temporarily
               restrict communication functionality where reasonably necessary to
               address suspected spam, fraud, security incidents, provider
               restrictions, excessive or abusive use, or other material risks to
-              ImCamHub or its communication services.
+              IMCAM Hub or its communication services.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="53.8" /> Where a third-party communication
-              service experiences an outage, delay or failure, e2e Cyber
-              Solutions shall take such reasonable steps as are appropriate in
-              the circumstances to restore or maintain the affected ImCamHub
+              service experiences an outage, delay or failure, e2e World shall take such reasonable steps as are appropriate in
+              the circumstances to restore or maintain the affected IMCAM Hub
               functionality, but does not guarantee uninterrupted operation of
               third-party networks or services.
             </p>
@@ -5262,6 +5329,8 @@ export default function Terms() {
             </p>
           </section>
 
+          <PartHeading num="8" title="Data Protection & Privacy" />
+
           {/* Section 54 */}
           <section id="section-54" className="mb-12 scroll-mt-24">
             <h2 className="text-xl sm:text-2xl font-heading font-bold text-navy mb-6 leading-snug">
@@ -5270,11 +5339,11 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="54.1" /> Each party shall comply with the Data
               Protection Legislation applicable to it in connection with the
-              provision and use of ImCamHub.
+              provision and use of IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="54.2" /> The parties acknowledge that use of
-              ImCamHub may involve the processing of Personal Data relating to
+              IMCAM Hub may involve the processing of Personal Data relating to
               Candidates, Clients, employees, workers, Business representatives,
               Authorised Users and other individuals connected with immigration,
               sponsorship and related matters.
@@ -5282,15 +5351,14 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="54.3" /> The Customer is responsible for
               ensuring that Personal Data entered into, uploaded to, disclosed
-              through or otherwise processed using ImCamHub is collected and
+              through or otherwise processed using IMCAM Hub is collected and
               used lawfully and fairly and only for purposes for which the
               Customer has an appropriate legal basis and authority.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="54.4" /> e2e Cyber Solutions shall process
+              <ClauseHeading num="54.4" /> e2e World shall process
               Personal Data in accordance with its obligations under applicable
-              Data Protection Legislation, this Agreement and, where e2e Cyber
-              Solutions acts as a processor on behalf of the Customer, the
+              Data Protection Legislation, this Agreement and, where e2e World acts as a processor on behalf of the Customer, the
               applicable Data Processing Agreement.
             </p>
             <p className={clauseText}>
@@ -5320,16 +5388,15 @@ export default function Terms() {
               for which that Personal Data is processed.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="55.2" /> To the extent that e2e Cyber
-              Solutions processes Customer Data containing Personal Data solely
+              <ClauseHeading num="55.2" /> To the extent that e2e World processes Customer Data containing Personal Data solely
               on the Customer&rsquo;s documented instructions for the purpose of
-              providing ImCamHub, e2e Cyber Solutions shall ordinarily act as
+              providing IMCAM Hub, e2e World shall ordinarily act as
               processor and the Customer shall ordinarily act as controller,
               unless the circumstances require a different allocation under Data
               Protection Legislation.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="55.3" /> e2e Cyber Solutions may act as an
+              <ClauseHeading num="55.3" /> e2e World may act as an
               independent controller in respect of Personal Data that it
               determines the purposes and means of processing for its own
               legitimate business and legal activities, which may include:
@@ -5348,7 +5415,7 @@ export default function Terms() {
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="d." /> service security, fraud prevention
-                and abuse prevention where e2e Cyber Solutions determines the
+                and abuse prevention where e2e World determines the
                 relevant processing purposes;
               </li>
               <li className={listItemText}>
@@ -5359,8 +5426,7 @@ export default function Terms() {
                 legal claims; and
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="g." /> other processing for which e2e Cyber
-                Solutions independently determines the purposes and means.
+                <ClauseHeading num="g." /> other processing for which e2e World independently determines the purposes and means.
               </li>
             </ul>
             <p className={clauseText}>
@@ -5374,7 +5440,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="55.5" /> The parties do not intend to become
               joint controllers merely because both parties process Personal
-              Data in connection with ImCamHub. If a processing activity results
+              Data in connection with IMCAM Hub. If a processing activity results
               in the parties jointly determining its purposes and means, the
               parties shall address their respective responsibilities as
               required by Data Protection Legislation.
@@ -5384,7 +5450,7 @@ export default function Terms() {
               and processor responsibilities shall be set out or supplemented in
               the applicable Data Processing Agreement and may be updated to
               reflect the actual processing activities and technical operation
-              of ImCamHub.
+              of IMCAM Hub.
             </p>
           </section>
 
@@ -5402,7 +5468,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="56.2" /> The Customer is responsible for
               identifying the lawful basis or bases applicable to its processing
-              of Personal Data through ImCamHub and for satisfying any
+              of Personal Data through IMCAM Hub and for satisfying any
               additional conditions required for special category or criminal
               offence data.
             </p>
@@ -5420,7 +5486,7 @@ export default function Terms() {
               is required to do so in its capacity as controller.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="56.5" /> e2e Cyber Solutions shall provide
+              <ClauseHeading num="56.5" /> e2e World shall provide
               privacy information for processing activities for which it acts as
               an independent controller where required by Data Protection
               Legislation.
@@ -5440,7 +5506,7 @@ export default function Terms() {
             </h2>
             <p className={clauseText}>
               <ClauseHeading num="57.1" /> Personal Data processed through
-              ImCamHub may include information required for immigration,
+              IMCAM Hub may include information required for immigration,
               sponsorship, employment, account-management and related purposes.
             </p>
             <p className={clauseText}>
@@ -5488,17 +5554,17 @@ export default function Terms() {
               <li className={listItemText}>
                 <ClauseHeading num="k." /> other Personal Data entered into or
                 generated through the Customer&rsquo;s authorised use of
-                ImCamHub.
+                IMCAM Hub.
               </li>
             </ul>
             <p className={clauseText}>
               <ClauseHeading num="57.3" /> The Customer must limit Personal Data
-              entered into ImCamHub to information that is reasonably necessary
+              entered into IMCAM Hub to information that is reasonably necessary
               for legitimate purposes connected with the Customer&rsquo;s use of
               the Software.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="57.4" /> The Customer must not use ImCamHub as
+              <ClauseHeading num="57.4" /> The Customer must not use IMCAM Hub as
               a general repository for unrelated Personal Data that is not
               reasonably connected with the purposes for which the Software is
               provided.
@@ -5523,7 +5589,7 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="58.2" /> Special category data processed
-              through ImCamHub may, depending on the relevant Case and
+              through IMCAM Hub may, depending on the relevant Case and
               information supplied, include data revealing racial or ethnic
               origin, religious or philosophical beliefs, health information,
               biometric data used for identification or other special category
@@ -5533,7 +5599,7 @@ export default function Terms() {
               <ClauseHeading num="58.3" /> The Customer is responsible for
               identifying and documenting an appropriate lawful basis and any
               applicable special-category processing condition before processing
-              such data through ImCamHub.
+              such data through IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="58.4" /> The Customer must ensure that access
@@ -5542,7 +5608,7 @@ export default function Terms() {
               reasonably necessary for the relevant purpose.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="58.5" /> e2e Cyber Solutions shall apply the
+              <ClauseHeading num="58.5" /> e2e World shall apply the
               security and confidentiality measures required under this
               Agreement and the applicable Data Processing Agreement to special
               category data processed on the Customer&rsquo;s behalf.
@@ -5568,7 +5634,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="59.2" /> The Customer is responsible for
               ensuring that any processing of criminal offence data through
-              ImCamHub is lawful and satisfies the requirements of applicable
+              IMCAM Hub is lawful and satisfies the requirements of applicable
               Data Protection Legislation, including any requirement for
               appropriate legal authority or safeguards.
             </p>
@@ -5578,13 +5644,13 @@ export default function Terms() {
               authorised need to access it.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="59.4" /> e2e Cyber Solutions shall not
+              <ClauseHeading num="59.4" /> e2e World shall not
               intentionally use criminal offence data processed on the
               Customer&rsquo;s behalf for its own unrelated purposes.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="59.5" /> The Customer should not collect or
-              retain criminal offence data through ImCamHub beyond what is
+              retain criminal offence data through IMCAM Hub beyond what is
               reasonably necessary for the relevant lawful purpose.
             </p>
           </section>
@@ -5595,7 +5661,7 @@ export default function Terms() {
               60. CHILDREN&rsquo;S DATA
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="60.1" /> ImCamHub may be used in connection
+              <ClauseHeading num="60.1" /> IMCAM Hub may be used in connection
               with immigration Cases involving children, including dependant
               applications and family immigration matters.
             </p>
@@ -5638,30 +5704,29 @@ export default function Terms() {
               61. DATA PROCESSING INSTRUCTIONS
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="61.1" /> Where e2e Cyber Solutions acts as
+              <ClauseHeading num="61.1" /> Where e2e World acts as
               processor, it shall process Personal Data only on the documented
               instructions of the Customer, including as set out in this
               Agreement, the Data Processing Agreement, the Customer&rsquo;s use
-              and configuration of ImCamHub, and other lawful written
+              and configuration of IMCAM Hub, and other lawful written
               instructions agreed between the parties.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="61.2" /> The Customer instructs e2e Cyber
-              Solutions to process Personal Data as reasonably necessary to
-              provide, operate, maintain, secure and support ImCamHub and to
+              <ClauseHeading num="61.2" /> The Customer instructs e2e World to process Personal Data as reasonably necessary to
+              provide, operate, maintain, secure and support IMCAM Hub and to
               perform the services described in the Agreement.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="61.3" /> If e2e Cyber Solutions is required by
+              <ClauseHeading num="61.3" /> If e2e World is required by
               applicable law to process Personal Data otherwise than on the
-              Customer&rsquo;s instructions, e2e Cyber Solutions shall inform
+              Customer&rsquo;s instructions, e2e World shall inform
               the Customer of that legal requirement before processing unless
               the law prohibits such notification.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="61.4" /> If e2e Cyber Solutions reasonably
+              <ClauseHeading num="61.4" /> If e2e World reasonably
               believes that a Customer instruction infringes applicable Data
-              Protection Legislation, e2e Cyber Solutions may inform the
+              Protection Legislation, e2e World may inform the
               Customer and, where appropriate, suspend the affected processing
               while the instruction is clarified or amended.
             </p>
@@ -5669,11 +5734,11 @@ export default function Terms() {
               <ClauseHeading num="61.5" /> The Customer is responsible for
               ensuring that its processing instructions are lawful and that it
               has all necessary rights, notices, lawful bases and authorisations
-              to instruct e2e Cyber Solutions to process the relevant Personal
+              to instruct e2e World to process the relevant Personal
               Data.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="61.6" /> e2e Cyber Solutions is not required
+              <ClauseHeading num="61.6" /> e2e World is not required
               to determine the legal basis for processing undertaken on the
               Customer&rsquo;s behalf except to the extent required by Data
               Protection Legislation in its capacity as processor.
@@ -5694,9 +5759,9 @@ export default function Terms() {
               and the risks to individuals.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="62.2" /> e2e Cyber Solutions&rsquo;s measures
+              <ClauseHeading num="62.2" /> e2e World&rsquo;s measures
               may include, as appropriate to the technical design and risk
-              profile of ImCamHub:
+              profile of IMCAM Hub:
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
               <li className={listItemText}>
@@ -5741,19 +5806,18 @@ export default function Terms() {
               security matters within its control, including management of
               Authorised Users, credentials, devices, local systems, access
               permissions and the secure handling of data exported from
-              ImCamHub.
+              IMCAM Hub.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="62.4" /> The Customer must notify e2e Cyber
-              Solutions promptly of known or suspected weaknesses, unauthorised
-              access or security incidents that may affect ImCamHub or Personal
+              <ClauseHeading num="62.4" /> The Customer must notify e2e World promptly of known or suspected weaknesses, unauthorised
+              access or security incidents that may affect IMCAM Hub or Personal
               Data processed through it.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="62.5" /> Specific technical and organisational
               measures may be described in the Data Processing Agreement,
               security schedule or other applicable documentation and may evolve
-              as e2e Cyber Solutions develops the Software and its
+              as e2e World develops the Software and its
               infrastructure.
             </p>
             <p className={clauseText}>
@@ -5768,10 +5832,9 @@ export default function Terms() {
               63. DATA BREACH AND SECURITY INCIDENTS
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="63.1" /> Where e2e Cyber Solutions becomes
+              <ClauseHeading num="63.1" /> Where e2e World becomes
               aware of a Personal Data Breach affecting Personal Data processed
-              by e2e Cyber Solutions as processor on behalf of the Customer, e2e
-              Cyber Solutions shall notify the Customer without undue delay in
+              by e2e World as processor on behalf of the Customer, e2e World shall notify the Customer without undue delay in
               accordance with applicable Data Protection Legislation and the
               Data Processing Agreement.
             </p>
@@ -5783,7 +5846,7 @@ export default function Terms() {
               action.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="63.3" /> e2e Cyber Solutions may provide
+              <ClauseHeading num="63.3" /> e2e World may provide
               information in phases where all relevant details are not available
               at the same time.
             </p>
@@ -5796,11 +5859,10 @@ export default function Terms() {
               timescales.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="63.5" /> The Customer must notify e2e Cyber
-              Solutions without undue delay if it becomes aware of a security
+              <ClauseHeading num="63.5" /> The Customer must notify e2e World without undue delay if it becomes aware of a security
               incident or Personal Data Breach involving the Customer&rsquo;s
               account, Authorised Users or systems where the incident may affect
-              ImCamHub, e2e Cyber Solutions or Personal Data processed through
+              IMCAM Hub, e2e World or Personal Data processed through
               the Software.
             </p>
             <p className={clauseText}>
@@ -5827,15 +5889,15 @@ export default function Terms() {
               Data for which the Customer acts as controller.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="64.2" /> Where e2e Cyber Solutions receives a
+              <ClauseHeading num="64.2" /> Where e2e World receives a
               request from a data subject relating primarily to Personal Data
-              processed on behalf of the Customer, e2e Cyber Solutions may refer
-              the request to the Customer unless e2e Cyber Solutions is legally
+              processed on behalf of the Customer, e2e World may refer
+              the request to the Customer unless e2e World is legally
               required to respond directly.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="64.3" /> Taking into account the nature of the
-              processing, e2e Cyber Solutions shall provide reasonable assistance
+              processing, e2e World shall provide reasonable assistance
               to the Customer, through appropriate technical and organisational
               measures where required by Data Protection Legislation, to support
               the Customer in responding to applicable data subject rights
@@ -5854,7 +5916,7 @@ export default function Terms() {
               applicable law.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="64.6" /> Where e2e Cyber Solutions acts as an
+              <ClauseHeading num="64.6" /> Where e2e World acts as an
               independent controller for particular Personal Data, it shall be
               responsible for handling data subject requests relating to that
               processing in accordance with Data Protection Legislation.
@@ -5868,14 +5930,14 @@ export default function Terms() {
             </h2>
             <p className={clauseText}>
               <ClauseHeading num="65.1" /> Personal Data processed in connection
-              with ImCamHub shall not be transferred internationally in breach of
+              with IMCAM Hub shall not be transferred internationally in breach of
               applicable Data Protection Legislation.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="65.2" /> Where e2e Cyber Solutions, acting as
+              <ClauseHeading num="65.2" /> Where e2e World, acting as
               processor, transfers Personal Data to a country or recipient
               outside the United Kingdom in circumstances requiring an
-              international-transfer safeguard, e2e Cyber Solutions shall ensure
+              international-transfer safeguard, e2e World shall ensure
               that an appropriate lawful transfer mechanism is in place.
             </p>
             <p className={clauseText}>
@@ -5894,14 +5956,14 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="65.5" /> The specific hosting locations,
               sub-processor locations and transfer arrangements applicable to
-              ImCamHub shall be documented once determined and, where required,
+              IMCAM Hub shall be documented once determined and, where required,
               reflected in the Data Processing Agreement or relevant
               sub-processor information.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="65.6" /> The Customer is responsible for
               ensuring that international transfers independently initiated by
-              the Customer, including exports or disclosures outside ImCamHub,
+              the Customer, including exports or disclosures outside IMCAM Hub,
               comply with applicable Data Protection Legislation.
             </p>
           </section>
@@ -5912,21 +5974,20 @@ export default function Terms() {
               66. SUB-PROCESSORS
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="66.1" /> Where e2e Cyber Solutions acts as
-              processor, the Customer authorises e2e Cyber Solutions to engage
+              <ClauseHeading num="66.1" /> Where e2e World acts as
+              processor, the Customer authorises e2e World to engage
               sub-processors to assist in providing, hosting, securing,
-              supporting or operating ImCamHub, subject to the requirements of
+              supporting or operating IMCAM Hub, subject to the requirements of
               the applicable Data Processing Agreement.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="66.2" /> e2e Cyber Solutions shall ensure that
+              <ClauseHeading num="66.2" /> e2e World shall ensure that
               a sub-processor processing Personal Data on behalf of the Customer
               is subject to written data protection obligations that provide an
-              appropriate level of protection consistent with e2e Cyber
-              Solutions&rsquo;s obligations as processor.
+              appropriate level of protection consistent with e2e World&rsquo;s obligations as processor.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="66.3" /> e2e Cyber Solutions shall remain
+              <ClauseHeading num="66.3" /> e2e World shall remain
               responsible for the performance of its sub-processors to the extent
               required by applicable Data Protection Legislation and the Data
               Processing Agreement.
@@ -5944,7 +6005,7 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="66.6" /> Because the final hosting and
-              supporting service-provider arrangements for ImCamHub may evolve,
+              supporting service-provider arrangements for IMCAM Hub may evolve,
               this Agreement does not identify a fixed list of sub-processors.
               The operative list shall be maintained in the applicable data
               protection documentation.
@@ -5963,15 +6024,15 @@ export default function Terms() {
               contractual, security, backup and dispute-resolution requirements.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="67.2" /> Where e2e Cyber Solutions acts as
+              <ClauseHeading num="67.2" /> Where e2e World acts as
               processor, retention and deletion of Customer Personal Data shall
               be governed by the Customer&rsquo;s documented instructions, the
-              functionality of ImCamHub, this Agreement and the applicable Data
+              functionality of IMCAM Hub, this Agreement and the applicable Data
               Processing Agreement.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="67.3" /> Following expiry or termination of the
-              Subscription, e2e Cyber Solutions shall return or delete Personal
+              Subscription, e2e World shall return or delete Personal
               Data processed on behalf of the Customer in accordance with the
               applicable Data Processing Agreement, subject to any legal
               requirement or permitted residual backup retention.
@@ -5984,7 +6045,7 @@ export default function Terms() {
               used for unrelated purposes.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="67.5" /> Where e2e Cyber Solutions acts as
+              <ClauseHeading num="67.5" /> Where e2e World acts as
               independent controller, it may retain Personal Data for the periods
               reasonably necessary for its own lawful purposes, including account
               administration, financial records, security, legal compliance and
@@ -6011,17 +6072,17 @@ export default function Terms() {
             </h2>
             <p className={clauseText}>
               <ClauseHeading num="68.1" /> The Customer is responsible for
-              determining whether its use of ImCamHub requires a data protection
+              determining whether its use of IMCAM Hub requires a data protection
               impact assessment or other risk assessment under applicable Data
               Protection Legislation.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="68.2" /> Where e2e Cyber Solutions acts as
+              <ClauseHeading num="68.2" /> Where e2e World acts as
               processor and the Customer reasonably requires information to
               complete a data protection impact assessment concerning processing
-              carried out through ImCamHub, e2e Cyber Solutions shall provide
+              carried out through IMCAM Hub, e2e World shall provide
               reasonable assistance taking into account the nature of the
-              processing and the information available to e2e Cyber Solutions.
+              processing and the information available to e2e World.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="68.3" /> Such assistance may include relevant
@@ -6037,10 +6098,10 @@ export default function Terms() {
               is required.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="68.5" /> Where e2e Cyber Solutions identifies a
+              <ClauseHeading num="68.5" /> Where e2e World identifies a
               material change to the processing it carries out as processor that
               may reasonably affect information previously provided for a data
-              protection impact assessment, e2e Cyber Solutions shall address
+              protection impact assessment, e2e World shall address
               such changes in accordance with the Data Processing Agreement and
               applicable law.
             </p>
@@ -6052,7 +6113,7 @@ export default function Terms() {
               69. DATA PROCESSING AGREEMENT
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="69.1" /> Where e2e Cyber Solutions processes
+              <ClauseHeading num="69.1" /> Where e2e World processes
               Personal Data as processor on behalf of the Customer, the parties
               shall be subject to a Data Processing Agreement meeting the
               requirements of applicable Data Protection Legislation.
@@ -6060,7 +6121,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="69.2" /> The Data Processing Agreement shall
               form part of the contractual arrangements governing the
-              Customer&rsquo;s use of ImCamHub and shall address matters
+              Customer&rsquo;s use of IMCAM Hub and shall address matters
               including, as applicable:
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
@@ -6114,8 +6175,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="69.3" /> If there is a conflict between this
               Agreement and the Data Processing Agreement concerning the
-              processing of Personal Data in circumstances where e2e Cyber
-              Solutions acts as processor, the Data Processing Agreement shall
+              processing of Personal Data in circumstances where e2e World acts as processor, the Data Processing Agreement shall
               prevail to the extent of that conflict, consistently with the
               order-of-precedence provisions of this Agreement.
             </p>
@@ -6130,7 +6190,7 @@ export default function Terms() {
               <ClauseHeading num="69.5" /> Where the relevant technical or
               operational arrangements have not yet been finalised, the parties
               acknowledge that the Data Processing Agreement must be completed
-              and aligned with the production configuration of ImCamHub before
+              and aligned with the production configuration of IMCAM Hub before
               Personal Data is processed under a live Customer Subscription to
               the extent required by applicable law.
             </p>
@@ -6141,6 +6201,8 @@ export default function Terms() {
             </p>
           </section>
 
+          <PartHeading num="9" title="Confidentiality & Security" />
+
           {/* Section 70 */}
           <section id="section-70" className="mb-12 scroll-mt-24">
             <h2 className="text-xl sm:text-2xl font-heading font-bold text-navy mb-6 leading-snug">
@@ -6149,7 +6211,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="70.1" /> Each party may receive or have access
               to Confidential Information belonging to the other party in
-              connection with the Agreement, the provision or use of ImCamHub,
+              connection with the Agreement, the provision or use of IMCAM Hub,
               technical support, implementation, account administration or
               related activities.
             </p>
@@ -6228,7 +6290,7 @@ export default function Terms() {
             </h2>
             <p className={clauseText}>
               <ClauseHeading num="71.1" /> The parties acknowledge that Customer
-              Data processed through ImCamHub may include highly confidential
+              Data processed through IMCAM Hub may include highly confidential
               information concerning Candidates, Clients, employees, workers,
               Businesses, sponsors and immigration matters.
             </p>
@@ -6241,7 +6303,7 @@ export default function Terms() {
               its nature or circumstances.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="71.3" /> e2e Cyber Solutions shall treat
+              <ClauseHeading num="71.3" /> e2e World shall treat
               Customer Data that is confidential in nature as Confidential
               Information and shall use it only as permitted under the Agreement,
               the applicable Data Processing Agreement and applicable law.
@@ -6259,16 +6321,15 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="71.6" /> Where the Customer discloses
-              confidential information through ImCamHub to a Candidate, Client,
+              confidential information through IMCAM Hub to a Candidate, Client,
               Business, employee, worker or other third party, the Customer is
               responsible for determining that the disclosure is appropriate and
               authorised.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="71.7" /> Nothing in this Agreement gives e2e
-              Cyber Solutions ownership of Customer Confidential Information
+              <ClauseHeading num="71.7" /> Nothing in this Agreement gives e2e World ownership of Customer Confidential Information
               merely because that information is stored, transmitted or
-              otherwise processed through ImCamHub.
+              otherwise processed through IMCAM Hub.
             </p>
           </section>
 
@@ -6278,7 +6339,7 @@ export default function Terms() {
               72. SEGREGATION OF CUSTOMER DATA
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="72.1" /> ImCamHub shall be designed and
+              <ClauseHeading num="72.1" /> IMCAM Hub shall be designed and
               operated with access controls intended to prevent one Customer
               from accessing another Customer&rsquo;s Customer Data through
               ordinary authorised use of the Software.
@@ -6287,7 +6348,7 @@ export default function Terms() {
               <ClauseHeading num="72.2" /> Customer accounts, Cases, documents
               and related Customer Data shall be logically segregated through
               appropriate technical and access-control measures having regard to
-              the architecture of ImCamHub.
+              the architecture of IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="72.3" /> A Customer and its Authorised Users
@@ -6299,12 +6360,12 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="72.4" /> Where information is intentionally
               shared between authorised parties through functionality provided
-              by ImCamHub, such sharing shall not constitute a failure of
+              by IMCAM Hub, such sharing shall not constitute a failure of
               segregation where it is consistent with the permissions and lawful
               instructions applicable to that information.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="72.5" /> e2e Cyber Solutions shall take
+              <ClauseHeading num="72.5" /> e2e World shall take
               reasonable steps to investigate any suspected cross-Customer access
               or segregation failure that comes to its attention and shall take
               appropriate protective or remedial action.
@@ -6320,15 +6381,15 @@ export default function Terms() {
           {/* Section 73 */}
           <section id="section-73" className="mb-12 scroll-mt-24">
             <h2 className="text-xl sm:text-2xl font-heading font-bold text-navy mb-6 leading-snug">
-              73. ACCESS TO CUSTOMER SYSTEMS AND DATA BY e2e CYBER SOLUTIONS
+              73. ACCESS TO CUSTOMER SYSTEMS AND DATA BY e2e WORLD
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="73.1" /> e2e Cyber Solutions personnel may
+              <ClauseHeading num="73.1" /> e2e World personnel may
               access Customer account information, Customer Data or relevant
               administrative functionality only where such access is reasonably
               necessary for legitimate purposes connected with the provision,
               administration, maintenance, support, security or protection of
-              ImCamHub, or where otherwise authorised or required by law.
+              IMCAM Hub, or where otherwise authorised or required by law.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="73.2" /> Permitted purposes may include:
@@ -6352,7 +6413,7 @@ export default function Terms() {
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="e." /> maintaining, securing, updating or
-                improving the operation of ImCamHub;
+                improving the operation of IMCAM Hub;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="f." /> performing authorised data-management
@@ -6369,23 +6430,23 @@ export default function Terms() {
             </ul>
             <p className={clauseText}>
               <ClauseHeading num="73.3" /> Where access to Customer Data is
-              required, e2e Cyber Solutions shall take reasonable steps to limit
+              required, e2e World shall take reasonable steps to limit
               access to authorised personnel and to the information reasonably
               necessary for the relevant purpose.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="73.4" /> e2e Cyber Solutions personnel with
+              <ClauseHeading num="73.4" /> e2e World personnel with
               access to Customer Data shall be subject to appropriate
               confidentiality obligations and access controls.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="73.5" /> Access by e2e Cyber Solutions to
+              <ClauseHeading num="73.5" /> Access by e2e World to
               Customer Data does not create an obligation to routinely review,
               monitor or verify the Customer&rsquo;s Cases, documents,
               professional work or compliance activities.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="73.6" /> Where e2e Cyber Solutions acts as
+              <ClauseHeading num="73.6" /> Where e2e World acts as
               processor, access to Personal Data shall also be governed by the
               Customer&rsquo;s documented instructions and the applicable Data
               Processing Agreement.
@@ -6393,7 +6454,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="73.7" /> The precise technical scope of Super
               Admin access may depend on the final production architecture of
-              ImCamHub. e2e Cyber Solutions shall maintain access arrangements
+              IMCAM Hub. e2e World shall maintain access arrangements
               consistent with the principles in this Section and Section 18.
             </p>
           </section>
@@ -6404,9 +6465,9 @@ export default function Terms() {
               74. SECURITY MEASURES
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="74.1" /> e2e Cyber Solutions shall maintain
+              <ClauseHeading num="74.1" /> e2e World shall maintain
               appropriate technical and organisational measures designed to
-              protect ImCamHub and Customer Data against unauthorised or unlawful
+              protect IMCAM Hub and Customer Data against unauthorised or unlawful
               access, use, disclosure, alteration, destruction or loss.
             </p>
             <p className={clauseText}>
@@ -6464,7 +6525,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="74.3" /> Security measures may evolve over time
               to address changes in technology, threats, legal requirements, the
-              architecture of ImCamHub and industry practices.
+              architecture of IMCAM Hub and industry practices.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="74.4" /> The Customer is responsible for
@@ -6474,7 +6535,7 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="74.5" /> The Customer must not disable, bypass
-              or interfere with security controls implemented within ImCamHub.
+              or interfere with security controls implemented within IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="74.6" /> Specific technical and organisational
@@ -6485,7 +6546,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="74.7" /> No security system can eliminate all
               risk, and nothing in this Section constitutes a guarantee that
-              ImCamHub will be immune from every attempted or successful
+              IMCAM Hub will be immune from every attempted or successful
               security incident.
             </p>
           </section>
@@ -6496,8 +6557,8 @@ export default function Terms() {
               75. ACCESS LOGGING AND MONITORING
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="75.1" /> e2e Cyber Solutions may maintain logs
-              and monitoring systems relating to access to and use of ImCamHub
+              <ClauseHeading num="75.1" /> e2e World may maintain logs
+              and monitoring systems relating to access to and use of IMCAM Hub
               for legitimate operational, security, support, audit and compliance
               purposes.
             </p>
@@ -6534,14 +6595,14 @@ export default function Terms() {
               </li>
             </ul>
             <p className={clauseText}>
-              <ClauseHeading num="75.3" /> e2e Cyber Solutions may monitor system
+              <ClauseHeading num="75.3" /> e2e World may monitor system
               activity to detect, investigate and respond to suspected misuse,
               fraud, security threats, technical faults or breaches of this
               Agreement.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="75.4" /> Monitoring under this Section does not
-              create an obligation for e2e Cyber Solutions to monitor the
+              create an obligation for e2e World to monitor the
               substantive contents of every Case, document, communication or
               action undertaken by a Customer or its users.
             </p>
@@ -6558,7 +6619,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="75.7" /> The availability of Customer-facing
               audit information may depend on the Customer&rsquo;s Subscription
-              and the functionality made available within ImCamHub.
+              and the functionality made available within IMCAM Hub.
             </p>
           </section>
 
@@ -6570,10 +6631,10 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="76.1" /> Each party shall take reasonable
               measures within its control to reduce cybersecurity risks relevant
-              to its use or provision of ImCamHub.
+              to its use or provision of IMCAM Hub.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="76.2" /> e2e Cyber Solutions may implement
+              <ClauseHeading num="76.2" /> e2e World may implement
               measures designed to identify, prevent, detect and respond to
               cybersecurity threats affecting the Software, its infrastructure or
               Customer Data.
@@ -6589,7 +6650,7 @@ export default function Terms() {
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="b." /> maintaining reasonable security on
-                devices and networks used to access ImCamHub;
+                devices and networks used to access IMCAM Hub;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="c." /> keeping relevant operating systems,
@@ -6609,16 +6670,16 @@ export default function Terms() {
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="g." /> promptly reporting suspected
-                compromise or malicious activity affecting ImCamHub.
+                compromise or malicious activity affecting IMCAM Hub.
               </li>
             </ul>
             <p className={clauseText}>
               <ClauseHeading num="76.4" /> The Customer must not introduce or
               knowingly permit malware, ransomware, malicious code or other
-              harmful material to be transmitted through ImCamHub.
+              harmful material to be transmitted through IMCAM Hub.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="76.5" /> Where e2e Cyber Solutions reasonably
+              <ClauseHeading num="76.5" /> Where e2e World reasonably
               identifies an immediate or material cybersecurity risk, it may take
               proportionate protective measures, including restricting affected
               functionality, credentials, integrations or accounts in accordance
@@ -6638,9 +6699,9 @@ export default function Terms() {
               77. BACKUPS AND DISASTER RECOVERY
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="77.1" /> e2e Cyber Solutions shall maintain
+              <ClauseHeading num="77.1" /> e2e World shall maintain
               backup and recovery arrangements appropriate to the production
-              architecture and risk profile of ImCamHub.
+              architecture and risk profile of IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="77.2" /> Backup arrangements may be used to
@@ -6675,9 +6736,9 @@ export default function Terms() {
               and the Data Processing Agreement.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="77.7" /> e2e Cyber Solutions shall periodically
+              <ClauseHeading num="77.7" /> e2e World shall periodically
               review its backup and recovery arrangements as appropriate to the
-              operation and development of ImCamHub.
+              operation and development of IMCAM Hub.
             </p>
           </section>
 
@@ -6687,9 +6748,9 @@ export default function Terms() {
               78. BUSINESS CONTINUITY
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="78.1" /> e2e Cyber Solutions shall maintain
+              <ClauseHeading num="78.1" /> e2e World shall maintain
               reasonable arrangements intended to support continuity and recovery
-              of ImCamHub following material operational or technical disruption.
+              of IMCAM Hub following material operational or technical disruption.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="78.2" /> Business-continuity arrangements may
@@ -6716,25 +6777,25 @@ export default function Terms() {
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="f." /> other events that materially affect
-                the operation of ImCamHub.
+                the operation of IMCAM Hub.
               </li>
             </ul>
             <p className={clauseText}>
               <ClauseHeading num="78.3" /> The nature and extent of continuity
               arrangements shall be proportionate to the services provided and
-              may evolve as ImCamHub, its infrastructure and its third-party
+              may evolve as IMCAM Hub, its infrastructure and its third-party
               dependencies develop.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="78.4" /> The Customer is responsible for
               maintaining its own reasonable business-continuity arrangements,
               including alternative procedures where temporary unavailability of
-              ImCamHub could affect urgent immigration, sponsorship, legal,
+              IMCAM Hub could affect urgent immigration, sponsorship, legal,
               regulatory or business activities.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="78.5" /> The Customer should not rely on
-              ImCamHub as its sole means of identifying or meeting critical
+              IMCAM Hub as its sole means of identifying or meeting critical
               deadlines where interruption of access could cause material harm.
             </p>
             <p className={clauseText}>
@@ -6753,37 +6814,34 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="79.1" /> If the Customer or an Authorised User
               becomes aware of a suspected security vulnerability affecting
-              ImCamHub, the Customer must notify e2e Cyber Solutions promptly
+              IMCAM Hub, the Customer must notify e2e World promptly
               through an appropriate support or security reporting channel.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="79.2" /> A vulnerability report should, where
-              reasonably possible, provide sufficient information to allow e2e
-              Cyber Solutions to understand and investigate the suspected issue
+              reasonably possible, provide sufficient information to allow e2e World to understand and investigate the suspected issue
               without including unnecessary Personal Data or confidential
               information.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="79.3" /> The Customer and its users must not
               exploit, publicly disclose, sell, misuse or use a suspected
-              vulnerability to obtain unauthorised access to ImCamHub, Customer
-              Data, another Customer&rsquo;s account or e2e Cyber
-              Solutions&rsquo;s systems.
+              vulnerability to obtain unauthorised access to IMCAM Hub, Customer
+              Data, another Customer&rsquo;s account or e2e World&rsquo;s systems.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="79.4" /> The Customer must not carry out
               penetration testing, vulnerability scanning, load testing or other
-              security testing against ImCamHub without e2e Cyber
-              Solutions&rsquo;s prior written authorisation.
+              security testing against IMCAM Hub without e2e World&rsquo;s prior written authorisation.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="79.5" /> e2e Cyber Solutions shall assess
+              <ClauseHeading num="79.5" /> e2e World shall assess
               reported vulnerabilities and take remediation or other protective
               action that it reasonably considers appropriate having regard to
               the severity, exploitability and potential impact of the issue.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="79.6" /> e2e Cyber Solutions may temporarily
+              <ClauseHeading num="79.6" /> e2e World may temporarily
               restrict functionality or access where reasonably necessary to
               investigate, contain or remediate a material vulnerability or
               security threat.
@@ -6795,67 +6853,67 @@ export default function Terms() {
               this Agreement and the Data Processing Agreement shall apply.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="79.8" /> Nothing in this Section requires e2e
-              Cyber Solutions to disclose information that could reasonably
-              compromise the security of ImCamHub, another Customer, a third-party
-              service or e2e Cyber Solutions&rsquo;s infrastructure.
+              <ClauseHeading num="79.8" /> Nothing in this Section requires e2e World to disclose information that could reasonably
+              compromise the security of IMCAM Hub, another Customer, a third-party
+              service or e2e World&rsquo;s infrastructure.
             </p>
           </section>
+
+          <PartHeading num="10" title="Intellectual Property" />
 
           {/* Section 80 */}
           <section id="section-80" className="mb-12 scroll-mt-24">
             <h2 className="text-xl sm:text-2xl font-heading font-bold text-navy mb-6 leading-snug">
-              80. OWNERSHIP OF IMCAMHUB
+              80. OWNERSHIP OF IMCAM HUB
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="80.1" /> As between e2e Cyber Solutions and the
-              Customer, e2e Cyber Solutions owns, or has the right to use and
-              license, all Intellectual Property Rights in and to ImCamHub,
+              <ClauseHeading num="80.1" /> As between e2e World and the
+              Customer, e2e World owns, or has the right to use and
+              license, all Intellectual Property Rights in and to IMCAM Hub,
               except for Customer Data, Customer-owned materials and Third-Party
               Services or third-party materials.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="80.2" /> The Customer&rsquo;s Subscription
-              grants only the limited right to access and use ImCamHub in
+              grants only the limited right to access and use IMCAM Hub in
               accordance with this Agreement. It does not transfer ownership of
               the Software or any Intellectual Property Rights in the Software to
               the Customer or any Authorised User.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="80.3" /> Ownership of ImCamHub includes, to the
-              extent owned by or licensed to e2e Cyber Solutions, the
+              <ClauseHeading num="80.3" /> Ownership of IMCAM Hub includes, to the
+              extent owned by or licensed to e2e World, the
               platform&rsquo;s software, source and object code, architecture,
               database structures, user interfaces, workflows, functionality,
               design elements, configuration framework and associated
               Documentation.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="80.4" /> All rights in ImCamHub not expressly
-              granted to the Customer under this Agreement are reserved by e2e
-              Cyber Solutions and its licensors.
+              <ClauseHeading num="80.4" /> All rights in IMCAM Hub not expressly
+              granted to the Customer under this Agreement are reserved by e2e World and its licensors.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="80.5" /> The Customer must not remove, obscure
               or alter any copyright, trade mark, proprietary or other rights
-              notice displayed within ImCamHub or accompanying Documentation,
-              except where e2e Cyber Solutions expressly permits this.
+              notice displayed within IMCAM Hub or accompanying Documentation,
+              except where e2e World expressly permits this.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="80.6" /> Nothing in this Section affects the
               Customer&rsquo;s ownership of Customer Data or materials that the
-              Customer owned independently of ImCamHub.
+              Customer owned independently of IMCAM Hub.
             </p>
           </section>
 
           {/* Section 81 */}
           <section id="section-81" className="mb-12 scroll-mt-24">
             <h2 className="text-xl sm:text-2xl font-heading font-bold text-navy mb-6 leading-snug">
-              81. e2e CYBER SOLUTIONS INTELLECTUAL PROPERTY
+              81. e2e WORLD INTELLECTUAL PROPERTY
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="81.1" /> e2e Cyber Solutions retains all
+              <ClauseHeading num="81.1" /> e2e World retains all
               Intellectual Property Rights in materials created, developed or
-              owned by e2e Cyber Solutions in connection with ImCamHub, subject
+              owned by e2e World in connection with IMCAM Hub, subject
               to any express written agreement to the contrary.
             </p>
             <p className={clauseText}>
@@ -6864,7 +6922,7 @@ export default function Terms() {
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
               <li className={listItemText}>
-                <ClauseHeading num="a." /> the ImCamHub name, branding, logos and
+                <ClauseHeading num="a." /> the IMCAM Hub name, branding, logos and
                 visual identity;
               </li>
               <li className={listItemText}>
@@ -6877,20 +6935,20 @@ export default function Terms() {
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="d." /> workflows, processes and platform
-                configurations developed by e2e Cyber Solutions;
+                configurations developed by e2e World;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="e." /> Documentation, help materials and
-                training materials created by e2e Cyber Solutions;
+                training materials created by e2e World;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="f." /> generic forms, templates, checklists
-                and materials created by e2e Cyber Solutions for use across the
+                and materials created by e2e World for use across the
                 Software;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="g." /> updates, modifications, enhancements,
-                fixes and new releases of ImCamHub; and
+                fixes and new releases of IMCAM Hub; and
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="h." /> know-how, methods and technical
@@ -6899,9 +6957,9 @@ export default function Terms() {
               </li>
             </ul>
             <p className={clauseText}>
-              <ClauseHeading num="81.3" /> Where e2e Cyber Solutions develops a
+              <ClauseHeading num="81.3" /> Where e2e World develops a
               configuration, improvement, functionality or other material while
-              providing ImCamHub to a Customer, e2e Cyber Solutions shall retain
+              providing IMCAM Hub to a Customer, e2e World shall retain
               ownership of the underlying Software and any generally applicable
               development unless the parties expressly agree otherwise in
               writing.
@@ -6913,9 +6971,8 @@ export default function Terms() {
               agreement expressly assigns ownership.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="81.5" /> Nothing in this Agreement prevents e2e
-              Cyber Solutions from using its general knowledge, skills,
-              experience, ideas and know-how in developing or providing ImCamHub
+              <ClauseHeading num="81.5" /> Nothing in this Agreement prevents e2e World from using its general knowledge, skills,
+              experience, ideas and know-how in developing or providing IMCAM Hub
               or other services, provided that it does not thereby disclose or
               misuse the Customer&rsquo;s Confidential Information or Customer
               Data.
@@ -6932,24 +6989,22 @@ export default function Terms() {
               retains all rights, title and interest it has in Customer Data.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="82.2" /> The Customer grants e2e Cyber
-              Solutions a non-exclusive right to host, copy, transmit, display,
+              <ClauseHeading num="82.2" /> The Customer grants e2e World a non-exclusive right to host, copy, transmit, display,
               process, back up and otherwise use Customer Data only to the extent
               reasonably necessary to provide, operate, maintain, secure and
-              support ImCamHub, to comply with the Customer&rsquo;s lawful
+              support IMCAM Hub, to comply with the Customer&rsquo;s lawful
               instructions, and as otherwise permitted by this Agreement or
               applicable law.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="82.3" /> The right granted under clause 82.2
-              does not transfer ownership of Customer Data to e2e Cyber
-              Solutions.
+              does not transfer ownership of Customer Data to e2e World.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="82.4" /> The Customer is responsible for
               ensuring that it has the rights, permissions, lawful bases and
-              authority necessary to provide Customer Data to e2e Cyber Solutions
-              and to permit its processing through ImCamHub.
+              authority necessary to provide Customer Data to e2e World
+              and to permit its processing through IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="82.5" /> Where Customer Data includes material
@@ -6977,37 +7032,34 @@ export default function Terms() {
               <ClauseHeading num="83.1" /> The Customer and relevant third parties
               retain their existing Intellectual Property Rights in documents,
               correspondence, forms, representations, records, images and other
-              content uploaded to or created independently of ImCamHub.
+              content uploaded to or created independently of IMCAM Hub.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="83.2" /> The Customer grants e2e Cyber
-              Solutions the limited rights necessary to technically store,
+              <ClauseHeading num="83.2" /> The Customer grants e2e World the limited rights necessary to technically store,
               reproduce, transmit, display, process and make such content
-              available through ImCamHub in accordance with the
+              available through IMCAM Hub in accordance with the
               Customer&rsquo;s authorised use of the Software.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="83.3" /> The Customer warrants that, to the
-              extent necessary for its use of ImCamHub, it has sufficient rights
-              or authority to upload, store, use, share and instruct e2e Cyber
-              Solutions to process Customer Content and documents.
+              extent necessary for its use of IMCAM Hub, it has sufficient rights
+              or authority to upload, store, use, share and instruct e2e World to process Customer Content and documents.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="83.4" /> The Customer must not upload or use
-              content through ImCamHub in a manner that knowingly infringes
+              content through IMCAM Hub in a manner that knowingly infringes
               another person&rsquo;s copyright, database right, trade mark,
               confidentiality, privacy or other proprietary right.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="83.5" /> e2e Cyber Solutions does not acquire
+              <ClauseHeading num="83.5" /> e2e World does not acquire
               ownership of a Customer&rsquo;s client letters, Case notes,
               evidence, representations or other Customer-created materials
-              merely because they are stored or managed through ImCamHub.
+              merely because they are stored or managed through IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="83.6" /> Where a document combines Customer
-              Content with an e2e Cyber Solutions template or other e2e Cyber
-              Solutions material, each party retains its rights in the elements
+              Content with an e2e World template or other e2e World material, each party retains its rights in the elements
               it owns, subject to the licence rights granted under this
               Agreement.
             </p>
@@ -7019,15 +7071,15 @@ export default function Terms() {
               84. TEMPLATES AND MATERIALS
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="84.1" /> ImCamHub may make available templates,
+              <ClauseHeading num="84.1" /> IMCAM Hub may make available templates,
               sample wording, checklists, workflows, forms, guidance notes,
               document structures or other materials to assist with Case
               administration.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="84.2" /> Unless expressly stated otherwise,
-              templates and materials supplied by e2e Cyber Solutions as part of
-              ImCamHub are licensed to the Customer for its authorised internal
+              templates and materials supplied by e2e World as part of
+              IMCAM Hub are licensed to the Customer for its authorised internal
               business and professional use during the Subscription.
             </p>
             <p className={clauseText}>
@@ -7035,7 +7087,7 @@ export default function Terms() {
               templates and materials for its own Cases and internal use, but may
               not sell, commercially redistribute, publish as a standalone
               product, sublicense or make them available as a competing template
-              library or service without e2e Cyber Solutions&rsquo;s written
+              library or service without e2e World&rsquo;s written
               permission.
             </p>
             <p className={clauseText}>
@@ -7046,19 +7098,19 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="84.5" /> A template or material made available
-              through ImCamHub does not constitute a guarantee that its use will
+              through IMCAM Hub does not constitute a guarantee that its use will
               satisfy Home Office, UKVI, legal, evidential, regulatory or
               professional requirements.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="84.6" /> Where the Customer uploads or creates
-              its own templates or materials within ImCamHub, the Customer
+              its own templates or materials within IMCAM Hub, the Customer
               retains its rights in those materials, subject to the limited
-              licence required for e2e Cyber Solutions to provide the Software.
+              licence required for e2e World to provide the Software.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="84.7" /> Where third-party material is made
-              available through ImCamHub, use of that material may be subject to
+              available through IMCAM Hub, use of that material may be subject to
               the rights and restrictions of the relevant third-party owner.
             </p>
           </section>
@@ -7070,8 +7122,8 @@ export default function Terms() {
             </h2>
             <p className={clauseText}>
               <ClauseHeading num="85.1" /> The Customer and its users may provide
-              e2e Cyber Solutions with comments, ideas, suggestions, requests or
-              other feedback concerning ImCamHub.
+              e2e World with comments, ideas, suggestions, requests or
+              other feedback concerning IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="85.2" /> The Customer is not required to provide
@@ -7082,24 +7134,24 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="85.3" /> To the extent the Customer voluntarily
               provides feedback that does not contain Customer-owned proprietary
-              materials requiring separate protection, e2e Cyber Solutions may
+              materials requiring separate protection, e2e World may
               use that feedback to evaluate, develop, improve, modify and operate
-              ImCamHub without an obligation to pay compensation.
+              IMCAM Hub without an obligation to pay compensation.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="85.4" /> Providing feedback does not transfer
               ownership of the Customer&rsquo;s pre-existing Intellectual
-              Property Rights or Confidential Information to e2e Cyber Solutions.
+              Property Rights or Confidential Information to e2e World.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="85.5" /> If a proposed feature or improvement
               depends materially on Customer-owned intellectual property or
               confidential materials, the parties may agree separate terms before
-              e2e Cyber Solutions incorporates those materials into generally
+              e2e World incorporates those materials into generally
               available Software.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="85.6" /> e2e Cyber Solutions is not obliged to
+              <ClauseHeading num="85.6" /> e2e World is not obliged to
               implement any suggestion, feature request or feedback provided by
               the Customer.
             </p>
@@ -7118,14 +7170,14 @@ export default function Terms() {
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
               <li className={listItemText}>
                 <ClauseHeading num="a." /> copy, reproduce or create derivative
-                works from ImCamHub or substantial parts of the Software other
+                works from IMCAM Hub or substantial parts of the Software other
                 than as technically necessary for permitted use;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="b." /> reverse engineer, decompile,
                 disassemble or otherwise attempt to derive the source code,
                 underlying structure, algorithms or non-public technical
-                operation of ImCamHub;
+                operation of IMCAM Hub;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="c." /> circumvent or attempt to circumvent
@@ -7134,13 +7186,12 @@ export default function Terms() {
               <li className={listItemText}>
                 <ClauseHeading num="d." /> use automated scripts, bots, crawlers,
                 scraping tools or similar methods to extract data, content,
-                templates, metadata or other material from ImCamHub except
-                through functionality or APIs expressly authorised by e2e Cyber
-                Solutions;
+                templates, metadata or other material from IMCAM Hub except
+                through functionality or APIs expressly authorised by e2e World;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="e." /> systematically download, harvest or
-                reproduce e2e Cyber Solutions content or platform data for the
+                reproduce e2e World content or platform data for the
                 purpose of creating or enriching a competing product or service;
               </li>
               <li className={listItemText}>
@@ -7149,10 +7200,9 @@ export default function Terms() {
                 permission;
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="g." /> use ImCamHub, its non-public features
-                or e2e Cyber Solutions materials to train, develop or benchmark a
-                competing software product without e2e Cyber
-                Solutions&rsquo;s written permission; or
+                <ClauseHeading num="g." /> use IMCAM Hub, its non-public features
+                or e2e World materials to train, develop or benchmark a
+                competing software product without e2e World&rsquo;s written permission; or
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="h." /> assist or permit another person to
@@ -7162,7 +7212,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="86.2" /> Nothing in this Section prevents the
               Customer from exporting or downloading its own Customer Data
-              through functionality made available by ImCamHub in accordance with
+              through functionality made available by IMCAM Hub in accordance with
               this Agreement.
             </p>
             <p className={clauseText}>
@@ -7178,7 +7228,7 @@ export default function Terms() {
               disclose it where such disclosure is not legally authorised.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="86.5" /> e2e Cyber Solutions may take
+              <ClauseHeading num="86.5" /> e2e World may take
               reasonable protective action where it detects suspected scraping,
               reverse engineering, automated extraction or other activity that
               presents a material security, intellectual-property or operational
@@ -7192,7 +7242,7 @@ export default function Terms() {
               87. THIRD-PARTY INTELLECTUAL PROPERTY
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="87.1" /> ImCamHub may incorporate, depend upon,
+              <ClauseHeading num="87.1" /> IMCAM Hub may incorporate, depend upon,
               link to or interoperate with software, services, libraries, content
               or other materials owned or licensed by third parties.
             </p>
@@ -7214,15 +7264,14 @@ export default function Terms() {
               or otherwise notified to the Customer.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="87.5" /> e2e Cyber Solutions shall not
+              <ClauseHeading num="87.5" /> e2e World shall not
               knowingly grant the Customer rights in third-party material beyond
-              the rights that e2e Cyber Solutions is authorised to grant.
+              the rights that e2e World is authorised to grant.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="87.6" /> If e2e Cyber Solutions becomes aware
-              of a credible claim that a material element of ImCamHub infringes a
-              third party&rsquo;s Intellectual Property Rights, e2e Cyber
-              Solutions may, as appropriate and subject to the liability and
+              <ClauseHeading num="87.6" /> If e2e World becomes aware
+              of a credible claim that a material element of IMCAM Hub infringes a
+              third party&rsquo;s Intellectual Property Rights, e2e World may, as appropriate and subject to the liability and
               indemnity provisions of this Agreement:
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
@@ -7245,18 +7294,18 @@ export default function Terms() {
             </ul>
             <p className={clauseText}>
               <ClauseHeading num="87.7" /> Any specific intellectual-property
-              indemnity provided by e2e Cyber Solutions shall be governed by
+              indemnity provided by e2e World shall be governed by
               Section 128 and shall be subject to the conditions, exclusions and
               limitations stated there.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="87.8" /> The Customer remains responsible for
               third-party materials, content or integrations that it
-              independently selects, uploads, connects or instructs e2e Cyber
-              Solutions to use where those materials are not supplied by e2e
-              Cyber Solutions.
+              independently selects, uploads, connects or instructs e2e World to use where those materials are not supplied by e2e World.
             </p>
           </section>
+
+          <PartHeading num="11" title="Third-Party Services & Integrations" />
 
           {/* Section 88 */}
           <section id="section-88" className="mb-12 scroll-mt-24">
@@ -7264,7 +7313,7 @@ export default function Terms() {
               88. THIRD-PARTY SERVICES
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="88.1" /> ImCamHub may rely on, connect with or
+              <ClauseHeading num="88.1" /> IMCAM Hub may rely on, connect with or
               make use of Third-Party Services in order to provide particular
               technical, operational or user-facing functionality.
             </p>
@@ -7278,15 +7327,15 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="88.3" /> The identity and nature of
-              Third-Party Services used with ImCamHub may change as the Software
-              develops, provided that e2e Cyber Solutions continues to comply
+              Third-Party Services used with IMCAM Hub may change as the Software
+              develops, provided that e2e World continues to comply
               with its obligations under this Agreement, applicable Data
               Protection Legislation and any applicable Data Processing
               Agreement.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="88.4" /> Where a Third-Party Service processes
-              Personal Data on behalf of e2e Cyber Solutions in its capacity as
+              Personal Data on behalf of e2e World in its capacity as
               processor, the use of that provider shall also be subject to the
               sub-processor and international-transfer provisions of Part 8 and
               the applicable Data Processing Agreement.
@@ -7294,20 +7343,20 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="88.5" /> Third-Party Services remain separate
               services operated by their respective providers. Except where this
-              Agreement expressly states otherwise, e2e Cyber Solutions does not
+              Agreement expressly states otherwise, e2e World does not
               own or control the underlying systems, networks or services of
               those providers.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="88.6" /> e2e Cyber Solutions shall take
+              <ClauseHeading num="88.6" /> e2e World shall take
               reasonable care in selecting material Third-Party Services used to
-              provide ImCamHub, having regard to the function performed,
+              provide IMCAM Hub, having regard to the function performed,
               security, reliability, data protection requirements and other
               matters reasonably relevant to the service.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="88.7" /> Nothing in this Section makes the
-              Customer a direct party to e2e Cyber Solutions&rsquo;s contracts
+              Customer a direct party to e2e World&rsquo;s contracts
               with its infrastructure or service providers unless separate terms
               expressly provide otherwise.
             </p>
@@ -7319,20 +7368,19 @@ export default function Terms() {
               89. THIRD-PARTY INTEGRATIONS
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="89.1" /> ImCamHub may from time to time permit
+              <ClauseHeading num="89.1" /> IMCAM Hub may from time to time permit
               the Customer to connect, enable or use integrations with
               third-party applications, platforms or services.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="89.2" /> An integration may allow information
-              or functionality to pass between ImCamHub and a Third-Party
+              or functionality to pass between IMCAM Hub and a Third-Party
               Service, subject to the Customer&rsquo;s configuration, permissions
               and the technical capabilities of the relevant systems.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="89.3" /> Where the Customer chooses to enable
-              an optional third-party integration, the Customer authorises e2e
-              Cyber Solutions to exchange the information reasonably necessary
+              an optional third-party integration, the Customer authorises e2e World to exchange the information reasonably necessary
               to operate that integration in accordance with the
               Customer&rsquo;s instructions and applicable law.
             </p>
@@ -7364,16 +7412,15 @@ export default function Terms() {
               </li>
             </ul>
             <p className={clauseText}>
-              <ClauseHeading num="89.5" /> e2e Cyber Solutions may add, modify,
+              <ClauseHeading num="89.5" /> e2e World may add, modify,
               suspend or discontinue an integration where reasonably necessary
               because of technical, security, legal, commercial or third-party
               changes.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="89.6" /> Where reasonably practicable, e2e
-              Cyber Solutions shall provide appropriate notice if it permanently
+              <ClauseHeading num="89.6" /> Where reasonably practicable, e2e World shall provide appropriate notice if it permanently
               discontinues a material integration that forms part of a paid
-              ImCamHub feature, subject to urgent security, legal or third-party
+              IMCAM Hub feature, subject to urgent security, legal or third-party
               circumstances.
             </p>
             <p className={clauseText}>
@@ -7384,8 +7431,8 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="89.8" /> An integration with a third-party
-              platform does not mean that the third party endorses ImCamHub or
-              that e2e Cyber Solutions endorses the third-party service unless
+              platform does not mean that the third party endorses IMCAM Hub or
+              that e2e World endorses the third-party service unless
               expressly stated.
             </p>
           </section>
@@ -7396,15 +7443,15 @@ export default function Terms() {
               90. APIs
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="90.1" /> e2e Cyber Solutions may make
+              <ClauseHeading num="90.1" /> e2e World may make
               application programming interfaces or other technical interfaces
-              available for authorised integration with ImCamHub.
+              available for authorised integration with IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="90.2" /> Access to an API may be subject to the
               Customer&rsquo;s Subscription, technical documentation,
               authentication requirements, usage limits, security controls and
-              any additional API terms notified by e2e Cyber Solutions.
+              any additional API terms notified by e2e World.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="90.3" /> The Customer must use any API only for
@@ -7417,24 +7464,22 @@ export default function Terms() {
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="b." /> obtain unauthorised access to Customer
-                Data, another Customer&rsquo;s data or e2e Cyber
-                Solutions&rsquo;s systems;
+                Data, another Customer&rsquo;s data or e2e World&rsquo;s systems;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="c." /> introduce malware or otherwise
-                compromise the security or operation of ImCamHub;
+                compromise the security or operation of IMCAM Hub;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="d." /> conduct excessive, abusive or
                 disruptive automated requests;
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="e." /> scrape or systematically extract e2e
-                Cyber Solutions proprietary content except as expressly
+                <ClauseHeading num="e." /> scrape or systematically extract e2e World proprietary content except as expressly
                 authorised; or
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="f." /> use ImCamHub in a manner prohibited by
+                <ClauseHeading num="f." /> use IMCAM Hub in a manner prohibited by
                 this Agreement.
               </li>
             </ul>
@@ -7442,23 +7487,21 @@ export default function Terms() {
               <ClauseHeading num="90.4" /> The Customer is responsible for
               safeguarding API keys, tokens, credentials and other
               authentication information issued to it and for promptly notifying
-              e2e Cyber Solutions of suspected compromise.
+              e2e World of suspected compromise.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="90.5" /> e2e Cyber Solutions may apply
+              <ClauseHeading num="90.5" /> e2e World may apply
               reasonable rate limits, technical restrictions or security controls
               to API use and may suspend API access where necessary to protect
-              ImCamHub, Customer Data or other users.
+              IMCAM Hub, Customer Data or other users.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="90.6" /> e2e Cyber Solutions may update or
+              <ClauseHeading num="90.6" /> e2e World may update or
               replace an API as the Software develops. Where a material change is
-              likely to affect a supported Customer integration, e2e Cyber
-              Solutions shall provide reasonable notice where practicable.
+              likely to affect a supported Customer integration, e2e World shall provide reasonable notice where practicable.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="90.7" /> Unless expressly agreed otherwise, e2e
-              Cyber Solutions is not responsible for software, scripts, connectors
+              <ClauseHeading num="90.7" /> Unless expressly agreed otherwise, e2e World is not responsible for software, scripts, connectors
               or integrations developed by or for the Customer using an API.
             </p>
             <p className={clauseText}>
@@ -7476,27 +7519,27 @@ export default function Terms() {
               91. THIRD-PARTY SERVICE AVAILABILITY
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="91.1" /> The operation of some ImCamHub
+              <ClauseHeading num="91.1" /> The operation of some IMCAM Hub
               functionality may depend on the continuing availability and
               performance of Third-Party Services, internet connectivity,
               telecommunications networks and external systems.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="91.2" /> e2e Cyber Solutions does not guarantee
+              <ClauseHeading num="91.2" /> e2e World does not guarantee
               uninterrupted availability of a Third-Party Service or external
-              system that is outside e2e Cyber Solutions&rsquo;s reasonable
+              system that is outside e2e World&rsquo;s reasonable
               control.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="91.3" /> A Third-Party Service provider may
               change, restrict, suspend or discontinue its service, interface,
               pricing, functionality or technical requirements. Such changes may
-              affect related ImCamHub functionality.
+              affect related IMCAM Hub functionality.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="91.4" /> Where a material Third-Party Service
-              used by e2e Cyber Solutions becomes unavailable or materially
-              changes, e2e Cyber Solutions may, as reasonably appropriate:
+              used by e2e World becomes unavailable or materially
+              changes, e2e World may, as reasonably appropriate:
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
               <li className={listItemText}>
@@ -7508,7 +7551,7 @@ export default function Terms() {
                 technical solution;
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="c." /> modify the affected ImCamHub
+                <ClauseHeading num="c." /> modify the affected IMCAM Hub
                 functionality;
               </li>
               <li className={listItemText}>
@@ -7522,9 +7565,9 @@ export default function Terms() {
               </li>
             </ul>
             <p className={clauseText}>
-              <ClauseHeading num="91.5" /> e2e Cyber Solutions shall take
+              <ClauseHeading num="91.5" /> e2e World shall take
               reasonable steps appropriate to the circumstances to manage
-              material disruption to Third-Party Services on which core ImCamHub
+              material disruption to Third-Party Services on which core IMCAM Hub
               functionality depends.
             </p>
             <p className={clauseText}>
@@ -7535,10 +7578,10 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="91.7" /> Any service-level commitments relating
-              to availability of ImCamHub shall apply only to the extent
+              to availability of IMCAM Hub shall apply only to the extent
               expressly stated in an applicable Service Level Agreement and may
               contain appropriate exclusions for third-party failures or events
-              outside e2e Cyber Solutions&rsquo;s reasonable control.
+              outside e2e World&rsquo;s reasonable control.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="91.8" /> Nothing in this Section excludes or
@@ -7559,15 +7602,15 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="92.2" /> Where third-party terms apply directly
-              to the Customer, e2e Cyber Solutions shall not be responsible for
+              to the Customer, e2e World shall not be responsible for
               the Customer&rsquo;s compliance with those terms, and the Customer
               is responsible for reviewing them before enabling or using the
               relevant service.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="92.3" /> The Customer must not use a Third-Party
-              Service through ImCamHub in a manner that causes e2e Cyber Solutions
-              to breach terms lawfully imposed on e2e Cyber Solutions by the
+              Service through IMCAM Hub in a manner that causes e2e World
+              to breach terms lawfully imposed on e2e World by the
               relevant provider.
             </p>
             <p className={clauseText}>
@@ -7575,20 +7618,18 @@ export default function Terms() {
               Agreement and terms imposed directly between the Customer and a
               third-party provider, each set of terms shall govern the
               relationship to which it applies. This Agreement governs the
-              relationship between e2e Cyber Solutions and the Customer unless
+              relationship between e2e World and the Customer unless
               expressly stated otherwise.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="92.5" /> Where continued provision of a feature
-              would cause e2e Cyber Solutions to breach applicable third-party
-              licence terms, legal requirements or security obligations, e2e
-              Cyber Solutions may modify, restrict or discontinue that feature as
+              would cause e2e World to breach applicable third-party
+              licence terms, legal requirements or security obligations, e2e World may modify, restrict or discontinue that feature as
               reasonably necessary.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="92.6" /> Third-party terms do not alter the
-              Customer&rsquo;s ownership of Customer Data or e2e Cyber
-              Solutions&rsquo;s obligations concerning Customer Data under this
+              Customer&rsquo;s ownership of Customer Data or e2e World&rsquo;s obligations concerning Customer Data under this
               Agreement and the Data Processing Agreement, except to the extent
               that the Customer independently instructs or authorises disclosure
               to a Third-Party Service.
@@ -7598,17 +7639,18 @@ export default function Terms() {
               charges payable directly to a third-party provider for a service
               independently selected or contracted by the Customer, unless the
               applicable Order Form expressly states that such charges are
-              included in the Fees payable to e2e Cyber Solutions.
+              included in the Fees payable to e2e World.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="92.8" /> Where a Third-Party Service is supplied
-              as an integral component of ImCamHub rather than independently
-              contracted by the Customer, the Customer&rsquo;s rights against e2e
-              Cyber Solutions remain subject to this Agreement, including the
+              as an integral component of IMCAM Hub rather than independently
+              contracted by the Customer, the Customer&rsquo;s rights against e2e World remain subject to this Agreement, including the
               applicable warranties, service, liability and data protection
               provisions.
             </p>
           </section>
+
+          <PartHeading num="12" title="Fees & Subscription" />
 
           {/* Section 93 */}
           <section id="section-93" className="mb-12 scroll-mt-24">
@@ -7630,9 +7672,9 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="93.3" /> Unless expressly stated otherwise, the
-              Fees provide the Customer with access to ImCamHub for the
+              Fees provide the Customer with access to IMCAM Hub for the
               applicable Subscription Period and do not transfer ownership of the
-              Software or any e2e Cyber Solutions Intellectual Property Rights.
+              Software or any e2e World Intellectual Property Rights.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="93.4" /> Additional functionality, users,
@@ -7643,14 +7685,13 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="93.5" /> Where usage exceeds an allowance
-              included within the Customer&rsquo;s Subscription, e2e Cyber
-              Solutions may require the Customer to upgrade its Subscription or
+              included within the Customer&rsquo;s Subscription, e2e World may require the Customer to upgrade its Subscription or
               pay applicable additional Fees, provided that the relevant charging
               basis has been agreed or made available to the Customer.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="93.6" /> Unless expressly included in the
-              applicable commercial terms, Fees for ImCamHub do not include
+              applicable commercial terms, Fees for IMCAM Hub do not include
               government fees, Home Office or UKVI charges, Immigration Health
               Surcharge payments, third-party professional fees or other costs
               incurred in connection with an immigration matter.
@@ -7669,7 +7710,7 @@ export default function Terms() {
             </h2>
             <p className={clauseText}>
               <ClauseHeading num="94.1" /> Unless the applicable Order Form or
-              other agreed commercial terms state otherwise, ImCamHub shall be
+              other agreed commercial terms state otherwise, IMCAM Hub shall be
               supplied on a monthly subscription basis.
             </p>
             <p className={clauseText}>
@@ -7702,10 +7743,9 @@ export default function Terms() {
               accurate and current.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="94.7" /> Nothing in this Section requires e2e
-              Cyber Solutions to use a particular billing platform or payment
+              <ClauseHeading num="94.7" /> Nothing in this Section requires e2e World to use a particular billing platform or payment
               provider. The applicable payment arrangements may be confirmed
-              separately as the commercial and technical setup of ImCamHub is
+              separately as the commercial and technical setup of IMCAM Hub is
               finalised.
             </p>
           </section>
@@ -7716,9 +7756,9 @@ export default function Terms() {
               95. FREE TRIAL / DEMONSTRATION
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="95.1" /> e2e Cyber Solutions may offer a free
+              <ClauseHeading num="95.1" /> e2e World may offer a free
               trial, demonstration, evaluation period or other limited access to
-              ImCamHub at its discretion.
+              IMCAM Hub at its discretion.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="95.2" /> The duration, scope, user allowance,
@@ -7740,11 +7780,11 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="95.5" /> At the end of a free trial, the
               Customer may be required to select and pay for a Subscription in
-              order to continue using ImCamHub.
+              order to continue using IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="95.6" /> Where a demonstration is provided only
-              for evaluation purposes, e2e Cyber Solutions may use sample,
+              for evaluation purposes, e2e World may use sample,
               fictional or demonstration data and may restrict the Customer from
               using the demonstration environment for live immigration Cases or
               production data.
@@ -7768,13 +7808,13 @@ export default function Terms() {
             </h2>
             <p className={clauseText}>
               <ClauseHeading num="96.1" /> The Customer shall pay invoices and
-              other amounts due to e2e Cyber Solutions in accordance with the
+              other amounts due to e2e World in accordance with the
               payment method, due date and other payment terms stated in the
               applicable Order Form, invoice or agreed commercial documentation.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="96.2" /> Payment may be collected through a
-              payment method or provider designated by e2e Cyber Solutions from
+              payment method or provider designated by e2e World from
               time to time. The Customer shall provide valid and accurate payment
               information where required.
             </p>
@@ -7786,19 +7826,17 @@ export default function Terms() {
               Agreement.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="96.4" /> The Customer must promptly notify e2e
-              Cyber Solutions of a material change to its billing contact,
+              <ClauseHeading num="96.4" /> The Customer must promptly notify e2e World of a material change to its billing contact,
               payment details or other information that may affect payment.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="96.5" /> The Customer shall not withhold,
-              deduct, set off or reduce an amount properly due to e2e Cyber
-              Solutions except where the parties agree otherwise in writing or
+              deduct, set off or reduce an amount properly due to e2e World except where the parties agree otherwise in writing or
               the Customer has a legal right to do so.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="96.6" /> If the Customer reasonably disputes an
-              invoice, it should notify e2e Cyber Solutions promptly, identifying
+              invoice, it should notify e2e World promptly, identifying
               the disputed amount and the basis of the dispute. The parties shall
               seek to resolve the disputed amount in good faith.
             </p>
@@ -7830,14 +7868,13 @@ export default function Terms() {
               relevant Fees at the rate required by law.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="97.3" /> e2e Cyber Solutions shall provide
+              <ClauseHeading num="97.3" /> e2e World shall provide
               invoices or other tax documentation as required by applicable law.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="97.4" /> The Customer is responsible for any
               taxes, duties or charges imposed on the Customer in connection with
-              its purchase or use of ImCamHub, except taxes imposed on e2e Cyber
-              Solutions&rsquo;s net income or taxes for which e2e Cyber Solutions
+              its purchase or use of IMCAM Hub, except taxes imposed on e2e World&rsquo;s net income or taxes for which e2e World
               is legally responsible.
             </p>
             <p className={clauseText}>
@@ -7860,19 +7897,19 @@ export default function Terms() {
             </h2>
             <p className={clauseText}>
               <ClauseHeading num="98.1" /> If a payment fails, is declined, is
-              reversed or remains unpaid after its due date, e2e Cyber Solutions
+              reversed or remains unpaid after its due date, e2e World
               may notify the Customer and request that the Customer update its
               payment details or pay the outstanding amount.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="98.2" /> Where an undisputed amount remains
-              overdue, e2e Cyber Solutions may take reasonable steps to recover
+              overdue, e2e World may take reasonable steps to recover
               the amount and may, subject to reasonable notice where appropriate,
-              restrict or suspend access to some or all of ImCamHub in accordance
+              restrict or suspend access to some or all of IMCAM Hub in accordance
               with the suspension provisions of this Agreement.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="98.3" /> e2e Cyber Solutions shall not suspend
+              <ClauseHeading num="98.3" /> e2e World shall not suspend
               access for a genuinely disputed amount while the parties are
               actively addressing the dispute in good faith, provided that the
               Customer has paid all undisputed amounts and the dispute is not
@@ -7880,27 +7917,26 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="98.4" /> Where permitted by applicable law and
-              stated in the applicable commercial terms or invoice, e2e Cyber
-              Solutions may charge interest on overdue undisputed amounts and
+              stated in the applicable commercial terms or invoice, e2e World may charge interest on overdue undisputed amounts and
               recover reasonable costs of collection.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="98.5" /> Suspension for non-payment does not
               cancel amounts that accrued before suspension and does not prevent
-              e2e Cyber Solutions from exercising other rights available under
+              e2e World from exercising other rights available under
               this Agreement or applicable law.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="98.6" /> Before restricting access for
-              non-payment, e2e Cyber Solutions shall have regard to the nature of
-              the Customer&rsquo;s use of ImCamHub and, where reasonably
+              non-payment, e2e World shall have regard to the nature of
+              the Customer&rsquo;s use of IMCAM Hub and, where reasonably
               practicable, provide an opportunity to address the outstanding
               payment.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="98.7" /> The Customer remains responsible for
               maintaining appropriate records and contingency arrangements and
-              should not rely on continued access to ImCamHub where Fees remain
+              should not rely on continued access to IMCAM Hub where Fees remain
               materially overdue.
             </p>
           </section>
@@ -7911,7 +7947,7 @@ export default function Terms() {
               99. PRICE CHANGES
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="99.1" /> e2e Cyber Solutions may change
+              <ClauseHeading num="99.1" /> e2e World may change
               Subscription prices from time to time to reflect changes in the
               Software, service costs, market conditions, legal or regulatory
               requirements, third-party costs or other legitimate commercial
@@ -7923,7 +7959,7 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="99.3" /> Where a price change affects an
-              existing recurring Subscription, e2e Cyber Solutions shall give the
+              existing recurring Subscription, e2e World shall give the
               Customer reasonable advance notice before the new price takes
               effect.
             </p>
@@ -7975,14 +8011,14 @@ export default function Terms() {
               continued compliance with this Agreement.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="100.4" /> e2e Cyber Solutions may notify the
+              <ClauseHeading num="100.4" /> e2e World may notify the
               Customer of changes to Fees, features, Subscription plans or
               contractual terms that will apply to a future renewal or billing
               period in accordance with this Agreement.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="100.5" /> Where the Customer continues to use
-              ImCamHub after a renewal takes effect, such continued use shall be
+              IMCAM Hub after a renewal takes effect, such continued use shall be
               subject to the Agreement and the commercial terms applicable to the
               renewed Subscription.
             </p>
@@ -8018,8 +8054,7 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="101.4" /> If Fees have been paid in advance for
-              a period extending beyond an effective termination arising from e2e
-              Cyber Solutions&rsquo;s material breach, any refund or credit shall
+              a period extending beyond an effective termination arising from e2e World&rsquo;s material breach, any refund or credit shall
               be determined in accordance with the termination, liability and
               applicable commercial provisions of this Agreement.
             </p>
@@ -8050,14 +8085,16 @@ export default function Terms() {
             </p>
           </section>
 
+          <PartHeading num="13" title="Service Availability & Support" />
+
           {/* Section 102 */}
           <section id="section-102" className="mb-12 scroll-mt-24">
             <h2 className="text-xl sm:text-2xl font-heading font-bold text-navy mb-6 leading-snug">
-              102. AVAILABILITY OF IMCAMHUB
+              102. AVAILABILITY OF IMCAM HUB
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="102.1" /> e2e Cyber Solutions shall use
-              reasonable care and skill in providing ImCamHub and shall use
+              <ClauseHeading num="102.1" /> e2e World shall use
+              reasonable care and skill in providing IMCAM Hub and shall use
               commercially reasonable efforts to make the Software available to
               the Customer during the Subscription Period, subject to this
               Agreement.
@@ -8068,14 +8105,14 @@ export default function Terms() {
               interrupted, degraded or subject to reduced functionality because
               of maintenance, updates, security measures, technical faults,
               Third-Party Services, internet or telecommunications failures,
-              events outside e2e Cyber Solutions&rsquo;s reasonable control, or
+              events outside e2e World&rsquo;s reasonable control, or
               other circumstances permitted by this Agreement.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="102.3" /> Unless a specific availability
               commitment is expressly stated in an applicable Service Level
-              Agreement or Order Form, e2e Cyber Solutions does not guarantee
-              that ImCamHub will be available continuously, without interruption
+              Agreement or Order Form, e2e World does not guarantee
+              that IMCAM Hub will be available continuously, without interruption
               or error, or at any particular percentage availability level.
             </p>
             <p className={clauseText}>
@@ -8087,14 +8124,14 @@ export default function Terms() {
               applicable Service Level Agreement.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="102.5" /> e2e Cyber Solutions may monitor the
-              availability, performance and operation of ImCamHub for
+              <ClauseHeading num="102.5" /> e2e World may monitor the
+              availability, performance and operation of IMCAM Hub for
               service-management, support, security and improvement purposes.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="102.6" /> The Customer is responsible for
               maintaining reasonable contingency arrangements where temporary
-              unavailability of ImCamHub could affect urgent immigration,
+              unavailability of IMCAM Hub could affect urgent immigration,
               sponsorship, legal, regulatory or business activities.
             </p>
             <p className={clauseText}>
@@ -8109,10 +8146,10 @@ export default function Terms() {
               103. MAINTENANCE
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="103.1" /> e2e Cyber Solutions may carry out
+              <ClauseHeading num="103.1" /> e2e World may carry out
               maintenance, updates, repairs, patches, configuration changes and
               other technical work reasonably necessary to operate, secure,
-              support or improve ImCamHub.
+              support or improve IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="103.2" /> Maintenance may be undertaken for
@@ -8148,11 +8185,11 @@ export default function Terms() {
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="h." /> performing other work reasonably
-                necessary for the continued operation of ImCamHub.
+                necessary for the continued operation of IMCAM Hub.
               </li>
             </ul>
             <p className={clauseText}>
-              <ClauseHeading num="103.3" /> e2e Cyber Solutions shall seek to
+              <ClauseHeading num="103.3" /> e2e World shall seek to
               manage maintenance in a manner intended to minimise unnecessary
               disruption to Customers, taking into account the urgency and nature
               of the work.
@@ -8165,13 +8202,12 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="103.5" /> The Customer is not entitled to
-              prevent maintenance that e2e Cyber Solutions reasonably considers
+              prevent maintenance that e2e World reasonably considers
               necessary for security, legal compliance, stability or continued
               operation of the Software.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="103.6" /> Maintenance does not relieve e2e
-              Cyber Solutions of any specific service-level obligations expressly
+              <ClauseHeading num="103.6" /> Maintenance does not relieve e2e World of any specific service-level obligations expressly
               agreed in an applicable Service Level Agreement, subject to the
               exclusions and maintenance provisions stated there.
             </p>
@@ -8183,18 +8219,17 @@ export default function Terms() {
               104. PLANNED DOWNTIME
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="104.1" /> Where reasonably practicable, e2e
-              Cyber Solutions shall provide advance notice of planned maintenance
-              that is expected to cause material unavailability of ImCamHub.
+              <ClauseHeading num="104.1" /> Where reasonably practicable, e2e World shall provide advance notice of planned maintenance
+              that is expected to cause material unavailability of IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="104.2" /> Notice of planned downtime may be
-              provided through ImCamHub, by email, through an account
+              provided through IMCAM Hub, by email, through an account
               administrator, through a service-status mechanism or by another
               reasonable communication method.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="104.3" /> e2e Cyber Solutions may schedule
+              <ClauseHeading num="104.3" /> e2e World may schedule
               planned maintenance at times intended to reduce disruption, but
               does not guarantee that maintenance will always occur outside the
               Customer&rsquo;s normal business hours.
@@ -8206,13 +8241,13 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="104.5" /> Where planned work is completed
-              earlier than expected, e2e Cyber Solutions may restore the affected
+              earlier than expected, e2e World may restore the affected
               service without further notice.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="104.6" /> Where planned downtime must be
               extended because of an unforeseen technical, security or
-              operational issue, e2e Cyber Solutions shall provide an update
+              operational issue, e2e World shall provide an update
               where reasonably practicable.
             </p>
             <p className={clauseText}>
@@ -8228,11 +8263,10 @@ export default function Terms() {
               105. EMERGENCY MAINTENANCE
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="105.1" /> e2e Cyber Solutions may carry out
+              <ClauseHeading num="105.1" /> e2e World may carry out
               emergency maintenance without advance notice where it reasonably
-              considers immediate action necessary to protect ImCamHub, Customer
-              Data, Customers, users, Third-Party Services or e2e Cyber
-              Solutions&rsquo;s systems, or to address an urgent legal, security
+              considers immediate action necessary to protect IMCAM Hub, Customer
+              Data, Customers, users, Third-Party Services or e2e World&rsquo;s systems, or to address an urgent legal, security
               or operational issue.
             </p>
             <p className={clauseText}>
@@ -8262,18 +8296,18 @@ export default function Terms() {
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="f." /> prevent material damage to the
-                stability, integrity or availability of ImCamHub.
+                stability, integrity or availability of IMCAM Hub.
               </li>
             </ul>
             <p className={clauseText}>
               <ClauseHeading num="105.3" /> Where emergency maintenance
-              materially affects Customer access, e2e Cyber Solutions shall
+              materially affects Customer access, e2e World shall
               provide information about the disruption and restoration of service
               as soon as reasonably practicable, subject to security, legal and
               operational considerations.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="105.4" /> e2e Cyber Solutions may temporarily
+              <ClauseHeading num="105.4" /> e2e World may temporarily
               disable affected features, integrations, user access or other
               functionality where reasonably necessary to manage the relevant
               emergency.
@@ -8291,8 +8325,8 @@ export default function Terms() {
               106. TECHNICAL SUPPORT
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="106.1" /> e2e Cyber Solutions shall make
-              technical support for ImCamHub available in accordance with the
+              <ClauseHeading num="106.1" /> e2e World shall make
+              technical support for IMCAM Hub available in accordance with the
               Customer&rsquo;s Subscription, Order Form and any applicable support
               or Service Level Agreement.
             </p>
@@ -8302,7 +8336,7 @@ export default function Terms() {
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
               <li className={listItemText}>
-                <ClauseHeading num="a." /> access to and use of ImCamHub
+                <ClauseHeading num="a." /> access to and use of IMCAM Hub
                 functionality;
               </li>
               <li className={listItemText}>
@@ -8324,7 +8358,7 @@ export default function Terms() {
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="g." /> other technical matters relating to
-                the operation of ImCamHub.
+                the operation of IMCAM Hub.
               </li>
             </ul>
             <p className={clauseText}>
@@ -8336,14 +8370,14 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="106.4" /> The Customer should provide sufficient
-              information to allow e2e Cyber Solutions to investigate a support
+              information to allow e2e World to investigate a support
               request, including relevant error information, steps leading to the
               issue and other reasonably necessary technical details, while
               avoiding unnecessary disclosure of Personal Data or confidential
               information.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="106.5" /> e2e Cyber Solutions may prioritise
+              <ClauseHeading num="106.5" /> e2e World may prioritise
               support requests according to their severity, impact, security
               implications, number of affected users and other reasonable
               service-management considerations.
@@ -8356,23 +8390,22 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="106.7" /> Unless expressly agreed otherwise, a
-              response-time target means the target time for e2e Cyber Solutions
+              response-time target means the target time for e2e World
               to acknowledge or begin addressing a support request and does not
               guarantee resolution within that period.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="106.8" /> e2e Cyber Solutions may require the
+              <ClauseHeading num="106.8" /> e2e World may require the
               Customer to cooperate with reasonable troubleshooting steps or
               provide appropriate access or information before an issue can be
               resolved.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="106.9" /> e2e Cyber Solutions is not
+              <ClauseHeading num="106.9" /> e2e World is not
               responsible for resolving issues caused solely by the
               Customer&rsquo;s unsupported hardware, network, browser, device,
               third-party software, unauthorised modification or failure to
-              follow reasonable technical instructions, although e2e Cyber
-              Solutions may provide reasonable guidance where appropriate.
+              follow reasonable technical instructions, although e2e World may provide reasonable guidance where appropriate.
             </p>
           </section>
 
@@ -8428,7 +8461,7 @@ export default function Terms() {
             </ul>
             <p className={clauseText}>
               <ClauseHeading num="107.3" /> If no Service Level Agreement applies,
-              e2e Cyber Solutions&rsquo;s obligations concerning availability,
+              e2e World&rsquo;s obligations concerning availability,
               maintenance and support shall be those stated in this Agreement and
               the applicable Subscription documentation.
             </p>
@@ -8486,7 +8519,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="108.3" /> Unless expressly agreed otherwise, a
               service credit shall be applied against future Fees payable for
-              ImCamHub and shall not constitute a cash payment.
+              IMCAM Hub and shall not constitute a cash payment.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="108.4" /> A Customer may be required to submit a
@@ -8523,16 +8556,18 @@ export default function Terms() {
             </p>
           </section>
 
+          <PartHeading num="14" title="Suspension & Termination" />
+
           {/* Section 109 */}
           <section id="section-109" className="mb-12 scroll-mt-24">
             <h2 className="text-xl sm:text-2xl font-heading font-bold text-navy mb-6 leading-snug">
               109. SUSPENSION OF ACCESS
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="109.1" /> e2e Cyber Solutions may suspend or
-              restrict access to all or part of ImCamHub where it reasonably
+              <ClauseHeading num="109.1" /> e2e World may suspend or
+              restrict access to all or part of IMCAM Hub where it reasonably
               considers suspension necessary to protect the Software, Customer
-              Data, other customers, users, e2e Cyber Solutions, a Third-Party
+              Data, other customers, users, e2e World, a Third-Party
               Service or the integrity or security of the service.
             </p>
             <p className={clauseText}>
@@ -8556,7 +8591,7 @@ export default function Terms() {
                 vulnerability, malware incident or compromise of credentials;
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="e." /> use of ImCamHub in a manner that
+                <ClauseHeading num="e." /> use of IMCAM Hub in a manner that
                 materially threatens service stability, security or the rights of
                 another person;
               </li>
@@ -8582,7 +8617,7 @@ export default function Terms() {
             </ul>
             <p className={clauseText}>
               <ClauseHeading num="109.3" /> Where reasonably practicable and
-              appropriate, e2e Cyber Solutions shall give the Customer notice of
+              appropriate, e2e World shall give the Customer notice of
               the proposed suspension and an opportunity to remedy the relevant
               issue before access is suspended.
             </p>
@@ -8599,7 +8634,7 @@ export default function Terms() {
               or activity rather than the entire Subscription.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="109.6" /> e2e Cyber Solutions shall review a
+              <ClauseHeading num="109.6" /> e2e World shall review a
               suspension and restore affected access within a reasonable period
               after the reason for suspension has been satisfactorily resolved,
               subject to any continuing legal, security or contractual
@@ -8630,9 +8665,8 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="110.2" /> The Customer may terminate the
-              Agreement for e2e Cyber Solutions&rsquo;s material breach where the
-              breach is incapable of remedy or, if capable of remedy, e2e Cyber
-              Solutions fails to remedy it within a reasonable period after
+              Agreement for e2e World&rsquo;s material breach where the
+              breach is incapable of remedy or, if capable of remedy, e2e World fails to remedy it within a reasonable period after
               receiving written notice describing the breach.
             </p>
             <p className={clauseText}>
@@ -8658,7 +8692,7 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="110.7" /> Where the Customer terminates because
-              of an established material breach by e2e Cyber Solutions, treatment
+              of an established material breach by e2e World, treatment
               of prepaid Fees for a period after the effective termination date
               shall be determined in accordance with the Agreement, the applicable
               Order Form and applicable law.
@@ -8668,17 +8702,17 @@ export default function Terms() {
           {/* Section 111 */}
           <section id="section-111" className="mb-12 scroll-mt-24">
             <h2 className="text-xl sm:text-2xl font-heading font-bold text-navy mb-6 leading-snug">
-              111. TERMINATION BY e2e CYBER SOLUTIONS
+              111. TERMINATION BY e2e WORLD
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="111.1" /> e2e Cyber Solutions may terminate the
+              <ClauseHeading num="111.1" /> e2e World may terminate the
               Agreement or an affected Subscription where a right to terminate
               arises under this Agreement, an applicable Order Form or applicable
               law.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="111.2" /> Without limiting other termination
-              rights, e2e Cyber Solutions may terminate where:
+              rights, e2e World may terminate where:
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
               <li className={listItemText}>
@@ -8694,12 +8728,12 @@ export default function Terms() {
                 overdue after the process in Section 113;
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="d." /> the Customer uses ImCamHub for
+                <ClauseHeading num="d." /> the Customer uses IMCAM Hub for
                 unlawful, fraudulent or seriously abusive purposes;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="e." /> continued provision of the service
-                would cause e2e Cyber Solutions to breach applicable law or a
+                would cause e2e World to breach applicable law or a
                 binding regulatory, governmental or court requirement;
               </li>
               <li className={listItemText}>
@@ -8724,26 +8758,25 @@ export default function Terms() {
             </ul>
             <p className={clauseText}>
               <ClauseHeading num="111.3" /> Where the reason for termination is
-              capable of remedy and does not require immediate action, e2e Cyber
-              Solutions shall ordinarily provide notice and a reasonable
+              capable of remedy and does not require immediate action, e2e World shall ordinarily provide notice and a reasonable
               opportunity to remedy the issue before termination.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="111.4" /> e2e Cyber Solutions may terminate
+              <ClauseHeading num="111.4" /> e2e World may terminate
               immediately where the breach or risk is sufficiently serious that
-              continued provision of ImCamHub would expose e2e Cyber Solutions,
+              continued provision of IMCAM Hub would expose e2e World,
               another customer, a data subject or the service to material legal,
               security or operational harm.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="111.5" /> Where e2e Cyber Solutions decides to
-              discontinue ImCamHub as a service for commercial reasons unrelated
+              <ClauseHeading num="111.5" /> Where e2e World decides to
+              discontinue IMCAM Hub as a service for commercial reasons unrelated
               to Customer breach, it shall provide reasonable advance notice and
               reasonable transition arrangements having regard to the
               Customer&rsquo;s Subscription and applicable law.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="111.6" /> Termination by e2e Cyber Solutions
+              <ClauseHeading num="111.6" /> Termination by e2e World
               does not affect rights or liabilities that accrued before
               termination.
             </p>
@@ -8781,7 +8814,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="112.5" /> Examples of breaches that may be
               material, depending on the circumstances, include serious misuse of
-              ImCamHub, unlawful processing of data, unauthorised access to
+              IMCAM Hub, unlawful processing of data, unauthorised access to
               another Customer&rsquo;s data, infringement of Intellectual Property
               Rights, serious confidentiality or security breaches, fraudulent
               activity and persistent failure to pay undisputed Fees.
@@ -8806,13 +8839,13 @@ export default function Terms() {
             </h2>
             <p className={clauseText}>
               <ClauseHeading num="113.1" /> If the Customer fails to pay an
-              undisputed amount by its due date, e2e Cyber Solutions may follow
+              undisputed amount by its due date, e2e World may follow
               the failed or late payment process set out in Section 98.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="113.2" /> Where an undisputed amount remains
               materially overdue after notice and a reasonable opportunity to pay,
-              e2e Cyber Solutions may suspend access to ImCamHub and, if the
+              e2e World may suspend access to IMCAM Hub and, if the
               non-payment continues, terminate the affected Subscription.
             </p>
             <p className={clauseText}>
@@ -8822,7 +8855,7 @@ export default function Terms() {
               take effect.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="113.4" /> e2e Cyber Solutions shall not
+              <ClauseHeading num="113.4" /> e2e World shall not
               terminate solely because of an amount that is subject to a genuine,
               properly raised dispute while the parties are actively seeking to
               resolve that dispute in good faith, provided that the Customer pays
@@ -8835,7 +8868,7 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="113.6" /> If the Customer pays the overdue amount
-              before termination takes effect, e2e Cyber Solutions may restore or
+              before termination takes effect, e2e World may restore or
               continue access, subject to resolution of any other breach or risk
               that independently justifies suspension or termination.
             </p>
@@ -8853,13 +8886,12 @@ export default function Terms() {
             </h2>
             <p className={clauseText}>
               <ClauseHeading num="114.1" /> On the effective date of termination or
-              expiry, the Customer&rsquo;s right to access and use ImCamHub under
+              expiry, the Customer&rsquo;s right to access and use IMCAM Hub under
               the terminated Subscription shall end, subject to any expressly
               agreed transition or data-retrieval arrangements.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="114.2" /> The Customer shall cease using e2e
-              Cyber Solutions Intellectual Property except to the extent that
+              <ClauseHeading num="114.2" /> The Customer shall cease using e2e World Intellectual Property except to the extent that
               continued use is expressly permitted under a surviving provision or
               separate licence.
             </p>
@@ -8890,7 +8922,7 @@ export default function Terms() {
               and business-continuity arrangements before access ends.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="114.5" /> Termination of ImCamHub does not itself
+              <ClauseHeading num="114.5" /> Termination of IMCAM Hub does not itself
               terminate any separate professional-services, immigration-advice or
               other agreement between the parties unless that separate agreement
               expressly provides otherwise.
@@ -8902,7 +8934,7 @@ export default function Terms() {
               Software Subscription.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="114.7" /> e2e Cyber Solutions may disable user
+              <ClauseHeading num="114.7" /> e2e World may disable user
               accounts, integrations, API credentials and other access mechanisms
               associated with the terminated Subscription.
             </p>
@@ -8932,7 +8964,7 @@ export default function Terms() {
               applicable access period.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="115.3" /> e2e Cyber Solutions may provide a
+              <ClauseHeading num="115.3" /> e2e World may provide a
               limited post-termination period for data retrieval where expressly
               stated in the applicable Subscription, Order Form, Data Processing
               Agreement or other written terms. No particular retrieval period is
@@ -8940,7 +8972,7 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="115.4" /> After the applicable retrieval or
-              retention period, e2e Cyber Solutions may delete or anonymise
+              retention period, e2e World may delete or anonymise
               Customer Data in accordance with the Data Processing Agreement,
               applicable retention arrangements and Data Protection Legislation.
             </p>
@@ -8952,14 +8984,14 @@ export default function Terms() {
               provisions of the Agreement.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="115.6" /> e2e Cyber Solutions may retain
+              <ClauseHeading num="115.6" /> e2e World may retain
               information where and for so long as retention is required or
               permitted by applicable law, including for security, financial
               records, legal compliance or the establishment, exercise or defence
               of legal claims.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="115.7" /> Where e2e Cyber Solutions acts as
+              <ClauseHeading num="115.7" /> Where e2e World acts as
               processor, return or deletion of Personal Data shall be subject to
               the Customer&rsquo;s lawful instructions and the applicable Data
               Processing Agreement.
@@ -9002,8 +9034,7 @@ export default function Terms() {
                 Rights;
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="e." /> restrictions relating to misuse of e2e
-                Cyber Solutions Intellectual Property;
+                <ClauseHeading num="e." /> restrictions relating to misuse of e2e World Intellectual Property;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="f." /> Customer Data and post-termination data
@@ -9043,35 +9074,37 @@ export default function Terms() {
             </p>
           </section>
 
+          <PartHeading num="15" title="Warranties & Disclaimers" />
+
           {/* Section 117 */}
           <section id="section-117" className="mb-12 scroll-mt-24">
             <h2 className="text-xl sm:text-2xl font-heading font-bold text-navy mb-6 leading-snug">
-              117. E2E CYBER SOLUTIONS WARRANTIES
+              117. E2E WORLD WARRANTIES
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="117.1" /> e2e Cyber Solutions warrants that it
-              shall provide ImCamHub with reasonable care and skill and
+              <ClauseHeading num="117.1" /> e2e World warrants that it
+              shall provide IMCAM Hub with reasonable care and skill and
               substantially in accordance with the applicable Agreement, subject
               to the limitations, exclusions and dependencies stated in the
               Agreement.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="117.2" /> e2e Cyber Solutions warrants that it
+              <ClauseHeading num="117.2" /> e2e World warrants that it
               has, or shall maintain, the rights and authority necessary to grant
-              the Customer the licence to use ImCamHub in accordance with this
+              the Customer the licence to use IMCAM Hub in accordance with this
               Agreement.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="117.3" /> e2e Cyber Solutions shall use
+              <ClauseHeading num="117.3" /> e2e World shall use
               reasonable efforts to maintain appropriate technical and
-              organisational measures for the security of ImCamHub and Customer
+              organisational measures for the security of IMCAM Hub and Customer
               Data in accordance with Parts 8 and 9 and the applicable Data
               Processing Agreement.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="117.4" /> e2e Cyber Solutions shall use
+              <ClauseHeading num="117.4" /> e2e World shall use
               reasonable efforts to correct reproducible material defects in
-              ImCamHub that cause the Software to fail materially to perform in
+              IMCAM Hub that cause the Software to fail materially to perform in
               accordance with its applicable Documentation, subject to the
               Customer providing sufficient information and reasonable
               cooperation to investigate the issue.
@@ -9083,7 +9116,7 @@ export default function Terms() {
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
               <li className={listItemText}>
                 <ClauseHeading num="a." /> the Customer&rsquo;s or an Authorised
-                User&rsquo;s misuse of ImCamHub or breach of the Agreement;
+                User&rsquo;s misuse of IMCAM Hub or breach of the Agreement;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="b." /> unsupported or incompatible Customer
@@ -9091,12 +9124,12 @@ export default function Terms() {
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="c." /> unauthorised modification of
-                ImCamHub;
+                IMCAM Hub;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="d." /> a Third-Party Service or integration
-                outside e2e Cyber Solutions&rsquo;s reasonable control, except to
-                the extent e2e Cyber Solutions is responsible under the
+                outside e2e World&rsquo;s reasonable control, except to
+                the extent e2e World is responsible under the
                 Agreement;
               </li>
               <li className={listItemText}>
@@ -9104,12 +9137,11 @@ export default function Terms() {
                 configurations supplied by or on behalf of the Customer; or
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="f." /> events outside e2e Cyber
-                Solutions&rsquo;s reasonable control.
+                <ClauseHeading num="f." /> events outside e2e World&rsquo;s reasonable control.
               </li>
             </ul>
             <p className={clauseText}>
-              <ClauseHeading num="117.6" /> Where e2e Cyber Solutions cannot
+              <ClauseHeading num="117.6" /> Where e2e World cannot
               reasonably correct a material defect covered by an express warranty,
               the parties shall consider an appropriate remedy in accordance with
               the Agreement, which may include a workaround, replacement
@@ -9135,17 +9167,17 @@ export default function Terms() {
             </h2>
             <p className={clauseText}>
               <ClauseHeading num="118.1" /> The Customer warrants that it has
-              authority to enter into the Agreement and to use ImCamHub for the
+              authority to enter into the Agreement and to use IMCAM Hub for the
               purposes for which it subscribes.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="118.2" /> The Customer warrants that its use of
-              ImCamHub, and the use made by persons to whom it grants access,
+              IMCAM Hub, and the use made by persons to whom it grants access,
               shall comply with applicable law and the Agreement.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="118.3" /> The Customer warrants that, to the
-              extent necessary for its use of ImCamHub, it has or shall obtain
+              extent necessary for its use of IMCAM Hub, it has or shall obtain
               the rights, permissions, lawful bases, notices, consents and
               authorisations required to:
             </p>
@@ -9158,8 +9190,8 @@ export default function Terms() {
                 Customer Content;
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="c." /> permit e2e Cyber Solutions to process
-                Customer Data as required to provide ImCamHub;
+                <ClauseHeading num="c." /> permit e2e World to process
+                Customer Data as required to provide IMCAM Hub;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="d." /> grant access to Candidates,
@@ -9174,7 +9206,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="118.4" /> The Customer warrants that it shall
               not knowingly submit fraudulent, fabricated, unlawfully obtained or
-              infringing material through ImCamHub.
+              infringing material through IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="118.5" /> Where the Customer provides
@@ -9192,7 +9224,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="118.7" /> The Customer does not warrant that
               information supplied by a Candidate or other third party will
-              always be accurate merely because it is received through ImCamHub,
+              always be accurate merely because it is received through IMCAM Hub,
               but the Customer remains responsible for the review and
               verification obligations allocated to it under the Agreement.
             </p>
@@ -9213,13 +9245,13 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="119.1" /> Except for the express warranties
               stated in the Agreement and to the extent permitted by applicable
-              law, ImCamHub is provided as a business software service and no
+              law, IMCAM Hub is provided as a business software service and no
               additional warranty or representation is given that is not
               expressly stated in the Agreement.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="119.2" /> e2e Cyber Solutions does not warrant
-              that ImCamHub will:
+              <ClauseHeading num="119.2" /> e2e World does not warrant
+              that IMCAM Hub will:
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
               <li className={listItemText}>
@@ -9249,7 +9281,7 @@ export default function Terms() {
             </ul>
             <p className={clauseText}>
               <ClauseHeading num="119.3" /> The Customer is responsible for
-              determining whether ImCamHub is suitable for its business and
+              determining whether IMCAM Hub is suitable for its business and
               professional requirements before relying on it for a particular
               workflow or purpose.
             </p>
@@ -9266,7 +9298,7 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="119.6" /> Nothing in this Software Disclaimer
-              limits e2e Cyber Solutions&rsquo;s obligation to exercise reasonable
+              limits e2e World&rsquo;s obligation to exercise reasonable
               care and skill or excludes liability that cannot lawfully be
               excluded.
             </p>
@@ -9278,17 +9310,17 @@ export default function Terms() {
               120. ACCURACY DISCLAIMER
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="120.1" /> ImCamHub may organise, display,
+              <ClauseHeading num="120.1" /> IMCAM Hub may organise, display,
               calculate, populate, reproduce, transmit or otherwise process
               information supplied by the Customer, its users, Candidates,
               Businesses, third parties or configured data sources.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="120.2" /> Unless expressly agreed as a separate
-              service, e2e Cyber Solutions does not independently verify the
+              service, e2e World does not independently verify the
               truth, authenticity, completeness, legal sufficiency or continuing
               accuracy of Customer Data, documents or Case information merely
-              because they are entered into or processed by ImCamHub.
+              because they are entered into or processed by IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="120.3" /> The Customer must review and verify
@@ -9297,7 +9329,7 @@ export default function Terms() {
               report, deadline, communication or other material purpose.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="120.4" /> Where ImCamHub performs a
+              <ClauseHeading num="120.4" /> Where IMCAM Hub performs a
               calculation, pre-populates a field, generates a reminder, presents
               a workflow, produces a report or displays information derived from
               Customer Data, the output depends on the accuracy, completeness,
@@ -9305,12 +9337,12 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="120.5" /> Information, templates, workflow
-              content or administrative materials within ImCamHub may require
+              content or administrative materials within IMCAM Hub may require
               updating because of changes in law, Home Office or UKVI practice,
               forms, guidance, fees or other external requirements.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="120.6" /> e2e Cyber Solutions may update such
+              <ClauseHeading num="120.6" /> e2e World may update such
               content from time to time but does not warrant that every external
               change will be reflected immediately or before it takes effect.
             </p>
@@ -9321,7 +9353,7 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="120.8" /> Nothing in this Section excludes
-              responsibility for an error caused by e2e Cyber Solutions&rsquo;s
+              responsibility for an error caused by e2e World&rsquo;s
               breach of an express contractual obligation to the extent liability
               for that breach is not otherwise lawfully limited under the
               Agreement.
@@ -9334,7 +9366,7 @@ export default function Terms() {
               121. IMMIGRATION OUTCOME DISCLAIMER
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="121.1" /> ImCamHub is an immigration
+              <ClauseHeading num="121.1" /> IMCAM Hub is an immigration
               case-management and administrative technology platform. Use of the
               Software does not guarantee the grant, extension, variation,
               continuation or other favourable outcome of any visa, immigration
@@ -9349,12 +9381,12 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="121.3" /> A Case status, workflow stage,
               checklist, reminder, document indicator, template, report or other
-              feature within ImCamHub is an internal software function and does
+              feature within IMCAM Hub is an internal software function and does
               not constitute an official Home Office or UKVI decision,
               confirmation or assurance.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="121.4" /> ImCamHub does not independently
+              <ClauseHeading num="121.4" /> IMCAM Hub does not independently
               determine whether a person is eligible or ineligible for an
               immigration route and does not automatically make immigration
               decisions.
@@ -9366,24 +9398,22 @@ export default function Terms() {
               submission as allocated under Part 4.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="121.6" /> e2e Cyber Solutions is not
-              responsible merely by providing ImCamHub for a refusal, rejection,
+              <ClauseHeading num="121.6" /> e2e World is not
+              responsible merely by providing IMCAM Hub for a refusal, rejection,
               delay, curtailment, cancellation, sponsor action or other
               immigration outcome caused by the decision of a competent
               authority, Customer or third-party error, inaccurate or incomplete
-              information, missed requirements, or matters outside e2e Cyber
-              Solutions&rsquo;s reasonable control.
+              information, missed requirements, or matters outside e2e World&rsquo;s reasonable control.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="121.7" /> Clause 121.6 does not exclude
-              liability to the extent that a loss is caused by e2e Cyber
-              Solutions&rsquo;s own breach of the Agreement and such liability
+              liability to the extent that a loss is caused by e2e World&rsquo;s own breach of the Agreement and such liability
               cannot or has not been validly excluded or limited under Part 16.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="121.8" /> Any immigration or legal
-              professional services separately supplied by e2e Cyber Solutions,
-              if applicable, are distinct from the provision of ImCamHub and
+              professional services separately supplied by e2e World,
+              if applicable, are distinct from the provision of IMCAM Hub and
               shall be governed by the terms applicable to those professional
               services.
             </p>
@@ -9395,20 +9425,19 @@ export default function Terms() {
               122. THIRD-PARTY SERVICES DISCLAIMER
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="122.1" /> ImCamHub may depend on or integrate
+              <ClauseHeading num="122.1" /> IMCAM Hub may depend on or integrate
               with Third-Party Services as described in Part 11.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="122.2" /> Except to the extent expressly
-              assumed under the Agreement, e2e Cyber Solutions does not warrant
+              assumed under the Agreement, e2e World does not warrant
               the uninterrupted operation, continuing availability, accuracy or
-              functionality of a Third-Party Service that is outside e2e Cyber
-              Solutions&rsquo;s reasonable control.
+              functionality of a Third-Party Service that is outside e2e World&rsquo;s reasonable control.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="122.3" /> A third-party provider may change,
               suspend, restrict or discontinue its service, technical interface,
-              terms or functionality, which may affect an associated ImCamHub
+              terms or functionality, which may affect an associated IMCAM Hub
               feature.
             </p>
             <p className={clauseText}>
@@ -9419,21 +9448,20 @@ export default function Terms() {
               Customer and the provider.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="122.5" /> e2e Cyber Solutions is not
+              <ClauseHeading num="122.5" /> e2e World is not
               responsible for third-party content, advice, representations or
               decisions merely because the content or service can be accessed,
-              transmitted or integrated through ImCamHub.
+              transmitted or integrated through IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="122.6" /> Where a Third-Party Service used by
-              e2e Cyber Solutions is material to the operation of ImCamHub, e2e
-              Cyber Solutions&rsquo;s responsibilities for selecting, managing
+              e2e World is material to the operation of IMCAM Hub, e2e World&rsquo;s responsibilities for selecting, managing
               and responding to disruption of that service remain subject to
               Parts 8, 9, 11 and 13.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="122.7" /> Nothing in this Section excludes or
-              limits e2e Cyber Solutions&rsquo;s liability for its own acts or
+              limits e2e World&rsquo;s liability for its own acts or
               omissions to the extent such liability cannot lawfully be excluded
               or is expressly assumed under the Agreement.
             </p>
@@ -9445,13 +9473,13 @@ export default function Terms() {
               123. AVAILABILITY DISCLAIMER
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="123.1" /> ImCamHub is provided as a cloud-based
+              <ClauseHeading num="123.1" /> IMCAM Hub is provided as a cloud-based
               service and may experience planned or unplanned periods of
               unavailability, reduced performance or restricted functionality.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="123.2" /> Unless an applicable Service Level
-              Agreement expressly states otherwise, e2e Cyber Solutions does not
+              Agreement expressly states otherwise, e2e World does not
               warrant continuous or uninterrupted availability or a specific
               percentage uptime.
             </p>
@@ -9485,12 +9513,12 @@ export default function Terms() {
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="g." /> force majeure events or other
-                circumstances outside e2e Cyber Solutions&rsquo;s reasonable
+                circumstances outside e2e World&rsquo;s reasonable
                 control.
               </li>
             </ul>
             <p className={clauseText}>
-              <ClauseHeading num="123.4" /> e2e Cyber Solutions shall continue
+              <ClauseHeading num="123.4" /> e2e World shall continue
               to be subject to the service, maintenance and support obligations
               expressly stated in Part 13 and any applicable Service Level
               Agreement.
@@ -9499,7 +9527,7 @@ export default function Terms() {
               <ClauseHeading num="123.5" /> The Customer must maintain reasonable
               contingency arrangements for urgent immigration, sponsorship,
               legal, regulatory and business activities and should not rely on
-              uninterrupted access to ImCamHub as the sole means of meeting a
+              uninterrupted access to IMCAM Hub as the sole means of meeting a
               critical deadline.
             </p>
             <p className={clauseText}>
@@ -9509,11 +9537,13 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="123.7" /> This Availability Disclaimer does not
-              permit e2e Cyber Solutions to disregard an express service
+              permit e2e World to disregard an express service
               commitment and does not exclude any liability that cannot lawfully
               be excluded.
             </p>
           </section>
+
+          <PartHeading num="16" title="Liability & Indemnities" />
 
           {/* Section 124 */}
           <section id="section-124" className="mb-12 scroll-mt-24">
@@ -9534,10 +9564,10 @@ export default function Terms() {
               breach of the Agreement.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="124.3" /> e2e Cyber Solutions shall not be
-              liable merely because ImCamHub is used in connection with an
+              <ClauseHeading num="124.3" /> e2e World shall not be
+              liable merely because IMCAM Hub is used in connection with an
               immigration, sponsorship, employment, legal or professional matter.
-              Liability shall depend on whether e2e Cyber Solutions has breached
+              Liability shall depend on whether e2e World has breached
               an obligation owed under the Agreement or applicable law and whether
               that breach caused the relevant recoverable loss.
             </p>
@@ -9576,15 +9606,14 @@ export default function Terms() {
               the circumstances.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="125.2" /> Subject to Section 132, e2e Cyber
-              Solutions shall not be liable for loss of profit, revenue,
+              <ClauseHeading num="125.2" /> Subject to Section 132, e2e World shall not be liable for loss of profit, revenue,
               anticipated savings, business opportunity, goodwill or reputation to
               the extent that such loss is indirect or consequential, or to the
               extent that the Agreement expressly and lawfully excludes that
               category of loss.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="125.3" /> e2e Cyber Solutions shall not be
+              <ClauseHeading num="125.3" /> e2e World shall not be
               liable for loss arising from:
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
@@ -9601,14 +9630,13 @@ export default function Terms() {
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="c." /> a missed immigration, sponsorship,
-                legal, regulatory or professional deadline that e2e Cyber
-                Solutions was not expressly contracted to manage;
+                legal, regulatory or professional deadline that e2e World was not expressly contracted to manage;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="d." /> a Home Office, UKVI or other competent
                 authority decision, delay or change in law, policy, guidance,
                 fees or procedure, except to the extent the loss was caused by
-                e2e Cyber Solutions&rsquo;s breach of an express obligation;
+                e2e World&rsquo;s breach of an express obligation;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="e." /> the Customer&rsquo;s professional
@@ -9618,12 +9646,11 @@ export default function Terms() {
               <li className={listItemText}>
                 <ClauseHeading num="f." /> unauthorised use resulting from the
                 Customer&rsquo;s failure to protect credentials, devices or access
-                permissions, except to the extent caused by e2e Cyber
-                Solutions&rsquo;s breach;
+                permissions, except to the extent caused by e2e World&rsquo;s breach;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="g." /> Customer-selected Third-Party Services,
-                integrations or systems outside e2e Cyber Solutions&rsquo;s
+                integrations or systems outside e2e World&rsquo;s
                 reasonable control; or
               </li>
               <li className={listItemText}>
@@ -9636,7 +9663,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="125.4" /> Clause 125.3 does not exclude liability
               to the extent that the relevant loss was caused or materially
-              contributed to by e2e Cyber Solutions&rsquo;s own breach and is
+              contributed to by e2e World&rsquo;s own breach and is
               otherwise recoverable under the Agreement and applicable law.
             </p>
             <p className={clauseText}>
@@ -9653,7 +9680,7 @@ export default function Terms() {
             </h2>
             <p className={clauseText}>
               <ClauseHeading num="126.1" /> Subject to Section 132, the parties
-              intend that e2e Cyber Solutions&rsquo;s aggregate liability arising
+              intend that e2e World&rsquo;s aggregate liability arising
               out of or in connection with the Agreement shall be subject to a
               financial cap.
             </p>
@@ -9701,8 +9728,7 @@ export default function Terms() {
             </h2>
             <p className={clauseText}>
               <ClauseHeading num="127.1" /> Subject to the remainder of this
-              Section and applicable law, the Customer shall indemnify e2e Cyber
-              Solutions against third-party claims, losses, damages, liabilities,
+              Section and applicable law, the Customer shall indemnify e2e World against third-party claims, losses, damages, liabilities,
               costs and reasonable legal expenses to the extent arising from:
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
@@ -9714,12 +9740,12 @@ export default function Terms() {
               <li className={listItemText}>
                 <ClauseHeading num="b." /> the Customer&rsquo;s unlawful
                 collection, use, disclosure or processing of Personal Data where
-                e2e Cyber Solutions has processed that data in accordance with the
+                e2e World has processed that data in accordance with the
                 Customer&rsquo;s lawful documented instructions;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="c." /> the Customer&rsquo;s fraudulent,
-                unlawful or deliberately unauthorised use of ImCamHub;
+                unlawful or deliberately unauthorised use of IMCAM Hub;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="d." /> a material breach by the Customer of
@@ -9728,19 +9754,18 @@ export default function Terms() {
               <li className={listItemText}>
                 <ClauseHeading num="e." /> a third-party claim arising from
                 professional immigration or legal advice given by the Customer or
-                its personnel, except to the extent caused by e2e Cyber
-                Solutions&rsquo;s own breach or separate professional services.
+                its personnel, except to the extent caused by e2e World&rsquo;s own breach or separate professional services.
               </li>
             </ul>
             <p className={clauseText}>
               <ClauseHeading num="127.2" /> An indemnity under this Section shall
               apply only to the extent the relevant claim is attributable to the
               Customer&rsquo;s act, omission or breach and shall not apply to the
-              extent the claim was caused by e2e Cyber Solutions&rsquo;s breach,
+              extent the claim was caused by e2e World&rsquo;s breach,
               negligence, wilful misconduct or unlawful processing.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="127.3" /> e2e Cyber Solutions shall notify the
+              <ClauseHeading num="127.3" /> e2e World shall notify the
               Customer reasonably promptly of a claim for which it seeks
               indemnification, provide reasonable information and cooperation, and
               take reasonable steps to mitigate its loss.
@@ -9748,14 +9773,13 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="127.4" /> Where appropriate, the Customer may
               control the defence and settlement of an indemnified third-party
-              claim, provided that it keeps e2e Cyber Solutions reasonably
-              informed and does not admit liability on behalf of e2e Cyber
-              Solutions or agree a settlement imposing non-monetary obligations on
-              e2e Cyber Solutions without e2e Cyber Solutions&rsquo;s prior written
+              claim, provided that it keeps e2e World reasonably
+              informed and does not admit liability on behalf of e2e World or agree a settlement imposing non-monetary obligations on
+              e2e World without e2e World&rsquo;s prior written
               consent, not to be unreasonably withheld or delayed.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="127.5" /> e2e Cyber Solutions may participate in
+              <ClauseHeading num="127.5" /> e2e World may participate in
               the defence with its own advisers at its own cost, except where
               separate representation is reasonably required because of a conflict
               of interest or the Customer fails to conduct the defence
@@ -9763,7 +9787,7 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="127.6" /> This Section does not require the
-              Customer to indemnify e2e Cyber Solutions for losses that are
+              Customer to indemnify e2e World for losses that are
               remote, unreasonable or not recoverable under applicable law.
             </p>
           </section>
@@ -9775,9 +9799,9 @@ export default function Terms() {
             </h2>
             <p className={clauseText}>
               <ClauseHeading num="128.1" /> Subject to this Section, Part 10, the
-              applicable liability cap and Section 132, e2e Cyber Solutions shall
+              applicable liability cap and Section 132, e2e World shall
               defend or settle a third-party claim alleging that the Customer&rsquo;s
-              authorised use of ImCamHub in the United Kingdom infringes that
+              authorised use of IMCAM Hub in the United Kingdom infringes that
               third party&rsquo;s Intellectual Property Rights, and shall indemnify
               the Customer against damages and reasonable costs finally awarded or
               agreed in settlement of that claim.
@@ -9789,43 +9813,38 @@ export default function Terms() {
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
               <li className={listItemText}>
                 <ClauseHeading num="a." /> Customer Data, Customer Content or
-                materials not supplied by e2e Cyber Solutions;
+                materials not supplied by e2e World;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="b." /> the Customer&rsquo;s modification of
-                ImCamHub or combination with an item not supplied or approved by
-                e2e Cyber Solutions, where the claim would not otherwise have
+                IMCAM Hub or combination with an item not supplied or approved by
+                e2e World, where the claim would not otherwise have
                 arisen;
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="c." /> use of ImCamHub outside the scope of
-                the Agreement or after e2e Cyber Solutions has notified the
+                <ClauseHeading num="c." /> use of IMCAM Hub outside the scope of
+                the Agreement or after e2e World has notified the
                 Customer to stop the allegedly infringing use and provided a
                 reasonable alternative;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="d." /> a Third-Party Service or third-party
-                material subject to separate terms, except to the extent e2e
-                Cyber Solutions has expressly assumed responsibility for it; or
+                material subject to separate terms, except to the extent e2e World has expressly assumed responsibility for it; or
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="e." /> compliance by e2e Cyber Solutions with
+                <ClauseHeading num="e." /> compliance by e2e World with
                 a design, instruction or specification supplied by the Customer.
               </li>
             </ul>
             <p className={clauseText}>
-              <ClauseHeading num="128.3" /> The Customer must notify e2e Cyber
-              Solutions reasonably promptly of an infringement claim, provide
-              reasonable cooperation and, where appropriate, allow e2e Cyber
-              Solutions to control the defence and settlement, provided that e2e
-              Cyber Solutions does not agree a settlement that admits wrongdoing
+              <ClauseHeading num="128.3" /> The Customer must notify e2e World reasonably promptly of an infringement claim, provide
+              reasonable cooperation and, where appropriate, allow e2e World to control the defence and settlement, provided that e2e World does not agree a settlement that admits wrongdoing
               by the Customer or imposes material non-monetary obligations on the
               Customer without its prior written consent.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="128.4" /> If ImCamHub becomes, or e2e Cyber
-              Solutions reasonably believes it is likely to become, subject to an
-              infringement claim, e2e Cyber Solutions may:
+              <ClauseHeading num="128.4" /> If IMCAM Hub becomes, or e2e World reasonably believes it is likely to become, subject to an
+              infringement claim, e2e World may:
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
               <li className={listItemText}>
@@ -9848,7 +9867,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="128.5" /> This Section states the contractual
               remedy specifically applicable to third-party Intellectual Property
-              Rights infringement claims concerning ImCamHub, subject always to
+              Rights infringement claims concerning IMCAM Hub, subject always to
               rights and liabilities that cannot lawfully be excluded.
             </p>
           </section>
@@ -9865,7 +9884,7 @@ export default function Terms() {
               breach to the extent allocated by applicable law and the Agreement.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="129.2" /> Where e2e Cyber Solutions acts as
+              <ClauseHeading num="129.2" /> Where e2e World acts as
               processor, its responsibilities for processing Customer Personal
               Data shall be governed by Part 8 and the applicable Data Processing
               Agreement.
@@ -9874,8 +9893,7 @@ export default function Terms() {
               <ClauseHeading num="129.3" /> Where the Customer acts as controller,
               it remains responsible for matters including lawful basis,
               transparency, data minimisation, accuracy, authorised disclosure,
-              data subject decisions and the lawfulness of its instructions to e2e
-              Cyber Solutions.
+              data subject decisions and the lawfulness of its instructions to e2e World.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="129.4" /> Neither party shall be required to
@@ -9908,11 +9926,11 @@ export default function Terms() {
           {/* Section 130 */}
           <section id="section-130" className="mb-12 scroll-mt-24">
             <h2 className="text-xl sm:text-2xl font-heading font-bold text-navy mb-6 leading-snug">
-              130. PROFESSIONAL / IMMIGRATION ADVICE LIABILITY
+              130. PROFESSIONAL/IMMIGRATION ADVICE LIABILITY
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="130.1" /> The provision of ImCamHub as software
-              does not make e2e Cyber Solutions responsible for immigration or
+              <ClauseHeading num="130.1" /> The provision of IMCAM Hub as software
+              does not make e2e World responsible for immigration or
               legal advice provided by the Customer, its Caseworkers, advisers,
               employees, contractors or other users.
             </p>
@@ -9923,13 +9941,13 @@ export default function Terms() {
               deadlines and submissions as set out in Part 4.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="130.3" /> e2e Cyber Solutions shall not be liable
-              for a professional or immigration outcome merely because ImCamHub
+              <ClauseHeading num="130.3" /> e2e World shall not be liable
+              for a professional or immigration outcome merely because IMCAM Hub
               was used to create, manage, store, communicate or organise the
               relevant Case.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="130.4" /> Where e2e Cyber Solutions separately
+              <ClauseHeading num="130.4" /> Where e2e World separately
               agrees to provide immigration, legal or other professional services,
               liability for those services shall be determined under the separate
               engagement terms applicable to those services and shall not be
@@ -9937,15 +9955,15 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="130.5" /> Nothing in this Section excludes
-              liability for an act or omission of e2e Cyber Solutions in providing
+              liability for an act or omission of e2e World in providing
               separate professional services where such liability properly arises
               under the applicable engagement and cannot lawfully be excluded.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="130.6" /> The Customer must not represent to a
-              Candidate, Client, Business or other person that e2e Cyber Solutions
+              Candidate, Client, Business or other person that e2e World
               has approved, verified or taken professional responsibility for a
-              Case merely because the Case is managed through ImCamHub.
+              Case merely because the Case is managed through IMCAM Hub.
             </p>
           </section>
 
@@ -9971,14 +9989,14 @@ export default function Terms() {
               and the express terms of the Agreement.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="131.4" /> The Customer must not use ImCamHub to
+              <ClauseHeading num="131.4" /> The Customer must not use IMCAM Hub to
               create, facilitate, conceal or submit fraudulent immigration
               documents, false evidence, dishonest representations or other
               unlawful material.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="131.5" /> Where e2e Cyber Solutions reasonably
-              suspects fraudulent use of ImCamHub, it may take proportionate
+              <ClauseHeading num="131.5" /> Where e2e World reasonably
+              suspects fraudulent use of IMCAM Hub, it may take proportionate
               protective action in accordance with the suspension, termination,
               security and lawful-use provisions of the Agreement.
             </p>
@@ -10023,6 +10041,8 @@ export default function Terms() {
             </p>
           </section>
 
+          <PartHeading num="17" title="Regulatory & Legal Compliance" />
+
           {/* Section 133 */}
           <section id="section-133" className="mb-12 scroll-mt-24">
             <h2 className="text-xl sm:text-2xl font-heading font-bold text-navy mb-6 leading-snug">
@@ -10034,7 +10054,7 @@ export default function Terms() {
               performing and exercising its rights under the Agreement.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="133.2" /> The Customer shall use ImCamHub only
+              <ClauseHeading num="133.2" /> The Customer shall use IMCAM Hub only
               for lawful purposes and in accordance with the legal and regulatory
               requirements applicable to its business, professional activities,
               employment activities, sponsorship activities and processing of
@@ -10044,19 +10064,19 @@ export default function Terms() {
               <ClauseHeading num="133.3" /> The Customer is responsible for
               determining which laws, regulatory requirements, professional rules
               and internal compliance obligations apply to its particular use of
-              ImCamHub.
+              IMCAM Hub.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="133.4" /> e2e Cyber Solutions shall not be
+              <ClauseHeading num="133.4" /> e2e World shall not be
               responsible for the Customer&rsquo;s compliance obligations merely
-              because ImCamHub provides functionality that assists the Customer
+              because IMCAM Hub provides functionality that assists the Customer
               in managing information, documents, Cases, users, communications,
               reminders or records.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="133.5" /> Where a change in applicable law
-              materially affects the lawful provision or operation of ImCamHub,
-              e2e Cyber Solutions may make reasonable changes to the Software, its
+              materially affects the lawful provision or operation of IMCAM Hub,
+              e2e World may make reasonable changes to the Software, its
               procedures or the Agreement in accordance with Part 18.
             </p>
             <p className={clauseText}>
@@ -10069,7 +10089,7 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="133.7" /> The Customer shall ensure that its
-              Authorised Users do not use ImCamHub to facilitate fraud, deception,
+              Authorised Users do not use IMCAM Hub to facilitate fraud, deception,
               unlawful discrimination, exploitation, unauthorised access,
               infringement of rights or other unlawful activity.
             </p>
@@ -10105,11 +10125,10 @@ export default function Terms() {
               other immigration-related employer responsibilities.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="134.4" /> ImCamHub may assist with administrative
+              <ClauseHeading num="134.4" /> IMCAM Hub may assist with administrative
               organisation, reminders, records, documents, communications and
               workflows, but such functionality does not transfer the
-              Customer&rsquo;s immigration or sponsorship obligations to e2e Cyber
-              Solutions.
+              Customer&rsquo;s immigration or sponsorship obligations to e2e World.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="134.5" /> The Customer must independently verify
@@ -10118,7 +10137,7 @@ export default function Terms() {
               fees, reporting obligations and deadlines where relevant to a Case.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="134.6" /> The Customer must not use ImCamHub to
+              <ClauseHeading num="134.6" /> The Customer must not use IMCAM Hub to
               prepare, facilitate, conceal or submit information or documents that
               it knows to be false, fraudulent or materially misleading.
             </p>
@@ -10130,7 +10149,7 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="134.8" /> Nothing in this Agreement represents
-              that e2e Cyber Solutions, merely by supplying ImCamHub, assumes the
+              that e2e World, merely by supplying IMCAM Hub, assumes the
               Customer&rsquo;s regulatory status or acts as the Customer&rsquo;s
               immigration adviser, legal representative, sponsor or employer.
             </p>
@@ -10156,7 +10175,7 @@ export default function Terms() {
               undertakings and handling of client information.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="135.3" /> A user designation within ImCamHub,
+              <ClauseHeading num="135.3" /> A user designation within IMCAM Hub,
               including a Caseworker, Admin or other role, is a software access
               designation only and does not represent or certify that the
               individual holds any professional qualification, authorisation or
@@ -10169,7 +10188,7 @@ export default function Terms() {
               accordingly.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="135.5" /> e2e Cyber Solutions does not, merely
+              <ClauseHeading num="135.5" /> e2e World does not, merely
               by providing the Software, supervise the Customer&rsquo;s
               professional work or verify the professional status, competence or
               authority of every Authorised User.
@@ -10177,19 +10196,19 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="135.6" /> If the Customer&rsquo;s professional or
               regulatory status changes in a manner that materially affects its
-              lawful use of ImCamHub, the Customer shall take appropriate action
-              and notify e2e Cyber Solutions where the change affects the
+              lawful use of IMCAM Hub, the Customer shall take appropriate action
+              and notify e2e World where the change affects the
               contractual or lawful basis on which the service is provided.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="135.7" /> e2e Cyber Solutions may request
+              <ClauseHeading num="135.7" /> e2e World may request
               reasonable evidence of a Customer&rsquo;s authority or status where
               this is reasonably necessary for legal, security, contractual or
               compliance purposes, without assuming responsibility for the
               Customer&rsquo;s continuing professional compliance.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="135.8" /> No regulator of e2e Cyber Solutions or
+              <ClauseHeading num="135.8" /> No regulator of e2e World or
               the Customer shall be identified or implied by this Agreement unless
               that regulatory status has been expressly confirmed and is
               applicable to the relevant activity.
@@ -10208,25 +10227,24 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="136.2" /> The Customer is responsible for
-              ensuring that its use of ImCamHub has an appropriate lawful basis
+              ensuring that its use of IMCAM Hub has an appropriate lawful basis
               and that required privacy information, permissions, safeguards and
               governance arrangements are in place.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="136.3" /> Where e2e Cyber Solutions acts as
+              <ClauseHeading num="136.3" /> Where e2e World acts as
               processor, it shall process Personal Data in accordance with the
               Customer&rsquo;s lawful documented instructions and the applicable
               Data Processing Agreement.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="136.4" /> Where e2e Cyber Solutions acts as
+              <ClauseHeading num="136.4" /> Where e2e World acts as
               independent controller, it shall be responsible for the processing
               activities for which it determines the purposes and means, as
               described in Part 8 and applicable privacy information.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="136.5" /> The Customer must not instruct e2e
-              Cyber Solutions to process Personal Data in a manner that the
+              <ClauseHeading num="136.5" /> The Customer must not instruct e2e World to process Personal Data in a manner that the
               Customer knows or ought reasonably to know would breach Data
               Protection Legislation.
             </p>
@@ -10256,11 +10274,11 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="137.2" /> Neither party shall offer, promise,
               give, request, agree to receive or accept a bribe or other improper
-              financial or non-financial advantage in connection with ImCamHub or
+              financial or non-financial advantage in connection with IMCAM Hub or
               the parties&rsquo; business relationship.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="137.3" /> The Customer must not use ImCamHub to
+              <ClauseHeading num="137.3" /> The Customer must not use IMCAM Hub to
               facilitate, record, conceal or support bribery, corruption, improper
               payments or other unlawful conduct.
             </p>
@@ -10301,7 +10319,7 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="138.2" /> The Customer must not knowingly use
-              ImCamHub to facilitate or conceal conduct involving modern slavery,
+              IMCAM Hub to facilitate or conceal conduct involving modern slavery,
               human trafficking, forced labour or unlawful exploitation.
             </p>
             <p className={clauseText}>
@@ -10312,16 +10330,16 @@ export default function Terms() {
               obligations.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="138.4" /> e2e Cyber Solutions&rsquo;s provision
+              <ClauseHeading num="138.4" /> e2e World&rsquo;s provision
               of software used to manage employees, workers or Candidates does not
-              make e2e Cyber Solutions responsible for the Customer&rsquo;s
+              make e2e World responsible for the Customer&rsquo;s
               employment practices, recruitment arrangements, supply chain or
               treatment of individuals.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="138.5" /> Where credible information indicates
-              that ImCamHub is being materially misused in connection with conduct
-              prohibited by this Section, e2e Cyber Solutions may take
+              that IMCAM Hub is being materially misused in connection with conduct
+              prohibited by this Section, e2e World may take
               proportionate protective action, including restriction or suspension
               of affected access, subject to applicable law and Part 14.
             </p>
@@ -10341,16 +10359,15 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="139.1" /> Each party shall comply with sanctions,
               trade restrictions and export-control laws applicable to its
-              provision, receipt or use of ImCamHub.
+              provision, receipt or use of IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="139.2" /> The Customer must not knowingly use
-              ImCamHub in a manner that would cause e2e Cyber Solutions to breach
+              IMCAM Hub in a manner that would cause e2e World to breach
               an applicable sanctions or export-control restriction.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="139.3" /> Where required by applicable law, e2e
-              Cyber Solutions may restrict access to ImCamHub, particular
+              <ClauseHeading num="139.3" /> Where required by applicable law, e2e World may restrict access to IMCAM Hub, particular
               functionality, jurisdictions, users or transactions where continued
               provision would create a material sanctions or export-control risk.
             </p>
@@ -10361,11 +10378,11 @@ export default function Terms() {
               transactions or professional activities.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="139.5" /> e2e Cyber Solutions does not assume
+              <ClauseHeading num="139.5" /> e2e World does not assume
               responsibility for determining whether a Customer&rsquo;s
               immigration, employment or commercial relationship with a particular
               person is lawful merely because that person&rsquo;s information can
-              be entered into ImCamHub.
+              be entered into IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="139.6" /> Where a party is legally prohibited
@@ -10393,17 +10410,15 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="140.2" /> Where a competent authority lawfully
-              requires information or cooperation relating to ImCamHub, e2e Cyber
-              Solutions may provide information to the extent legally required or
+              requires information or cooperation relating to IMCAM Hub, e2e World may provide information to the extent legally required or
               permitted, subject to applicable confidentiality, data protection
               and legal restrictions.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="140.3" /> Where legally permitted and reasonably
-              practicable, e2e Cyber Solutions shall notify the Customer before
+              practicable, e2e World shall notify the Customer before
               disclosing Customer Confidential Information or Customer Data in
-              response to a compulsory request, unless the request relates to e2e
-              Cyber Solutions&rsquo;s own independent processing or notification
+              response to a compulsory request, unless the request relates to e2e World&rsquo;s own independent processing or notification
               is prohibited.
             </p>
             <p className={clauseText}>
@@ -10414,7 +10429,7 @@ export default function Terms() {
               its own legal or professional advice where appropriate.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="140.5" /> Where e2e Cyber Solutions acts as
+              <ClauseHeading num="140.5" /> Where e2e World acts as
               processor, it shall provide reasonable assistance required by
               applicable Data Protection Legislation and the Data Processing
               Agreement in relation to a competent data protection authority.
@@ -10422,7 +10437,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="140.6" /> The Customer shall provide reasonable
               cooperation where an investigation concerns suspected misuse of
-              ImCamHub, a security incident, unlawful Customer activity or another
+              IMCAM Hub, a security incident, unlawful Customer activity or another
               matter for which information within the Customer&rsquo;s control is
               reasonably required.
             </p>
@@ -10449,14 +10464,16 @@ export default function Terms() {
             </p>
           </section>
 
+          <PartHeading num="18" title="Changes to IMCAM Hub & Agreement" />
+
           {/* Section 141 */}
           <section id="section-141" className="mb-12 scroll-mt-24">
             <h2 className="text-xl sm:text-2xl font-heading font-bold text-navy mb-6 leading-snug">
               141. CHANGES TO THE SOFTWARE
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="141.1" /> e2e Cyber Solutions may update,
-              modify, improve, replace or otherwise develop ImCamHub from time to
+              <ClauseHeading num="141.1" /> e2e World may update,
+              modify, improve, replace or otherwise develop IMCAM Hub from time to
               time in order to maintain, secure, support or improve the Software
               and the services provided through it.
             </p>
@@ -10497,12 +10514,12 @@ export default function Terms() {
                 components; and
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="i." /> other aspects of ImCamHub reasonably
+                <ClauseHeading num="i." /> other aspects of IMCAM Hub reasonably
                 connected with its operation or development.
               </li>
             </ul>
             <p className={clauseText}>
-              <ClauseHeading num="141.3" /> e2e Cyber Solutions may implement
+              <ClauseHeading num="141.3" /> e2e World may implement
               changes without prior Customer approval where the change does not
               materially reduce the Customer&rsquo;s contracted core functionality
               or where the change is reasonably necessary for security, legal
@@ -10512,11 +10529,11 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="141.4" /> The Customer acknowledges that a SaaS
               platform is expected to evolve and that the appearance, technical
-              implementation and detailed operation of ImCamHub may therefore
+              implementation and detailed operation of IMCAM Hub may therefore
               change during a Subscription Period.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="141.5" /> e2e Cyber Solutions shall not be
+              <ClauseHeading num="141.5" /> e2e World shall not be
               required to maintain a particular technical architecture, software
               component, hosting provider, interface design or internal method of
               delivering functionality unless this has been expressly agreed in
@@ -10542,9 +10559,9 @@ export default function Terms() {
               142. CHANGES TO FEATURES
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="142.1" /> e2e Cyber Solutions may add, enhance,
+              <ClauseHeading num="142.1" /> e2e World may add, enhance,
               modify, replace, reorganise or discontinue individual features of
-              ImCamHub as the Software develops.
+              IMCAM Hub as the Software develops.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="142.2" /> A feature may be changed because of
@@ -10560,10 +10577,10 @@ export default function Terms() {
               service.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="142.4" /> Where e2e Cyber Solutions proposes
+              <ClauseHeading num="142.4" /> Where e2e World proposes
               permanently to remove or materially reduce a feature that forms a
               significant part of the core paid functionality expressly included
-              in the Customer&rsquo;s Subscription, e2e Cyber Solutions shall,
+              in the Customer&rsquo;s Subscription, e2e World shall,
               where reasonably practicable:
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
@@ -10589,8 +10606,7 @@ export default function Terms() {
               <ClauseHeading num="142.5" /> Clause 142.4 does not require advance
               notice where urgent removal or restriction is reasonably necessary
               because of security, law, regulatory requirements, infringement
-              concerns or a Third-Party Service event outside e2e Cyber
-              Solutions&rsquo;s reasonable control.
+              concerns or a Third-Party Service event outside e2e World&rsquo;s reasonable control.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="142.6" /> The Customer is responsible for
@@ -10611,7 +10627,7 @@ export default function Terms() {
               143. CHANGES TO IMMIGRATION CONTENT
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="143.1" /> ImCamHub may contain or support
+              <ClauseHeading num="143.1" /> IMCAM Hub may contain or support
               workflows, templates, checklists, reminders, administrative
               information, document structures or other content connected with
               United Kingdom immigration and sponsorship processes.
@@ -10623,15 +10639,15 @@ export default function Terms() {
               practices may change at short notice.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="143.3" /> e2e Cyber Solutions may update,
+              <ClauseHeading num="143.3" /> e2e World may update,
               replace, withdraw or amend immigration-related content within
-              ImCamHub in response to such changes or where it otherwise considers
+              IMCAM Hub in response to such changes or where it otherwise considers
               an update appropriate.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="143.4" /> e2e Cyber Solutions does not warrant
+              <ClauseHeading num="143.4" /> e2e World does not warrant
               that every external immigration change will be identified or
-              reflected within ImCamHub immediately, simultaneously with
+              reflected within IMCAM Hub immediately, simultaneously with
               publication or before the change takes legal or operational effect.
             </p>
             <p className={clauseText}>
@@ -10649,7 +10665,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="143.7" /> Where a material change in immigration
               requirements makes existing Software content inaccurate or
-              unsuitable, e2e Cyber Solutions may disable or restrict the affected
+              unsuitable, e2e World may disable or restrict the affected
               content while it is reviewed or updated.
             </p>
             <p className={clauseText}>
@@ -10666,14 +10682,14 @@ export default function Terms() {
               144. CHANGES TO THESE TERMS
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="144.1" /> e2e Cyber Solutions may amend these
+              <ClauseHeading num="144.1" /> e2e World may amend these
               Terms from time to time where reasonably necessary to reflect
-              changes in ImCamHub, applicable law, regulatory requirements,
+              changes in IMCAM Hub, applicable law, regulatory requirements,
               security practices, Third-Party Services, commercial arrangements or
               the way in which the service is provided.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="144.2" /> e2e Cyber Solutions may make
+              <ClauseHeading num="144.2" /> e2e World may make
               non-material changes, corrections or clarifications that do not
               materially reduce the Customer&rsquo;s contractual rights without
               requiring the Customer to enter into a new agreement.
@@ -10681,7 +10697,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="144.3" /> Where a proposed change materially
               affects the Customer&rsquo;s rights or obligations under an existing
-              Subscription, e2e Cyber Solutions shall provide reasonable notice in
+              Subscription, e2e World shall provide reasonable notice in
               accordance with Section 145 before the change takes effect, unless
               an earlier change is reasonably required by law, regulation, security
               or another urgent circumstance.
@@ -10700,7 +10716,7 @@ export default function Terms() {
               the affected Subscription before the change takes effect.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="144.6" /> Continued use of ImCamHub after the
+              <ClauseHeading num="144.6" /> Continued use of IMCAM Hub after the
               effective date of properly notified amended Terms may constitute
               acceptance of those Terms where this is lawful and the Customer has
               been clearly informed of the change and its effective date.
@@ -10708,7 +10724,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="144.7" /> Where applicable law, the nature of
               the amendment or an agreed contracting process requires express
-              acceptance, e2e Cyber Solutions may require the Customer to accept
+              acceptance, e2e World may require the Customer to accept
               the updated Terms electronically or in writing before continued use.
             </p>
             <p className={clauseText}>
@@ -10721,7 +10737,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="144.9" /> The version of the Terms applicable at
               a particular time may be identified by an effective date or version
-              date maintained by e2e Cyber Solutions.
+              date maintained by e2e World.
             </p>
           </section>
 
@@ -10732,7 +10748,7 @@ export default function Terms() {
             </h2>
             <p className={clauseText}>
               <ClauseHeading num="145.1" /> Where this Agreement requires notice of
-              a material change, e2e Cyber Solutions shall provide notice by a
+              a material change, e2e World shall provide notice by a
               reasonable method designed to bring the change to the attention of
               the Customer.
             </p>
@@ -10745,7 +10761,7 @@ export default function Terms() {
                 registered or nominated administrative contact;
               </li>
               <li className={listItemText}>
-                <ClauseHeading num="b." /> a prominent notice within ImCamHub;
+                <ClauseHeading num="b." /> a prominent notice within IMCAM Hub;
               </li>
               <li className={listItemText}>
                 <ClauseHeading num="c." /> an account or subscription
@@ -10768,7 +10784,7 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="145.4" /> The amount of advance notice shall
-              depend on the nature and impact of the change. e2e Cyber Solutions
+              depend on the nature and impact of the change. e2e World
               shall seek to provide reasonable advance notice where practicable
               but may implement a change more quickly where necessary for law,
               regulation, security, prevention of harm, technical integrity or
@@ -10783,8 +10799,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="145.6" /> Failure by the Customer to read a
               notice that has been properly sent or made available does not
-              prevent the change from taking effect, provided that e2e Cyber
-              Solutions has complied with the notice requirements applicable under
+              prevent the change from taking effect, provided that e2e World has complied with the notice requirements applicable under
               the Agreement and law.
             </p>
             <p className={clauseText}>
@@ -10794,12 +10809,13 @@ export default function Terms() {
               period within which it must be exercised.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="145.8" /> Nothing in this Section permits e2e
-              Cyber Solutions to avoid a requirement for specific consent,
+              <ClauseHeading num="145.8" /> Nothing in this Section permits e2e World to avoid a requirement for specific consent,
               agreement or notice where applicable law or another binding
               provision of the Agreement requires it.
             </p>
           </section>
+
+          <PartHeading num="19" title="General Contractual Provisions" />
 
           {/* Section 146 */}
           <section id="section-146" className="mb-12 scroll-mt-24">
@@ -10950,15 +10966,14 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="148.1" /> The Customer shall not assign,
               transfer, novate, charge or otherwise dispose of the Agreement or a
-              material right under it without e2e Cyber Solutions&rsquo;s prior
+              material right under it without e2e World&rsquo;s prior
               written consent, such consent not to be unreasonably withheld or
-              delayed where the proposed transfer does not materially increase e2e
-              Cyber Solutions&rsquo;s legal, security, credit or operational risk.
+              delayed where the proposed transfer does not materially increase e2e World&rsquo;s legal, security, credit or operational risk.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="148.2" /> e2e Cyber Solutions may assign,
+              <ClauseHeading num="148.2" /> e2e World may assign,
               transfer or novate the Agreement to an Affiliate, successor or
-              purchaser of the business or assets to which ImCamHub relates,
+              purchaser of the business or assets to which IMCAM Hub relates,
               provided that the transfer does not materially reduce the
               Customer&rsquo;s contractual rights and the recipient assumes the
               relevant obligations.
@@ -10987,33 +11002,33 @@ export default function Terms() {
               149. SUBCONTRACTING
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="149.1" /> e2e Cyber Solutions may use
+              <ClauseHeading num="149.1" /> e2e World may use
               subcontractors and service providers to perform parts of its
               obligations under the Agreement, including technical, hosting,
               support, communications, security and other operational functions.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="149.2" /> Use of a subcontractor does not
-              relieve e2e Cyber Solutions of responsibility for obligations that
-              the Agreement places on e2e Cyber Solutions, except to the extent the
+              relieve e2e World of responsibility for obligations that
+              the Agreement places on e2e World, except to the extent the
               Agreement expressly allocates risk for independent Third-Party
               Services.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="149.3" /> Where a subcontractor processes
-              Personal Data on behalf of e2e Cyber Solutions as a processor, the
+              Personal Data on behalf of e2e World as a processor, the
               appointment and use of that subcontractor shall be governed by Part 8
               and the applicable Data Processing Agreement.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="149.4" /> e2e Cyber Solutions shall ensure that
+              <ClauseHeading num="149.4" /> e2e World shall ensure that
               subcontractors are subject to contractual obligations appropriate to
               the services they perform, including confidentiality and security
               obligations where relevant.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="149.5" /> The Customer may use its own
-              contractors in connection with ImCamHub, but remains responsible for
+              contractors in connection with IMCAM Hub, but remains responsible for
               their authorised use of the Software and compliance with the Agreement
               as if they were its other Authorised Users.
             </p>
@@ -11042,15 +11057,15 @@ export default function Terms() {
               permitted and materially relevant.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="150.3" /> e2e Cyber Solutions may transfer the
+              <ClauseHeading num="150.3" /> e2e World may transfer the
               Agreement as part of a merger, reorganisation, sale of business or
               similar transaction in accordance with Section 148.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="150.4" /> Where the Customer undergoes a change
-              of control, e2e Cyber Solutions may reasonably review the
+              of control, e2e World may reasonably review the
               Customer&rsquo;s account, billing, access, data-protection and
-              security arrangements to ensure that continued provision of ImCamHub
+              security arrangements to ensure that continued provision of IMCAM Hub
               remains lawful and operationally appropriate.
             </p>
             <p className={clauseText}>
@@ -11074,7 +11089,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="151.1" /> The Agreement constitutes the entire
               agreement between the parties concerning the Customer&rsquo;s
-              Subscription to and use of ImCamHub and supersedes previous
+              Subscription to and use of IMCAM Hub and supersedes previous
               discussions, correspondence, proposals, representations and
               understandings relating to the same subject matter.
             </p>
@@ -11111,7 +11126,7 @@ export default function Terms() {
             </h2>
             <p className={clauseText}>
               <ClauseHeading num="152.1" /> Except where the Agreement expressly
-              permits e2e Cyber Solutions to make a change under Part 18 or another
+              permits e2e World to make a change under Part 18 or another
               specified provision, a variation of the Agreement shall be effective
               only if agreed by authorised representatives of the parties in
               writing or through an agreed electronic contracting process.
@@ -11213,8 +11228,7 @@ export default function Terms() {
             </h2>
             <p className={clauseText}>
               <ClauseHeading num="155.1" /> Nothing in the Agreement creates a
-              partnership, joint venture or fiduciary relationship between e2e
-              Cyber Solutions and the Customer.
+              partnership, joint venture or fiduciary relationship between e2e World and the Customer.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="155.2" /> Neither party has authority to bind
@@ -11223,15 +11237,15 @@ export default function Terms() {
               other&rsquo;s agent unless expressly authorised in writing.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="155.3" /> The Customer&rsquo;s use of ImCamHub
+              <ClauseHeading num="155.3" /> The Customer&rsquo;s use of IMCAM Hub
               to communicate with Candidates, Clients, Businesses, employees or
-              other persons does not make e2e Cyber Solutions a party to the
+              other persons does not make e2e World a party to the
               Customer&rsquo;s relationship with those persons.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="155.4" /> The availability of a Candidate
               Portal, Business Portal or other user-facing functionality does not
-              make e2e Cyber Solutions the employer, sponsor, immigration
+              make e2e World the employer, sponsor, immigration
               representative, legal representative or professional adviser of the
               relevant user merely by virtue of providing the Software.
             </p>
@@ -11257,7 +11271,7 @@ export default function Terms() {
             <p className={clauseText}>
               <ClauseHeading num="156.2" /> An Authorised User, Candidate,
               employee, Caseworker, Business user, Client or other person given
-              access to ImCamHub does not become a party to the Agreement merely
+              access to IMCAM Hub does not become a party to the Agreement merely
               because the Agreement contains provisions concerning that
               person&rsquo;s use or data.
             </p>
@@ -11280,18 +11294,18 @@ export default function Terms() {
               157. RELATIONSHIP BETWEEN THE PARTIES
             </h2>
             <p className={clauseText}>
-              <ClauseHeading num="157.1" /> e2e Cyber Solutions supplies ImCamHub
+              <ClauseHeading num="157.1" /> e2e World supplies IMCAM Hub
               to the Customer as an independent contracting party.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="157.2" /> The Customer retains control of its
               business, professional services, personnel, Clients, Candidates,
               employees, Cases, sponsorship activities and decisions made using
-              information managed through ImCamHub.
+              information managed through IMCAM Hub.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="157.3" /> Except where a separate written
-              agreement expressly provides otherwise, e2e Cyber Solutions does not
+              agreement expressly provides otherwise, e2e World does not
               manage the Customer&rsquo;s immigration practice, supervise its
               Caseworkers, act as its employer, make its professional decisions or
               assume responsibility for its Clients or Candidates.
@@ -11359,6 +11373,8 @@ export default function Terms() {
             </p>
           </section>
 
+          <PartHeading num="20" title="Governing Law & Disputes" />
+
           {/* Section 159 */}
           <section id="section-159" className="mb-12 scroll-mt-24">
             <h2 className="text-xl sm:text-2xl font-heading font-bold text-navy mb-6 leading-snug">
@@ -11366,14 +11382,13 @@ export default function Terms() {
             </h2>
             <p className={clauseText}>
               <ClauseHeading num="159.1" /> If the Customer is dissatisfied with
-              ImCamHub or with e2e Cyber Solutions&rsquo;s performance of the
-              Agreement, the Customer should raise the matter with e2e Cyber
-              Solutions as soon as reasonably practicable so that the issue can be
+              IMCAM Hub or with e2e World&rsquo;s performance of the
+              Agreement, the Customer should raise the matter with e2e World as soon as reasonably practicable so that the issue can be
               reviewed and, where appropriate, addressed.
             </p>
             <p className={clauseText}>
               <ClauseHeading num="159.2" /> A complaint should contain sufficient
-              information to allow e2e Cyber Solutions to understand and
+              information to allow e2e World to understand and
               investigate the matter, including, where relevant:
             </p>
             <ul className="pl-6 sm:pl-10 space-y-2 mb-4">
@@ -11407,12 +11422,12 @@ export default function Terms() {
               investigated without it.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="159.4" /> e2e Cyber Solutions shall acknowledge
+              <ClauseHeading num="159.4" /> e2e World shall acknowledge
               and investigate complaints within a reasonable period, taking into
               account the nature, seriousness and complexity of the matter.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="159.5" /> e2e Cyber Solutions may request
+              <ClauseHeading num="159.5" /> e2e World may request
               further information or reasonable cooperation from the Customer where
               necessary to investigate or resolve a complaint.
             </p>
@@ -11430,8 +11445,7 @@ export default function Terms() {
               under this SaaS Agreement.
             </p>
             <p className={clauseText}>
-              <ClauseHeading num="159.8" /> Nothing in this Section requires e2e
-              Cyber Solutions to identify itself as subject to a particular
+              <ClauseHeading num="159.8" /> Nothing in this Section requires e2e World to identify itself as subject to a particular
               professional regulator or external complaints scheme unless that
               status and scheme are applicable to the relevant service.
             </p>
@@ -11536,8 +11550,7 @@ export default function Terms() {
             </p>
             <p className={clauseText}>
               <ClauseHeading num="161.2" /> The governing law stated in clause
-              161.1 applies to the contractual relationship between e2e Cyber
-              Solutions and the Customer, subject to any mandatory law that applies
+              161.1 applies to the contractual relationship between e2e World and the Customer, subject to any mandatory law that applies
               irrespective of the parties&rsquo; contractual choice of law.
             </p>
             <p className={clauseText}>
