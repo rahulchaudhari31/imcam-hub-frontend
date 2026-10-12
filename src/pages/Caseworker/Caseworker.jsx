@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import {
   ClipboardList,
   FileCheck,
@@ -7,13 +6,30 @@ import {
   MessageSquare,
   ShieldCheck,
 } from 'lucide-react';
-import usePageMeta from '../hooks/usePageMeta';
-import FeaturePageTemplate from '../components/FeaturePageTemplate';
-import { fetchFeaturePage, fetchFaqItems, resolveCmsAsset } from '../services/cmsService';
-import resolveFeatureIcon from '../services/featureIcons';
-import caseworkerImg from '../assets/images/features/Caseworker_image.jpg';
-import bannerImg from '../assets/images/features/Caseworker_banner.jpeg';
-import introImg from '../assets/images/features/Caseworker_dashboard.png';
+import usePageMeta from '../../hooks/usePageMeta';
+import caseworkerImg from '../../assets/images/features/Caseworker_image.jpg';
+import bannerImg from '../../assets/images/features/Caseworker_banner.jpeg';
+import introImg from '../../assets/images/features/Caseworker_dashboard.png';
+import Hero from './sections/Hero';
+import Overview from './sections/Overview';
+import Dashboard from './sections/Dashboard';
+import Capabilities from './sections/Capabilities';
+import Faq from './sections/Faq';
+import Cta from './sections/Cta';
+
+const title = 'Caseworker Portal';
+const role = 'Caseworker';
+
+const defaultMiddleParagraphs = [
+  'Caseworkers juggle dozens of active matters at any given time, each with unique deadlines, document requirements, and client expectations. The margin for error is zero.',
+  'From the moment a matter lands in your queue to the final filing, everything is streamlined — intake, drafting, reminders, and client communication all live in one focused workspace.',
+];
+
+const defaultMiddlePoints = [
+  'Smart checklists auto-generate for every case type and filing stage.',
+  'Automated reminders at 30, 14, 7, and 1 day(s) before every deadline.',
+  'One-click drafting from approved, on-brand templates.',
+];
 
 const defaultFeatures = [
   {
@@ -32,7 +48,7 @@ const defaultFeatures = [
     icon: FileCheck,
     title: 'Document Review & Management',
     description:
-      'Review and manage uploaded client documents against checklists, flagging what\'s missing or outstanding without chasing clients manually.',
+      "Review and manage uploaded client documents against checklists, flagging what's missing or outstanding without chasing clients manually.",
   },
   {
     icon: Workflow,
@@ -72,73 +88,52 @@ const defaultFaqs = [
   },
 ];
 
-export default function FeatureCaseworker() {
+export default function Caseworker() {
   usePageMeta(
     'Caseworker Portal — ImCam Hub',
     'A focused workspace for UK immigration caseworkers: manage assigned Skilled Worker, Sponsor Licence, ILR, and Citizenship cases, documents, and deadlines in one place.',
     'features'
   );
 
-  const [page, setPage] = useState(null);
-  const [faqs, setFaqs] = useState(null);
-
-  useEffect(() => {
-    let mounted = true;
-    const load = async () => {
-      const [cmsPage, cmsFaqs] = await Promise.all([
-        fetchFeaturePage('caseworker'),
-        fetchFaqItems('caseworker'),
-      ]);
-      if (!mounted) return;
-      if (cmsPage) setPage(cmsPage);
-      if (cmsFaqs && cmsFaqs.length > 0) {
-        setFaqs(cmsFaqs.map((f) => ({ question: f.question, answer: f.answer })));
-      }
-    };
-    load();
-    return () => {
-      mounted = false;
-    };
-  }, []);
+  const features = defaultFeatures;
+  const middleParagraphs = defaultMiddleParagraphs;
+  const middlePoints = defaultMiddlePoints;
+  const faqs = defaultFaqs;
 
   return (
-    <FeaturePageTemplate
-      title="Caseworker Portal"
-      roleName={page?.role_name || 'Caseworker'}
-      bannerText={page?.banner_text || 'Built for Caseworkers'}
-      bannerSubline={page?.banner_subline || 'Everything you need for a case — one platform.'}
-      bannerColor={page?.banner_color || 'bg-navy'}
-      introHeading={
-        page?.intro_heading || 'Manage Every Assigned Case, Task, and Deadline in One Place'
-      }
-      introText={
-        page?.intro_text || [
+    <div>
+      <Hero
+        text="Built for Caseworkers"
+        subline="Everything you need for a case — one platform."
+        color="bg-navy"
+        image={bannerImg}
+      />
+
+      <Overview
+        role={role}
+        heading="Manage Every Assigned Case, Task, and Deadline in One Place"
+        text={[
           'The Caseworker Portal is where day-to-day case management software for UK immigration teams actually happens — giving caseworkers a clear, focused view of every case assigned to them, from Skilled Worker visa applications to Sponsor Licence, ILR, and British Citizenship work.',
           'Track assigned tasks and deadlines, manage documents and client communication, and move each case through its workflow without losing time to scattered emails or spreadsheets. Purpose-built for UK immigration consultancies, it gives caseworkers exactly what they need to focus on cases, not admin.',
-        ]
-      }
-      introImageLabel={page?.intro_image_label || 'Caseworker Portal Preview'}
-      introReverse={page?.intro_reverse ?? true}
-      bannerImage={resolveCmsAsset(page?.banner_image) || bannerImg}
-      introImage={resolveCmsAsset(page?.intro_image) || introImg}
-      middleImage={resolveCmsAsset(page?.middle_image) || caseworkerImg}
-      middleBadge={page?.middle_badge || 'Caseworker Portal'}
-      middleHeading={page?.middle_heading || 'A day in the caseworker\'s seat'}
-      middleParagraphs={page?.middle_paragraphs}
-      middlePoints={page?.middle_points}
-      features={
-        page?.features?.length
-          ? page.features
-              .slice()
-              .sort((a, b) => (a.display_order || 0) - (b.display_order || 0))
-              .map((f) => ({
-                icon: resolveFeatureIcon(f.icon),
-                title: f.title,
-                description: f.description,
-              }))
-          : defaultFeatures
-      }
-      faqs={faqs || defaultFaqs}
-    />
+        ]}
+        image={introImg}
+        imageLabel="Caseworker Portal Preview"
+        reverse
+      />
+
+      <Dashboard
+        image={caseworkerImg}
+        badge="Caseworker Portal"
+        heading="A day in the caseworker's seat"
+        paragraphs={middleParagraphs}
+        points={middlePoints}
+      />
+
+      <Capabilities role={role} features={features} />
+
+      <Faq faqs={faqs} />
+
+      <Cta title={title} />
+    </div>
   );
 }

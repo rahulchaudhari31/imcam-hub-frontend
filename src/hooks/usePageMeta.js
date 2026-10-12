@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { fetchSeoSettings } from '../services/cmsService';
 
 function readMeta() {
   let meta = document.querySelector('meta[name="description"]');
@@ -41,26 +40,8 @@ export default function usePageMeta(title, description, pageKey) {
 
     applyMeta(title, description);
 
-    if (!pageKey) {
-      return;
-    }
-
-    let cancelled = false;
-
-    const applyCms = async () => {
-      const settings = await fetchSeoSettings(pageKey);
-      if (!cancelled && settings?.page_title) {
-        applyMeta(
-          settings.page_title || title,
-          settings.meta_description || description
-        );
-      }
-    };
-
-    applyCms();
-
     return () => {
-      cancelled = true;
+      void pageKey;
       restoreMeta(prev);
     };
   }, [title, description, pageKey]);

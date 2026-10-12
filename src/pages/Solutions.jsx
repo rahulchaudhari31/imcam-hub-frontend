@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import usePageMeta from '../hooks/usePageMeta';
@@ -17,7 +17,6 @@ import {
   BarChart3,
   Building2,
 } from 'lucide-react';
-import { fetchServices, fetchSolutions } from '../services/cmsService';
 
 function AnimateOnScroll({ children, className = '', delay = 0 }) {
   const ref = useRef(null);
@@ -175,89 +174,35 @@ export default function Solutions() {
     'Document vault, case pipelines, client and sponsor portals, reporting, and AI-powered case intelligence — built for UK immigration consultancies.',
     'solutions'
   );
-  const [cmsServices, setCmsServices] = useState(null);
-  const [cmsSections, setCmsSections] = useState(null);
+  const displaySolutions = solutions;
 
-  useEffect(() => {
-    const loadServices = async () => {
-      const [services, sections] = await Promise.all([
-        fetchServices(),
-        fetchSolutions(),
-      ]);
-      if (services && services.length > 0) {
-        setCmsServices(
-          services.map((service, index) => ({
-            ...solutions[index % solutions.length],
-            title: service.title,
-            description: service.description,
-          }))
-        );
-      }
-      if (sections && sections.length > 0) {
-        setCmsSections(
-          sections.reduce((acc, section) => {
-            acc[section.section_key] = section;
-            return acc;
-          }, {})
-        );
-      }
-    };
-    loadServices();
-  }, []);
+  const heroSection = null;
+  const solutionsSection = null;
+  const howSection = null;
+  const ctaSection = null;
 
-  const displaySolutions = cmsServices || solutions;
-  const sections = cmsSections || {};
-
-  const heroSection = sections.hero;
-  const statsSection = sections.stats;
-  const challengesSection = sections.challenges;
-  const solutionsSection = sections.solutions;
-  const howSection = sections.how_it_works;
-  const ctaSection = sections.cta;
-
-  const heroBadge = heroSection?.content?.badge || 'The Problem';
+  const heroBadge = 'The Problem';
   const heroTitle =
-    heroSection?.title ||
     'The Challenges UK Immigration Consultancies Face';
   const heroDescription =
-    heroSection?.description ||
     'Complex regulations. Tight deadlines. High client expectations. Lean teams. Fragmented tools. ImCam Hub was built to solve every one of these challenges for UK immigration consultancies.';
-  const heroStats = statsSection?.content?.items?.length
-    ? statsSection.content.items
-    : [
-        { value: '73%', label: 'of firms use spreadsheets', color: 'text-rose' },
-        { value: '40%', label: 'cases miss deadlines', color: 'text-orange' },
-        { value: '6hrs', label: 'wasted daily on admin', color: 'text-amber' },
-      ];
-  const challengesHeading = challengesSection?.title || 'Sound Familiar?';
+  const heroStats = [
+    { value: '73%', label: 'of firms use spreadsheets', color: 'text-rose' },
+    { value: '40%', label: 'cases miss deadlines', color: 'text-orange' },
+    { value: '6hrs', label: 'wasted daily on admin', color: 'text-amber' },
+  ];
+  const challengesHeading = 'Sound Familiar?';
   const challengesSub =
-    challengesSection?.description ||
     'These are the daily realities UK immigration teams face without a unified system.';
-  const displayChallenges = challengesSection?.content?.items?.length
-    ? challengesSection.content.items.map((item, i) => ({
-        ...challenges[i % challenges.length],
-        title: item.title,
-        description: item.description,
-      }))
-    : challenges;
-  const solutionsHeading = solutionsSection?.title || 'Our Solutions';
+  const displayChallenges = challenges;
+  const solutionsHeading = 'Our Solutions';
   const solutionsSub =
-    solutionsSection?.description ||
     'Eight powerful capabilities that eliminate manual work, reduce risk, and keep your caseload moving automatically.';
-  const howHeading = howSection?.title || 'How It Works';
-  const howSub =
-    howSection?.description || 'Three steps from sign-up to a fully connected immigration practice.';
-  const displaySteps = howSection?.content?.steps?.length
-    ? howSection.content.steps.map((step, i) => ({
-        ...steps[i % steps.length],
-        number: step.number,
-        title: step.title,
-        description: step.description,
-      }))
-    : steps;
-  const ctaTitle = ctaSection?.title || 'Ready to see ImCam Hub in action?';
+  const howHeading = 'How It Works';
+  const howSub = 'Three steps from sign-up to a fully connected immigration practice.';
+  const displaySteps = steps;
+  const ctaTitle = 'Ready to see ImCam Hub in action?';
   const ctaDescription =
-    ctaSection?.description ||
     'Join UK immigration consultancies that have transformed their workflow with ImCam Hub. Schedule a personalized demo today.';
 
   return (

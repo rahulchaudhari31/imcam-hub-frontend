@@ -3,12 +3,6 @@ import { Link } from 'react-router-dom';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import demoVideo from '../assets/video/ImCamHub_promo-01.mp4';
 import {
-  fetchFaqItems,
-  fetchContactInfo,
-  fetchHomeSections,
-  resolveCmsAsset,
-} from '../services/cmsService';
-import {
   ArrowRight,
   Brain,
   Check,
@@ -268,27 +262,6 @@ const whyFeatures = [
   },
 ];
 
-const sectionMapFrom = (sections) =>
-  (sections || []).reduce((map, section) => {
-    if (section?.section_key && section.is_active !== false) {
-      map[section.section_key] = section;
-    }
-    return map;
-  }, {});
-
-const contentArray = (section, fallback) =>
-  Array.isArray(section?.content) && section.content.length > 0
-    ? section.content
-    : fallback;
-
-const withIconFallbacks = (items, fallbacks) =>
-  items.map((item, index) => ({
-    ...fallbacks[index % fallbacks.length],
-    ...item,
-    icon: fallbacks[index % fallbacks.length].icon,
-    color: item.color || fallbacks[index % fallbacks.length].color,
-  }));
-
 const faqs = [
   {
     question: 'What types of immigration cases does ImCam Hub support?',
@@ -384,55 +357,22 @@ export default function Home() {
 
   const heroRef = useRef(null);
   const heroInView = useInView(heroRef, { once: true });
-  const [cmsFaqs, setCmsFaqs] = useState(null);
-  const [cmsContact, setCmsContact] = useState(null);
-  const [cmsSections, setCmsSections] = useState({});
   const [whyActiveIndex, setWhyActiveIndex] = useState(0);
 
-  useEffect(() => {
-    const loadCms = async () => {
-      const [sections, faqs, contact] = await Promise.all([
-        fetchHomeSections(),
-        fetchFaqItems('global'),
-        fetchContactInfo(),
-      ]);
-      if (sections && sections.length > 0) {
-        setCmsSections(sectionMapFrom(sections));
-      }
-      if (faqs && faqs.length > 0) {
-        setCmsFaqs(faqs.map((f) => ({ question: f.question, answer: f.answer })));
-      }
-      if (contact) {
-        setCmsContact(contact);
-      }
-    };
-    loadCms();
-  }, []);
-
-  const displayFaqs = cmsFaqs || faqs;
-  const contactEmail = cmsContact?.email || 'support@imcamhub.com';
-  const contactPhone = cmsContact?.phone || '+44 20 7946 0958';
-  const heroSection = cmsSections.hero;
-  const videoSection = cmsSections.video_showcase;
-  const trustedSection = cmsSections.trusted_features;
-  const aiSection = cmsSections.ai_agents;
-  const modulesSection = cmsSections.core_modules;
-  const whySection = cmsSections.why_incimhub || cmsSections.why_imcam_hub;
-  const ctaSection = cmsSections.cta;
-  const displayTrustedFeatures = withIconFallbacks(
-    contentArray(trustedSection, trustedFeatures),
-    trustedFeatures
-  );
-  const displayAiAgents = withIconFallbacks(contentArray(aiSection, aiAgents), aiAgents);
-  const displayCoreModules = withIconFallbacks(contentArray(modulesSection, coreModules), coreModules);
-  const displayWhyFeatures = withIconFallbacks(contentArray(whySection, whyFeatures), whyFeatures);
+  const displayFaqs = faqs;
+  const contactEmail = 'support@imcamhub.com';
+  const contactPhone = '+44 20 7946 0958';
+  const displayTrustedFeatures = trustedFeatures;
+  const displayAiAgents = aiAgents;
+  const displayCoreModules = coreModules;
+  const displayWhyFeatures = whyFeatures;
 
   return (
     <div>
       {/* =========================================
           VIDEO SHOWCASE — Full Background
           ========================================= */}
-      <VideoShowcase section={videoSection} />
+      <VideoShowcase />
 
 {/* =========================================
           HERO SECTION — Light Background + Image
@@ -448,12 +388,8 @@ export default function Home() {
               transition={{ duration: 0.6, ease: 'easeOut' }}
             >
               <h1 className="text-3xl sm:text-4xl lg:text-[3.5rem] font-heading font-bold text-navy leading-[1.1] mb-5">
-                {heroSection?.title || (
-                  <>
-                    The Complete Case Management Platform for{' '}
-                    <span className="gradient-text">UK Immigration Consultancies</span>
-                  </>
-                )}
+                The Complete Case Management Platform for{' '}
+                <span className="gradient-text">UK Immigration Consultancies</span>
               </h1>
               <p className="text-base sm:text-lg text-text-secondary leading-relaxed mb-6 max-w-lg">
                 Manage <span className="text-accent-blue font-medium">Skilled Worker visas</span>,{' '}
@@ -470,7 +406,7 @@ export default function Home() {
               className="rounded-3xl overflow-hidden border-2 border-sand-dark shadow-[0_8px_30px_rgba(11,31,58,0.12)] hidden lg:block"
             >
               <img
-                src={resolveCmsAsset(heroSection?.image_url) || 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop'}
+                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop"
                 alt="Immigration case management dashboard on a laptop screen"
                 className="w-full h-auto object-cover"
                 loading="eager"
@@ -808,21 +744,16 @@ export default function Home() {
         <div className="relative z-10 container-app text-center">
           <AnimatedSection>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-white mb-4">
-              {ctaSection?.title || (
-                <>
-                  Ready to see ImCam Hub <span className="text-cyan-light">in action</span>?
-                </>
-              )}
-            </h2>
+                Ready to see ImCam Hub <span className="text-cyan-light">in action</span>?
+              </h2>
             <p className="text-white/60 max-w-xl mx-auto mb-8">
-              {ctaSection?.description ||
-                'Join UK immigration consultancies that have transformed their workflow with ImCam Hub. Schedule a personalized demo today.'}
+              Join UK immigration consultancies that have transformed their workflow with ImCam Hub. Schedule a personalized demo today.
             </p>
             <Link
-              to={ctaSection?.button_link || '/book-demo'}
+              to="/book-demo"
               className="inline-flex items-center justify-center gap-2 btn-gradient-primary px-6 sm:px-8 py-3 rounded-full text-sm font-semibold transition-all duration-200 active:scale-[0.98]"
             >
-              {ctaSection?.button_text || 'Book a Free Demo'} <ArrowRight size={16} sm:size={18} />
+              Book a Free Demo <ArrowRight size={16} sm:size={18} />
             </Link>
           </AnimatedSection>
         </div>

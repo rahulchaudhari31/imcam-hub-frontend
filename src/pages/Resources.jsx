@@ -6,8 +6,6 @@ import {
   ArrowRight,
   Search,
   Clock,
-  Mail,
-  CheckCircle2,
 } from 'lucide-react';
 
 function AnimateOnScroll({ children, className = '', delay = 0 }) {
@@ -119,8 +117,6 @@ export default function Resources() {
 
   const [activeFilter, setActiveFilter] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [email, setEmail] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
 
   const filtered = resources.filter((r) => {
     const matchesCategory =
@@ -131,14 +127,6 @@ export default function Resources() {
       r.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
-
-  const handleSubscribe = (e) => {
-    e.preventDefault();
-    if (email) {
-      setSubscribed(true);
-      setEmail('');
-    }
-  };
 
   return (
     <div>
@@ -289,61 +277,6 @@ export default function Resources() {
               })}
             </motion.div>
           )}
-        </div>
-      </section>
-
-      {/* =========================================
-          EMAIL CAPTURE STRIP
-          ========================================= */}
-      <section className="py-12 sm:py-14 bg-sand border-y border-sand-dark">
-        <div className="container-app">
-          <AnimateOnScroll>
-            <div className="bg-white rounded-2xl border border-sand-dark p-6 sm:p-8 md:p-10 flex flex-col md:flex-row items-center gap-6 sm:gap-8">
-              <div className="flex-1 text-center md:text-left">
-                <h3 className="text-lg sm:text-xl font-heading font-semibold text-navy mb-2">
-                  Stay in the <span className="gradient-text">loop</span>
-                </h3>
-                <p className="text-sm text-text-secondary">
-                  Get new guides, compliance updates, and product announcements
-                  delivered to your inbox — no spam, unsubscribe anytime.
-                </p>
-              </div>
-              <div className="w-full md:w-auto">
-                {subscribed ? (
-                  <div className="flex items-center justify-center md:justify-start gap-2 text-emerald font-semibold text-sm">
-                    <CheckCircle2 size={18} />
-                    You&apos;re subscribed!
-                  </div>
-                ) : (
-                  <form
-                    onSubmit={handleSubscribe}
-                    className="flex flex-col sm:flex-row gap-2 w-full md:w-auto"
-                  >
-                    <div className="relative flex-1">
-                      <Mail
-                        size={16}
-                        className="absolute left-3.5 top-1/2 -translate-y-1/2 text-text-muted"
-                      />
-                      <input
-                        type="email"
-                        required
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="you@company.com"
-                        className="w-full pl-10 pr-4 py-3 bg-sand rounded-xl border border-sand-dark text-sm text-navy placeholder:text-text-muted/60 focus:outline-none focus:ring-2 focus:ring-blue/40 focus:border-blue transition-colors"
-                      />
-                    </div>
-                    <button
-                      type="submit"
-                      className="shrink-0 btn-gradient-primary px-6 py-3 rounded-xl text-sm font-semibold transition-all active:scale-[0.98]"
-                    >
-                      Subscribe
-                    </button>
-                  </form>
-                )}
-              </div>
-            </div>
-          </AnimateOnScroll>
         </div>
       </section>
 

@@ -1,9 +1,7 @@
-import { useState, useRef, useEffect, useMemo } from 'react';
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence, useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import {
-  Send,
-  CheckCircle2,
   Shield,
   Clock,
   Play,
@@ -14,9 +12,6 @@ import {
   Quote,
 } from 'lucide-react';
 import usePageMeta from '../hooks/usePageMeta';
-import { fetchBookDemoConfig } from '../services/cmsService';
-
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 function AnimateOnScroll({ children, className = '', delay = 0 }) {
   const ref = useRef(null);
@@ -35,45 +30,42 @@ function AnimateOnScroll({ children, className = '', delay = 0 }) {
   );
 }
 
-const fieldBase =
-  'w-full px-4 py-3 rounded-xl border bg-white text-sm text-navy placeholder:text-text-muted/50 focus:outline-none transition-colors';
-const fieldIdle = 'border-sand-dark focus:ring-2 focus:ring-blue/30 focus:border-blue';
-const fieldError = 'border-red-400 focus:ring-2 focus:ring-red-200';
+const heroTitle = 'See ImCam Hub in Action';
+const heroDescription =
+  'Get a personalized walkthrough of the platform. No commitment, no hard sell — just a clear look at how ImCam Hub fits your practice.';
+const trustTitle = 'What to expect';
+const trustDescription =
+  'Over 200 immigration practices trust ImCam Hub to manage their cases, deadlines, and client relationships. This demo is a no-pressure walkthrough tailored to your firm\'s specific workflows and questions.';
 
-function FormField({ label, name, required, error, children }) {
-  return (
-    <div>
-      <label htmlFor={name} className="block text-sm font-medium text-navy mb-1.5">
-        {label}
-        {required && <span className="text-amber ml-0.5">*</span>}
-      </label>
-      {children}
-      <AnimatePresence>
-        {error && (
-          <motion.p
-            initial={{ opacity: 0, y: -4, height: 0 }}
-            animate={{ opacity: 1, y: 0, height: 'auto' }}
-            exit={{ opacity: 0, y: -4, height: 0 }}
-            className="text-red-500 text-xs mt-1.5 font-medium"
-          >
-            {error}
-          </motion.p>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-}
+const steps = [
+  {
+    icon: Clock,
+    text: 'We confirm your preferred slot within 24 hours',
+    color: 'bg-blue/10 text-blue',
+  },
+  {
+    icon: Play,
+    text: '30-minute live walkthrough with a product specialist',
+    color: 'bg-indigo/10 text-indigo',
+  },
+  {
+    icon: FileText,
+    text: 'Custom quote based on your firm size and needs',
+    color: 'bg-emerald/10 text-emerald',
+  },
+  {
+    icon: Shield,
+    text: 'No commitment — decide at your own pace',
+    color: 'bg-purple/10 text-purple',
+  },
+];
 
-const stepIconMap = {
-  Clock,
-  Play,
-  FileText,
-  Shield,
-};
-
-function resolveStepIcon(name) {
-  return stepIconMap[name] || Play;
-}
+const testimonialQuote =
+  'We went from 3 different tools and endless email chains to one system in under a month. Our caseworkers saved 10+ hours a week within the first quarter.';
+const testimonialAuthor = 'Sarah Mitchell';
+const testimonialRole = 'Managing Partner, Mitchell & Associates';
+const contactPhone = '+44 20 7946 0958';
+const contactEmail = 'support@imcamhub.com';
 
 export default function BookDemo() {
   usePageMeta(
@@ -81,176 +73,6 @@ export default function BookDemo() {
     'Schedule a personalized walkthrough of ImCam Hub. See how our platform transforms immigration case management for your practice.',
     'demo'
   );
-
-  const [config, setConfig] = useState(null);
-
-  useEffect(() => {
-    let mounted = true;
-    const load = async () => {
-      const cms = await fetchBookDemoConfig();
-      if (mounted && cms) setConfig(cms);
-    };
-    load();
-    return () => {
-      mounted = false;
-    };
-  }, []);
-
-  const heroTitle = config?.hero_title || 'See ImCam Hub in Action';
-  const heroDescription =
-    config?.hero_description ||
-    'Get a personalized walkthrough of the platform. No commitment, no hard sell — just a clear look at how ImCam Hub fits your practice.';
-  const trustTitle = config?.trust_title || 'What to expect';
-  const trustDescription =
-    config?.trust_description ||
-    'Over 200 immigration practices trust ImCam Hub to manage their cases, deadlines, and client relationships. This demo is a no-pressure walkthrough tailored to your firm\'s specific workflows and questions.';
-  const steps =
-    config?.steps?.length
-      ? config.steps.map((step) => ({
-          icon: resolveStepIcon(step.icon),
-          text: step.text,
-          color: step.color || 'bg-blue/10 text-blue',
-        }))
-      : [
-          {
-            icon: Clock,
-            text: 'We confirm your preferred slot within 24 hours',
-            color: 'bg-blue/10 text-blue',
-          },
-          {
-            icon: Play,
-            text: '30-minute live walkthrough with a product specialist',
-            color: 'bg-indigo/10 text-indigo',
-          },
-          {
-            icon: FileText,
-            text: 'Custom quote based on your firm size and needs',
-            color: 'bg-emerald/10 text-emerald',
-          },
-          {
-            icon: Shield,
-            text: 'No commitment — decide at your own pace',
-            color: 'bg-purple/10 text-purple',
-          },
-        ];
-  const testimonialQuote =
-    config?.testimonial_quote ||
-    'We went from 3 different tools and endless email chains to one system in under a month. Our caseworkers saved 10+ hours a week within the first quarter.';
-  const testimonialAuthor = config?.testimonial_author || 'Sarah Mitchell';
-  const testimonialRole =
-    config?.testimonial_role || 'Managing Partner, Mitchell & Associates';
-  const contactPhone = config?.contact_phone || '+44 20 7946 0958';
-  const contactEmail = config?.contact_email || 'support@imcamhub.com';
-
-  const [submitted, setSubmitted] = useState(false);
-  const [errors, setErrors] = useState({});
-  const [submitError, setSubmitError] = useState('');
-  const [submitting, setSubmitting] = useState(false);
-  const [form, setForm] = useState({
-    company: '',
-    fullName: '',
-    email: '',
-    phone: '',
-    firmSize: '',
-    preferredDate: '',
-    preferredTime: '',
-    message: '',
-  });
-
-  const todayMin = useMemo(() => new Date().toISOString().split('T')[0], []);
-
-  const update = (field) => (e) => {
-    setForm((prev) => ({ ...prev, [field]: e.target.value }));
-    if (errors[field]) {
-      setErrors((prev) => {
-        const next = { ...prev };
-        delete next[field];
-        return next;
-      });
-    }
-  };
-
-  const validate = () => {
-    const e = {};
-    if (!form.company.trim()) {
-      e.company = 'Company name is required.';
-    } else if (form.company.trim().length > 200) {
-      e.company = 'Company name must be 200 characters or fewer.';
-    }
-    if (!form.fullName.trim()) {
-      e.fullName = 'Full name is required.';
-    } else if (form.fullName.trim().length > 100) {
-      e.fullName = 'Full name must be 100 characters or fewer.';
-    }
-    if (!form.email.trim()) {
-      e.email = 'Work email is required.';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-      e.email = 'Please enter a valid email address.';
-    }
-    if (!form.phone.trim()) {
-      e.phone = 'Phone number is required.';
-    } else if (!/^\+?[\d\s\-().]{7,30}$/.test(form.phone.trim())) {
-      e.phone = 'Please provide a valid phone number.';
-    }
-    if (!form.firmSize) e.firmSize = 'Please select a firm size.';
-    if (form.preferredDate) {
-      if (!/^\d{4}-\d{2}-\d{2}$/.test(form.preferredDate)) {
-        e.preferredDate = 'Please provide a valid date.';
-      } else if (form.preferredDate < todayMin) {
-        e.preferredDate = 'Preferred date cannot be in the past.';
-      }
-    }
-    if (form.preferredTime && !/^([01]\d|2[0-3]):[0-5]\d$/.test(form.preferredTime)) {
-      e.preferredTime = 'Please provide a valid time (HH:MM).';
-    }
-    if (!form.message.trim()) {
-      e.message = 'Message is required.';
-    } else if (form.message.trim().length > 2000) {
-      e.message = 'Message must be 2000 characters or fewer.';
-    }
-    return e;
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setSubmitError('');
-    const validationErrors = validate();
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
-    }
-    setSubmitting(true);
-    try {
-      const res = await fetch(`${API_URL}/api/demo-requests`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          company: form.company.trim(),
-          fullName: form.fullName.trim(),
-          email: form.email.trim(),
-          phone: form.phone.trim(),
-          firmSize: form.firmSize,
-          preferredDate: form.preferredDate || null,
-          preferredTime: form.preferredTime || null,
-          message: form.message.trim(),
-        }),
-      });
-      const data = await res.json().catch(() => null);
-      if (!res.ok) {
-        throw new Error(
-          data?.message || 'Something went wrong. Please try again.'
-        );
-      }
-      setSubmitted(true);
-    } catch (err) {
-      setSubmitError(
-        err.message ||
-        'Network error. Please check your connection and try again.'
-      );
-    } finally {
-      setSubmitting(false);
-    }
-  };
 
   return (
     <div>
@@ -279,300 +101,104 @@ export default function BookDemo() {
       </section>
 
       {/* =========================================
-          2-COLUMN: FORM + SUPPORTING CONTENT
+          WHAT TO EXPECT + CONTACT
           ========================================= */}
       <section className="section-padding pt-0 md:pt-4">
-        <div className="container-app">
-          <AnimatePresence mode="wait">
-            {submitted ? (
-              /* ---------- SUCCESS STATE ---------- */
-              <motion.div
-                key="success"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4 }}
-                className="max-w-2xl mx-auto"
-              >
-                <div className="bg-white rounded-3xl border border-sand-dark shadow-lg p-8 md:p-12 text-center">
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{
-                      type: 'spring',
-                      stiffness: 300,
-                      damping: 20,
-                      delay: 0.15,
-                    }}
-                    className="w-16 h-16 sm:w-20 sm:h-20 bg-emerald-pale rounded-full flex items-center justify-center mx-auto mb-5"
-                  >
-                    <CheckCircle2 size={32} sm:size={40} className="text-emerald" />
-                  </motion.div>
-                  <h2 className="text-2xl sm:text-3xl font-heading font-bold text-navy mb-3">
-                    Demo Request Received
-                  </h2>
-                  <p className="text-text-secondary max-w-md mx-auto mb-6 leading-relaxed">
-                    Thank you, <span className="font-semibold text-navy">{form.fullName || 'there'}</span>!
-                    Our team will confirm your slot within 24 hours and send
-                    a calendar invite to <span className="font-semibold text-navy">{form.email}</span>.
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                    <Link
-                      to="/"
-                      className="inline-flex items-center justify-center gap-2 btn-gradient-primary px-6 py-3 rounded-full text-sm font-semibold transition-all active:scale-[0.98]"
-                    >
-                      Return Home
-                    </Link>
-                    <Link
-                      to="/features"
-                      className="inline-flex items-center justify-center gap-2 border-2 border-navy text-navy hover:bg-navy hover:text-white px-6 py-3 rounded-full text-sm font-semibold transition-all active:scale-[0.98]"
-                    >
-                      Explore Features
-                    </Link>
+        <div className="container-app max-w-3xl">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="space-y-7"
+          >
+            {/* Trust paragraph */}
+            <AnimateOnScroll>
+              <div>
+                <h3 className="text-xl font-heading font-semibold text-navy mb-3">
+                  {trustTitle}
+                </h3>
+                <p className="text-sm text-text-secondary leading-relaxed">
+                  {trustDescription}
+                </p>
+              </div>
+            </AnimateOnScroll>
+
+            {/* What happens next */}
+            <AnimateOnScroll delay={0.08}>
+              <div className="bg-sand/60 rounded-2xl p-6 space-y-4">
+                <h4 className="text-sm font-semibold text-navy uppercase tracking-wide">
+                  What happens next
+                </h4>
+                {steps.map((step, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <div className={`w-8 h-8 rounded-lg ${step.color} flex items-center justify-center shrink-0`}>
+                      <step.icon size={16} />
+                    </div>
+                    <p className="text-sm text-text-secondary pt-1">
+                      {step.text}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </AnimateOnScroll>
+
+            {/* Testimonial */}
+            <AnimateOnScroll delay={0.16}>
+              <div className="bg-gradient-to-br from-navy to-navy-light rounded-2xl p-6 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-indigo/20 rounded-full -translate-y-1/2 translate-x-1/2 blur-xl" />
+                <Quote
+                  size={28}
+                  className="text-indigo-light/30 absolute top-4 left-5"
+                />
+                <p className="text-white/80 text-sm leading-relaxed italic mb-4 pl-4 relative z-10">
+                  &ldquo;{testimonialQuote}&rdquo;
+                </p>
+                <div className="flex items-center gap-3 pl-4 relative z-10">
+                  <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center">
+                    <Users size={16} className="text-white/60" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-white">
+                      {testimonialAuthor}
+                    </p>
+                    <p className="text-xs text-white/50">
+                      {testimonialRole}
+                    </p>
                   </div>
                 </div>
-              </motion.div>
-            ) : (
-              /* ---------- FORM + RIGHT COLUMN ---------- */
-              <motion.div
-                key="form"
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="grid lg:grid-cols-[1fr_420px] gap-8 lg:gap-12 items-start"
-              >
-                {/* LEFT: Form */}
-                <div className="bg-white rounded-3xl border border-sand-dark shadow-lg p-6 md:p-8 lg:p-10 relative overflow-hidden">
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue via-indigo to-purple" />
-                  <form onSubmit={handleSubmit} noValidate className="space-y-5">
-                    <FormField
-                      label="Firm / Company Name"
-                      name="company"
-                      required
-                      error={errors.company}
-                    >
-                      <input
-                        id="company"
-                        type="text"
-                        value={form.company}
-                        onChange={update('company')}
-                        placeholder="Acme Immigration Law"
-                        className={`${fieldBase} ${errors.company ? fieldError : fieldIdle}`}
-                      />
-                    </FormField>
+              </div>
+            </AnimateOnScroll>
 
-                    <FormField
-                      label="Full Name"
-                      name="fullName"
-                      required
-                      error={errors.fullName}
-                    >
-                      <input
-                        id="fullName"
-                        type="text"
-                        value={form.fullName}
-                        onChange={update('fullName')}
-                        placeholder="Jane Doe"
-                        className={`${fieldBase} ${errors.fullName ? fieldError : fieldIdle}`}
-                      />
-                    </FormField>
-
-                    <div className="grid sm:grid-cols-2 gap-5">
-                      <FormField
-                        label="Work Email"
-                        name="email"
-                        required
-                        error={errors.email}
-                      >
-                        <input
-                          id="email"
-                          type="email"
-                          value={form.email}
-                          onChange={update('email')}
-                          placeholder="jane@company.com"
-                          className={`${fieldBase} ${errors.email ? fieldError : fieldIdle}`}
-                        />
-                      </FormField>
-
-                      <FormField label="Phone Number" name="phone" required error={errors.phone}>
-                        <input
-                          id="phone"
-                          type="tel"
-                          value={form.phone}
-                          onChange={update('phone')}
-                          placeholder="+1 (555) 000-0000"
-                          className={`${fieldBase} ${errors.phone ? fieldError : fieldIdle}`}
-                        />
-                      </FormField>
-                    </div>
-
-                    <FormField
-                      label="Firm Size"
-                      name="firmSize"
-                      required
-                      error={errors.firmSize}
-                    >
-                      <select
-                        id="firmSize"
-                        value={form.firmSize}
-                        onChange={update('firmSize')}
-                        className={`${fieldBase} appearance-none bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23718096%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m6%209%206%206%206-6%22%2F%3E%3C%2Fsvg%3E')] bg-no-repeat bg-[right_12px_center] pr-10 ${errors.firmSize ? fieldError : fieldIdle}`}
-                      >
-                        <option value="">Select firm size</option>
-                        <option value="1-10">1 – 10 employees</option>
-                        <option value="11-50">11 – 50 employees</option>
-                        <option value="51-200">51 – 200 employees</option>
-                        <option value="201-1000">201 – 1,000 employees</option>
-                        <option value="1000+">1,000+ employees</option>
-                      </select>
-                    </FormField>
-
-                    <div className="grid sm:grid-cols-2 gap-5">
-                      <FormField
-                        label="Preferred Date"
-                        name="preferredDate"
-                        error={errors.preferredDate}
-                      >
-                        <input
-                          id="preferredDate"
-                          type="date"
-                          min={todayMin}
-                          value={form.preferredDate}
-                          onChange={update('preferredDate')}
-                          className={`${fieldBase} ${errors.preferredDate ? fieldError : fieldIdle}`}
-                        />
-                      </FormField>
-
-                      <FormField
-                        label="Preferred Time"
-                        name="preferredTime"
-                        error={errors.preferredTime}
-                      >
-                        <input
-                          id="preferredTime"
-                          type="time"
-                          value={form.preferredTime}
-                          onChange={update('preferredTime')}
-                          className={`${fieldBase} ${errors.preferredTime ? fieldError : fieldIdle}`}
-                        />
-                      </FormField>
-                    </div>
-                    <p className="text-xs text-text-muted -mt-2">
-                      Optional — choose a date and time that suits you, and we&apos;ll do our best to match it.
-                    </p>
-
-                    <FormField label="Message / Notes" name="message" required error={errors.message}>
-                      <textarea
-                        id="message"
-                        rows={4}
-                        value={form.message}
-                        onChange={update('message')}
-                        placeholder="Tell us about your immigration management needs, current tools, or specific questions..."
-                        className={`${fieldBase} resize-none ${errors.message ? fieldError : fieldIdle}`}
-                      />
-                    </FormField>
-
-                    {submitError && (
-                      <p className="text-red-500 text-sm font-medium text-center">{submitError}</p>
-                    )}
-                    <button
-                      type="submit"
-                      disabled={submitting}
-                      className="w-full flex items-center justify-center gap-2 btn-gradient-primary px-8 py-3.5 rounded-full text-sm font-semibold transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-                    >
-                      <Send size={16} /> {submitting ? 'Submitting…' : 'Book My Free Demo'}
-                    </button>
-                  </form>
+            {/* Contact */}
+            <AnimateOnScroll delay={0.24}>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+                <div className="flex items-center gap-4 text-xs text-text-muted">
+                  <div className="flex items-center gap-1.5">
+                    <Phone size={14} />
+                    <span>{contactPhone}</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <Mail size={14} />
+                    <span>{contactEmail}</span>
+                  </div>
                 </div>
-
-                {/* RIGHT: Supporting content */}
-                <div className="space-y-7">
-{/* Hero image */}
-                  <AnimateOnScroll>
-                    <div className="rounded-2xl overflow-hidden border border-navy/10 bg-white shadow-[0_8px_30px_rgba(11,31,58,0.1)]">
-                      <img
-                        src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop"
-                        alt="Immigration case management dashboard on a laptop screen"
-                        className="w-full aspect-[4/3] object-cover"
-                        loading="lazy"
-                      />
-                    </div>
-                  </AnimateOnScroll>
-
-                  {/* Trust paragraph */}
-                  <AnimateOnScroll>
-                    <div>
-                      <h3 className="text-xl font-heading font-semibold text-navy mb-3">
-                        {trustTitle}
-                      </h3>
-                      <p className="text-sm text-text-secondary leading-relaxed">
-                        {trustDescription}
-                      </p>
-                    </div>
-                  </AnimateOnScroll>
-
-                  {/* 3-step what happens next */}
-                  <AnimateOnScroll delay={0.08}>
-                    <div className="bg-sand/60 rounded-2xl p-6 space-y-4">
-                      <h4 className="text-sm font-semibold text-navy uppercase tracking-wide">
-                        What happens next
-                      </h4>
-                      {steps.map((step, i) => (
-                        <div key={i} className="flex items-start gap-3">
-                          <div className={`w-8 h-8 rounded-lg ${step.color} flex items-center justify-center shrink-0`}>
-                            <step.icon size={16} />
-                          </div>
-                          <p className="text-sm text-text-secondary pt-1">
-                            {step.text}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-                  </AnimateOnScroll>
-
-                  {/* Testimonial */}
-                  <AnimateOnScroll delay={0.16}>
-                    <div className="bg-gradient-to-br from-navy to-navy-light rounded-2xl p-6 relative overflow-hidden">
-                      <div className="absolute top-0 right-0 w-24 h-24 bg-indigo/20 rounded-full -translate-y-1/2 translate-x-1/2 blur-xl" />
-                      <Quote
-                        size={28}
-                        className="text-indigo-light/30 absolute top-4 left-5"
-                      />
-                      <p className="text-white/80 text-sm leading-relaxed italic mb-4 pl-4 relative z-10">
-                        &ldquo;{testimonialQuote}&rdquo;
-                      </p>
-                      <div className="flex items-center gap-3 pl-4 relative z-10">
-                        <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center">
-                          <Users size={16} className="text-white/60" />
-                        </div>
-                        <div>
-                          <p className="text-sm font-semibold text-white">
-                            {testimonialAuthor}
-                          </p>
-                          <p className="text-xs text-white/50">
-                            {testimonialRole}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </AnimateOnScroll>
-
-                  {/* Contact fallback */}
-                  <AnimateOnScroll delay={0.24}>
-                    <div className="flex items-center gap-4 text-xs text-text-muted">
-                      <div className="flex items-center gap-1.5">
-                        <Phone size={14} />
-                        <span>{contactPhone}</span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <Mail size={14} />
-                        <span>{contactEmail}</span>
-                      </div>
-                    </div>
-                  </AnimateOnScroll>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Link
+                    to="/features"
+                    className="inline-flex items-center justify-center gap-2 border-2 border-navy text-navy hover:bg-navy hover:text-white px-6 py-3 rounded-full text-sm font-semibold transition-all active:scale-[0.98]"
+                  >
+                    Explore Features
+                  </Link>
+                  <Link
+                    to="/pricing"
+                    className="inline-flex items-center justify-center gap-2 btn-gradient-primary px-6 py-3 rounded-full text-sm font-semibold transition-all active:scale-[0.98]"
+                  >
+                    View Pricing
+                  </Link>
                 </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+              </div>
+            </AnimateOnScroll>
+          </motion.div>
         </div>
       </section>
     </div>

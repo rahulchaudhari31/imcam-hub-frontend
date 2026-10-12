@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import usePageMeta from '../hooks/usePageMeta';
@@ -17,7 +17,6 @@ import {
   Laptop,
 } from 'lucide-react';
 import FAQAccordion from '../components/FAQAccordion';
-import { fetchPricing, fetchFaqItems } from '../services/cmsService';
 import pricingImg from '../assets/images/features/Pricing photo.png';
 
 const featuresStandard = [
@@ -192,12 +191,6 @@ const faqs = [
   },
 ];
 
-function parseComparisonValue(value) {
-  if (value === 'true') return true;
-  if (value === 'false') return false;
-  return value || '';
-}
-
 function renderCell(value) {
   if (value === true) {
     return <CheckCircle2 size={18} className="text-blue mx-auto" />;
@@ -216,61 +209,10 @@ export default function Pricing() {
   );
 
   const [hoveredRow, setHoveredRow] = useState(null);
-  const [cmsPlans, setCmsPlans] = useState(null);
-  const [cmsComparison, setCmsComparison] = useState(null);
-  const [cmsFaqs, setCmsFaqs] = useState(null);
 
-  useEffect(() => {
-    let mounted = true;
-    const load = async () => {
-      const [pricing, faqs] = await Promise.all([
-        fetchPricing(),
-        fetchFaqItems('pricing'),
-      ]);
-      if (!mounted) return;
-      if (pricing) {
-        if (pricing.plans?.length) setCmsPlans(pricing.plans);
-        if (pricing.comparison?.length) setCmsComparison(pricing.comparison);
-      }
-      if (faqs && faqs.length > 0) {
-        setCmsFaqs(faqs.map((f) => ({ question: f.question, answer: f.answer })));
-      }
-    };
-    load();
-    return () => {
-      mounted = false;
-    };
-  }, []);
-
-  const displayPlans = cmsPlans
-    ? plans.map((plan) => {
-        const cms = cmsPlans.find(
-          (p) => p.name.toLowerCase() === plan.name.toLowerCase()
-        );
-        if (!cms) return plan;
-        return {
-          ...plan,
-          price: cms.monthly_price ?? plan.price,
-          tagline: cms.description || plan.tagline,
-          popular: cms.popular ?? plan.popular,
-          cta: cms.cta_text || plan.cta,
-          ctaClass: cms.cta_class || plan.ctaClass,
-        };
-      })
-    : plans;
-
-  const displayComparison = cmsComparison
-    ? cmsComparison
-        .slice()
-        .sort((a, b) => (a.display_order || 0) - (b.display_order || 0))
-        .map((row) => ({
-          label: row.label,
-          standard: parseComparisonValue(row.standard_value),
-          pro: parseComparisonValue(row.pro_value),
-        }))
-    : comparisonFeatures;
-
-  const displayFaqs = cmsFaqs || faqs;
+  const displayPlans = plans;
+  const displayComparison = comparisonFeatures;
+  const displayFaqs = faqs;
 
   return (
     <div>

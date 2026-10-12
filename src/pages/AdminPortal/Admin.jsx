@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import {
   LayoutDashboard,
   Users,
@@ -7,13 +6,19 @@ import {
   ClipboardList,
   Building2,
 } from 'lucide-react';
-import usePageMeta from '../hooks/usePageMeta';
-import FeaturePageTemplate from '../components/FeaturePageTemplate';
-import { fetchFeaturePage, fetchFaqItems, resolveCmsAsset } from '../services/cmsService';
-import resolveFeatureIcon from '../services/featureIcons';
-import bannerImg from '../assets/images/features/Admin_banner.jpeg';
+import usePageMeta from '../../hooks/usePageMeta';
+import bannerImg from '../../assets/images/features/Admin_banner.jpeg';
+import Hero from './sections/Hero';
+import Overview from './sections/Overview';
+import Dashboard from './sections/Dashboard';
+import Capabilities from './sections/Capabilities';
+import Faq from './sections/Faq';
+import Cta from './sections/Cta';
 
-const introImage = 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop';
+const title = 'Admin Dashboard';
+const role = 'Admin / Practice Manager';
+const introImage =
+  'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop';
 
 const defaultFeatures = [
   {
@@ -72,74 +77,43 @@ const defaultFaqs = [
   },
 ];
 
-export default function FeatureAdmin() {
+export default function Admin() {
   usePageMeta(
     'Admin Portal — ImCam Hub',
     'The command centre for UK immigration consultancies: oversee cases, caseworkers, CoS requests, compliance reviews, and revenue across Skilled Worker, Sponsor Licence, ILR, and Citizenship work.',
     'features'
   );
 
-  const [page, setPage] = useState(null);
-  const [faqs, setFaqs] = useState(null);
-
-  useEffect(() => {
-    let mounted = true;
-    const load = async () => {
-      const [cmsPage, cmsFaqs] = await Promise.all([
-        fetchFeaturePage('admin'),
-        fetchFaqItems('admin'),
-      ]);
-      if (!mounted) return;
-      if (cmsPage) setPage(cmsPage);
-      if (cmsFaqs && cmsFaqs.length > 0) {
-        setFaqs(cmsFaqs.map((f) => ({ question: f.question, answer: f.answer })));
-      }
-    };
-    load();
-    return () => {
-      mounted = false;
-    };
-  }, []);
+  const features = defaultFeatures;
+  const faqs = defaultFaqs;
 
   return (
-    <FeaturePageTemplate
-      title="Admin Dashboard"
-      roleName={page?.role_name || 'Admin / Practice Manager'}
-      bannerText={page?.banner_text || 'Built for Managers'}
-      bannerSubline={
-        page?.banner_subline ||
-        'From caseloads to compliance, the Admin Portal keeps your entire consultancy visible, organised, and ahead of deadlines.'
-      }
-      bannerColor={page?.banner_color || 'bg-navy'}
-      introHeading={page?.intro_heading || 'Everything a Manager Needs, at a Glance'}
-      introText={
-        page?.intro_text || [
-          'The Admin Portal is the command centre of ImCam Hub\'s immigration practice management software, giving managers a single, consolidated view of every case, caseworker, and compliance obligation across Skilled Worker visa, Sponsor Licence, ILR, and British Citizenship work.',
+    <div>
+      <Hero
+        text="Built for Managers"
+        subline="From caseloads to compliance, the Admin Portal keeps your entire consultancy visible, organised, and ahead of deadlines."
+        color="bg-navy"
+        image={bannerImg}
+      />
+
+      <Overview
+        role={role}
+        heading="Everything a Manager Needs, at a Glance"
+        text={[
+          "The Admin Portal is the command centre of ImCam Hub's immigration practice management software, giving managers a single, consolidated view of every case, caseworker, and compliance obligation across Skilled Worker visa, Sponsor Licence, ILR, and British Citizenship work.",
           'Track total cases and revenue, monitor pending licence and CoS requests, and stay ahead of sponsor licence compliance software requirements — all from one dashboard. Purpose-built for UK immigration consultancies, it replaces scattered spreadsheets and status-check emails with real-time oversight managers can act on.',
-        ]
-      }
-      introImageLabel={page?.intro_image_label || 'Admin Dashboard Preview'}
-      introReverse={page?.intro_reverse}
-      bannerImage={resolveCmsAsset(page?.banner_image) || bannerImg}
-      introImage={resolveCmsAsset(page?.intro_image) || introImage}
-      middleImage={resolveCmsAsset(page?.middle_image)}
-      middleBadge={page?.middle_badge}
-      middleHeading={page?.middle_heading}
-      middleParagraphs={page?.middle_paragraphs}
-      middlePoints={page?.middle_points}
-      features={
-        page?.features?.length
-          ? page.features
-              .slice()
-              .sort((a, b) => (a.display_order || 0) - (b.display_order || 0))
-              .map((f) => ({
-                icon: resolveFeatureIcon(f.icon),
-                title: f.title,
-                description: f.description,
-              }))
-          : defaultFeatures
-      }
-      faqs={faqs || defaultFaqs}
-    />
+        ]}
+        image={introImage}
+        imageLabel="Admin Dashboard Preview"
+      />
+
+      <Dashboard />
+
+      <Capabilities role={role} features={features} />
+
+      <Faq faqs={faqs} />
+
+      <Cta title={title} />
+    </div>
   );
 }
