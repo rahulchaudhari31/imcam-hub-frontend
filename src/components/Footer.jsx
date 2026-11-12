@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Globe, ArrowUpRight } from 'lucide-react';
+import { Mail, Phone, MapPin, ArrowUpRight } from 'lucide-react';
 
 const productLinks = [
   { name: 'Admin Dashboard', path: '/features/admin' },
@@ -17,7 +17,6 @@ const companyLinks = [
 const email = 'support@imcamhub.com';
 const phone = '+44 (0) 121 778 2400';
 const address = 'Unit 2, 1204B Stratford Road, Hall Green, Birmingham. B28 8HN, England';
-const website = 'https://e2ecybersolutions.com/';
 
 export default function Footer() {
   return (
@@ -87,17 +86,6 @@ export default function Footer() {
                   <a href={`tel:${phone.replace(/[^+0-9]/g, '')}`} className="flex items-start gap-3 text-sm text-white/50 hover:text-white transition-colors group">
                     <Phone size={20} className="shrink-0 mt-0.5 text-white/40 group-hover:text-blue transition-colors" />
                     <span>T: {phone}</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href={website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-start gap-3 text-sm text-white/50 hover:text-white transition-colors group"
-                  >
-                    <Globe size={20} className="shrink-0 mt-0.5 text-white/40 group-hover:text-blue transition-colors" />
-                    <span>{website.replace(/^https?:\/\//, '').replace(/\/+$/, '')}</span>
                   </a>
                 </li>
                 <li>
